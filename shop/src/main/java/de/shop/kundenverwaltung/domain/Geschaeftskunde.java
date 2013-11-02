@@ -14,11 +14,11 @@ public class Geschaeftskunde extends Kunde{
 		this.firmenname = null;
 	}
 
-	public Geschaeftskunde(int kundennr, Adresse adresse, URI bestellURI,
-			String nachname, String firmenname) {
-		super(kundennr, adresse, bestellURI, nachname);
-		this.firmenname = firmenname;
-	}
+//	public Geschaeftskunde(int kundennr, Adresse adresse, URI bestellURI,
+//			String nachname, String firmenname) {
+//		super(kundennr, adresse, bestellURI, nachname);
+//		this.firmenname = firmenname;
+//	}
 
 	public String getFirmenname() {
 		return firmenname;

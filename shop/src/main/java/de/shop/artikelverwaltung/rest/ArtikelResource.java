@@ -28,6 +28,7 @@ import de.shop.artikelverwaltung.domain.Artikel;
 //import de.shop.util.interceptor.Log;
 import de.shop.util.rest.NotFoundException;
 import de.shop.util.rest.UriHelper;
+import de.shop.util.Mock;
 
 @Path("/artikel")
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.5" })
@@ -57,7 +58,7 @@ public class ArtikelResource {
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findArtikelById(@PathParam("artikelNr") int artikelNr, @Context UriInfo uriInfo) {
-		final Artikel artikel = as.findArtikelById(artikelNr);
+		final Artikel artikel = Mock.findArtikelById(artikelNr);
 		if (artikel == null) {
 			throw new NotFoundException(NOT_FOUND_ID, artikelNr);
 		}

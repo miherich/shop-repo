@@ -63,7 +63,7 @@ public class KundeResource {
 	
 	@GET
 	@Path("{" + KUNDEN_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) Long id) {
+	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Kunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
@@ -158,7 +158,7 @@ public class KundeResource {
 	
 	@GET
 	@Path("{id:[1-9][0-9]*}/bestellungen")
-	public Response findBestellungenByKundeId(@PathParam("id") Long kundeId) {
+	public Response findBestellungenByKundeId(@PathParam("id") int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Kunde kunde = Mock.findKundeById(kundeId);
 		final List<Bestellung> bestellungen = Mock.findBestellungenByKunde(kunde);

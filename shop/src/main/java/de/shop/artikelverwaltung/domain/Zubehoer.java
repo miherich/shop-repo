@@ -5,9 +5,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Zubehoer extends Artikel {
 
-	public Zubehoer(int artikelNr, long preis) {
-		super(artikelNr, preis);
+	public Zubehoer() {
+		super();
 	}
+	
+//	public Zubehoer(int artikelNr, long preis) {
+//		super(artikelNr, preis);
+//	}
 
 	@Override
 	public String toString() {

@@ -7,33 +7,45 @@ public class Position {
 	private int id;
 	private String artikel;
 	private int anzahl;
-	
-	public Position(int id, String artikel, int anzahl) {
+
+	public Position() {
 		super();
-		this.id = id;
-		this.artikel = artikel;
-		this.anzahl = anzahl;
+		this.id = 0;
+		this.artikel = null;
+		this.anzahl = 0;
 	}
-	
+
+//	public Position(int id, String artikel, int anzahl) {
+//		super();
+//		this.id = id;
+//		this.artikel = artikel;
+//		this.anzahl = anzahl;
+//	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getArtikel() {
 		return artikel;
 	}
+
 	public void setArtikel(String artikel) {
 		this.artikel = artikel;
 	}
+
 	public int getAnzahl() {
 		return anzahl;
 	}
+
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Position [id=" + id + ", artikel=" + artikel + ", anzahl="

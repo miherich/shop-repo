@@ -81,25 +81,25 @@ public class Bestellung {
 		this.positionen = new ArrayList<>();
 	}
 
-	public Bestellung(int bestellnr, Date bestelldatum) {
-		super();
-		this.bestellnr = bestellnr;
-		this.bestelldatum = bestelldatum;
-		this.istAusgeliefert = false;
-		this.positionen = new ArrayList<>();
-	}
-
-	public Bestellung(int bestellnr, Date bestelldatum,
-			boolean istAusgeliefert, List<Position> positionen, URI kundeUri,
-			Kunde kunde) {
-		super();
-		this.bestellnr = bestellnr;
-		this.bestelldatum = bestelldatum;
-		this.istAusgeliefert = istAusgeliefert;
-		this.positionen = positionen;
-		this.kundeUri = kundeUri;
-		this.kunde = kunde;
-	}
+//	public Bestellung(int bestellnr, Date bestelldatum) {
+//		super();
+//		this.bestellnr = bestellnr;
+//		this.bestelldatum = bestelldatum;
+//		this.istAusgeliefert = false;
+//		this.positionen = new ArrayList<>();
+//	}
+//
+//	public Bestellung(int bestellnr, Date bestelldatum,
+//			boolean istAusgeliefert, List<Position> positionen, URI kundeUri,
+//			Kunde kunde) {
+//		super();
+//		this.bestellnr = bestellnr;
+//		this.bestelldatum = bestelldatum;
+//		this.istAusgeliefert = istAusgeliefert;
+//		this.positionen = positionen;
+//		this.kundeUri = kundeUri;
+//		this.kunde = kunde;
+//	}
 
 	@Override
 	public int hashCode() {

@@ -20,16 +20,16 @@ public class Adresse {
 		this.kunde = null;
 	}
 
-	public Adresse(int id, String strasse, String hausnummer, int plz,
-			String ort, Kunde kunde) {
-		super();
-		this.id = id;
-		this.strasse = strasse;
-		this.hausnummer = hausnummer;
-		this.plz = plz;
-		this.ort = ort;
-		this.kunde = kunde;
-	}
+//	public Adresse(int id, String strasse, String hausnummer, int plz,
+//			String ort, Kunde kunde) {
+//		super();
+//		this.id = id;
+//		this.strasse = strasse;
+//		this.hausnummer = hausnummer;
+//		this.plz = plz;
+//		this.ort = ort;
+//		this.kunde = kunde;
+//	}
 
 	public int getId() {
 		return id;

@@ -84,14 +84,14 @@ public abstract class Kunde implements Serializable {
 		this.bestellURI = null;
 	}
 
-	public Kunde(int kundennr, Adresse adresse, URI bestellURI, String nachname) {
-		super();
-		this.kundennr = kundennr;
-		this.adresse = adresse;
-		this.nachname = nachname;
-		this.bestellungen = new ArrayList<>();
-		this.bestellURI = bestellURI;
-	}
+//	public Kunde(int kundennr, Adresse adresse, URI bestellURI, String nachname) {
+//		super();
+//		this.kundennr = kundennr;
+//		this.adresse = adresse;
+//		this.nachname = nachname;
+//		this.bestellungen = new ArrayList<>();
+//		this.bestellURI = bestellURI;
+//	}
 
 	@Override
 	public String toString() {

@@ -6,12 +6,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Fahrrad extends Artikel {
 	private String bezeichnung;
 	private String rahmen;
-	
-	public Fahrrad(int artikelNr, long preis, String bezeichnung, String rahmen) {
-		super(artikelNr, preis);
-		this.bezeichnung = bezeichnung;
-		this.rahmen = rahmen;
+
+	public Fahrrad() {
+		super();
+		this.bezeichnung = null;
+		this.rahmen = null;
 	}
+
+	// public Fahrrad(int artikelNr, long preis, String bezeichnung, String
+	// rahmen) {
+	// super(artikelNr, preis);
+	// this.bezeichnung = bezeichnung;
+	// this.rahmen = rahmen;
+	// }
 
 	public String getBezeichnung() {
 		return bezeichnung;
@@ -66,6 +73,5 @@ public class Fahrrad extends Artikel {
 		return "Fahrrad [bezeichnung=" + bezeichnung + ", rahmen=" + rahmen
 				+ "]";
 	}
-	
 
 }
