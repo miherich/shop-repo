@@ -1,5 +1,8 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Ersatzteil {
 	private Fahrrad fahrrad;
 

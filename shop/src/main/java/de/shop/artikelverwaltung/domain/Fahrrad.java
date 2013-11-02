@@ -1,5 +1,8 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Fahrrad extends Artikel {
 	private String bezeichnung;
 	private String rahmen;
