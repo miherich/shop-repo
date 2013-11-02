@@ -35,6 +35,10 @@ public class Bestellung {
 		return positionen;
 	}
 	
+	public void Ausliefern() {
+		this.istAusgeliefert = true;
+	}
+	
 	public Bestellung(int bestellnr, Date bestelldatum) {
 		super();
 		this.bestellnr = bestellnr;
