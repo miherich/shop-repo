@@ -8,7 +8,13 @@ public class Privatkunde extends Kunde {
 	private static final long serialVersionUID = -3177911520687689458L;
 	private String vorname;
 	private String nachname;
-	
+
+	public Privatkunde() {
+		super();
+		this.vorname = null;
+		this.nachname = null;
+	}
+
 	public Privatkunde(int kundennr, Adresse adresse, URI bestellURI,
 			String vorname, String nachname) {
 		super(kundennr, adresse, bestellURI);
@@ -69,7 +75,5 @@ public class Privatkunde extends Kunde {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
