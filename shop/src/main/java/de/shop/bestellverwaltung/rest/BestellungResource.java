@@ -22,6 +22,7 @@ import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.util.rest.UriHelper;
 import de.shop.util.rest.NotFoundException;
+import de.shop.util.Mock;
 
 //FIXME Fehler beheben
 
@@ -40,7 +41,7 @@ public class BestellungResource {
 	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findBestellungById(@PathParam("id") Long id) {
+	public Response findBestellungById(@PathParam("id") int id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Bestellung bestellung = Mock.findBestellungById(id);
 		if (bestellung == null) {
