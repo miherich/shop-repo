@@ -1,14 +1,17 @@
 package de.shop.bestellverwaltung.domain;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@XMLRootElement
 public class Bestellung {
 	private int bestellnr;
 	private Date bestelldatum;
 	private boolean istAusgeliefert;
 	private List<Position> positionen;
+	private URI kundeUri;
 
 	public void setPositionen(List<Position> positionen) {
 		this.positionen = positionen;
@@ -35,6 +38,12 @@ public class Bestellung {
 		return positionen;
 	}
 	
+	public URI getKundeUri() {
+		return kundeUri;
+	}
+	public void setKundeUri(URI kundeUri) {
+		this.kundeUri = kundeUri;
+	}
 	public void Ausliefern() {
 		this.istAusgeliefert = true;
 	}
@@ -45,6 +54,15 @@ public class Bestellung {
 		this.bestelldatum = bestelldatum;
 		this.istAusgeliefert = false;
 		this.positionen = new ArrayList<>();
+	}
+	public Bestellung(int bestellnr, Date bestelldatum,
+			boolean istAusgeliefert, List<Position> positionen, URI kundeUri) {
+		super();
+		this.bestellnr = bestellnr;
+		this.bestelldatum = bestelldatum;
+		this.istAusgeliefert = istAusgeliefert;
+		this.positionen = positionen;
+		this.kundeUri = kundeUri;
 	}
 	@Override
 	public int hashCode() {
