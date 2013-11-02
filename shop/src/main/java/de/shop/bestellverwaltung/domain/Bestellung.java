@@ -1,6 +1,8 @@
 package de.shop.bestellverwaltung.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Bestellung {
 	private int bestellnr;
@@ -31,5 +33,6 @@ public class Bestellung {
 		super();
 		this.bestellnr = bestellnr;
 		this.bestelldatum = bestelldatum;
+		this.positionen = new ArrayList<>();
 	}
 }
