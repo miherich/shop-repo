@@ -1,5 +1,9 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlRootElement
 public abstract class Artikel {
 	private int artikelNr;
 	private long preis;
