@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Privatkunde extends Kunde {
+	private static final long serialVersionUID = -3177911520687689458L;
 	private String vorname;
 	private String nachname;
 	

@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import java.io.Serializable;
 
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonSubTypes.Type;
@@ -18,7 +19,8 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @JsonSubTypes({
 	@Type(value = Privatkunde.class, name = Kunde.PRIVATKUNDE),
 	@Type(value = Geschaeftskunde.class, name = Kunde.GESCHAEFTSKUNDE) })
-public abstract class Kunde {
+public abstract class Kunde implements Serializable {
+	private static final long serialVersionUID = 7401524595142572933L;
 	private int kundennr;
 	private Adresse adresse;
 	

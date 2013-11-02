@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Geschaeftskunde extends Kunde{
+	private static final long serialVersionUID = 6258156986876418100L;
 	private String firmenname;
 	private String ansprechpartner;
 
