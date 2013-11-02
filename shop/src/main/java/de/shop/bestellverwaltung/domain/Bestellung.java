@@ -1,16 +1,17 @@
 package de.shop.bestellverwaltung.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Bestellung {
 	private int bestellnr;
 	private Date bestelldatum;
-	//TODO Position anlegen
+	private List<Position> positionen;
 	
-	public Bestellung(int bestellnr, Date bestelldatum) {
-		super();
-		this.bestellnr = bestellnr;
-		this.bestelldatum = bestelldatum;
+
+	public void setPositionen(List<Position> positionen) {
+		this.positionen = positionen;
 	}
 	public int getBestellnr() {
 		return bestellnr;
@@ -23,5 +24,15 @@ public class Bestellung {
 	}
 	public void setBestelldatum(Date bestelldatum) {
 		this.bestelldatum = bestelldatum;
+	}
+	public List<Position> getPositionen() {
+		return positionen;
+	}
+	
+	public Bestellung(int bestellnr, Date bestelldatum) {
+		super();
+		this.bestellnr = bestellnr;
+		this.bestelldatum = bestelldatum;
+		this.positionen = new ArrayList<>();
 	}
 }
