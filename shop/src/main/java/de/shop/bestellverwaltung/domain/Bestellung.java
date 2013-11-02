@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.shop.kundenverwaltung.domain.Kunde;
+
 @XMLRootElement
 public class Bestellung {
 	private int bestellnr;
@@ -12,6 +14,9 @@ public class Bestellung {
 	private boolean istAusgeliefert;
 	private List<Position> positionen;
 	private URI kundeUri;
+	
+	@XMLTransient
+	private Kunde kunde;
 
 	public void setPositionen(List<Position> positionen) {
 		this.positionen = positionen;
@@ -73,6 +78,8 @@ public class Bestellung {
 		result = prime * result + bestellnr;
 		result = prime * result + (istAusgeliefert ? 1231 : 1237);
 		result = prime * result
+				+ ((kundeUri == null) ? 0 : kundeUri.hashCode());
+		result = prime * result
 				+ ((positionen == null) ? 0 : positionen.hashCode());
 		return result;
 	}
@@ -94,6 +101,11 @@ public class Bestellung {
 			return false;
 		if (istAusgeliefert != other.istAusgeliefert)
 			return false;
+		if (kundeUri == null) {
+			if (other.kundeUri != null)
+				return false;
+		} else if (!kundeUri.equals(other.kundeUri))
+			return false;
 		if (positionen == null) {
 			if (other.positionen != null)
 				return false;
@@ -105,6 +117,6 @@ public class Bestellung {
 	public String toString() {
 		return "Bestellung [bestellnr=" + bestellnr + ", bestelldatum="
 				+ bestelldatum + ", istAusgeliefert=" + istAusgeliefert
-				+ ", positionen=" + positionen + "]";
+				+ ", positionen=" + positionen + ", kundeUri=" + kundeUri + "]";
 	}
 }
