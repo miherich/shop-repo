@@ -1,12 +1,28 @@
 package de.shop.artikelverwaltung.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonSubTypes.Type;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 
 @XmlRootElement
+@XmlSeeAlso({Zubehoer.class, Fahrrad.class , Ersatzteil.class})
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+@Type(value = Zubehoer.class, name = Artikel.Zubehoer),
+@Type(value = Fahrrad.class, name = Artikel.Fahrrad),
+@Type(value = Ersatzteil.class, name = Artikel.Ersatzteil)})
 public abstract class Artikel {
 	private int artikelNr;
 	private long preis;
+	
+	public static final String Zubehoer = "Z";
+	public static final String Fahrrad = "F";
+	public static final String Ersatzteil = "E";
 	
 	public long getArtikelNr() {
 		return artikelNr;
