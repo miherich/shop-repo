@@ -17,45 +17,62 @@ public class Bestellung {
 	private boolean istAusgeliefert;
 	private List<Position> positionen;
 	private URI kundeUri;
-	
+
 	@XmlTransient
 	private Kunde kunde;
 
 	public void setPositionen(List<Position> positionen) {
 		this.positionen = positionen;
 	}
+
 	public int getBestellnr() {
 		return bestellnr;
 	}
+
 	public void setBestellnr(int bestellnr) {
 		this.bestellnr = bestellnr;
 	}
+
 	public Date getBestelldatum() {
 		return bestelldatum;
 	}
+
 	public void setBestelldatum(Date bestelldatum) {
 		this.bestelldatum = bestelldatum;
 	}
+
 	public boolean getIstAusgeliefert() {
 		return istAusgeliefert;
 	}
+
 	public void setIstAusgeliefert(boolean istAusgeliefert) {
 		this.istAusgeliefert = istAusgeliefert;
 	}
+
 	public List<Position> getPositionen() {
 		return positionen;
 	}
-	
+
 	public URI getKundeUri() {
 		return kundeUri;
 	}
+
 	public void setKundeUri(URI kundeUri) {
 		this.kundeUri = kundeUri;
 	}
+
 	public void Ausliefern() {
 		this.istAusgeliefert = true;
 	}
-	
+
+	public Bestellung() {
+		super();
+		this.bestellnr = 0;
+		this.bestelldatum = null;
+		this.istAusgeliefert = false;
+		this.positionen = new ArrayList<>();
+	}
+
 	public Bestellung(int bestellnr, Date bestelldatum) {
 		super();
 		this.bestellnr = bestellnr;
@@ -63,6 +80,7 @@ public class Bestellung {
 		this.istAusgeliefert = false;
 		this.positionen = new ArrayList<>();
 	}
+
 	public Bestellung(int bestellnr, Date bestelldatum,
 			boolean istAusgeliefert, List<Position> positionen, URI kundeUri) {
 		super();
@@ -72,6 +90,7 @@ public class Bestellung {
 		this.positionen = positionen;
 		this.kundeUri = kundeUri;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,6 +105,7 @@ public class Bestellung {
 				+ ((positionen == null) ? 0 : positionen.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -116,6 +136,7 @@ public class Bestellung {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Bestellung [bestellnr=" + bestellnr + ", bestelldatum="
