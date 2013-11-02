@@ -2,57 +2,89 @@ package de.shop.kundenverwaltung.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @XmlRootElement
 public class Adresse {
+	private int id;
 	private String strasse;
 	private String hausnummer;
 	private int plz;
 	private String ort;
-	
+	private Kunde kunde;
+
 	public Adresse() {
 		super();
 		this.strasse = null;
 		this.hausnummer = null;
 		this.plz = 0;
 		this.ort = null;
+		this.kunde = null;
 	}
-	public Adresse(String strasse, String hausnummer, int plz, String ort) {
+
+	public Adresse(int id, String strasse, String hausnummer, int plz,
+			String ort, Kunde kunde) {
 		super();
+		this.id = id;
 		this.strasse = strasse;
 		this.hausnummer = hausnummer;
 		this.plz = plz;
 		this.ort = ort;
+		this.kunde = kunde;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getStrasse() {
 		return strasse;
 	}
+
 	public void setStrasse(String strasse) {
 		this.strasse = strasse;
 	}
+
 	public String getHausnummer() {
 		return hausnummer;
 	}
+
 	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
 	}
+
 	public int getPlz() {
 		return plz;
 	}
+
 	public void setPlz(int plz) {
 		this.plz = plz;
 	}
+
 	public String getOrt() {
 		return ort;
 	}
+
 	public void setOrt(String ort) {
 		this.ort = ort;
 	}
+
+	public Kunde getKunde() {
+		return kunde;
+	}
+
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
+	}
+
 	@Override
 	public String toString() {
 		return "Adresse [strasse=" + strasse + ", hausnummer=" + hausnummer
 				+ ", plz=" + plz + ", ort=" + ort + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,6 +96,7 @@ public class Adresse {
 		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -92,5 +125,5 @@ public class Adresse {
 			return false;
 		return true;
 	}
-	
+
 }

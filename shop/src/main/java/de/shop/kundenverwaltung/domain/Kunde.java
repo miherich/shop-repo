@@ -14,23 +14,22 @@ import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 @XmlRootElement
-@XmlSeeAlso({Geschaeftskunde.class, Privatkunde.class})
+@XmlSeeAlso({ Geschaeftskunde.class, Privatkunde.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-	@Type(value = Privatkunde.class, name = Kunde.PRIVATKUNDE),
-	@Type(value = Geschaeftskunde.class, name = Kunde.GESCHAEFTSKUNDE) })
+@JsonSubTypes({ @Type(value = Privatkunde.class, name = Kunde.PRIVATKUNDE),
+		@Type(value = Geschaeftskunde.class, name = Kunde.GESCHAEFTSKUNDE) })
 public abstract class Kunde implements Serializable {
 	private static final long serialVersionUID = 7401524595142572933L;
 	private int kundennr;
 	private Adresse adresse;
-	
+
 	public static final String PRIVATKUNDE = "P";
-	public static final String GESCHAEFTSKUNDE = "G";	
-	
+	public static final String GESCHAEFTSKUNDE = "G";
+
 	@XmlTransient
 	private List<Bestellung> bestellungen;
 	private URI bestellURI;
-	
+
 	public int getKundennr() {
 		return kundennr;
 	}
@@ -61,6 +60,14 @@ public abstract class Kunde implements Serializable {
 
 	public void setBestellURI(URI bestellURI) {
 		this.bestellURI = bestellURI;
+	}
+
+	public Kunde() {
+		super();
+		this.kundennr = 0;
+		this.adresse = null;
+		this.bestellungen = new ArrayList<>();
+		this.bestellURI = null;
 	}
 
 	public Kunde(int kundennr, Adresse adresse, URI bestellURI) {
@@ -119,5 +126,5 @@ public abstract class Kunde implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

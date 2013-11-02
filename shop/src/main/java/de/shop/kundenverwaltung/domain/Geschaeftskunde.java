@@ -9,6 +9,11 @@ public class Geschaeftskunde extends Kunde{
 	private String firmenname;
 	private String ansprechpartner;
 
+	public Geschaeftskunde() {
+		super();
+		this.firmenname = null;
+		this.ansprechpartner = null;
+	}
 	public Geschaeftskunde(int kundennr, Adresse adresse, URI bestellURI,
 			String firmenname, String ansprechpartner) {
 		super(kundennr, adresse, bestellURI);
