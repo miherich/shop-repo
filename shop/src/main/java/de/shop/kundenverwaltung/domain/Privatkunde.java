@@ -1,6 +1,6 @@
 package de.shop.kundenverwaltung.domain;
 
-import java.net.URI;
+//import java.net.URI;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
