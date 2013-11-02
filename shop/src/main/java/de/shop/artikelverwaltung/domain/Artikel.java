@@ -1,4 +1,4 @@
-package artikelverwaltung;
+package de.shop.artikelverwaltung.domain;
 
 public class Artikel {
 	private long artikelNr;
