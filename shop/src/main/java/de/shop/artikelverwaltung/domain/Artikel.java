@@ -1,6 +1,6 @@
 package de.shop.artikelverwaltung.domain;
 
-public class Artikel {
+public abstract class Artikel {
 	private int artikelNr;
 	private long preis;
 	
