@@ -46,4 +46,47 @@ public class Bestellung {
 		this.istAusgeliefert = false;
 		this.positionen = new ArrayList<>();
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((bestelldatum == null) ? 0 : bestelldatum.hashCode());
+		result = prime * result + bestellnr;
+		result = prime * result + (istAusgeliefert ? 1231 : 1237);
+		result = prime * result
+				+ ((positionen == null) ? 0 : positionen.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bestellung other = (Bestellung) obj;
+		if (bestelldatum == null) {
+			if (other.bestelldatum != null)
+				return false;
+		} else if (!bestelldatum.equals(other.bestelldatum))
+			return false;
+		if (bestellnr != other.bestellnr)
+			return false;
+		if (istAusgeliefert != other.istAusgeliefert)
+			return false;
+		if (positionen == null) {
+			if (other.positionen != null)
+				return false;
+		} else if (!positionen.equals(other.positionen))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Bestellung [bestellnr=" + bestellnr + ", bestelldatum="
+				+ bestelldatum + ", istAusgeliefert=" + istAusgeliefert
+				+ ", positionen=" + positionen + "]";
+	}
 }
