@@ -6,11 +6,24 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonSubTypes.Type;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 @XmlRootElement
+@XmlSeeAlso({Geschaeftskunde.class, Privatkunde.class})
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+	@Type(value = Privatkunde.class, name = Kunde.PRIVATKUNDE),
+	@Type(value = Geschaeftskunde.class, name = Kunde.GESCHAEFTSKUNDE) })
 public abstract class Kunde {
 	private int kundennr;
 	private Adresse adresse;
+	
+	public static final String PRIVATKUNDE = "P";
+	public static final String GESCHAEFTSKUNDE = "G";	
 	
 	@XmlTransient
 	private List<Bestellung> bestellungen;
