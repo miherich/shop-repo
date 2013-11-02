@@ -30,4 +30,41 @@ public class Position {
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
+	
+	@Override
+	public String toString() {
+		return "Position [id=" + id + ", artikel=" + artikel + ", anzahl="
+				+ anzahl + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + anzahl;
+		result = prime * result + ((artikel == null) ? 0 : artikel.hashCode());
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Position other = (Position) obj;
+		if (anzahl != other.anzahl)
+			return false;
+		if (artikel == null) {
+			if (other.artikel != null)
+				return false;
+		} else if (!artikel.equals(other.artikel))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }
