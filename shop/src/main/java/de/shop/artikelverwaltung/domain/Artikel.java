@@ -24,7 +24,7 @@ public abstract class Artikel {
 	public static final String Fahrrad = "F";
 	public static final String Ersatzteil = "E";
 
-	public long getArtikelNr() {
+	public int getArtikelNr() {
 		return artikelNr;
 	}
 
@@ -101,6 +101,4 @@ public abstract class Artikel {
 			return false;
 		return true;
 	}
-
-
 }
