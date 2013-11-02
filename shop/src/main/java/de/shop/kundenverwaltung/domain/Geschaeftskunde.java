@@ -26,4 +26,44 @@ public class Geschaeftskunde extends Kunde{
 	public void setAnsprechpartner(String ansprechpartner) {
 		this.ansprechpartner = ansprechpartner;
 	}
+
+	@Override
+	public String toString() {
+		return "Geschaeftskunde [firmenname=" + firmenname
+				+ ", ansprechpartner=" + ansprechpartner + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((ansprechpartner == null) ? 0 : ansprechpartner.hashCode());
+		result = prime * result
+				+ ((firmenname == null) ? 0 : firmenname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Geschaeftskunde other = (Geschaeftskunde) obj;
+		if (ansprechpartner == null) {
+			if (other.ansprechpartner != null)
+				return false;
+		} else if (!ansprechpartner.equals(other.ansprechpartner))
+			return false;
+		if (firmenname == null) {
+			if (other.firmenname != null)
+				return false;
+		} else if (!firmenname.equals(other.firmenname))
+			return false;
+		return true;
+	}
 }
