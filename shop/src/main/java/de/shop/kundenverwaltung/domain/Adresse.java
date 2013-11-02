@@ -2,11 +2,18 @@ package de.shop.kundenverwaltung.domain;
 
 public class Adresse {
 	private String strasse;
-	private long hausnummer;
-	private long plz;
+	private String hausnummer;
+	private int plz;
 	private String ort;
 	
-	public Adresse(String strasse, long hausnummer, long plz, String ort) {
+	public Adresse() {
+		super();
+		this.strasse = null;
+		this.hausnummer = null;
+		this.plz = 0;
+		this.ort = null;
+	}
+	public Adresse(String strasse, String hausnummer, int plz, String ort) {
 		super();
 		this.strasse = strasse;
 		this.hausnummer = hausnummer;
@@ -19,16 +26,16 @@ public class Adresse {
 	public void setStrasse(String strasse) {
 		this.strasse = strasse;
 	}
-	public long getHausnummer() {
+	public String getHausnummer() {
 		return hausnummer;
 	}
-	public void setHausnummer(long hausnummer) {
+	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
 	}
-	public long getPlz() {
+	public int getPlz() {
 		return plz;
 	}
-	public void setPlz(long plz) {
+	public void setPlz(int plz) {
 		this.plz = plz;
 	}
 	public String getOrt() {
