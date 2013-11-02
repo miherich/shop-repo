@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import de.shop.kundenverwaltung.domain.Kunde;
 
-@XMLRootElement
+@XmlRootElement
 public class Bestellung {
 	private int bestellnr;
 	private Date bestelldatum;
@@ -15,7 +18,7 @@ public class Bestellung {
 	private List<Position> positionen;
 	private URI kundeUri;
 	
-	@XMLTransient
+	@XmlTransient
 	private Kunde kunde;
 
 	public void setPositionen(List<Position> positionen) {
