@@ -60,7 +60,7 @@ public class ArtikelResource {
 	public Response findArtikelById(@PathParam("artikelNr") int artikelNr, @Context UriInfo uriInfo) {
 		final Artikel artikel = Mock.findArtikelById(artikelNr);
 		if (artikel == null) {
-			throw new NotFoundException(NOT_FOUND_ID, artikelNr);
+			throw new NotFoundException("Kein Artikel mit der Artikelnummer "+artikelNr+" gefunden.");
 		}
 
 		return Response.ok(artikel)
