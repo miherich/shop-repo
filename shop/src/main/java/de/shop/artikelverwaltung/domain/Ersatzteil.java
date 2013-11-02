@@ -18,7 +18,8 @@ public class Ersatzteil {
 
 	@Override
 	public String toString() {
-		return "Ersatzteil [fahrrad=" + fahrrad + "]";
+		return "Ersatzteil [fahrrad=" + fahrrad + ", toString()="
+				+ super.toString() + "]";
 	}
 
 	@Override
@@ -45,4 +46,6 @@ public class Ersatzteil {
 			return false;
 		return true;
 	}
+	
+	
 }
