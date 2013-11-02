@@ -3,7 +3,7 @@ package de.shop.artikelverwaltung.domain;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Ersatzteil {
+public class Ersatzteil extends Artikel {
 	private Fahrrad fahrrad;
 
 	public Fahrrad getFahrrad() {
@@ -14,10 +14,15 @@ public class Ersatzteil {
 		this.fahrrad = fahrrad;
 	}
 
-	public Ersatzteil(Fahrrad fahrrad) {
+	public Ersatzteil() {
 		super();
-		this.fahrrad = fahrrad;
+		this.fahrrad = null;
 	}
+
+	// public Ersatzteil(Fahrrad fahrrad) {
+	// super();
+	// this.fahrrad = fahrrad;
+	// }
 
 	@Override
 	public String toString() {
@@ -49,6 +54,5 @@ public class Ersatzteil {
 			return false;
 		return true;
 	}
-	
-	
+
 }

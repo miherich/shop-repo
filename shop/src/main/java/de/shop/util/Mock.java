@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import de.shop.artikelverwaltung.domain.Artikel;
+import de.shop.artikelverwaltung.domain.Ersatzteil;
+import de.shop.artikelverwaltung.domain.Fahrrad;
+import de.shop.artikelverwaltung.domain.Zubehoer;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.kundenverwaltung.domain.Adresse;
@@ -121,7 +124,16 @@ public final class Mock {
 			return null;
 		}
 
-		final Artikel artikel = new Artikel();
+		final Artikel artikel;
+		if (id % 3 == 0) {
+			artikel = new Fahrrad();
+
+		} else if (id % 3 == 1) {
+			artikel = new Zubehoer();
+		} else {
+			artikel = new Ersatzteil();
+		}
+
 		artikel.setArtikelNr(id);
 		artikel.setPreis(499.99);
 		return artikel;
