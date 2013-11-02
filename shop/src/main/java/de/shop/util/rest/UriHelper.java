@@ -14,7 +14,7 @@ public class UriHelper {
 		              .build();
 	}
 
-	public URI getUri(Class<?> clazz, String methodName, Long id, UriInfo uriInfo) {
+	public URI getUri(Class<?> clazz, String methodName, int id, UriInfo uriInfo) {
 		return uriInfo.getBaseUriBuilder()
 		              .path(clazz)
 		              .path(clazz, methodName)
