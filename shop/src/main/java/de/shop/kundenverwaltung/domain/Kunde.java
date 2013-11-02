@@ -40,6 +40,47 @@ public abstract class Kunde {
 	public void setBestellungen(List<Bestellung> bestellungen) {
 		this.bestellungen = bestellungen;
 	}
+
+	@Override
+	public String toString() {
+		return "Kunde [kundennr=" + kundennr + ", adresse=" + adresse
+				+ ", bestellungen=" + bestellungen + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
+		result = prime * result
+				+ ((bestellungen == null) ? 0 : bestellungen.hashCode());
+		result = prime * result + kundennr;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Kunde other = (Kunde) obj;
+		if (adresse == null) {
+			if (other.adresse != null)
+				return false;
+		} else if (!adresse.equals(other.adresse))
+			return false;
+		if (bestellungen == null) {
+			if (other.bestellungen != null)
+				return false;
+		} else if (!bestellungen.equals(other.bestellungen))
+			return false;
+		if (kundennr != other.kundennr)
+			return false;
+		return true;
+	}
 	
 	
 }
