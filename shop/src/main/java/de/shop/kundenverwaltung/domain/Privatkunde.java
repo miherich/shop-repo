@@ -1,12 +1,16 @@
 package de.shop.kundenverwaltung.domain;
 
+import java.net.URI;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Privatkunde extends Kunde {
 	private String vorname;
 	private String nachname;
 	
-	public Privatkunde(int kundennr, Adresse adresse, String vorname,
-			String nachname) {
-		super(kundennr, adresse);
+	public Privatkunde(int kundennr, Adresse adresse, URI bestellURI,
+			String vorname, String nachname) {
+		super(kundennr, adresse, bestellURI);
 		this.vorname = vorname;
 		this.nachname = nachname;
 	}

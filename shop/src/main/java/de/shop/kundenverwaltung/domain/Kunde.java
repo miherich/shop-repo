@@ -1,22 +1,21 @@
 package de.shop.kundenverwaltung.domain;
 
 import java.util.ArrayList;
+import java.net.URI;
 import java.util.List;
-
+import javax.xml.bind.annotation.XmlRootElement;
 import de.shop.bestellverwaltung.domain.Bestellung;
+import javax.xml.bind.annotation.XmlTransient;
 
+@XmlRootElement
 public abstract class Kunde {
 	private int kundennr;
 	private Adresse adresse;
-	private List<Bestellung> bestellungen;
 	
-	public Kunde(int kundennr, Adresse adresse) {
-		super();
-		this.kundennr = kundennr;
-		this.adresse = adresse;
-		this.bestellungen = new ArrayList<>();
-	}
-
+	@XmlTransient
+	private List<Bestellung> bestellungen;
+	private URI bestellURI;
+	
 	public int getKundennr() {
 		return kundennr;
 	}
@@ -41,10 +40,27 @@ public abstract class Kunde {
 		this.bestellungen = bestellungen;
 	}
 
+	public URI getBestellURI() {
+		return bestellURI;
+	}
+
+	public void setBestellURI(URI bestellURI) {
+		this.bestellURI = bestellURI;
+	}
+
+	public Kunde(int kundennr, Adresse adresse, URI bestellURI) {
+		super();
+		this.kundennr = kundennr;
+		this.adresse = adresse;
+		this.bestellungen = new ArrayList<>();
+		this.bestellURI = bestellURI;
+	}
+
 	@Override
 	public String toString() {
 		return "Kunde [kundennr=" + kundennr + ", adresse=" + adresse
-				+ ", bestellungen=" + bestellungen + "]";
+				+ ", bestellungen=" + bestellungen + ", bestellURI="
+				+ bestellURI + "]";
 	}
 
 	@Override
@@ -52,6 +68,8 @@ public abstract class Kunde {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
+		result = prime * result
+				+ ((bestellURI == null) ? 0 : bestellURI.hashCode());
 		result = prime * result
 				+ ((bestellungen == null) ? 0 : bestellungen.hashCode());
 		result = prime * result + kundennr;
@@ -72,6 +90,11 @@ public abstract class Kunde {
 				return false;
 		} else if (!adresse.equals(other.adresse))
 			return false;
+		if (bestellURI == null) {
+			if (other.bestellURI != null)
+				return false;
+		} else if (!bestellURI.equals(other.bestellURI))
+			return false;
 		if (bestellungen == null) {
 			if (other.bestellungen != null)
 				return false;
@@ -81,6 +104,5 @@ public abstract class Kunde {
 			return false;
 		return true;
 	}
-	
 	
 }
