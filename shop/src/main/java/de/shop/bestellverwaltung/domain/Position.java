@@ -1,21 +1,21 @@
 package de.shop.bestellverwaltung.domain;
 
 public class Position {
-	private long id;
+	private int id;
 	private String artikel;
-	private long anzahl;
+	private int anzahl;
 	
-	public Position(long id, String artikel, long anzahl) {
+	public Position(int id, String artikel, int anzahl) {
 		super();
 		this.id = id;
 		this.artikel = artikel;
 		this.anzahl = anzahl;
 	}
 	
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getArtikel() {
@@ -24,10 +24,10 @@ public class Position {
 	public void setArtikel(String artikel) {
 		this.artikel = artikel;
 	}
-	public long getAnzahl() {
+	public int getAnzahl() {
 		return anzahl;
 	}
-	public void setAnzahl(long anzahl) {
+	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
 }
