@@ -6,23 +6,23 @@ import java.util.List;
 import de.shop.bestellverwaltung.domain.Bestellung;
 
 public abstract class Kunde {
-	private int id;
+	private int kundennr;
 	private Adresse adresse;
 	private List<Bestellung> bestellungen;
 	
-	public Kunde(int id) {
+	public Kunde(int kundennr, Adresse adresse) {
 		super();
-		this.id = id;
-		this.adresse = new Adresse();
+		this.kundennr = kundennr;
+		this.adresse = adresse;
 		this.bestellungen = new ArrayList<>();
 	}
 
-	public int getId() {
-		return id;
+	public int getKundennr() {
+		return kundennr;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setKundennr(int kundennr) {
+		this.kundennr = kundennr;
 	}
 
 	public Adresse getAdresse() {
@@ -40,4 +40,6 @@ public abstract class Kunde {
 	public void setBestellungen(List<Bestellung> bestellungen) {
 		this.bestellungen = bestellungen;
 	}
+	
+	
 }
