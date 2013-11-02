@@ -52,26 +52,28 @@ public class Bestellung {
 	public void setKundeUri(URI kundeUri) {
 		this.kundeUri = kundeUri;
 	}
+	public Kunde getKunde() {
+		return kunde;
+	}
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
+	}
 	public void Ausliefern() {
 		this.istAusgeliefert = true;
 	}
 	
-	public Bestellung(int bestellnr, Date bestelldatum) {
-		super();
-		this.bestellnr = bestellnr;
-		this.bestelldatum = bestelldatum;
-		this.istAusgeliefert = false;
-		this.positionen = new ArrayList<>();
-	}
 	public Bestellung(int bestellnr, Date bestelldatum,
-			boolean istAusgeliefert, List<Position> positionen, URI kundeUri) {
+			boolean istAusgeliefert, List<Position> positionen, URI kundeUri,
+			Kunde kunde) {
 		super();
 		this.bestellnr = bestellnr;
 		this.bestelldatum = bestelldatum;
 		this.istAusgeliefert = istAusgeliefert;
 		this.positionen = positionen;
 		this.kundeUri = kundeUri;
+		this.kunde = kunde;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
