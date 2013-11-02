@@ -1,5 +1,8 @@
 package de.shop.bestellverwaltung.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Position {
 	private int id;
 	private String artikel;

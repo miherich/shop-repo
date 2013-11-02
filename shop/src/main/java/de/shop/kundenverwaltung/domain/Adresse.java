@@ -1,5 +1,9 @@
 package de.shop.kundenverwaltung.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlRootElement
 public class Adresse {
 	private String strasse;
 	private String hausnummer;
