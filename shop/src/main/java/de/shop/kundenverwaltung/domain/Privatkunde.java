@@ -1,25 +1,23 @@
 package de.shop.kundenverwaltung.domain;
 
 import java.net.URI;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Privatkunde extends Kunde {
 	private static final long serialVersionUID = -3177911520687689458L;
 	private String vorname;
-	private String nachname;
 
 	public Privatkunde() {
 		super();
 		this.vorname = null;
-		this.nachname = null;
 	}
-
+	
 	public Privatkunde(int kundennr, Adresse adresse, URI bestellURI,
-			String vorname, String nachname) {
-		super(kundennr, adresse, bestellURI);
+			String nachname, String vorname) {
+		super(kundennr, adresse, bestellURI, nachname);
 		this.vorname = vorname;
-		this.nachname = nachname;
 	}
 
 	public String getVorname() {
@@ -30,26 +28,16 @@ public class Privatkunde extends Kunde {
 		this.vorname = vorname;
 	}
 
-	public String getNachname() {
-		return nachname;
-	}
-
-	public void setNachname(String nachname) {
-		this.nachname = nachname;
-	}
-
 	@Override
 	public String toString() {
-		return "Privatkunde [vorname=" + vorname + ", nachname=" + nachname
-				+ ", toString()=" + super.toString() + "]";
+		return "Privatkunde [vorname=" + vorname + ", toString()="
+				+ super.toString() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result
-				+ ((nachname == null) ? 0 : nachname.hashCode());
 		result = prime * result + ((vorname == null) ? 0 : vorname.hashCode());
 		return result;
 	}
@@ -63,11 +51,6 @@ public class Privatkunde extends Kunde {
 		if (getClass() != obj.getClass())
 			return false;
 		Privatkunde other = (Privatkunde) obj;
-		if (nachname == null) {
-			if (other.nachname != null)
-				return false;
-		} else if (!nachname.equals(other.nachname))
-			return false;
 		if (vorname == null) {
 			if (other.vorname != null)
 				return false;
@@ -75,5 +58,6 @@ public class Privatkunde extends Kunde {
 			return false;
 		return true;
 	}
-
+	
+	
 }

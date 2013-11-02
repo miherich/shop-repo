@@ -3,10 +3,14 @@ package de.shop.kundenverwaltung.domain;
 import java.util.ArrayList;
 import java.net.URI;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlRootElement;
+
 import de.shop.bestellverwaltung.domain.Bestellung;
+
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlSeeAlso;
+
 import java.io.Serializable;
 
 import org.codehaus.jackson.annotate.JsonSubTypes;
@@ -21,6 +25,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 public abstract class Kunde implements Serializable {
 	private static final long serialVersionUID = 7401524595142572933L;
 	private int kundennr;
+	private String nachname;
 	private Adresse adresse;
 
 	public static final String PRIVATKUNDE = "P";
@@ -62,27 +67,37 @@ public abstract class Kunde implements Serializable {
 		this.bestellURI = bestellURI;
 	}
 
+	public String getNachname() {
+		return nachname;
+	}
+
+	public void setNachname(String nachname) {
+		this.nachname = nachname;
+	}
+
 	public Kunde() {
 		super();
 		this.kundennr = 0;
 		this.adresse = null;
+		this.nachname = null;
 		this.bestellungen = new ArrayList<>();
 		this.bestellURI = null;
 	}
 
-	public Kunde(int kundennr, Adresse adresse, URI bestellURI) {
+	public Kunde(int kundennr, Adresse adresse, URI bestellURI, String nachname) {
 		super();
 		this.kundennr = kundennr;
 		this.adresse = adresse;
+		this.nachname = nachname;
 		this.bestellungen = new ArrayList<>();
 		this.bestellURI = bestellURI;
 	}
 
 	@Override
 	public String toString() {
-		return "Kunde [kundennr=" + kundennr + ", adresse=" + adresse
-				+ ", bestellungen=" + bestellungen + ", bestellURI="
-				+ bestellURI + "]";
+		return "Kunde [kundennr=" + kundennr + ", nachname=" + nachname
+				+ ", adresse=" + adresse + ", bestellungen=" + bestellungen
+				+ ", bestellURI=" + bestellURI + "]";
 	}
 
 	@Override
@@ -95,6 +110,8 @@ public abstract class Kunde implements Serializable {
 		result = prime * result
 				+ ((bestellungen == null) ? 0 : bestellungen.hashCode());
 		result = prime * result + kundennr;
+		result = prime * result
+				+ ((nachname == null) ? 0 : nachname.hashCode());
 		return result;
 	}
 
@@ -124,7 +141,13 @@ public abstract class Kunde implements Serializable {
 			return false;
 		if (kundennr != other.kundennr)
 			return false;
+		if (nachname == null) {
+			if (other.nachname != null)
+				return false;
+		} else if (!nachname.equals(other.nachname))
+			return false;
 		return true;
 	}
-
+	
+	
 }
