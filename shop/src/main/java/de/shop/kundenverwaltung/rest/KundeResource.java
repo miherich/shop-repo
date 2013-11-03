@@ -138,10 +138,10 @@ public class KundeResource {
 			}
 		} else {
 			// TODO Anwendungskern statt Mock, Verwendung von Locale
-			kunden = Mock.findAllKunden();
-			if (kunden.isEmpty()) {
-			throw new NotFoundException("Keine Kunden vorhanden.");
-			}
+			//kunden = Mock.findAllKunden();
+			//if (kunden.isEmpty()) {
+			throw new NotFoundException("Query unvollständig. Bitte geben Sie einen Nachnamen an.");
+			//}
 		}
 
 		for (Kunde k : kunden) {
