@@ -231,15 +231,16 @@ public final class Mock {
 	}
 
 	public static void updateArtikel(Artikel artikel) {
-		System.out.print("Aktualisierter Artikel: " + artikel);
+		Artikel artikelAlt = findArtikelById(artikel.getArtikelNr());
+		artikelAlt.setPreis(artikel.getPreis());
+		artikelAlt.setTyp(artikel.getTyp());
+		if (artikel.getArtikelNr() % 3 == 0) {
+			((Fahrrad) artikelAlt).setBezeichnung(((Fahrrad) artikel)
+					.getBezeichnung());
+			((Fahrrad) artikelAlt).setRahmen(((Fahrrad) artikel).getRahmen());
+		} else if (artikel.getArtikelNr() % 3 == 2) {
+			((Ersatzteil)artikelAlt).setFahrrad(((Ersatzteil)artikel).getFahrrad());
+		}
 	}
 
-	public static Artikel createArtikel(Artikel artikel) {
-		// TODO Auto-generated method stub
-		// Achtung: artikelnr muss richtig gesetzt werden! %3 ==0 -> Fahrrad,
-		// %3==1 -> Zubehoer, %3 ==2 ->Ersatzteil
-
-		System.out.print("Neuer Artikel: " + artikel);
-		return artikel;
-	}
 }
