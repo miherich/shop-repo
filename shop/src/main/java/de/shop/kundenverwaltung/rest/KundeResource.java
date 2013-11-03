@@ -78,7 +78,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findArtikelById(@PathParam("id") int id) {
+	public Response findKundeById(@PathParam("id") int id) {
 		final Kunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
 			throw new NotFoundException("Kein Kunde mit der Kundennummer " + id
