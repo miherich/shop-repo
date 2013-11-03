@@ -70,7 +70,7 @@ public class KundeResource {
 		final List<Kunde> kundenList = Mock.findAllKunden();
 		if (kundenList.isEmpty())
 			throw new NotFoundException("Es wurden keine Kunden gefunden.");
-		return Response.ok(kundenList).build();
+		return Response.ok(new GenericEntity<List<? extends Kunde>>(kundenList) {}).build();
 	}
 
 	@GET
