@@ -119,6 +119,7 @@ public final class Mock {
 
 	public static Privatkunde createPrivatkunde(Privatkunde kunde) {
 		// Neue IDs fuer Kunde und zugehoerige Adresse
+		//TODO IDs passend zu Privatkunde (%2=0) erstellen lassen
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
 		kunde.setKundennr(nachname.length());
@@ -133,6 +134,7 @@ public final class Mock {
 
 	public static Geschaeftskunde createGeschaeftskunde(Geschaeftskunde kunde) {
 		// Neue IDs fuer Kunde und zugehoerige Adresse
+		//TODO IDs passen zu Geschaeftskunde (&2=1) erstellen lassen
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
 		kunde.setKundennr(nachname.length());
