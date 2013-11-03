@@ -171,13 +171,15 @@ public final class Mock {
 	private Mock() { /**/
 	}
 
-	// public static void updateArtikel(Artikel artikel) {
-	// // TODO Auto-generated method stub
-	//
-	// }
-	//
-	// public static Artikel createArtikel(Artikel artikel) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+	 public static void updateArtikel(Artikel artikel) {
+	 System.out.print("Aktualisierter Artikel: "+ artikel);
+	 }
+	
+	 public static Artikel createArtikel(Artikel artikel) {
+	 // TODO Auto-generated method stub
+	//Achtung: artikelnr muss richtig gesetzt werden! %3 ==0 -> Fahrrad, %3==1 -> Zubehoer, %3 ==2 ->Ersatzteil
+	
+	 System.out.print("Neuer Artikel: "+ artikel);
+	 return artikel;
+	 }
 }
