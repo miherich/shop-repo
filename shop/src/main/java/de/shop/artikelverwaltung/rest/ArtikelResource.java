@@ -5,8 +5,11 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
+
 //import java.lang.invoke.MethodHandles;
 import java.net.URI;
+
+import java.util.List;
 
 //import javax.annotation.PostConstruct;
 //import javax.annotation.PreDestroy;
@@ -19,13 +22,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 //import org.jboss.logging.Logger;
 
+
 import de.shop.artikelverwaltung.domain.Artikel;
+import de.shop.kundenverwaltung.domain.Kunde;
 //import de.shop.artikelverwaltung.service.ArtikelService;
 //import de.shop.util.interceptor.Log;
 import de.shop.util.rest.NotFoundException;
@@ -61,6 +67,16 @@ public class ArtikelResource {
 	// LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
 	// }
 
+	
+	@GET
+	public Response findAllArtikel() {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		final List<Artikel> artikelList = Mock.findAllArtikel();
+		if (artikelList.isEmpty())
+			throw new NotFoundException("Es wurden keine Artikel gefunden.");
+		return Response.ok(new GenericEntity<List<? extends Artikel>>(artikelList) {}).build();
+	}
+	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findArtikelById(@PathParam("id") int id) {
