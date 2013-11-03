@@ -101,6 +101,7 @@ public final class Mock {
 
 		final Bestellung bestellung = new Bestellung();
 		bestellung.setBestellnr(id);
+		bestellung.setBestelldatum("03.11.2013");
 		bestellung.setIstAusgeliefert(false);
 		bestellung.setKunde(kunde);
 

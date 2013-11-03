@@ -2,7 +2,6 @@ package de.shop.bestellverwaltung.domain;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,7 +12,7 @@ import de.shop.kundenverwaltung.domain.Kunde;
 @XmlRootElement
 public class Bestellung {
 	private int bestellnr;
-	private Date bestelldatum;
+	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
 	private boolean istAusgeliefert;
 	private List<Position> positionen;
 	private URI kundeUri;
@@ -33,11 +32,11 @@ public class Bestellung {
 		this.bestellnr = bestellnr;
 	}
 
-	public Date getBestelldatum() {
+	public String getBestelldatum() {
 		return bestelldatum;
 	}
 
-	public void setBestelldatum(Date bestelldatum) {
+	public void setBestelldatum(String bestelldatum) {
 		this.bestelldatum = bestelldatum;
 	}
 
