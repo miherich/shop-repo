@@ -163,11 +163,16 @@ public final class Mock {
 		final Artikel artikel;
 		if (id % 3 == 0) {
 			artikel = new Fahrrad();
+			artikel.setTyp("Mountainbike");
+			((Fahrrad)artikel).setRahmen("Unisex");
+			((Fahrrad)artikel).setBezeichnung("Scott Expert Bike");
 
 		} else if (id % 3 == 1) {
 			artikel = new Zubehoer();
+			artikel.setTyp("Klingel");
 		} else {
 			artikel = new Ersatzteil();
+			artikel.setTyp("Schlauch");
 		}
 
 		artikel.setArtikelNr(id);
