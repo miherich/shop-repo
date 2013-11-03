@@ -16,8 +16,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-//import javax.ws.rs.POST;
-//import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -103,19 +103,19 @@ public class ArtikelResource {
 				artikel.getArtikelNr(), uriInfo);
 	}
 
-	// @POST
-	// @Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
-	// @Produces
-	// public Response createArtikel(Artikel artikel) {
-	// artikel = Mock.createArtikel(artikel);
-	// return Response.created(getUriArtikel(artikel, uriInfo))
-	// .build();
-	// }
-	// @PUT
-	// @Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	// @Produces
-	// public void updateArtikel(Artikel artikel) {
-	// Mock.updateArtikel(artikel);
-	// }
+	 @POST
+	 @Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
+	 @Produces
+	 public Response createArtikel(Artikel artikel) {
+	 artikel = Mock.createArtikel(artikel);
+	 return Response.created(getUriArtikel(artikel, uriInfo))
+	 .build();
+	 }
+	 @PUT
+	 @Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	 @Produces
+	 public void updateArtikel(Artikel artikel) {
+	 Mock.updateArtikel(artikel);
+	 }
 
 }
