@@ -8,8 +8,8 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 //import java.lang.invoke.MethodHandles;
 import java.net.URI;
-
 import java.util.List;
+
 
 //import javax.annotation.PostConstruct;
 //import javax.annotation.PreDestroy;
@@ -31,7 +31,11 @@ import javax.ws.rs.core.UriInfo;
 
 
 import de.shop.artikelverwaltung.domain.Artikel;
+import de.shop.artikelverwaltung.domain.Ersatzteil;
+import de.shop.artikelverwaltung.domain.Fahrrad;
+import de.shop.artikelverwaltung.domain.Zubehoer;
 import de.shop.kundenverwaltung.domain.Kunde;
+import de.shop.kundenverwaltung.domain.Privatkunde;
 //import de.shop.artikelverwaltung.service.ArtikelService;
 //import de.shop.util.interceptor.Log;
 import de.shop.util.rest.NotFoundException;
@@ -67,16 +71,17 @@ public class ArtikelResource {
 	// LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
 	// }
 
-	
 	@GET
 	public Response findAllArtikel() {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final List<Artikel> artikelList = Mock.findAllArtikel();
 		if (artikelList.isEmpty())
 			throw new NotFoundException("Es wurden keine Artikel gefunden.");
-		return Response.ok(new GenericEntity<List<? extends Artikel>>(artikelList) {}).build();
+		return Response.ok(
+				new GenericEntity<List<? extends Artikel>>(artikelList) {
+				}).build();
 	}
-	
+
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findArtikelById(@PathParam("id") int id) {
@@ -87,8 +92,7 @@ public class ArtikelResource {
 		}
 
 		return Response.ok(artikel)
-				.links(getTransitionalLinks(artikel, uriInfo))
-				.build();
+				.links(getTransitionalLinks(artikel, uriInfo)).build();
 	}
 
 	private Link[] getTransitionalLinks(Artikel artikel, UriInfo uriInfo) {
@@ -103,19 +107,41 @@ public class ArtikelResource {
 				artikel.getArtikelNr(), uriInfo);
 	}
 
-	 @POST
-	 @Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
-	 @Produces
-	 public Response createArtikel(Artikel artikel) {
-	 artikel = Mock.createArtikel(artikel);
-	 return Response.created(getUriArtikel(artikel, uriInfo))
-	 .build();
-	 }
-	 @PUT
-	 @Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	 @Produces
-	 public void updateArtikel(Artikel artikel) {
-	 Mock.updateArtikel(artikel);
-	 }
+	@POST
+	@Path("/fahrrad")
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	public Response createFahrrad(Fahrrad fahrrad) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		fahrrad = Mock.createFahrrad(fahrrad);
+		return Response.created(getUriArtikel(fahrrad, uriInfo)).build();
+	}
+
+	@POST
+	@Path("/zubehoer")
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	public Response createZubehoer(Zubehoer zubehoer) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		zubehoer = Mock.createZubehoer(zubehoer);
+		return Response.created(getUriArtikel(zubehoer, uriInfo)).build();
+	}
+
+	@POST
+	@Path("/ersatzteil")
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	public Response createErsatzteil(Ersatzteil ersatzteil) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		ersatzteil = Mock.createErsatzteil(ersatzteil);
+		return Response.created(getUriArtikel(ersatzteil, uriInfo)).build();
+	}
+
+	@PUT
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	public void updateArtikel(Artikel artikel) {
+		Mock.updateArtikel(artikel);
+	}
 
 }

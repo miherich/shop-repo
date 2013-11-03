@@ -18,6 +18,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 public abstract class Artikel {
 	private int artikelNr;
 	private double preis;
+	private String typ;		//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
 	private URI artikelUri;
 
 	public static final String Zubehoer = "Z";
@@ -40,6 +41,14 @@ public abstract class Artikel {
 		this.preis = preis;
 	}
 
+	public String getTyp() {
+		return typ;
+	}
+
+	public void setTyp(String typ) {
+		this.typ = typ;
+	}
+
 	public URI getArtikelUri() {
 		return artikelUri;
 	}
@@ -55,16 +64,10 @@ public abstract class Artikel {
 		this.artikelUri = null;
 	}
 
-//	public Artikel(int artikelNr, long preis) {
-//		super();
-//		this.artikelNr = artikelNr;
-//		this.preis = preis;
-//		this.artikelUri = null;
-//	}
-
 	@Override
 	public String toString() {
-		return "Artikel [artikelNr=" + artikelNr + ", preis=" + preis + "]";
+		return "Artikel [artikelNr=" + artikelNr + ", preis=" + preis
+				+ ", typ=" + typ + ", artikelUri=" + artikelUri + "]";
 	}
 
 	@Override
@@ -77,6 +80,7 @@ public abstract class Artikel {
 		long temp;
 		temp = Double.doubleToLongBits(preis);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((typ == null) ? 0 : typ.hashCode());
 		return result;
 	}
 
@@ -99,8 +103,22 @@ public abstract class Artikel {
 		if (Double.doubleToLongBits(preis) != Double
 				.doubleToLongBits(other.preis))
 			return false;
+		if (typ == null) {
+			if (other.typ != null)
+				return false;
+		} else if (!typ.equals(other.typ))
+			return false;
 		return true;
 	}
+
+//	public Artikel(int artikelNr, long preis) {
+//		super();
+//		this.artikelNr = artikelNr;
+//		this.preis = preis;
+//		this.artikelUri = null;
+//	}
+
+
 
 //	public Artikel build() {
 //		// TODO Auto-generated method stub

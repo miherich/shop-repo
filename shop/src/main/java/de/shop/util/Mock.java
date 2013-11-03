@@ -184,6 +184,36 @@ public final class Mock {
 		}
 		return artikelList;
 	}
+	
+	public static Fahrrad createFahrrad(Fahrrad fahrrad) {
+	
+		//TODO Artikelnummer anpassen (%3=0)
+		final String bezeichnung = fahrrad.getBezeichnung();
+		fahrrad.setArtikelNr(bezeichnung.length());
+
+		System.out.println("Neuer Artikel Fahrrad: " + fahrrad);
+		return fahrrad;
+	}
+	
+	public static Zubehoer createZubehoer(Zubehoer zubehoer) {
+		//TODO Artikelnummer anpassen (%3=1)
+		final String typ = zubehoer.getTyp();
+		zubehoer.setArtikelNr(typ.length());
+
+		System.out.println("Neuer Artikel Zubehoer: " + zubehoer);
+		return zubehoer;
+	}
+	
+	public static Ersatzteil createErsatzteil(Ersatzteil ersatzteil) {
+		
+		//TODO Artikelnummer anpassen (%3=2)
+		final String typ = ersatzteil.getTyp();
+		ersatzteil.setArtikelNr(typ.length());
+
+		System.out.println("Neuer Artikel Ersatzteil: " + ersatzteil);
+		return ersatzteil;
+	}
+
 
 	private Mock() { /**/
 	}
