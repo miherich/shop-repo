@@ -5,11 +5,11 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
-import java.lang.invoke.MethodHandles;
+//import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+//import javax.annotation.PostConstruct;
+//import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -23,7 +23,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.logging.Logger;
+//import org.jboss.logging.Logger;
 
 import de.shop.artikelverwaltung.domain.Artikel;
 //import de.shop.artikelverwaltung.service.ArtikelService;
@@ -38,8 +38,11 @@ import de.shop.util.Mock;
 @Consumes
 // @Log
 public class ArtikelResource {
-//	private static final Logger LOGGER = Logger.getLogger(MethodHandles
-//			.lookup().lookupClass());
+	@Context
+	private UriInfo uriInfo;
+
+	// private static final Logger LOGGER = Logger.getLogger(MethodHandles
+	// .lookup().lookupClass());
 	// private static final String NOT_FOUND_ID = "artikel.notFound.id";
 
 	// @Inject
@@ -48,24 +51,23 @@ public class ArtikelResource {
 	@Inject
 	private UriHelper uriHelper;
 
-//	@PostConstruct
-//	private void postConstruct() {
-//		LOGGER.debugf("CDI-faehiges Bean %s wurde erzeugt", this);
-//	}
-//
-//	@PreDestroy
-//	private void preDestroy() {
-//		LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
-//	}
+	// @PostConstruct
+	// private void postConstruct() {
+	// LOGGER.debugf("CDI-faehiges Bean %s wurde erzeugt", this);
+	// }
+	//
+	// @PreDestroy
+	// private void preDestroy() {
+	// LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
+	// }
 
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findArtikelById(@PathParam("artikelNr") int artikelNr,
-			@Context UriInfo uriInfo) {
-		final Artikel artikel = Mock.findArtikelById(artikelNr);
+	public Response findArtikelById(@PathParam("id") int id) {
+		final Artikel artikel = Mock.findArtikelById(id);
 		if (artikel == null) {
 			throw new NotFoundException("Kein Artikel mit der Artikelnummer "
-					+ artikelNr + " gefunden.");
+					+ id + " gefunden.");
 		}
 
 		return Response.ok(artikel)
@@ -84,19 +86,19 @@ public class ArtikelResource {
 				artikel.getArtikelNr(), uriInfo);
 	}
 
-//	 @POST
-//	 @Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
-//	 @Produces
-//	 public Response createArtikel(Artikel artikel) {
-//	 artikel = Mock.createArtikel(artikel);
-//	 return Response.created(getUriArtikel(artikel, uriInfo))
-//	 .build();
-//	 }
-//	@PUT
-//	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-//	@Produces
-//	public void updateArtikel(Artikel artikel) {
-//		Mock.updateArtikel(artikel);
-//	}
+	// @POST
+	// @Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
+	// @Produces
+	// public Response createArtikel(Artikel artikel) {
+	// artikel = Mock.createArtikel(artikel);
+	// return Response.created(getUriArtikel(artikel, uriInfo))
+	// .build();
+	// }
+	// @PUT
+	// @Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	// @Produces
+	// public void updateArtikel(Artikel artikel) {
+	// Mock.updateArtikel(artikel);
+	// }
 
 }
