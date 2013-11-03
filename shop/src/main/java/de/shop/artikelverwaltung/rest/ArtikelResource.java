@@ -38,8 +38,8 @@ import de.shop.util.Mock;
 @Consumes
 // @Log
 public class ArtikelResource {
-	private static final Logger LOGGER = Logger.getLogger(MethodHandles
-			.lookup().lookupClass());
+//	private static final Logger LOGGER = Logger.getLogger(MethodHandles
+//			.lookup().lookupClass());
 	// private static final String NOT_FOUND_ID = "artikel.notFound.id";
 
 	// @Inject
@@ -48,15 +48,15 @@ public class ArtikelResource {
 	@Inject
 	private UriHelper uriHelper;
 
-	@PostConstruct
-	private void postConstruct() {
-		LOGGER.debugf("CDI-faehiges Bean %s wurde erzeugt", this);
-	}
-
-	@PreDestroy
-	private void preDestroy() {
-		LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
-	}
+//	@PostConstruct
+//	private void postConstruct() {
+//		LOGGER.debugf("CDI-faehiges Bean %s wurde erzeugt", this);
+//	}
+//
+//	@PreDestroy
+//	private void preDestroy() {
+//		LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
+//	}
 
 	@GET
 	@Path("{id:[1-9][0-9]*}")
