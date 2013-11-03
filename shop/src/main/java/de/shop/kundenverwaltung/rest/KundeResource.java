@@ -127,7 +127,6 @@ public class KundeResource {
 	}
 
 	@GET
-	@QueryParam("{nachname}")
 	public Response findKundenByNachname(@QueryParam("nachname") String nachname) {
 		List<? extends Kunde> kunden = null;
 		if (nachname != null) {
