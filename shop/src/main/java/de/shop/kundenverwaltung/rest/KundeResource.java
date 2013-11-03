@@ -12,7 +12,7 @@ import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 import java.net.URI;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,7 +32,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import de.shop.artikelverwaltung.domain.Artikel;
+//import de.shop.artikelverwaltung.domain.Artikel;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
 import de.shop.kundenverwaltung.domain.Kunde;
@@ -45,8 +45,8 @@ import de.shop.util.rest.NotFoundException;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 public class KundeResource {
-	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
-	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
+//	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
+//	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
 
 	@Context
 	private UriInfo uriInfo;
@@ -74,8 +74,8 @@ public class KundeResource {
 	}
 
 	@GET
-	@Path("{" + KUNDEN_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
+	@Path("{" + "kundeId" + ":[1-9][0-9]*}")
+	public Response findKundeById(@PathParam("kundeId") int id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Kunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
@@ -128,7 +128,7 @@ public class KundeResource {
 
 	@GET
 	public Response findKundenByNachname(
-			@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM) String nachname) {
+			@QueryParam("nachname") String nachname) {
 		List<? extends Kunde> kunden = null;
 		if (nachname != null) {
 			// TODO Anwendungskern statt Mock, Verwendung von Locale
