@@ -1,46 +1,22 @@
 <?xml version="1.0"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-<!--
-	Aufrufe:
-	1) Projekt-Doku generieren
-		 mvn -DskipTests site
-		 mvn -DskipTests -o site				// -o : offline
-	2) Arquillian-Tests
-		 mvn test
-
-	Aufraeumen:
-	3) Verzeichnis "target" loeschen
-		 mvn clean
-	
-	(Un-) Deployment nur mit Maven, d.h. ohne Eclipse/WTP
-	4) Deployment in einen laufenden WildFly-Server
-		 mvn -DskipTests package jboss-as:deploy
-	5) Undeployment
-		 mvn jboss-as:undeploy
-
-	Abhängigkeiten anzeigen sowie Sources und javadoc zu den JARs herunterladen
-	6)   mvn dependency:tree
-	7)   mvn dependency:sources
-	8)   mvn dependency:resolve -Dclassifier=javadoc -Dtype=jar
-
-	Qualitaetssicherung mit FindBugs, Checkstyle und PMD (fuer z.B. Jenkins)
-	9)   mvn -DskipTests findbugs:findbugs checkstyle:checkstyle pmd:pmd
-
-	Versionsnummern auf Aktualitaet pruefen
-	10) JARs ueberpruefen
-	     mvn versions:display-dependency-updates
-	11) Plugins ueberpruefen
-	     mvn versions:display-plugin-updates
-
-	Eclipse: rechte Maustaste > Properties > Java Compiler > Annotation Processing
-               Enable project specific settings
-	           Generated source directory: target/generated-sources/apt
-	                                       target/generated-sources/annotations ohne maven-processor-plugin
--->
+	<!-- Aufrufe: 1) Projekt-Doku generieren mvn -DskipTests site mvn -DskipTests 
+		-o site // -o : offline 2) Arquillian-Tests mvn test Aufraeumen: 3) Verzeichnis 
+		"target" loeschen mvn clean (Un-) Deployment nur mit Maven, d.h. ohne Eclipse/WTP 
+		4) Deployment in einen laufenden WildFly-Server mvn -DskipTests package jboss-as:deploy 
+		5) Undeployment mvn jboss-as:undeploy Abhängigkeiten anzeigen sowie Sources 
+		und javadoc zu den JARs herunterladen 6) mvn dependency:tree 7) mvn dependency:sources 
+		8) mvn dependency:resolve -Dclassifier=javadoc -Dtype=jar Qualitaetssicherung 
+		mit FindBugs, Checkstyle und PMD (fuer z.B. Jenkins) 9) mvn -DskipTests findbugs:findbugs 
+		checkstyle:checkstyle pmd:pmd Versionsnummern auf Aktualitaet pruefen 10) 
+		JARs ueberpruefen mvn versions:display-dependency-updates 11) Plugins ueberpruefen 
+		mvn versions:display-plugin-updates Eclipse: rechte Maustaste > Properties 
+		> Java Compiler > Annotation Processing Enable project specific settings 
+		Generated source directory: target/generated-sources/apt target/generated-sources/annotations 
+		ohne maven-processor-plugin -->
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.shop</groupId>
@@ -48,32 +24,32 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>shop</name>
-	
+
 	<url>http://www.iwi.hs-karlsruhe.de</url>
 	<inceptionYear>2009</inceptionYear>
 	<description>Semester-Projekt</description>
-	
+
 	<!-- scm = source code management = Versionsmanagement -->
 	<scm>
 		<connection>scm:git:https://github.com/juergenzimmermann/shop.git</connection>
 		<url>https://github.com/juergenzimmermann/shop.git</url>
 		<developerConnection>scm:git:https://github.com/juergenzimmermann/shop.git</developerConnection>
 	</scm>
-	
+
 	<licenses>
 		<license>
 			<name>GNU General Public License (GPL)</name>
 			<url>http://www.gnu.org/licenses/gpl-3.0.html</url>
 		</license>
 	</licenses>
-	
+
 	<organization>
 		<name>Hochschule Karlsruhe</name>
 		<url>http://www.hs-karlsruhe.de</url>
 	</organization>
-	
+
 	<developers>
-		<developer1>
+		<developer>
 			<id>miherich</id>
 			<name>Mike Herich</name>
 			<email>hemi1016@hs-karlsruhe.de</email>
@@ -85,13 +61,11 @@
 			</roles>
 			<timezone>+1</timezone>     <!-- relativ zu GMT -->
 			<properties>
-				<!--
-				<picUrl>http://my.host.com/my/pic.gif</picUrl>
-				-->
+				<!-- <picUrl>http://my.host.com/my/pic.gif</picUrl> -->
 			</properties>
-		</developer1>
-		
-				<developer2>
+		</developer>
+
+		<developer>
 			<id>mast1019</id>
 			<name>Stefanie Mannheim</name>
 			<email>mast1019@hs-karlsruhe.de</email>
@@ -103,13 +77,11 @@
 			</roles>
 			<timezone>+1</timezone>     <!-- relativ zu GMT -->
 			<properties>
-				<!--
-				<picUrl>http://my.host.com/my/pic.gif</picUrl>
-				-->
+				<!-- <picUrl>http://my.host.com/my/pic.gif</picUrl> -->
 			</properties>
-		</developer2>
-		
-				<developer3>
+		</developer>
+
+		<developer>
 			<id>galu1011</id>
 			<name>Lukas Gauss</name>
 			<email>galu1011@hs-karlsruhe.de</email>
@@ -121,13 +93,11 @@
 			</roles>
 			<timezone>+1</timezone>     <!-- relativ zu GMT -->
 			<properties>
-				<!--
-				<picUrl>http://my.host.com/my/pic.gif</picUrl>
-				-->
+				<!-- <picUrl>http://my.host.com/my/pic.gif</picUrl> -->
 			</properties>
-		</developer3>
-		
-				<developer4>
+		</developer>
+
+		<developer>
 			<id>gero1013</id>
 			<name>Rosina Germanova</name>
 			<email>gero1013@hs-karlsruhe.de</email>
@@ -139,13 +109,11 @@
 			</roles>
 			<timezone>+1</timezone>     <!-- relativ zu GMT -->
 			<properties>
-				<!--
-				<picUrl>http://my.host.com/my/pic.gif</picUrl>
-				-->
+				<!-- <picUrl>http://my.host.com/my/pic.gif</picUrl> -->
 			</properties>
-		</developer4>
-		
-				<developer5>
+		</developer>
+
+		<developer>
 			<id>klse1013</id>
 			<name>Selina Klingele</name>
 			<email>klse1013@hs-karlsruhe.de</email>
@@ -157,13 +125,11 @@
 			</roles>
 			<timezone>+1</timezone>     <!-- relativ zu GMT -->
 			<properties>
-				<!--
-				<picUrl>http://my.host.com/my/pic.gif</picUrl>
-				-->
+				<!-- <picUrl>http://my.host.com/my/pic.gif</picUrl> -->
 			</properties>
-		</developer5>
+		</developer>
 	</developers>
-	
+
 	<mailingLists>
 		<mailingList>
 			<name>ILIAS Forum</name>
@@ -184,26 +150,25 @@
 		<findBugs.maxHeap>768</findBugs.maxHeap>
 		<javadoc.minmemory>128m</javadoc.minmemory>
 		<javadoc.maxmemory>1g</javadoc.maxmemory>
-		
+
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<compiler.sourceEncoding>ISO-8859-1</compiler.sourceEncoding>
-		
+
 		<!-- m2e-wtp settings -->
 		<m2e.jaxrs.activation>true</m2e.jaxrs.activation>
 		<m2e.jpa.activation>false</m2e.jpa.activation>
-		<m2e.jsf.activation>false</m2e.jsf.activation> 
-		
+		<m2e.jsf.activation>false</m2e.jsf.activation>
+
 		<!-- SWE: Testklassen fuer JUnit -->
 		<testklassen>**/*Test.java</testklassen>
-		
+
 		<!-- JZ: Tests mit Arquillian Graphene -->
 		<firefox.bin>C:\Program Files (x86)\Firefox\firefox.exe</firefox.bin>
-		<chrome.bin>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</chrome.bin>
-				
-		<!--
-			Versionsnummern fuer verwendete Software
-		-->
-		
+		<chrome.bin>C:\Program Files
+			(x86)\Google\Chrome\Application\chrome.exe</chrome.bin>
+
+		<!-- Versionsnummern fuer verwendete Software -->
+
 		<!-- Maven Embedded innerhalb von M2E -->
 		<maven.version>3.0.4</maven.version>
 		<!-- ShrinkWrap Resolver ist noch nicht kompatibel mit Maven 3.1 -->
@@ -211,9 +176,7 @@
 		<maven-aether-provider.version>3.0.5</maven-aether-provider.version>
 		<java.version>1.7</java.version>
 		<!-- Eclipse und das WTP-Plugin koennen noch nicht 1.8 -->
-		<!--
-		<java.version>1.8</java.version>
-		-->
+		<!-- <java.version>1.8</java.version> -->
 		<java.minor.version>1.7.0-25</java.minor.version>
 		<windows.min.version>6.1</windows.min.version>
 
@@ -224,24 +187,20 @@
 		<hibernate-jpamodelgen.version>1.3.0.Final</hibernate-jpamodelgen.version>
 		<richfaces.version>5.0.0.Alpha1</richfaces.version>
 		<atmosphere.version>1.0.18</atmosphere.version>
-		<!--
-		<atmosphere.version>2.0.1</atmosphere.version>
-		-->
+		<!-- <atmosphere.version>2.0.1</atmosphere.version> -->
 		<picketbox.version>4.0.19.Final</picketbox.version>
-		
+
 		<junit.version>4.11</junit.version>
 		<fest-assert-core.version>2.0M10</fest-assert-core.version>
 		<shrinkwrap-resolver-bom.version>2.1.0-alpha-1</shrinkwrap-resolver-bom.version>
 		<shrinkwrap-bom.version>1.2.0</shrinkwrap-bom.version>
 		<arquillian-bom.version>1.1.1.Final</arquillian-bom.version>
 		<arquillian.managedOrRemote>remote</arquillian.managedOrRemote>
-		<!--
-		<arquillian.managedOrRemote>managed</arquillian.managedOrRemote>
-		-->
+		<!-- <arquillian.managedOrRemote>managed</arquillian.managedOrRemote> -->
 		<arquillian-drone-bom.version>1.2.0.CR1</arquillian-drone-bom.version>
 		<graphene-webdriver.version>2.0.0.CR1</graphene-webdriver.version>
 		<batik.version>1.7</batik.version>
-		
+
 		<!-- Versionsnummern fuer Maven-Plugins -->
 		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
 		<maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
@@ -261,7 +220,7 @@
 		<maven-checkstyle-plugin.version>2.10</maven-checkstyle-plugin.version>
 		<versions-maven-plugin.version>2.1</versions-maven-plugin.version>
 		<maven-plugin-plugin.version>3.2</maven-plugin-plugin.version>
-		
+
 		<maven-clean-plugin.version>2.5</maven-clean-plugin.version>
 		<maven-deploy-plugin.version>2.8</maven-deploy-plugin.version>
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
@@ -269,8 +228,9 @@
 		<maven-resources-plugin.version>2.6</maven-resources-plugin.version>
 		<maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
 	</properties>
-	
-	<!-- Repositories, aus denen die benoetigte Software heruntergeladen werden kann -->
+
+	<!-- Repositories, aus denen die benoetigte Software heruntergeladen werden 
+		kann -->
 	<repositories>
 		<repository>
 			<id>jboss</id>
@@ -288,7 +248,7 @@
 			<url>https://nexus.codehaus.org/content/repositories/releases</url>
 		</repository>
 	</repositories>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>jboss</id>
@@ -311,7 +271,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.jboss.shrinkwrap</groupId>
 				<artifactId>shrinkwrap-bom</artifactId>
@@ -319,7 +279,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
@@ -327,7 +287,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.jboss.resteasy</groupId>
 				<artifactId>resteasy-bom</artifactId>
@@ -335,7 +295,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-            
+
 			<dependency>
 				<groupId>org.wildfly</groupId>
 				<artifactId>wildfly-spec-api</artifactId>
@@ -343,7 +303,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.jboss.arquillian.extension</groupId>
 				<artifactId>arquillian-drone-bom</artifactId>
@@ -354,34 +314,28 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<!--
-		Verwendete Software in Form von .jar-Dateien: notwendig fuer Uebersetzung und zur Laufzeit
-	-->
+	<!-- Verwendete Software in Form von .jar-Dateien: notwendig fuer Uebersetzung 
+		und zur Laufzeit -->
 	<dependencies>
-	
+
 		<!-- ========================================================================================= -->
-		<!-- J P A ,   S T A T I C   M E T A M O D E L L                                               -->
+		<!-- J P A , S T A T I C M E T A M O D E L L -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!--
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>${hibernate-jpamodelgen.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		-->
+
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-jpamodelgen</artifactId> 
+			<version>${hibernate-jpamodelgen.version}</version> <scope>provided</scope> 
+			</dependency> -->
 
 		<!-- ========================================================================================= -->
-		<!-- B e a n   V a l i d a t i o n ,   H i b e r n a t e   V a l i d a t o r                   -->
+		<!-- B e a n V a l i d a t i o n , H i b e r n a t e V a l i d a t o r -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -391,30 +345,30 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate-validator.version}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${hibernate-validator.version}</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>provided</scope>
 		</dependency>
-				
+
 		<!-- http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html/validator-annotation-processor.html -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator-annotation-processor</artifactId>
 			<version>${hibernate-validator-annotation-processor.version}</version>
 			<scope>provided</scope>
-		</dependency>	
-		
+		</dependency>
+
 		<!-- ========================================================================================= -->
-		<!-- J A X B                                                                                   -->
+		<!-- J A X B -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.xml.bind</groupId>
 			<artifactId>jboss-jaxb-api_2.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- C D I                                                                                    -->
+		<!-- C D I -->
 		<!-- ========================================================================================= -->
 
 		<dependency>
@@ -422,49 +376,49 @@
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- C o m m o n   A n n o t a t i o n s                                                       -->
+		<!-- C o m m o n A n n o t a t i o n s -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.annotation</groupId>
-  			<artifactId>jboss-annotations-api_1.2_spec</artifactId>
+			<artifactId>jboss-annotations-api_1.2_spec</artifactId>
 			<scope>provided</scope>
-  		</dependency>
-		
+		</dependency>
+
 		<!-- ========================================================================================= -->
-		<!-- I n t e r c e p t o r s                                                                   -->
+		<!-- I n t e r c e p t o r s -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.interceptor</groupId>
 			<artifactId>jboss-interceptors-api_1.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- J B o s s   L o g g i n g                                                                 -->
+		<!-- J B o s s L o g g i n g -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- J T A                                                                                     -->
+		<!-- J T A -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.transaction</groupId>
 			<artifactId>jboss-transaction-api_1.2_spec</artifactId>
 			<scope>provided</scope>
-		</dependency>		
-		
+		</dependency>
+
 		<!-- ========================================================================================= -->
-		<!-- J a v a M a i l                                                                           -->
+		<!-- J a v a M a i l -->
 		<!-- ========================================================================================= -->
 
 		<dependency>
@@ -472,9 +426,9 @@
 			<artifactId>mail</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- C o n c u r r e n c y   U t i l i t i e s                                                 -->
+		<!-- C o n c u r r e n c y U t i l i t i e s -->
 		<!-- ========================================================================================= -->
 
 		<dependency>
@@ -482,40 +436,40 @@
 			<artifactId>jboss-concurrency-api_1.0_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- E J B                                                                                     -->
+		<!-- E J B -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.ejb</groupId>
 			<artifactId>jboss-ejb-api_3.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- @org.jboss.ejb3.annotation.SecurityDomain -->
 		<dependency>
 			<groupId>org.jboss.ejb3</groupId>
 			<artifactId>jboss-ejb3-ext-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- J A X - R S ,   R E S T E a s y ,   J a c k s o n                                         -->
+		<!-- J A X - R S , R E S T E a s y , J a c k s o n -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>jaxrs-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- @Wrapped, @Cache -->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
 			<scope>provided</scope>
-			
+
 			<exclusions>
 				<!-- In WildFly ist ein aktuelleres slf4j 1.7 -->
 				<exclusion>
@@ -530,55 +484,26 @@
 			</exclusions>
 		</dependency>
 
-		<!--
-		<dependency>
-			<groupId>org.jboss.spec.javax.ws.rs</groupId>
-			<artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
-			<version>1.0.0.Alpha1</version>
-			<scope>provided</scope>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>org.jboss.spec.javax.ws.rs</groupId> <artifactId>jboss-jaxrs-api_2.0_spec</artifactId> 
+			<version>1.0.0.Alpha1</version> <scope>provided</scope> </dependency> -->
 
-	    <dependency>
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jackson-provider</artifactId>
 			<scope>provided</scope>
-			
-			<!-- Jackson 2.x statt 1.x
-			<exclusions>
-				<exclusion>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-core-asl</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-mapper-asl</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-xc</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.codehaus.jackson</groupId>
-					<artifactId>jackson-jaxrs</artifactId>
-				</exclusion>
-			</exclusions>
-			-->
+
+			<!-- Jackson 2.x statt 1.x <exclusions> <exclusion> <groupId>org.codehaus.jackson</groupId> 
+				<artifactId>jackson-core-asl</artifactId> </exclusion> <exclusion> <groupId>org.codehaus.jackson</groupId> 
+				<artifactId>jackson-mapper-asl</artifactId> </exclusion> <exclusion> <groupId>org.codehaus.jackson</groupId> 
+				<artifactId>jackson-xc</artifactId> </exclusion> <exclusion> <groupId>org.codehaus.jackson</groupId> 
+				<artifactId>jackson-jaxrs</artifactId> </exclusion> </exclusions> -->
 		</dependency>
-		
-		<!-- Jackson 2.x statt 1.x
-	    <dependency>
-			<groupId>com.fasterxml.jackson.jaxrs</groupId>
-			<artifactId>jackson-jaxrs-json-provider</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jackson2-provider</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		-->
-		
+
+		<!-- Jackson 2.x statt 1.x <dependency> <groupId>com.fasterxml.jackson.jaxrs</groupId> 
+			<artifactId>jackson-jaxrs-json-provider</artifactId> <scope>provided</scope> 
+			</dependency> <dependency> <groupId>org.jboss.resteasy</groupId> <artifactId>resteasy-jackson2-provider</artifactId> 
+			<scope>provided</scope> </dependency> -->
+
 		<!-- ViolationReport und ResteasyConstraintViolation -->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
@@ -587,40 +512,41 @@
 		</dependency>
 
 		<!-- @Formatted -->
-	    <dependency>
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxb-provider</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- S e r v l e t ,   J S F ,    E L ,   R i c h F a c e s ,   A t m o s p h e r e            -->
+		<!-- S e r v l e t , J S F , E L , R i c h F a c e s , A t m o s p h e 
+			r e -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.servlet</groupId>
 			<artifactId>jboss-servlet-api_3.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.el</groupId>
 			<artifactId>jboss-el-api_2.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.richfaces</groupId>
 			<artifactId>richfaces</artifactId>
 			<version>${richfaces.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.atmosphere</groupId>
 			<artifactId>atmosphere-runtime</artifactId>
@@ -633,11 +559,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- S e c u r i t y                                                                           -->
+		<!-- S e c u r i t y -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.security.jacc</groupId>
 			<artifactId>jboss-jacc-api_1.4_spec</artifactId>
@@ -651,51 +577,40 @@
 			<version>${picketbox.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!--
-		<dependency>
-			<groupId>org.picketbox</groupId>
-			<artifactId>jbosssx-client</artifactId>
-			<version>${picketbox.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		-->
-		
-		<!--
-		<dependency>
-			<groupId>org.picketbox</groupId>
-			<artifactId>jboss-security-spi</artifactId>
-			<version>${picketbox.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		-->
-				
-		<!-- org.wildfly.controller.client.ModelControllerClient und org.jboss.dmr.ModelNode; dmr = Detyped Model Representation -->
+
+		<!-- <dependency> <groupId>org.picketbox</groupId> <artifactId>jbosssx-client</artifactId> 
+			<version>${picketbox.version}</version> <scope>provided</scope> </dependency> -->
+
+		<!-- <dependency> <groupId>org.picketbox</groupId> <artifactId>jboss-security-spi</artifactId> 
+			<version>${picketbox.version}</version> <scope>provided</scope> </dependency> -->
+
+		<!-- org.wildfly.controller.client.ModelControllerClient und org.jboss.dmr.ModelNode; 
+			dmr = Detyped Model Representation -->
 		<dependency>
 			<groupId>org.wildfly</groupId>
 			<artifactId>wildfly-controller-client</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- ========================================================================================= -->
-		<!-- J A X - W S                                                                               -->
+		<!-- J A X - W S -->
 		<!-- ========================================================================================= -->
-		
+
 		<dependency>
 			<groupId>org.jboss.spec.javax.xml.ws</groupId>
 			<artifactId>jboss-jaxws-api_2.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.jboss.ws</groupId>
 			<artifactId>jbossws-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-	
-	
+
+
 		<!-- ========================================================================================= -->
-		<!-- T e s t e n                                                                               -->
+		<!-- T e s t e n -->
 		<!-- ========================================================================================= -->
 
 		<dependency>
@@ -704,14 +619,14 @@
 			<version>${fest-assert-core.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${junit.version}</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.resolver</groupId>
 			<!-- https://github.com/shrinkwrap/resolver/blob/master/README.asciidoc -->
@@ -719,11 +634,11 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-aether-provider</artifactId>
-			<version>${maven-aether-provider.version}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${maven-aether-provider.version}</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -736,13 +651,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.jboss.shrinkwrap</groupId>
 			<artifactId>shrinkwrap-impl-base</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.wildfly</groupId>
 			<artifactId>wildfly-arquillian-container-${arquillian.managedOrRemote}</artifactId>
@@ -760,8 +675,8 @@
 			<artifactId>arquillian-protocol-servlet</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-	    <dependency>
+
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
 			<scope>test</scope>
@@ -787,19 +702,20 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<prerequisites>
 		<maven>${maven.version}</maven>
 	</prerequisites>
 
 	<build>
 		<defaultGoal>test-compile</defaultGoal>
-		
+
 		<finalName>${project.artifactId}</finalName>
 
-		<pluginManagement>	
+		<pluginManagement>
 			<plugins>
-				<!-- Nur zum Abspeichern der Konfiguration von M2E; nicht relevant fuer die Ausfuehrung von Maven -->
+				<!-- Nur zum Abspeichern der Konfiguration von M2E; nicht relevant fuer 
+					die Ausfuehrung von Maven -->
 				<!-- http://wiki.eclipse.org/M2E_plugin_execution_not_covered -->
 				<!-- https://docs.sonatype.org/display/M2ECLIPSE/Project+build+lifecycle+mapping -->
 				<!-- http://stackoverflow.com/questions/6641532/org-eclipse-m2e-lifecycle-mapping -->
@@ -820,7 +736,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -829,7 +745,7 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -854,11 +770,9 @@
 						<requireOS>
 							<family>windows</family>
 						</requireOS>
-						<requirePluginVersions/>
-						
-						<!--
-						<DependencyConvergence/>
-						-->
+						<requirePluginVersions />
+
+						<!-- <DependencyConvergence/> -->
 					</rules>
 				</configuration>
 
@@ -871,7 +785,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- Generierung der Metamodel-Klassen (fuer Criteria Queries) -->
 			<plugin>
 				<groupId>org.bsc.maven</groupId>
@@ -883,7 +797,7 @@
 						<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
 					</processors>
 				</configuration>
-		
+
 				<executions>
 					<execution>
 						<id>generate-metamodel-classes</id>
@@ -893,7 +807,7 @@
 						</goals>
 					</execution>
 				</executions>
-				
+
 				<dependencies>
 					<dependency>
 						<groupId>org.hibernate</groupId>
@@ -902,12 +816,12 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
-								
+
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -915,9 +829,7 @@
 					<showWarnings>true</showWarnings>
 					<!-- org.bsc.maven:maven-processor-plugin -->
 					<compilerArgument>-proc:none</compilerArgument>
-					<!--
-					<compilerArgument>-Xlint:all</compilerArgument>
-					-->
+					<!-- <compilerArgument>-Xlint:all</compilerArgument> -->
 					<encoding>${compiler.sourceEncoding}</encoding>
 				</configuration>
 
@@ -927,18 +839,11 @@
 				<!-- https://community.jboss.org/en/tools/blog/2012/05/20/annotation-processing-support-in-m2e-or-m2e-apt-100-is-out -->
 				<!-- http://relation.to/Bloggers/AMoreConciseWayToGenerateTheJPA2MetamodelInMaven -->
 				<!-- target/generated-sources/annotations -->
-				<!--
-				<dependencies>
-					<dependency>
-						<groupId>org.hibernate</groupId>
-						<artifactId>hibernate-jpamodelgen</artifactId>
-						<version>${hibernate-jpamodelgen.version}</version>
-						<scope>compile</scope>
-					</dependency>
-				</dependencies>
-				-->
+				<!-- <dependencies> <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-jpamodelgen</artifactId> 
+					<version>${hibernate-jpamodelgen.version}</version> <scope>compile</scope> 
+					</dependency> </dependencies> -->
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -953,13 +858,13 @@
 					</archive>
 				</configuration>
 			</plugin>
-			
-			<!-- Durchfuehren der Tests mit Arquillian und JUnit --> 
+
+			<!-- Durchfuehren der Tests mit Arquillian und JUnit -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-    			<artifactId>maven-surefire-plugin</artifactId>
-    			<version>${maven-surefire-plugin.version}</version>
-				
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+
 				<configuration>
 					<argLine>${surefire.argLine}</argLine>
 					<systemProperties>
@@ -967,9 +872,7 @@
 						<java.awt.headless>true</java.awt.headless>
 						<webdriver.firefox.bin>${firefox.bin}</webdriver.firefox.bin>
 						<webdriver.chrome.driver>${chrome.bin}</webdriver.chrome.driver>
-						<!--
-						<arquillian.launch>${arquillian.launch}</arquillian.launch>
-						-->
+						<!-- <arquillian.launch>${arquillian.launch}</arquillian.launch> -->
 					</systemProperties>
 					<runOrder>alphabetical</runOrder>
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
@@ -981,19 +884,19 @@
 					<useFile>true</useFile>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${maven-resources-plugin.version}</version>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>${maven-dependency-plugin.version}</version>
 			</plugin>
-			
+
 			<!-- Plugin fuer Querverweise -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -1006,24 +909,21 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>${maven-project-info-reports-plugin.version}</version>
-				<!--
-				<configuration>
-					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-				</configuration>
-				-->
+				<!-- <configuration> <dependencyLocationsEnabled>false</dependencyLocationsEnabled> 
+					</configuration> -->
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>${maven-surefire-report-plugin.version}</version>
-				
+
 				<configuration>
 					<showSuccess>true</showSuccess>
 					<inputEncoding>UTF-8</inputEncoding>
 					<outputEncoding>UTF-8</outputEncoding>
 				</configuration>
-		
+
 				<executions>
 					<execution>
 						<id>test-report</id>
@@ -1034,7 +934,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
@@ -1047,7 +947,7 @@
 					<excludeFilterFile>${basedir}/src/test/resources/findbugs.xml</excludeFilterFile>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -1059,8 +959,8 @@
 					<violationSeverity>warning</violationSeverity>
 				</configuration>
 			</plugin>
-			
-			<!-- Deployment in den JBoss Appserver durch Maven:  mvn package jboss-as:deploy -->
+
+			<!-- Deployment in den JBoss Appserver durch Maven: mvn package jboss-as:deploy -->
 			<plugin>
 				<groupId>org.jboss.as.plugins</groupId>
 				<artifactId>jboss-as-maven-plugin</artifactId>
@@ -1075,27 +975,27 @@
 				<configuration>
 					<locales>de</locales>
 					<outputEncoding>UTF-8</outputEncoding>
-				
+
 					<reportPlugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-project-info-reports-plugin</artifactId>
 							<version>${maven-project-info-reports-plugin.version}</version>
 						</plugin>
-			
+
 						<plugin>
 							<!-- Generierung der Web-Site -->
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-report-plugin</artifactId>
 							<version>${maven-surefire-report-plugin.version}</version>
-							
+
 							<configuration>
 								<showSuccess>true</showSuccess>
 								<inputEncoding>UTF-8</inputEncoding>
 								<outputEncoding>UTF-8</outputEncoding>
 							</configuration>
 						</plugin>
-			
+
 						<plugin>
 							<!-- Generierung der Javadoc-Dokumentation -->
 							<groupId>org.apache.maven.plugins</groupId>
@@ -1104,35 +1004,32 @@
 							<configuration>
 								<minmemory>${javadoc.minmemory}</minmemory>
 								<maxmemory>${javadoc.maxmemory}</maxmemory>
-								
+
 								<excludePackageNames>de.shop.kundenverwaltung.soap.gen</excludePackageNames>
-								
+
 								<!-- Javadoc mit externen Quellen verknuepfen (dauert sehr lange!) -->
-								<!--
-								<linksource>true</linksource>
-								<links>
-									<link>http://download.oracle.com/javase/6/docs/api/</link>
-									<link>http://download.oracle.com/javaee/6/api/</link>
-									<link>http://kentbeck.github.com/junit/javadoc/latest/</link>
-								</links>
-								-->
-								
+								<!-- <linksource>true</linksource> <links> <link>http://download.oracle.com/javase/6/docs/api/</link> 
+									<link>http://download.oracle.com/javaee/6/api/</link> <link>http://kentbeck.github.com/junit/javadoc/latest/</link> 
+									</links> -->
+
 								<packagesheader>Packages des Webshops</packagesheader>
 								<doctitle>${project.name}: Version ${project.version}</doctitle>
 								<windowtitle>${project.name}: Version ${project.version}</windowtitle>
-								<bottom>Copyright &#169; ${project.inceptionYear}-${currentYear} Hochschule Karlsruhe - Informatik und Wirtschaftsinformatik. All Rights Reserved.</bottom>
-								
+								<bottom>Copyright &#169; ${project.inceptionYear}-${currentYear}
+									Hochschule Karlsruhe - Informatik und Wirtschaftsinformatik.
+									All Rights Reserved.</bottom>
+
 								<outputName>Surefire Bericht</outputName>
 							</configuration>
 						</plugin>
-						
+
 						<!-- Generierung der HTML-Seiten mit Java-Quellcode und Querverweisen -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-jxr-plugin</artifactId>
 							<version>${maven-jxr-plugin.version}</version>
 						</plugin>
-						
+
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>taglist-maven-plugin</artifactId>
@@ -1157,7 +1054,7 @@
 								</tagListOptions>
 							</configuration>
 						</plugin>
-						
+
 						<!-- FindBugs funktioniert nicht mit Java 8 -->
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
@@ -1171,12 +1068,12 @@
 								<excludeFilterFile>${basedir}/src/test/resources/findbugs.xml</excludeFilterFile>
 							</configuration>
 						</plugin>
-						
+
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-pmd-plugin</artifactId>
 							<version>${maven-pmd-plugin.version}</version>
-							
+
 							<configuration>
 								<targetJdk>${java.version}</targetJdk>
 								<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
@@ -1184,7 +1081,7 @@
 								<includeTests>true</includeTests>
 								<!-- 100 Tokens entsprechen 5-10 Zeilen Quellcode bzgl CPD = Copy-Paste-Detection -->
 								<minimumTokens>100</minimumTokens>
-								
+
 								<rulesets>
 									<!-- Konfigurationsdatei fuer PMD einschl. CPD -->
 									<ruleset>/src/test/resources/pmd.xml</ruleset>
@@ -1195,12 +1092,12 @@
 								</excludes>
 							</configuration>
 						</plugin>
-						
+
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
 							<version>${maven-checkstyle-plugin.version}</version>
-							
+
 							<configuration>
 								<configLocation>${basedir}/src/test/resources/checkstyle.xml</configLocation>
 								<includeTestSourceDirectory>true</includeTestSourceDirectory>
@@ -1208,13 +1105,13 @@
 								<violationSeverity>warning</violationSeverity>
 							</configuration>
 						</plugin>
-						
+
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>versions-maven-plugin</artifactId>
 							<version>${versions-maven-plugin.version}</version>
 						</plugin>
-						
+
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-plugin-plugin</artifactId>
@@ -1223,7 +1120,7 @@
 					</reportPlugins>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
@@ -1263,7 +1160,7 @@
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
-		
+
 		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>
@@ -1279,7 +1176,7 @@
 			</testResource>
 		</testResources>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>arq-jbossas-remote</id>
@@ -1293,13 +1190,13 @@
 			<build>
 				<plugins>
 					<plugin>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>${maven-war-plugin.version}</version>
-					<configuration>
-						<outputDirectory>deployments</outputDirectory>
-						<warName>ROOT</warName>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-					</configuration>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>${maven-war-plugin.version}</version>
+						<configuration>
+							<outputDirectory>deployments</outputDirectory>
+							<warName>ROOT</warName>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
