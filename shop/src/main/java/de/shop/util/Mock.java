@@ -32,14 +32,15 @@ public final class Mock {
 		final Kunde kunde;
 		if (id % 2 == 0) {
 			kunde = new Privatkunde();
-
+			((Privatkunde)kunde).setVorname("Max");
 		} else {
 			kunde = new Geschaeftskunde();
+			((Geschaeftskunde)kunde).setFirmenname("Musterfirma");
 		}
-
+		
 		kunde.setKundennr(id);
 		kunde.setNachname("Mustermann");
-
+		
 		final Adresse adresse = new Adresse();
 		adresse.setId(id + 1);
 		adresse.setStrasse("Musterstrasse");
@@ -116,7 +117,7 @@ public final class Mock {
 		return bestellungList;
 	}
 
-	public static Kunde createKunde(Kunde kunde) {
+	public static Privatkunde createPrivatkunde(Privatkunde kunde) {
 		// Neue IDs fuer Kunde und zugehoerige Adresse
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
@@ -130,6 +131,20 @@ public final class Mock {
 		return kunde;
 	}
 
+	public static Geschaeftskunde createGeschaeftskunde(Geschaeftskunde kunde) {
+		// Neue IDs fuer Kunde und zugehoerige Adresse
+		// Ein neuer Kunde hat auch keine Bestellungen
+		final String nachname = kunde.getNachname();
+		kunde.setKundennr(nachname.length());
+		final Adresse adresse = kunde.getAdresse();
+		adresse.setId((nachname.length()) + 1);
+		adresse.setKunde(kunde);
+		kunde.setBestellungen(null);
+
+		System.out.println("Neuer Kunde: " + kunde);
+		return kunde;
+	}
+	
 	public static void updateKunde(Kunde kunde) {
 		System.out.println("Aktualisierter Kunde: " + kunde);
 	}

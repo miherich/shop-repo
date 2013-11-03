@@ -34,7 +34,9 @@ import javax.ws.rs.core.UriInfo;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
+import de.shop.kundenverwaltung.domain.Geschaeftskunde;
 import de.shop.kundenverwaltung.domain.Kunde;
+import de.shop.kundenverwaltung.domain.Privatkunde;
 import de.shop.util.Mock;
 import de.shop.util.rest.UriHelper;
 import de.shop.util.rest.NotFoundException;
@@ -216,11 +218,22 @@ public class KundeResource {
 	}
 
 	@POST
+	@Path("/privat")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createKunde(Kunde kunde) {
+	public Response createPrivatkunde(Privatkunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		kunde = Mock.createKunde(kunde);
+		kunde = Mock.createPrivatkunde(kunde);
+		return Response.created(getUriKunde(kunde, uriInfo)).build();
+	}
+	
+	@POST
+	@Path("/geschaeft")
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	public Response createGeschaeftskunde(Geschaeftskunde kunde) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		kunde = Mock.createGeschaeftskunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
 	}
 
