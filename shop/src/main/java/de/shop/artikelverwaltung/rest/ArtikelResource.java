@@ -34,8 +34,6 @@ import de.shop.artikelverwaltung.domain.Artikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
-import de.shop.kundenverwaltung.domain.Kunde;
-import de.shop.kundenverwaltung.domain.Privatkunde;
 //import de.shop.artikelverwaltung.service.ArtikelService;
 //import de.shop.util.interceptor.Log;
 import de.shop.util.rest.NotFoundException;

@@ -74,6 +74,53 @@ public final class Mock {
 		return kunden;
 	}
 
+	public static Privatkunde createPrivatkunde(Privatkunde kunde) {
+		// Neue IDs fuer Kunde und zugehoerige Adresse
+		// TODO IDs passend zu Privatkunde (%2=0) erstellen lassen
+		// Ein neuer Kunde hat auch keine Bestellungen
+		final String nachname = kunde.getNachname();
+		kunde.setKundennr(nachname.length());
+		final Adresse adresse = kunde.getAdresse();
+		adresse.setId((nachname.length()) + 1);
+		adresse.setKunde(kunde);
+		kunde.setBestellungen(null);
+
+		System.out.println("Neuer Kunde: " + kunde);
+		return kunde;
+	}
+
+	public static Geschaeftskunde createGeschaeftskunde(Geschaeftskunde kunde) {
+		// Neue IDs fuer Kunde und zugehoerige Adresse
+		// TODO IDs passen zu Geschaeftskunde (&2=1) erstellen lassen
+		// Ein neuer Kunde hat auch keine Bestellungen
+		final String nachname = kunde.getNachname();
+		kunde.setKundennr(nachname.length());
+		final Adresse adresse = kunde.getAdresse();
+		adresse.setId((nachname.length()) + 1);
+		adresse.setKunde(kunde);
+		kunde.setBestellungen(null);
+
+		System.out.println("Neuer Kunde: " + kunde);
+		return kunde;
+	}
+
+	public static void updateKunde(Kunde kunde) {
+		Kunde kundeAlt = findKundeById(kunde.getKundennr());
+		kundeAlt.setNachname(kunde.getNachname());
+		kundeAlt.setAdresse(kunde.getAdresse());
+		if (kunde.getKundennr() % 2 == 0) {
+			((Privatkunde) kundeAlt).setVorname(((Privatkunde) kunde)
+					.getVorname());
+		} else {
+			((Geschaeftskunde) kundeAlt)
+					.setFirmenname(((Geschaeftskunde) kunde).getFirmenname());
+		}
+	}
+
+	// public static void deleteKunde(Long kundeId) {
+	// System.out.println("Kunde mit ID=" + kundeId + " geloescht");
+	// }
+
 	public static List<Bestellung> findBestellungenByKunde(Kunde kunde) {
 		// Beziehungsgeflecht zwischen Kunde und Bestellungen aufbauen
 		final int anzahl = kunde.getKundennr() % MAX_BESTELLUNGEN + 1; // 1, 2,
@@ -123,44 +170,6 @@ public final class Mock {
 		bestellung.setBestellnr(nummer);
 		System.out.println("Neue Bestellung: " + bestellung);
 		return bestellung;
-	}
-
-	public static Privatkunde createPrivatkunde(Privatkunde kunde) {
-		// Neue IDs fuer Kunde und zugehoerige Adresse
-		// TODO IDs passend zu Privatkunde (%2=0) erstellen lassen
-		// Ein neuer Kunde hat auch keine Bestellungen
-		final String nachname = kunde.getNachname();
-		kunde.setKundennr(nachname.length());
-		final Adresse adresse = kunde.getAdresse();
-		adresse.setId((nachname.length()) + 1);
-		adresse.setKunde(kunde);
-		kunde.setBestellungen(null);
-
-		System.out.println("Neuer Kunde: " + kunde);
-		return kunde;
-	}
-
-	public static Geschaeftskunde createGeschaeftskunde(Geschaeftskunde kunde) {
-		// Neue IDs fuer Kunde und zugehoerige Adresse
-		// TODO IDs passen zu Geschaeftskunde (&2=1) erstellen lassen
-		// Ein neuer Kunde hat auch keine Bestellungen
-		final String nachname = kunde.getNachname();
-		kunde.setKundennr(nachname.length());
-		final Adresse adresse = kunde.getAdresse();
-		adresse.setId((nachname.length()) + 1);
-		adresse.setKunde(kunde);
-		kunde.setBestellungen(null);
-
-		System.out.println("Neuer Kunde: " + kunde);
-		return kunde;
-	}
-
-	public static void updateKunde(Kunde kunde) {
-		System.out.println("Aktualisierter Kunde: " + kunde);
-	}
-
-	public static void deleteKunde(Long kundeId) {
-		System.out.println("Kunde mit ID=" + kundeId + " geloescht");
 	}
 
 	public static Artikel findArtikelById(int id) {
@@ -239,7 +248,8 @@ public final class Mock {
 					.getBezeichnung());
 			((Fahrrad) artikelAlt).setRahmen(((Fahrrad) artikel).getRahmen());
 		} else if (artikel.getArtikelNr() % 3 == 2) {
-			((Ersatzteil)artikelAlt).setFahrrad(((Ersatzteil)artikel).getFahrrad());
+			((Ersatzteil) artikelAlt).setFahrrad(((Ersatzteil) artikel)
+					.getFahrrad());
 		}
 	}
 

@@ -17,7 +17,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
+//import javax.ws.rs.DELETE;
 //import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -138,10 +138,11 @@ public class KundeResource {
 			}
 		} else {
 			// TODO Anwendungskern statt Mock, Verwendung von Locale
-			//kunden = Mock.findAllKunden();
-			//if (kunden.isEmpty()) {
-			throw new NotFoundException("Query unvollst\u00E4ndig. Bitte geben Sie einen Nachnamen an.");
-			//}
+			// kunden = Mock.findAllKunden();
+			// if (kunden.isEmpty()) {
+			throw new NotFoundException(
+					"Query unvollst\u00E4ndig. Bitte geben Sie einen Nachnamen an.");
+			// }
 		}
 
 		for (Kunde k : kunden) {
@@ -226,7 +227,7 @@ public class KundeResource {
 		kunde = Mock.createPrivatkunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
 	}
-	
+
 	@POST
 	@Path("/geschaeft")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
@@ -245,11 +246,11 @@ public class KundeResource {
 		Mock.updateKunde(kunde);
 	}
 
-	@DELETE
-	@Path("{id:[1-9][0-9]*}")
-	@Produces
-	public void deleteKunde(@PathParam("id") Long kundeId) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		Mock.deleteKunde(kundeId);
-	}
+	// @DELETE
+	// @Path("{id:[1-9][0-9]*}")
+	// @Produces
+	// public void deleteKunde(@PathParam("id") Long kundeId) {
+	// // TODO Anwendungskern statt Mock, Verwendung von Locale
+	// Mock.deleteKunde(kundeId);
+	// }
 }
