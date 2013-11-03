@@ -32,15 +32,15 @@ public final class Mock {
 		final Kunde kunde;
 		if (id % 2 == 0) {
 			kunde = new Privatkunde();
-			((Privatkunde)kunde).setVorname("Max");
+			((Privatkunde) kunde).setVorname("Max");
 		} else {
 			kunde = new Geschaeftskunde();
-			((Geschaeftskunde)kunde).setFirmenname("Musterfirma");
+			((Geschaeftskunde) kunde).setFirmenname("Musterfirma");
 		}
-		
+
 		kunde.setKundennr(id);
 		kunde.setNachname("Mustermann");
-		
+
 		final Adresse adresse = new Adresse();
 		adresse.setId(id + 1);
 		adresse.setStrasse("Musterstrasse");
@@ -117,9 +117,16 @@ public final class Mock {
 		return bestellungList;
 	}
 
+	public static Bestellung createBestellung(Bestellung bestellung) {
+		final int nummer = bestellung.getBestelldatum().hashCode();
+		bestellung.setBestellnr(nummer);
+		System.out.println("Neue Bestellung: " + bestellung);
+		return bestellung;
+	}
+
 	public static Privatkunde createPrivatkunde(Privatkunde kunde) {
 		// Neue IDs fuer Kunde und zugehoerige Adresse
-		//TODO IDs passend zu Privatkunde (%2=0) erstellen lassen
+		// TODO IDs passend zu Privatkunde (%2=0) erstellen lassen
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
 		kunde.setKundennr(nachname.length());
@@ -134,7 +141,7 @@ public final class Mock {
 
 	public static Geschaeftskunde createGeschaeftskunde(Geschaeftskunde kunde) {
 		// Neue IDs fuer Kunde und zugehoerige Adresse
-		//TODO IDs passen zu Geschaeftskunde (&2=1) erstellen lassen
+		// TODO IDs passen zu Geschaeftskunde (&2=1) erstellen lassen
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
 		kunde.setKundennr(nachname.length());
@@ -146,7 +153,7 @@ public final class Mock {
 		System.out.println("Neuer Kunde: " + kunde);
 		return kunde;
 	}
-	
+
 	public static void updateKunde(Kunde kunde) {
 		System.out.println("Aktualisierter Kunde: " + kunde);
 	}
@@ -164,8 +171,8 @@ public final class Mock {
 		if (id % 3 == 0) {
 			artikel = new Fahrrad();
 			artikel.setTyp("Mountainbike");
-			((Fahrrad)artikel).setRahmen("Unisex");
-			((Fahrrad)artikel).setBezeichnung("Scott Expert Bike");
+			((Fahrrad) artikel).setRahmen("Unisex");
+			((Fahrrad) artikel).setBezeichnung("Scott Expert Bike");
 
 		} else if (id % 3 == 1) {
 			artikel = new Zubehoer();
@@ -189,29 +196,29 @@ public final class Mock {
 		}
 		return artikelList;
 	}
-	
+
 	public static Fahrrad createFahrrad(Fahrrad fahrrad) {
-	
-		//TODO Artikelnummer anpassen (%3=0)
+
+		// TODO Artikelnummer anpassen (%3=0)
 		final String bezeichnung = fahrrad.getBezeichnung();
 		fahrrad.setArtikelNr(bezeichnung.length());
 
 		System.out.println("Neuer Artikel Fahrrad: " + fahrrad);
 		return fahrrad;
 	}
-	
+
 	public static Zubehoer createZubehoer(Zubehoer zubehoer) {
-		//TODO Artikelnummer anpassen (%3=1)
+		// TODO Artikelnummer anpassen (%3=1)
 		final String typ = zubehoer.getTyp();
 		zubehoer.setArtikelNr(typ.length());
 
 		System.out.println("Neuer Artikel Zubehoer: " + zubehoer);
 		return zubehoer;
 	}
-	
+
 	public static Ersatzteil createErsatzteil(Ersatzteil ersatzteil) {
-		
-		//TODO Artikelnummer anpassen (%3=2)
+
+		// TODO Artikelnummer anpassen (%3=2)
 		final String typ = ersatzteil.getTyp();
 		ersatzteil.setArtikelNr(typ.length());
 
@@ -219,19 +226,19 @@ public final class Mock {
 		return ersatzteil;
 	}
 
-
 	private Mock() { /**/
 	}
 
-	 public static void updateArtikel(Artikel artikel) {
-	 System.out.print("Aktualisierter Artikel: "+ artikel);
-	 }
-	
-	 public static Artikel createArtikel(Artikel artikel) {
-	 // TODO Auto-generated method stub
-	//Achtung: artikelnr muss richtig gesetzt werden! %3 ==0 -> Fahrrad, %3==1 -> Zubehoer, %3 ==2 ->Ersatzteil
-	
-	 System.out.print("Neuer Artikel: "+ artikel);
-	 return artikel;
-	 }
+	public static void updateArtikel(Artikel artikel) {
+		System.out.print("Aktualisierter Artikel: " + artikel);
+	}
+
+	public static Artikel createArtikel(Artikel artikel) {
+		// TODO Auto-generated method stub
+		// Achtung: artikelnr muss richtig gesetzt werden! %3 ==0 -> Fahrrad,
+		// %3==1 -> Zubehoer, %3 ==2 ->Ersatzteil
+
+		System.out.print("Neuer Artikel: " + artikel);
+		return artikel;
+	}
 }
