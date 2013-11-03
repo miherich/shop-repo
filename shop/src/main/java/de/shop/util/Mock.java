@@ -96,6 +96,16 @@ public final class Mock {
 
 		return bestellung;
 	}
+	
+	public static List<Bestellung> findAllBestellungen() {
+		final int anzahl = MAX_BESTELLUNGEN;
+		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);
+		for (int i = 1; i <= anzahl; i++) {
+			final Bestellung bestellung = findBestellungById(i);
+			bestellungList.add(bestellung);
+		}
+		return bestellungList;
+	}
 
 	public static Kunde createKunde(Kunde kunde) {
 		// Neue IDs fuer Kunde und zugehoerige Adresse

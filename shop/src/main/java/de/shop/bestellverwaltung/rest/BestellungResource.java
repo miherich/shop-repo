@@ -5,6 +5,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -13,11 +14,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import de.shop.kundenverwaltung.rest.KundeResource;
+import de.shop.artikelverwaltung.domain.Artikel;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.Kunde;
 import de.shop.util.rest.UriHelper;
@@ -37,6 +40,15 @@ public class BestellungResource {
 	
 	@Inject
 	private KundeResource kundeResource;
+	
+	@GET
+	public Response findAllBestellungen() {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		final List<Bestellung> bestellungList = Mock.findAllBestellungen();
+		if (bestellungList.isEmpty())
+			throw new NotFoundException("Es wurden keine Bestellungen gefunden.");
+		return Response.ok(new GenericEntity<List<Bestellung>>(bestellungList) {}).build();
+	}
 	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
