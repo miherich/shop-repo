@@ -139,6 +139,16 @@ public final class Mock {
 		return artikel;
 	}
 
+	public static List<Artikel> findAllArtikel() {
+		final int anzahl = MAX_ARTIKEL;
+		final List<Artikel> artikelList = new ArrayList<>(anzahl);
+		for (int i = 1; i <= anzahl; i++) {
+			final Artikel artikel = findArtikelById(i);
+			artikelList.add(artikel);
+		}
+		return artikelList;
+	}
+	
 	private Mock() { /**/
 	}
 
