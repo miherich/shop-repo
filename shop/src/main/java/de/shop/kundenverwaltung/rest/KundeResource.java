@@ -32,6 +32,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import de.shop.artikelverwaltung.domain.Artikel;
 //import de.shop.artikelverwaltung.domain.Artikel;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
@@ -45,8 +46,8 @@ import de.shop.util.rest.NotFoundException;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 public class KundeResource {
-//	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
-//	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
+	// public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
+	// public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
 
 	@Context
 	private UriInfo uriInfo;
@@ -70,20 +71,19 @@ public class KundeResource {
 		final List<Kunde> kundenList = Mock.findAllKunden();
 		if (kundenList.isEmpty())
 			throw new NotFoundException("Es wurden keine Kunden gefunden.");
-		return Response.ok(new GenericEntity<List<? extends Kunde>>(kundenList) {}).build();
+		return Response.ok(
+				new GenericEntity<List<? extends Kunde>>(kundenList) {
+				}).build();
 	}
 
 	@GET
-	@Path("{" + "kundeId" + ":[1-9][0-9]*}")
-	public Response findKundeById(@PathParam("kundeId") int id) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
+	@Path("{id:[1-9][0-9]*}")
+	public Response findArtikelById(@PathParam("id") int id) {
 		final Kunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
-			throw new NotFoundException("Kein Kunde mit der ID " + id
+			throw new NotFoundException("Kein Kunde mit der Kundennummer " + id
 					+ " gefunden.");
 		}
-
-		setStructuralLinks(kunde, uriInfo);
 
 		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
 				.build();
@@ -127,8 +127,7 @@ public class KundeResource {
 	}
 
 	@GET
-	public Response findKundenByNachname(
-			@QueryParam("nachname") String nachname) {
+	public Response findKundenByNachname(@QueryParam("nachname") String nachname) {
 		List<? extends Kunde> kunden = null;
 		if (nachname != null) {
 			// TODO Anwendungskern statt Mock, Verwendung von Locale

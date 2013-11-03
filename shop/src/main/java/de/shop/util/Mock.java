@@ -25,19 +25,28 @@ public final class Mock {
 	private static final int MAX_ARTIKEL = 5;
 
 	public static Kunde findKundeById(int id) {
-		if (id > MAX_ID) {
+		if (id > MAX_KUNDEN) {
 			return null;
 		}
 
-		final Kunde kunde = id % 2 == 1 ? new Privatkunde()
-				: new Geschaeftskunde();
+		final Kunde kunde;
+		if (id % 2 == 0) {
+			kunde = new Privatkunde();
+
+		} else {
+			kunde = new Geschaeftskunde();
+		}
+
 		kunde.setKundennr(id);
+		kunde.setNachname("Mustermann");
 
 		final Adresse adresse = new Adresse();
-		adresse.setId(id + 1); // andere ID fuer die Adresse
+		adresse.setId(id + 1);
+		adresse.setStrasse("Musterstrasse");
+		adresse.setHausnummer("1");
 		adresse.setPlz(12345);
-		adresse.setOrt("Testort");
-		adresse.setKunde(kunde);
+		adresse.setOrt("Musterort");
+
 		kunde.setAdresse(adresse);
 
 		return kunde;
@@ -45,12 +54,12 @@ public final class Mock {
 
 	public static List<Kunde> findAllKunden() {
 		final int anzahl = MAX_KUNDEN;
-		final List<Kunde> kunden = new ArrayList<>(anzahl);
+		final List<Kunde> kundeList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
 			final Kunde kunde = findKundeById(i);
-			kunden.add(kunde);
+			kundeList.add(kunde);
 		}
-		return kunden;
+		return kundeList;
 	}
 
 	public static List<Kunde> findKundenByNachname(String nachname) {
@@ -96,7 +105,7 @@ public final class Mock {
 
 		return bestellung;
 	}
-	
+
 	public static List<Bestellung> findAllBestellungen() {
 		final int anzahl = MAX_BESTELLUNGEN;
 		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);
@@ -158,17 +167,17 @@ public final class Mock {
 		}
 		return artikelList;
 	}
-	
+
 	private Mock() { /**/
 	}
 
-//	public static void updateArtikel(Artikel artikel) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	public static Artikel createArtikel(Artikel artikel) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	// public static void updateArtikel(Artikel artikel) {
+	// // TODO Auto-generated method stub
+	//
+	// }
+	//
+	// public static Artikel createArtikel(Artikel artikel) {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 }
