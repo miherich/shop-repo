@@ -101,4 +101,9 @@ public abstract class Artikel {
 			return false;
 		return true;
 	}
+
+//	public Artikel build() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

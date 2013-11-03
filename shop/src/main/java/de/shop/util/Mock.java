@@ -141,4 +141,14 @@ public final class Mock {
 
 	private Mock() { /**/
 	}
+
+//	public static void updateArtikel(Artikel artikel) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	public static Artikel createArtikel(Artikel artikel) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

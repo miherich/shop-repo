@@ -13,6 +13,8 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+//import javax.ws.rs.POST;
+//import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -31,52 +33,70 @@ import de.shop.util.rest.UriHelper;
 import de.shop.util.Mock;
 
 @Path("/artikel")
-@Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75", TEXT_XML + ";qs=0.5" })
+@Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",
+		TEXT_XML + ";qs=0.5" })
 @Consumes
-//@Log
-
+// @Log
 public class ArtikelResource {
-	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
-//	private static final String NOT_FOUND_ID = "artikel.notFound.id";
-	
-	//@Inject
-	//private ArtikelService as;
-	
+	private static final Logger LOGGER = Logger.getLogger(MethodHandles
+			.lookup().lookupClass());
+	// private static final String NOT_FOUND_ID = "artikel.notFound.id";
+
+	// @Inject
+	// private ArtikelService as;
+
 	@Inject
 	private UriHelper uriHelper;
-	
+
 	@PostConstruct
 	private void postConstruct() {
 		LOGGER.debugf("CDI-faehiges Bean %s wurde erzeugt", this);
 	}
-	
+
 	@PreDestroy
 	private void preDestroy() {
 		LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
 	}
-	
+
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findArtikelById(@PathParam("artikelNr") int artikelNr, @Context UriInfo uriInfo) {
+	public Response findArtikelById(@PathParam("artikelNr") int artikelNr,
+			@Context UriInfo uriInfo) {
 		final Artikel artikel = Mock.findArtikelById(artikelNr);
 		if (artikel == null) {
-			throw new NotFoundException("Kein Artikel mit der Artikelnummer "+artikelNr+" gefunden.");
+			throw new NotFoundException("Kein Artikel mit der Artikelnummer "
+					+ artikelNr + " gefunden.");
 		}
 
 		return Response.ok(artikel)
-                       .links(getTransitionalLinks(artikel, uriInfo))
-                       .build();
+				.links(getTransitionalLinks(artikel, uriInfo)).build();
 	}
-	
+
 	private Link[] getTransitionalLinks(Artikel artikel, UriInfo uriInfo) {
 		final Link self = Link.fromUri(getUriArtikel(artikel, uriInfo))
-                              .rel(SELF_LINK)
-                              .build();
+				.rel(SELF_LINK).build();
 
 		return new Link[] { self };
 	}
-	
+
 	public URI getUriArtikel(Artikel artikel, UriInfo uriInfo) {
-		return uriHelper.getUri(ArtikelResource.class, "findArtikelById", artikel.getArtikelNr(), uriInfo);
+		return uriHelper.getUri(ArtikelResource.class, "findArtikelById",
+				artikel.getArtikelNr(), uriInfo);
 	}
+
+//	 @POST
+//	 @Consumes({APPLICATION_JSON, APPLICATION_XML, TEXT_XML})
+//	 @Produces
+//	 public Response createArtikel(Artikel artikel) {
+//	 artikel = Mock.createArtikel(artikel);
+//	 return Response.created(getUriArtikel(artikel, uriInfo))
+//	 .build();
+//	 }
+//	@PUT
+//	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+//	@Produces
+//	public void updateArtikel(Artikel artikel) {
+//		Mock.updateArtikel(artikel);
+//	}
+
 }
