@@ -138,10 +138,10 @@ public class KundeResource {
 			}
 		} else {
 			// TODO Anwendungskern statt Mock, Verwendung von Locale
-			// kunden = Mock.findAllKunden();
-			// if (kunden.isEmpty()) {
+			kunden = Mock.findAllKunden();
+			if (kunden.isEmpty()) {
 			throw new NotFoundException("Keine Kunden vorhanden.");
-			// }
+			}
 		}
 
 		for (Kunde k : kunden) {
