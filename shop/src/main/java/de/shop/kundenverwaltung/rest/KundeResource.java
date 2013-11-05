@@ -129,21 +129,19 @@ public class KundeResource {
 	@GET
 	public Response findKundenByNachname(@QueryParam("nachname") String nachname) {
 		List<? extends AbstractKunde> kunden = null;
-		if (nachname != null) {
-			// TODO Anwendungskern statt Mock, Verwendung von Locale
-			kunden = Mock.findKundenByNachname(nachname);
-			if (kunden.isEmpty()) {
-				throw new NotFoundException("Kein Kunde mit Nachname "
-						+ nachname + " gefunden.");
-			}
-		}
-		else {
+		if (nachname.isEmpty()) {
 			// TODO Anwendungskern statt Mock, Verwendung von Locale
 			// kunden = Mock.findAllKunden();
 			// if (kunden.isEmpty()) {
 			throw new NotFoundException(
 					"Query unvollst\u00E4ndig. Bitte geben Sie einen Nachnamen an.");
 			// }
+		}
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		kunden = Mock.findKundenByNachname(nachname);
+		if (kunden.isEmpty()) {
+			throw new NotFoundException("Kein Kunde mit Nachname "
+					+ nachname + " gefunden.");
 		}
 
 		for (AbstractKunde k : kunden) {
