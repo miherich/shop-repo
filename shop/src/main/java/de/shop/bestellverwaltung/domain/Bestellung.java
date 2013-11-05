@@ -7,7 +7,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import de.shop.kundenverwaltung.domain.Kunde;
+import de.shop.kundenverwaltung.domain.AbstractKunde;
 
 @XmlRootElement
 public class Bestellung {
@@ -18,7 +18,7 @@ public class Bestellung {
 	private URI kundeUri;
 
 	@XmlTransient
-	private Kunde kunde;
+	private AbstractKunde kunde;
 
 	public void setPositionen(List<Position> positionen) {
 		this.positionen = positionen;
@@ -60,11 +60,11 @@ public class Bestellung {
 		this.kundeUri = kundeUri;
 	}
 
-	public Kunde getKunde() {
+	public AbstractKunde getKunde() {
 		return kunde;
 	}
 
-	public void setKunde(Kunde kunde) {
+	public void setKunde(AbstractKunde kunde) {
 		this.kunde = kunde;
 	}
 

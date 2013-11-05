@@ -23,7 +23,7 @@ import javax.ws.rs.core.UriInfo;
 
 import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.kundenverwaltung.domain.Kunde;
+import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.rest.UriHelper;
 import de.shop.util.rest.NotFoundException;
 import de.shop.util.Mock;

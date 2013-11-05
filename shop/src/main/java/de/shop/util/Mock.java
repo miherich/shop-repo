@@ -10,7 +10,7 @@ import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
 import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.kundenverwaltung.domain.Kunde;
+import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.domain.Adresse;
 import de.shop.kundenverwaltung.domain.Geschaeftskunde;
 import de.shop.kundenverwaltung.domain.Privatkunde;
@@ -24,12 +24,12 @@ public final class Mock {
 	private static final int MAX_BESTELLUNGEN = 4;
 	private static final int MAX_ARTIKEL = 5;
 
-	public static Kunde findKundeById(int id) {
+	public static AbstractKunde findKundeById(int id) {
 		if (id > MAX_KUNDEN) {
 			return null;
 		}
 
-		final Kunde kunde;
+		final AbstractKunde kunde;
 		if (id % 2 == 0) {
 			kunde = new Privatkunde();
 			((Privatkunde) kunde).setVorname("Max");
@@ -53,21 +53,21 @@ public final class Mock {
 		return kunde;
 	}
 
-	public static List<Kunde> findAllKunden() {
+	public static List<AbstractKunde> findAllKunden() {
 		final int anzahl = MAX_KUNDEN;
-		final List<Kunde> kundeList = new ArrayList<>(anzahl);
+		final List<AbstractKunde> kundeList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final Kunde kunde = findKundeById(i);
+			final AbstractKunde kunde = findKundeById(i);
 			kundeList.add(kunde);
 		}
 		return kundeList;
 	}
 
-	public static List<Kunde> findKundenByNachname(String nachname) {
+	public static List<AbstractKunde> findKundenByNachname(String nachname) {
 		final int anzahl = nachname.length();
-		final List<Kunde> kunden = new ArrayList<>(anzahl);
+		final List<AbstractKunde> kunden = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final Kunde kunde = findKundeById(i);
+			final AbstractKunde kunde = findKundeById(i);
 			kunde.setNachname(nachname);
 			kunden.add(kunde);
 		}
@@ -104,8 +104,8 @@ public final class Mock {
 		return kunde;
 	}
 
-	public static void updateKunde(Kunde kunde) {
-		Kunde kundeAlt = findKundeById(kunde.getKundennr());
+	public static void updateKunde(AbstractKunde kunde) {
+		AbstractKunde kundeAlt = findKundeById(kunde.getKundennr());
 		kundeAlt.setNachname(kunde.getNachname());
 		kundeAlt.setAdresse(kunde.getAdresse());
 		if (kunde.getKundennr() % 2 == 0) {
@@ -121,7 +121,7 @@ public final class Mock {
 	// System.out.println("Kunde mit ID=" + kundeId + " geloescht");
 	// }
 
-	public static List<Bestellung> findBestellungenByKunde(Kunde kunde) {
+	public static List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
 		// Beziehungsgeflecht zwischen Kunde und Bestellungen aufbauen
 		final int anzahl = kunde.getKundennr() % MAX_BESTELLUNGEN + 1; // 1, 2,
 																		// 3
@@ -144,7 +144,7 @@ public final class Mock {
 			return null;
 		}
 
-		final Kunde kunde = findKundeById(id + 1); // andere ID fuer den Kunden
+		final AbstractKunde kunde = findKundeById(id + 1); // andere ID fuer den Kunden
 
 		final Bestellung bestellung = new Bestellung();
 		bestellung.setBestellnr(id);
