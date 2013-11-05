@@ -5,10 +5,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Zubehoer extends AbstractArtikel {
 
-	public Zubehoer() {
-		super();
-	}
-	
 //	public Zubehoer(int artikelNr, long preis) {
 //		super(artikelNr, preis);
 //	}

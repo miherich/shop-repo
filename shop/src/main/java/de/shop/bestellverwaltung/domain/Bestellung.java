@@ -40,7 +40,7 @@ public class Bestellung {
 		this.bestelldatum = bestelldatum;
 	}
 
-	public boolean getIstAusgeliefert() {
+	public boolean isAusgeliefert() {
 		return istAusgeliefert;
 	}
 
