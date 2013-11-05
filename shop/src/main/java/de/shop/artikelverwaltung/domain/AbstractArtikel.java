@@ -12,18 +12,19 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @XmlRootElement
 @XmlSeeAlso({ Zubehoer.class, Fahrrad.class, Ersatzteil.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({ @Type(value = Zubehoer.class, name = AbstractArtikel.Zubehoer),
-		@Type(value = Fahrrad.class, name = AbstractArtikel.Fahrrad),
-		@Type(value = Ersatzteil.class, name = AbstractArtikel.Ersatzteil) })
+@JsonSubTypes({ @Type(value = Zubehoer.class, name = AbstractArtikel.ZUBEHOER),
+		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD),
+		@Type(value = Ersatzteil.class, name = AbstractArtikel.ERSATZTEIL) })
 public abstract class AbstractArtikel {
 	private int artikelNr;
 	private double preis;
-	private String typ;		//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
+	private String typ;		
+	//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
 	private URI artikelUri;
 
-	public static final String Zubehoer = "Z";
-	public static final String Fahrrad = "F";
-	public static final String Ersatzteil = "E";
+	public static final String ZUBEHOER = "Z";
+	public static final String FAHRRAD = "F";
+	public static final String ERSATZTEIL = "E";
 
 	public int getArtikelNr() {
 		return artikelNr;
@@ -92,7 +93,7 @@ public abstract class AbstractArtikel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractArtikel other = (AbstractArtikel) obj;
+		final AbstractArtikel other = (AbstractArtikel) obj;
 		if (artikelNr != other.artikelNr)
 			return false;
 		if (artikelUri == null) {
