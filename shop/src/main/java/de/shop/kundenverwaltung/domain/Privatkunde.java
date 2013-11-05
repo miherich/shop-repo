@@ -5,7 +5,7 @@ package de.shop.kundenverwaltung.domain;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Privatkunde extends Kunde {
+public class Privatkunde extends AbstractKunde {
 	private static final long serialVersionUID = -3177911520687689458L;
 	private String vorname;
 

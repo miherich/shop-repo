@@ -9,7 +9,7 @@ public class Adresse {
 	private String hausnummer;
 	private int plz;
 	private String ort;
-	private Kunde kunde;
+	private AbstractKunde kunde;
 
 	public Adresse() {
 		super();
@@ -71,11 +71,11 @@ public class Adresse {
 		this.ort = ort;
 	}
 
-	public Kunde getKunde() {
+	public AbstractKunde getKunde() {
 		return kunde;
 	}
 
-	public void setKunde(Kunde kunde) {
+	public void setKunde(AbstractKunde kunde) {
 		this.kunde = kunde;
 	}
 
