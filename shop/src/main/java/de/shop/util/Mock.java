@@ -43,7 +43,7 @@ public final class Mock {
 		kunde.setNachname("Mustermann");
 
 		
-		final int plz=12345;
+		final int plz = 12345;
 		final Adresse adresse = new Adresse();
 		adresse.setId(id + 1);
 		adresse.setStrasse("Musterstrasse");
@@ -182,7 +182,7 @@ public final class Mock {
 		}
 
 		final AbstractArtikel artikel;
-		final int constant=3;
+		final int constant = 3;
 		if (id % constant == 0) {
 			artikel = new Fahrrad();
 			artikel.setTyp("Mountainbike");
@@ -199,7 +199,7 @@ public final class Mock {
 			artikel.setTyp("Schlauch");
 		}
 
-		final double preis=499.99;
+		final double preis = 499.99;
 		artikel.setArtikelNr(id);
 		artikel.setPreis(preis);
 		return artikel;
@@ -251,7 +251,7 @@ public final class Mock {
 		final AbstractArtikel artikelAlt = findArtikelById(artikel.getArtikelNr());
 		artikelAlt.setPreis(artikel.getPreis());
 		artikelAlt.setTyp(artikel.getTyp());
-		final int constant=3;
+		final int constant = 3;
 		if (artikel.getArtikelNr() % constant == 0) {
 			((Fahrrad) artikelAlt).setBezeichnung(((Fahrrad) artikel)
 					.getBezeichnung());
