@@ -24,7 +24,7 @@
 	-->
 
 	<body>
-		<menu name="Shop">
+		<menu name="shop">
 			<item name="Startseite" href="index.html"/>
 			<item name="Zusammenfassung" href="project-summary.html"/>
 			<item name="&#220;bersicht" href="project-info.html"/>
