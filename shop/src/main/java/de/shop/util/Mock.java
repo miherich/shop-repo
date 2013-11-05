@@ -33,7 +33,8 @@ public final class Mock {
 		if (id % 2 == 0) {
 			kunde = new Privatkunde();
 			((Privatkunde) kunde).setVorname("Max");
-		} else {
+		}
+		else {
 			kunde = new Geschaeftskunde();
 			((Geschaeftskunde) kunde).setFirmenname("Musterfirma");
 		}
@@ -41,11 +42,13 @@ public final class Mock {
 		kunde.setKundennr(id);
 		kunde.setNachname("Mustermann");
 
+		
+		final int plz=12345;
 		final Adresse adresse = new Adresse();
 		adresse.setId(id + 1);
 		adresse.setStrasse("Musterstrasse");
 		adresse.setHausnummer("1");
-		adresse.setPlz(12345);
+		adresse.setPlz(plz);
 		adresse.setOrt("Musterort");
 
 		kunde.setAdresse(adresse);
@@ -105,13 +108,14 @@ public final class Mock {
 	}
 
 	public static void updateKunde(AbstractKunde kunde) {
-		AbstractKunde kundeAlt = findKundeById(kunde.getKundennr());
+		final AbstractKunde kundeAlt = findKundeById(kunde.getKundennr());
 		kundeAlt.setNachname(kunde.getNachname());
 		kundeAlt.setAdresse(kunde.getAdresse());
 		if (kunde.getKundennr() % 2 == 0) {
 			((Privatkunde) kundeAlt).setVorname(((Privatkunde) kunde)
 					.getVorname());
-		} else {
+		}
+		else {
 			((Geschaeftskunde) kundeAlt)
 					.setFirmenname(((Geschaeftskunde) kunde).getFirmenname());
 		}
@@ -178,22 +182,26 @@ public final class Mock {
 		}
 
 		final AbstractArtikel artikel;
-		if (id % 3 == 0) {
+		final int constant=3;
+		if (id % constant == 0) {
 			artikel = new Fahrrad();
 			artikel.setTyp("Mountainbike");
 			((Fahrrad) artikel).setRahmen("Unisex");
 			((Fahrrad) artikel).setBezeichnung("Scott Expert Bike");
 
-		} else if (id % 3 == 1) {
+		}
+		else if (id % constant == 1) {
 			artikel = new Zubehoer();
 			artikel.setTyp("Klingel");
-		} else {
+		}
+		else {
 			artikel = new Ersatzteil();
 			artikel.setTyp("Schlauch");
 		}
 
+		final double preis=499.99;
 		artikel.setArtikelNr(id);
-		artikel.setPreis(499.99);
+		artikel.setPreis(preis);
 		return artikel;
 	}
 
@@ -240,14 +248,16 @@ public final class Mock {
 	}
 
 	public static void updateArtikel(AbstractArtikel artikel) {
-		AbstractArtikel artikelAlt = findArtikelById(artikel.getArtikelNr());
+		final AbstractArtikel artikelAlt = findArtikelById(artikel.getArtikelNr());
 		artikelAlt.setPreis(artikel.getPreis());
 		artikelAlt.setTyp(artikel.getTyp());
-		if (artikel.getArtikelNr() % 3 == 0) {
+		final int constant=3;
+		if (artikel.getArtikelNr() % constant == 0) {
 			((Fahrrad) artikelAlt).setBezeichnung(((Fahrrad) artikel)
 					.getBezeichnung());
 			((Fahrrad) artikelAlt).setRahmen(((Fahrrad) artikel).getRahmen());
-		} else if (artikel.getArtikelNr() % 3 == 2) {
+		}
+		else if (artikel.getArtikelNr() % constant == 2) {
 			((Ersatzteil) artikelAlt).setFahrrad(((Ersatzteil) artikel)
 					.getFahrrad());
 		}
