@@ -68,7 +68,7 @@ public class KundeResource {
 	@GET
 	public Response findAllKunden() {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		List<AbstractKunde> kundenList = Mock.findAllKunden();
+		final List<AbstractKunde> kundenList = Mock.findAllKunden();
 		if (kundenList.isEmpty())
 			throw new NotFoundException("Es wurden keine Kunden gefunden.");
 		return Response.ok(
@@ -79,7 +79,7 @@ public class KundeResource {
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findKundeById(@PathParam("id") int id) {
-		AbstractKunde kunde = Mock.findKundeById(id);
+		final AbstractKunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
 			throw new NotFoundException("Kein Kunde mit der Kundennummer " + id
 					+ " gefunden.");
@@ -118,7 +118,7 @@ public class KundeResource {
 								kunde.getKundennr(), uriInfo)).rel(REMOVE_LINK)
 				.build();
 
-		return new Link[] { self, add, update, remove };
+		return new Link[] {self, add, update, remove };
 	}
 
 	public URI getUriKunde(AbstractKunde kunde, UriInfo uriInfo) {
@@ -136,7 +136,8 @@ public class KundeResource {
 				throw new NotFoundException("Kein Kunde mit Nachname "
 						+ nachname + " gefunden.");
 			}
-		} else {
+		}
+		else {
 			// TODO Anwendungskern statt Mock, Verwendung von Locale
 			// kunden = Mock.findAllKunden();
 			// if (kunden.isEmpty()) {
@@ -166,14 +167,14 @@ public class KundeResource {
 				.fromUri(getUriKunde(kunden.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] { first, last };
+		return new Link[] {first, last };
 	}
 
 	@GET
 	@Path("{id:[1-9][0-9]*}/bestellungen")
 	public Response findBestellungenByKundeId(@PathParam("id") int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		AbstractKunde kunde = Mock.findKundeById(kundeId);
+		final AbstractKunde kunde = Mock.findKundeById(kundeId);
 		final List<Bestellung> bestellungen = Mock
 				.findBestellungenByKunde(kunde);
 		if (bestellungen.isEmpty()) {
@@ -215,7 +216,7 @@ public class KundeResource {
 								bestellungen.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] { self, first, last };
+		return new Link[] {self, first, last };
 	}
 
 	@POST
