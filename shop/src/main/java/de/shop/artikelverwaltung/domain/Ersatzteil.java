@@ -3,7 +3,7 @@ package de.shop.artikelverwaltung.domain;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Ersatzteil extends Artikel {
+public class Ersatzteil extends AbstractArtikel {
 	private Fahrrad fahrrad;
 
 	public Fahrrad getFahrrad() {
@@ -46,11 +46,12 @@ public class Ersatzteil extends Artikel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Ersatzteil other = (Ersatzteil) obj;
+		final Ersatzteil other = (Ersatzteil) obj;
 		if (fahrrad == null) {
 			if (other.fahrrad != null)
 				return false;
-		} else if (!fahrrad.equals(other.fahrrad))
+		} 
+		else if (!fahrrad.equals(other.fahrrad))
 			return false;
 		return true;
 	}

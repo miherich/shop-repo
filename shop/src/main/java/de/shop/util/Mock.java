@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Set;
 
-import de.shop.artikelverwaltung.domain.Artikel;
+import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
@@ -172,12 +172,12 @@ public final class Mock {
 		return bestellung;
 	}
 
-	public static Artikel findArtikelById(int id) {
+	public static AbstractArtikel findArtikelById(int id) {
 		if (id > MAX_ARTIKEL) {
 			return null;
 		}
 
-		final Artikel artikel;
+		final AbstractArtikel artikel;
 		if (id % 3 == 0) {
 			artikel = new Fahrrad();
 			artikel.setTyp("Mountainbike");
@@ -197,11 +197,11 @@ public final class Mock {
 		return artikel;
 	}
 
-	public static List<Artikel> findAllArtikel() {
+	public static List<AbstractArtikel> findAllArtikel() {
 		final int anzahl = MAX_ARTIKEL;
-		final List<Artikel> artikelList = new ArrayList<>(anzahl);
+		final List<AbstractArtikel> artikelList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final Artikel artikel = findArtikelById(i);
+			final AbstractArtikel artikel = findArtikelById(i);
 			artikelList.add(artikel);
 		}
 		return artikelList;
@@ -239,8 +239,8 @@ public final class Mock {
 	private Mock() { /**/
 	}
 
-	public static void updateArtikel(Artikel artikel) {
-		Artikel artikelAlt = findArtikelById(artikel.getArtikelNr());
+	public static void updateArtikel(AbstractArtikel artikel) {
+		AbstractArtikel artikelAlt = findArtikelById(artikel.getArtikelNr());
 		artikelAlt.setPreis(artikel.getPreis());
 		artikelAlt.setTyp(artikel.getTyp());
 		if (artikel.getArtikelNr() % 3 == 0) {

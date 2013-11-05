@@ -30,7 +30,7 @@ import javax.ws.rs.core.UriInfo;
 //import org.jboss.logging.Logger;
 
 
-import de.shop.artikelverwaltung.domain.Artikel;
+import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
@@ -72,18 +72,18 @@ public class ArtikelResource {
 	@GET
 	public Response findAllArtikel() {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final List<Artikel> artikelList = Mock.findAllArtikel();
+		final List<AbstractArtikel> artikelList = Mock.findAllArtikel();
 		if (artikelList.isEmpty())
 			throw new NotFoundException("Es wurden keine Artikel gefunden.");
 		return Response.ok(
-				new GenericEntity<List<? extends Artikel>>(artikelList) {
+				new GenericEntity<List<? extends AbstractArtikel>>(artikelList) {
 				}).build();
 	}
 
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findArtikelById(@PathParam("id") int id) {
-		final Artikel artikel = Mock.findArtikelById(id);
+		final AbstractArtikel artikel = Mock.findArtikelById(id);
 		if (artikel == null) {
 			throw new NotFoundException("Kein Artikel mit der Artikelnummer "
 					+ id + " gefunden.");
@@ -93,14 +93,14 @@ public class ArtikelResource {
 				.links(getTransitionalLinks(artikel, uriInfo)).build();
 	}
 
-	private Link[] getTransitionalLinks(Artikel artikel, UriInfo uriInfo) {
+	private Link[] getTransitionalLinks(AbstractArtikel artikel, UriInfo uriInfo) {
 		final Link self = Link.fromUri(getUriArtikel(artikel, uriInfo))
 				.rel(SELF_LINK).build();
 
-		return new Link[] { self };
-	}
+		return new Link[] {self };
+		}
 
-	public URI getUriArtikel(Artikel artikel, UriInfo uriInfo) {
+	public URI getUriArtikel(AbstractArtikel artikel, UriInfo uriInfo) {
 		return uriHelper.getUri(ArtikelResource.class, "findArtikelById",
 				artikel.getArtikelNr(), uriInfo);
 	}
@@ -138,7 +138,7 @@ public class ArtikelResource {
 	@PUT
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public void updateArtikel(Artikel artikel) {
+	public void updateArtikel(AbstractArtikel artikel) {
 		Mock.updateArtikel(artikel);
 	}
 

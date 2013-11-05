@@ -12,10 +12,10 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @XmlRootElement
 @XmlSeeAlso({ Zubehoer.class, Fahrrad.class, Ersatzteil.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({ @Type(value = Zubehoer.class, name = Artikel.Zubehoer),
-		@Type(value = Fahrrad.class, name = Artikel.Fahrrad),
-		@Type(value = Ersatzteil.class, name = Artikel.Ersatzteil) })
-public abstract class Artikel {
+@JsonSubTypes({ @Type(value = Zubehoer.class, name = AbstractArtikel.Zubehoer),
+		@Type(value = Fahrrad.class, name = AbstractArtikel.Fahrrad),
+		@Type(value = Ersatzteil.class, name = AbstractArtikel.Ersatzteil) })
+public abstract class AbstractArtikel {
 	private int artikelNr;
 	private double preis;
 	private String typ;		//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
@@ -57,7 +57,7 @@ public abstract class Artikel {
 		this.artikelUri = artikelUri;
 	}
 
-	public Artikel() {
+	public AbstractArtikel() {
 		super();
 		this.artikelNr = 0;
 		this.preis = 0.0;
@@ -92,13 +92,14 @@ public abstract class Artikel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Artikel other = (Artikel) obj;
+		AbstractArtikel other = (AbstractArtikel) obj;
 		if (artikelNr != other.artikelNr)
 			return false;
 		if (artikelUri == null) {
 			if (other.artikelUri != null)
 				return false;
-		} else if (!artikelUri.equals(other.artikelUri))
+		} 
+		else if (!artikelUri.equals(other.artikelUri))
 			return false;
 		if (Double.doubleToLongBits(preis) != Double
 				.doubleToLongBits(other.preis))
@@ -106,7 +107,8 @@ public abstract class Artikel {
 		if (typ == null) {
 			if (other.typ != null)
 				return false;
-		} else if (!typ.equals(other.typ))
+		}
+		else if (!typ.equals(other.typ))
 			return false;
 		return true;
 	}

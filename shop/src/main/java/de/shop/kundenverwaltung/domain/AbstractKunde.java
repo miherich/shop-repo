@@ -20,9 +20,9 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @XmlRootElement
 @XmlSeeAlso({ Geschaeftskunde.class, Privatkunde.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({ @Type(value = Privatkunde.class, name = Kunde.PRIVATKUNDE),
-		@Type(value = Geschaeftskunde.class, name = Kunde.GESCHAEFTSKUNDE) })
-public abstract class Kunde implements Serializable {
+@JsonSubTypes({ @Type(value = Privatkunde.class, name = AbstractKunde.PRIVATKUNDE),
+		@Type(value = Geschaeftskunde.class, name = AbstractKunde.GESCHAEFTSKUNDE) })
+public abstract class AbstractKunde implements Serializable {
 	private static final long serialVersionUID = 7401524595142572933L;
 	private int kundennr;
 	private String nachname;
@@ -75,7 +75,7 @@ public abstract class Kunde implements Serializable {
 		this.nachname = nachname;
 	}
 
-	public Kunde() {
+	public AbstractKunde() {
 		super();
 		this.kundennr = 0;
 		this.adresse = null;
@@ -123,7 +123,7 @@ public abstract class Kunde implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Kunde other = (Kunde) obj;
+		AbstractKunde other = (AbstractKunde) obj;
 		if (adresse == null) {
 			if (other.adresse != null)
 				return false;
