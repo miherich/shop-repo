@@ -50,11 +50,12 @@ public class Privatkunde extends AbstractKunde {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Privatkunde other = (Privatkunde) obj;
+		final Privatkunde other = (Privatkunde) obj;
 		if (vorname == null) {
 			if (other.vorname != null)
 				return false;
-		} else if (!vorname.equals(other.vorname))
+		}
+		else if (!vorname.equals(other.vorname))
 			return false;
 		return true;
 	}

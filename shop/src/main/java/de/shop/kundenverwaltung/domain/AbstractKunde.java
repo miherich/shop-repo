@@ -123,28 +123,32 @@ public abstract class AbstractKunde implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractKunde other = (AbstractKunde) obj;
+		final AbstractKunde other = (AbstractKunde) obj;
 		if (adresse == null) {
 			if (other.adresse != null)
 				return false;
-		} else if (!adresse.equals(other.adresse))
+		}
+		else if (!adresse.equals(other.adresse))
 			return false;
 		if (bestellURI == null) {
 			if (other.bestellURI != null)
 				return false;
-		} else if (!bestellURI.equals(other.bestellURI))
+		}
+		else if (!bestellURI.equals(other.bestellURI))
 			return false;
 		if (bestellungen == null) {
 			if (other.bestellungen != null)
 				return false;
-		} else if (!bestellungen.equals(other.bestellungen))
+		}
+		else if (!bestellungen.equals(other.bestellungen))
 			return false;
 		if (kundennr != other.kundennr)
 			return false;
 		if (nachname == null) {
 			if (other.nachname != null)
 				return false;
-		} else if (!nachname.equals(other.nachname))
+		}
+		else if (!nachname.equals(other.nachname))
 			return false;
 		return true;
 	}

@@ -5,7 +5,7 @@ package de.shop.kundenverwaltung.domain;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Geschaeftskunde extends AbstractKunde{
+public class Geschaeftskunde extends AbstractKunde {
 	private static final long serialVersionUID = 6258156986876418100L;
 	private String firmenname;
 
@@ -51,11 +51,12 @@ public class Geschaeftskunde extends AbstractKunde{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Geschaeftskunde other = (Geschaeftskunde) obj;
+		final Geschaeftskunde other = (Geschaeftskunde) obj;
 		if (firmenname == null) {
 			if (other.firmenname != null)
 				return false;
-		} else if (!firmenname.equals(other.firmenname))
+		}
+		else if (!firmenname.equals(other.firmenname))
 			return false;
 		return true;
 	}
