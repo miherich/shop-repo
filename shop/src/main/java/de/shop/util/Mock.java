@@ -22,10 +22,10 @@ import de.shop.kundenverwaltung.domain.Privatkunde;
  */
 public final class Mock {
 	private static final int MAX_ID = 99;
-	private static final int MAX_KUNDEN = 8;
-	private static final int MAX_BESTELLUNGEN = 4;
+	private static final int MAX_KUNDEN = 10;
+	private static final int MAX_BESTELLUNGEN = 10;
 	private static final int MAX_POSITIONEN = 10;
-	private static final int MAX_ARTIKEL = 5;
+	private static final int MAX_ARTIKEL = 10;
 
 	public static AbstractKunde findKundeById(int id) {
 		if (id > MAX_KUNDEN) {
