@@ -3,7 +3,6 @@ package de.shop.kundenverwaltung.rest;
 import static de.shop.util.Constants.ADD_LINK;
 import static de.shop.util.Constants.FIRST_LINK;
 import static de.shop.util.Constants.LAST_LINK;
-import static de.shop.util.Constants.REMOVE_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
@@ -112,13 +111,7 @@ public class KundeResource {
 				.fromUri(uriHelper.getUri(KundeResource.class, uriInfo))
 				.rel(UPDATE_LINK).build();
 
-		final Link remove = Link
-				.fromUri(
-						uriHelper.getUri(KundeResource.class, "deleteKunde",
-								kunde.getKundennr(), uriInfo)).rel(REMOVE_LINK)
-				.build();
-
-		return new Link[] {self, add, update, remove };
+		return new Link[] {self, add, update };
 	}
 
 	public URI getUriKunde(AbstractKunde kunde, UriInfo uriInfo) {
@@ -244,12 +237,4 @@ public class KundeResource {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		Mock.updateKunde(kunde);
 	}
-
-	// @DELETE
-	// @Path("{id:[1-9][0-9]*}")
-	// @Produces
-	// public void deleteKunde(@PathParam("id") Long kundeId) {
-	// // TODO Anwendungskern statt Mock, Verwendung von Locale
-	// Mock.deleteKunde(kundeId);
-	// }
 }
