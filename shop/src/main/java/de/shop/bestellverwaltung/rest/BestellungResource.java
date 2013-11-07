@@ -62,8 +62,6 @@ public class BestellungResource {
 			throw new NotFoundException("Keine Bestellung mit der ID " + id
 					+ " gefunden.");
 		}
-		
-		bestellung.setPositionen(Mock.findAllPositionen(id));
 
 		setStructuralLinks(bestellung, uriInfo);
 

@@ -6,6 +6,7 @@ import java.util.List;
 //import java.util.Set;
 
 
+
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
@@ -157,6 +158,7 @@ public final class Mock {
 		bestellung.setBestellnr(id);
 		bestellung.setBestelldatum("03.11.2013");
 		bestellung.setIstAusgeliefert(false);
+		bestellung.setPositionen(findAllPositionen(id));
 		bestellung.setKunde(kunde);
 
 		return bestellung;

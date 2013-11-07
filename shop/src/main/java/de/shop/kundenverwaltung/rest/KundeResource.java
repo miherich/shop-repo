@@ -31,6 +31,8 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import com.google.common.base.Strings;
+
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
 import de.shop.kundenverwaltung.domain.Geschaeftskunde;
@@ -62,17 +64,6 @@ public class KundeResource {
 	@Path("version")
 	public String getVersion() {
 		return "1.0";
-	}
-
-	@GET
-	public Response findAllKunden() {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final List<AbstractKunde> kundenList = Mock.findAllKunden();
-		if (kundenList.isEmpty())
-			throw new NotFoundException("Es wurden keine Kunden gefunden.");
-		return Response.ok(
-				new GenericEntity<List<? extends AbstractKunde>>(kundenList) {
-				}).build();
 	}
 
 	@GET
@@ -122,14 +113,13 @@ public class KundeResource {
 	@GET
 	public Response findKundenByNachname(@QueryParam("nachname") String nachname) {
 		List<? extends AbstractKunde> kunden = null;
-		if (nachname.isEmpty()) {
-			// TODO Anwendungskern statt Mock, Verwendung von Locale
-			// kunden = Mock.findAllKunden();
-			// if (kunden.isEmpty()) {
-			throw new NotFoundException(
-					"Query unvollst\u00E4ndig. Bitte geben Sie einen Nachnamen an.");
-			// }
-		}
+		if (Strings.isNullOrEmpty(nachname)) {
+			final List<AbstractKunde> kundenList = Mock.findAllKunden();
+			if (kundenList.isEmpty())
+				throw new NotFoundException("Es wurden keine Kunden gefunden.");
+			return Response.ok(
+					new GenericEntity<List<? extends AbstractKunde>>(kundenList) {
+					}).build();		}
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		kunden = Mock.findKundenByNachname(nachname);
 		if (kunden.isEmpty()) {
