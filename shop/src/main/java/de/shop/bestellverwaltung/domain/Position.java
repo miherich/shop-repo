@@ -34,9 +34,7 @@ public class Position {
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
-	public Position() {
-		super();
-	}
+
 	@Override
 	public String toString() {
 		return "Position [id=" + id + ", bestellid=" + bestellid + ", artikel="
