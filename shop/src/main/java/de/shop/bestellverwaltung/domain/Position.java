@@ -60,13 +60,14 @@ public class Position {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Position other = (Position) obj;
+		final Position other = (Position) obj;
 		if (anzahl != other.anzahl)
 			return false;
 		if (artikel == null) {
 			if (other.artikel != null)
 				return false;
-		} else if (!artikel.equals(other.artikel))
+		}
+		else if (!artikel.equals(other.artikel))
 			return false;
 		if (bestellid != other.bestellid)
 			return false;

@@ -102,7 +102,7 @@ public class KundeResource {
 				.fromUri(uriHelper.getUri(KundeResource.class, uriInfo))
 				.rel(UPDATE_LINK).build();
 
-		return new Link[] {self, add, update };
+		return new Link[] { self, add, update };
 	}
 
 	public URI getUriKunde(AbstractKunde kunde, UriInfo uriInfo) {
@@ -117,26 +117,30 @@ public class KundeResource {
 			final List<AbstractKunde> kundenList = Mock.findAllKunden();
 			if (kundenList.isEmpty())
 				throw new NotFoundException("Es wurden keine Kunden gefunden.");
-			return Response.ok(
-					new GenericEntity<List<? extends AbstractKunde>>(kundenList) {
-					}).build();		}
+			return Response
+					.ok(new GenericEntity<List<? extends AbstractKunde>>(
+							kundenList) {
+					}
+					).build();
+		}
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		kunden = Mock.findKundenByNachname(nachname);
 		if (kunden.isEmpty()) {
-			throw new NotFoundException("Kein Kunde mit Nachname "
-					+ nachname + " gefunden.");
+			throw new NotFoundException("Kein Kunde mit Nachname " + nachname
+					+ " gefunden.");
 		}
 
 		for (AbstractKunde k : kunden) {
 			setStructuralLinks(k, uriInfo);
 		}
 
-		return Response.ok(new GenericEntity<List<? extends AbstractKunde>>(kunden) {
-		}).links(getTransitionalLinksKunden(kunden, uriInfo)).build();
+		return Response
+				.ok(new GenericEntity<List<? extends AbstractKunde>>(kunden) {
+				}).links(getTransitionalLinksKunden(kunden, uriInfo)).build();
 	}
 
-	private Link[] getTransitionalLinksKunden(List<? extends AbstractKunde> kunden,
-			UriInfo uriInfo) {
+	private Link[] getTransitionalLinksKunden(
+			List<? extends AbstractKunde> kunden, UriInfo uriInfo) {
 		if (kunden == null || kunden.isEmpty()) {
 			return null;
 		}
@@ -148,7 +152,7 @@ public class KundeResource {
 				.fromUri(getUriKunde(kunden.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] {first, last };
+		return new Link[] { first, last };
 	}
 
 	@GET
@@ -197,7 +201,7 @@ public class KundeResource {
 								bestellungen.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] {self, first, last };
+		return new Link[] { self, first, last };
 	}
 
 	@POST

@@ -188,10 +188,11 @@ public final class Mock {
 		if (id > MAX_ID) {
 			return null;
 		}
-
+		
+		final int constant = 3;
 		final Position position = new Position();
 		position.setId(id);
-		position.setAnzahl(id+3);
+		position.setAnzahl(id + constant);
 		position.setArtikel(findArtikelById(id));
 		position.setBestellid(bid);
 
