@@ -9,9 +9,7 @@ import de.shop.artikelverwaltung.domain.AbstractArtikel;
 
 @XmlRootElement
 public class Position {
-	@NotEmpty(message = "{bestellverwaltung.position.id.notNull}")
 	private int id;
-	@NotEmpty(message = "{bestellverwaltung.position.bestellid.notNull}")
 	private int bestellid;
 	@Valid
 	private AbstractArtikel artikel;

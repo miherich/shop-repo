@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @XmlRootElement
 @XmlSeeAlso({ Zubehoer.class, Fahrrad.class, Ersatzteil.class })
@@ -22,7 +21,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 		@Type(value = Ersatzteil.class, name = AbstractArtikel.ERSATZTEIL) })
 public abstract class AbstractArtikel {
 	
-	@NotEmpty(message = "{artikelverwaltung.artikel.artikelNr.notEmpty}")
 	private int artikelNr;
 	
 	@NotNull(message = "{artikelverwaltung.artikel.preis.notNull}")

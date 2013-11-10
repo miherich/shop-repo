@@ -9,13 +9,10 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 
 @XmlRootElement
 public class Bestellung {
-	@NotEmpty(message = "{bestellverwaltung.bestellung.bestellnr.notEmpty}")
 	private int bestellnr;
 	@NotNull(message = "{bestellverwaltung.bestellung.bestelldatum.notNull}")
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
