@@ -6,14 +6,17 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 
+
 //import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
 
 
+
 //import javax.annotation.PostConstruct;
 //import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -28,6 +31,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 //import org.jboss.logging.Logger;
+
 
 
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
@@ -109,7 +113,7 @@ public class ArtikelResource {
 	@Path("/fahrrad")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createFahrrad(Fahrrad fahrrad) {
+	public Response createFahrrad(@Valid Fahrrad fahrrad) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		fahrrad = Mock.createFahrrad(fahrrad);
 		return Response.created(getUriArtikel(fahrrad, uriInfo)).build();
@@ -119,7 +123,7 @@ public class ArtikelResource {
 	@Path("/zubehoer")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createZubehoer(Zubehoer zubehoer) {
+	public Response createZubehoer(@Valid Zubehoer zubehoer) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		zubehoer = Mock.createZubehoer(zubehoer);
 		return Response.created(getUriArtikel(zubehoer, uriInfo)).build();
@@ -129,7 +133,7 @@ public class ArtikelResource {
 	@Path("/ersatzteil")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createErsatzteil(Ersatzteil ersatzteil) {
+	public Response createErsatzteil(@Valid Ersatzteil ersatzteil) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		ersatzteil = Mock.createErsatzteil(ersatzteil);
 		return Response.created(getUriArtikel(ersatzteil, uriInfo)).build();
@@ -138,7 +142,7 @@ public class ArtikelResource {
 	@PUT
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public void updateArtikel(AbstractArtikel artikel) {
+	public void updateArtikel(@Valid AbstractArtikel artikel) {
 		Mock.updateArtikel(artikel);
 	}
 
