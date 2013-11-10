@@ -1,102 +1,92 @@
 package de.shop.kundenverwaltung.domain;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @XmlRootElement
 public class Adresse {
+	
+	@NotEmpty
 	private int id;
+
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+")
+	@Size(min = 2, max = 40)
 	private String strasse;
+
+	@Size(min = 1, max = 4)
+	@Pattern(regexp = "\\d{3}[a-z]")
 	private String hausnummer;
-	private int plz;
+	
+	@Pattern(regexp = "\\d{5}")
+	private String plz;
+	
+	@Size(min = 1, max = 32)
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+(-[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+)?")
 	private String ort;
+	
+	@Valid
 	private AbstractKunde kunde;
-
-	public Adresse() {
-		super();
-		this.strasse = null;
-		this.hausnummer = null;
-		this.plz = 0;
-		this.ort = null;
-		this.kunde = null;
-	}
-
-//	public Adresse(int id, String strasse, String hausnummer, int plz,
-//			String ort, Kunde kunde) {
-//		super();
-//		this.id = id;
-//		this.strasse = strasse;
-//		this.hausnummer = hausnummer;
-//		this.plz = plz;
-//		this.ort = ort;
-//		this.kunde = kunde;
-//	}
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getStrasse() {
 		return strasse;
 	}
-
 	public void setStrasse(String strasse) {
 		this.strasse = strasse;
 	}
-
 	public String getHausnummer() {
 		return hausnummer;
 	}
-
 	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
 	}
-
-	public int getPlz() {
+	public String getPlz() {
 		return plz;
 	}
-
-	public void setPlz(int plz) {
+	public void setPlz(String plz) {
 		this.plz = plz;
 	}
-
 	public String getOrt() {
 		return ort;
 	}
-
 	public void setOrt(String ort) {
 		this.ort = ort;
 	}
-
 	public AbstractKunde getKunde() {
 		return kunde;
 	}
-
 	public void setKunde(AbstractKunde kunde) {
 		this.kunde = kunde;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Adresse [strasse=" + strasse + ", hausnummer=" + hausnummer
-				+ ", plz=" + plz + ", ort=" + ort + "]";
+		return "Adresse [id=" + id + ", strasse=" + strasse + ", hausnummer="
+				+ hausnummer + ", plz=" + plz + ", ort=" + ort + ", kunde="
+				+ kunde + "]";
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
 				+ ((hausnummer == null) ? 0 : hausnummer.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
 		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
-		result = prime * result + plz;
+		result = prime * result + ((plz == null) ? 0 : plz.hashCode());
 		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -105,28 +95,34 @@ public class Adresse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Adresse other = (Adresse) obj;
+		Adresse other = (Adresse) obj;
 		if (hausnummer == null) {
 			if (other.hausnummer != null)
 				return false;
-		}
-		else if (!hausnummer.equals(other.hausnummer))
+		} else if (!hausnummer.equals(other.hausnummer))
+			return false;
+		if (id != other.id)
+			return false;
+		if (kunde == null) {
+			if (other.kunde != null)
+				return false;
+		} else if (!kunde.equals(other.kunde))
 			return false;
 		if (ort == null) {
 			if (other.ort != null)
 				return false;
-		} 
-		else if (!ort.equals(other.ort))
+		} else if (!ort.equals(other.ort))
 			return false;
-		if (plz != other.plz)
+		if (plz == null) {
+			if (other.plz != null)
+				return false;
+		} else if (!plz.equals(other.plz))
 			return false;
 		if (strasse == null) {
 			if (other.strasse != null)
 				return false;
-		}
-		else if (!strasse.equals(other.strasse))
+		} else if (!strasse.equals(other.strasse))
 			return false;
 		return true;
 	}
-
 }

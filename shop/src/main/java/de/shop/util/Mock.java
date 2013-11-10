@@ -49,7 +49,7 @@ public final class Mock {
 		kunde.setNachname("Mustermann");
 
 		
-		final int plz = 12345;
+		final String plz = "12345";
 		final Adresse adresse = new Adresse();
 		adresse.setId(id + 1);
 		adresse.setStrasse("Musterstrasse");
