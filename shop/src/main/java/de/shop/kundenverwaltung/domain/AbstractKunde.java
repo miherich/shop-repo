@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
@@ -16,6 +19,7 @@ import java.io.Serializable;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @XmlRootElement
 @XmlSeeAlso({ Geschaeftskunde.class, Privatkunde.class })
@@ -24,10 +28,17 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 		@Type(value = Geschaeftskunde.class, name = AbstractKunde.GESCHAEFTSKUNDE) })
 public abstract class AbstractKunde implements Serializable {
 	private static final long serialVersionUID = 7401524595142572933L;
+	
+	@NotEmpty
 	private int kundennr;
+	
+	@NotNull
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+")
 	private String nachname;
+	
+	@Valid
 	private Adresse adresse;
-
+	
 	public static final String PRIVATKUNDE = "P";
 	public static final String GESCHAEFTSKUNDE = "G";
 
