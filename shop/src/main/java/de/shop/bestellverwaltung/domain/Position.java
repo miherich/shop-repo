@@ -9,13 +9,13 @@ import de.shop.artikelverwaltung.domain.AbstractArtikel;
 
 @XmlRootElement
 public class Position {
-	@NotEmpty
+	@NotEmpty(message = "{bestellverwaltung.position.id.notNull}")
 	private int id;
-	@NotEmpty
+	@NotEmpty(message = "{bestellverwaltung.position.bestellid.notNull}")
 	private int bestellid;
 	@Valid
 	private AbstractArtikel artikel;
-	@NotEmpty
+	@NotEmpty(message = "{bestellverwaltung.position.anzahl.notNull}")
 	private int anzahl;
 	
 	public int getId() {
