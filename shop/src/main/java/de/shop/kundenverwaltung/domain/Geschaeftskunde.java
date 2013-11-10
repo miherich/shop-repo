@@ -2,6 +2,7 @@ package de.shop.kundenverwaltung.domain;
 
 //import java.net.URI;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -19,8 +20,8 @@ public class Geschaeftskunde extends AbstractKunde {
 //		super(kundennr, adresse, bestellURI, nachname);
 //		this.firmenname = firmenname;
 //	}
-
-	public String getFirmenname() {
+	@NotNull
+		public String getFirmenname() {
 		return firmenname;
 	}
 

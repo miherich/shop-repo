@@ -2,11 +2,16 @@ package de.shop.kundenverwaltung.domain;
 
 //import java.net.URI;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Privatkunde extends AbstractKunde {
 	private static final long serialVersionUID = -3177911520687689458L;
+	
+	@NotNull
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+")
 	private String vorname;
 
 	public Privatkunde() {
