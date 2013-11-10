@@ -20,7 +20,6 @@ import java.io.Serializable;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @XmlRootElement
 @XmlSeeAlso({ Geschaeftskunde.class, Privatkunde.class })
@@ -30,7 +29,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 public abstract class AbstractKunde implements Serializable {
 	private static final long serialVersionUID = 7401524595142572933L;
 	
-	@NotEmpty(message = "{kundenverwaltung.kunde.kundennr}")
 	private int kundennr;
 	
 	@NotNull(message = "{kundenverwaltung.kunde.nachname.notNull}")

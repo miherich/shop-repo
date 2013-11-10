@@ -6,12 +6,9 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @XmlRootElement
 public class Adresse {
 	
-	@NotEmpty
 	private int id;
 
 	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+", message = "{kundenverwaltung.adresse.strasse.pattern}")
@@ -19,7 +16,7 @@ public class Adresse {
 	private String strasse;
 
 	@Size(min = 1, max = 4, message = "{kundenverwaltung.adresse.length}")
-	@Pattern(regexp = "\\d{3}[a-z]", message = "{kundenverwaltung.adresse.hausnummer.pattern}")
+	@Pattern(regexp = "[1-9][0-9]{0,2}[a-z]?", message = "{kundenverwaltung.adresse.hausnummer.pattern}")
 	private String hausnummer;
 	
 	@NotNull (message = "{kundenverwaltung.adresse.plz.notNull}")
