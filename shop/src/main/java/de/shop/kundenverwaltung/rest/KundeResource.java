@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 //import javax.ws.rs.DELETE;
 //import javax.ws.rs.DefaultValue;
@@ -208,7 +209,7 @@ public class KundeResource {
 	@Path("/privat")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createPrivatkunde(Privatkunde kunde) {
+	public Response createPrivatkunde(@Valid Privatkunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		kunde = Mock.createPrivatkunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
@@ -218,7 +219,7 @@ public class KundeResource {
 	@Path("/geschaeft")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createGeschaeftskunde(Geschaeftskunde kunde) {
+	public Response createGeschaeftskunde(@Valid Geschaeftskunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		kunde = Mock.createGeschaeftskunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
@@ -227,7 +228,7 @@ public class KundeResource {
 	@PUT
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public void updateKunde(AbstractKunde kunde) {
+	public void updateKunde(@Valid AbstractKunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		Mock.updateKunde(kunde);
 	}
