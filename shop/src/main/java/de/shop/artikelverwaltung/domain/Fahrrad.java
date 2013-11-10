@@ -7,7 +7,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Fahrrad extends AbstractArtikel {
+	@NotNull
+	@Size(min=2, max=150)
 	private String bezeichnung;
+	
+	
+	@NotNull
+	@Size(min=1, max=1)
+	@Pattern(regexp = "[M,W,U]")
 	private String rahmen;
 
 	public Fahrrad() {
@@ -23,8 +30,7 @@ public class Fahrrad extends AbstractArtikel {
 	// this.rahmen = rahmen;
 	// }
 
-	@NotNull
-	@Size(min=2, max=150)
+	
 	public String getBezeichnung() {
 		return bezeichnung;
 	}
@@ -33,9 +39,7 @@ public class Fahrrad extends AbstractArtikel {
 		this.bezeichnung = bezeichnung;
 	}
 	
-	@NotNull
-	@Size(min=1, max=1)
-	@Pattern(regexp = "[M,W,U]")
+	
 	public String getRahmen() {
 		return rahmen;
 	}
