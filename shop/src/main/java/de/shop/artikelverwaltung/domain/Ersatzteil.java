@@ -1,9 +1,11 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Ersatzteil extends AbstractArtikel {
+	@Valid
 	private Fahrrad fahrrad;
 
 	public Fahrrad getFahrrad() {
