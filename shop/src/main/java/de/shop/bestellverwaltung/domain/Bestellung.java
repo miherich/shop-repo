@@ -15,11 +15,11 @@ import de.shop.kundenverwaltung.domain.AbstractKunde;
 
 @XmlRootElement
 public class Bestellung {
-	@NotEmpty
+	@NotEmpty(message = "{bestellverwaltung.bestellung.bestellnr.notEmpty}")
 	private int bestellnr;
-	@NotNull
+	@NotNull(message = "{bestellverwaltung.bestellung.bestelldatum.notNull}")
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
-	@AssertFalse //TODO AssertTrue?
+	@AssertFalse(message = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}") //TODO AssertTrue?
 	private boolean istAusgeliefert;
 	private List<Position> positionen;
 	private URI kundeUri;
