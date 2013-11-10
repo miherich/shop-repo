@@ -1,5 +1,8 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -20,6 +23,8 @@ public class Fahrrad extends AbstractArtikel {
 	// this.rahmen = rahmen;
 	// }
 
+	@NotNull
+	@Size(min=2, max=150)
 	public String getBezeichnung() {
 		return bezeichnung;
 	}
@@ -27,7 +32,10 @@ public class Fahrrad extends AbstractArtikel {
 	public void setBezeichnung(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
-
+	
+	@NotNull
+	@Size(min=1, max=1)
+	@Pattern(regexp = "[M,W,U]")
 	public String getRahmen() {
 		return rahmen;
 	}
