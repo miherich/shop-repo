@@ -1,6 +1,7 @@
 package de.shop.kundenverwaltung.domain;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,19 +14,20 @@ public class Adresse {
 	@NotEmpty
 	private int id;
 
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+")
-	@Size(min = 2, max = 40)
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+", message = "{kundenverwaltung.adresse.strasse.pattern}")
+	@Size(min = 2, max = 40, message = "{kundenverwaltung.adresse.strasse.length}")
 	private String strasse;
 
-	@Size(min = 1, max = 4)
-	@Pattern(regexp = "\\d{3}[a-z]")
+	@Size(min = 1, max = 4, message = "{kundenverwaltung.adresse.length}")
+	@Pattern(regexp = "\\d{3}[a-z]", message = "{kundenverwaltung.adresse.hausnummer.pattern}")
 	private String hausnummer;
 	
-	@Pattern(regexp = "\\d{5}")
+	@NotNull (message = "{kundenverwaltung.adresse.plz.notNull}")
+	@Pattern(regexp = "\\d{5}", message = "{kundenverwaltung.adresse.plz.pattern}")
 	private String plz;
 	
-	@Size(min = 1, max = 32)
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+(-[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+)?")
+	@Size(min = 1, max = 32, message = "{kundenverwaltung.adresse.ort.length}")
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+(-[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+)?", message = "{kundenverwaltung.adresse.ort.pattern}")
 	private String ort;
 	
 	@Valid

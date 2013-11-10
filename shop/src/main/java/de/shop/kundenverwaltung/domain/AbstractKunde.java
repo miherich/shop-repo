@@ -30,7 +30,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public abstract class AbstractKunde implements Serializable {
 	private static final long serialVersionUID = 7401524595142572933L;
 	
-	@NotEmpty
+	@NotEmpty(message = "{kundenverwaltung.kunde.kundennr}")
 	private int kundennr;
 	
 	@NotNull(message = "{kundenverwaltung.kunde.nachname.notNull}")
