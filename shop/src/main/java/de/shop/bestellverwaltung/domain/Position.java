@@ -1,15 +1,23 @@
 package de.shop.bestellverwaltung.domain;
 
+import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
 
 @XmlRootElement
 public class Position {
+	@NotEmpty
 	private int id;
+	@NotEmpty
 	private int bestellid;
+	@Valid
 	private AbstractArtikel artikel;
+	@NotEmpty
 	private int anzahl;
+	
 	public int getId() {
 		return id;
 	}
