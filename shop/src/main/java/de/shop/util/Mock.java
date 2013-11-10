@@ -1,9 +1,11 @@
 package de.shop.util;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 //import java.util.HashSet;
 import java.util.List;
 //import java.util.Set;
+
 
 
 
@@ -229,7 +231,7 @@ public final class Mock {
 			artikel.setTyp("Schlauch");
 		}
 
-		final double preis = 499.99;
+		final BigDecimal preis = new BigDecimal(499.99);
 		artikel.setArtikelNr(id);
 		artikel.setPreis(preis);
 		return artikel;
