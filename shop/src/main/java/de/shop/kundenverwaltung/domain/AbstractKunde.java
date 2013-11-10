@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
@@ -32,10 +33,12 @@ public abstract class AbstractKunde implements Serializable {
 	@NotEmpty
 	private int kundennr;
 	
-	@NotNull
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+")
+	@NotNull(message = "{kundenverwaltung.kunde.nachname.notNull}")
+	@Size(min = 2, max = 32, message = "{kundenverwaltung.kunde.nachname.length}")
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+", message = "{kunde.nachname.pattern}")
 	private String nachname;
 	
+	@NotNull(message = "{kundenverwaltung.kunde.adresse.notNull}")
 	@Valid
 	private Adresse adresse;
 	
