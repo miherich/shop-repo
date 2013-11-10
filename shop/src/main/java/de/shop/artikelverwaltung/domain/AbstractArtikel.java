@@ -22,15 +22,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 		@Type(value = Ersatzteil.class, name = AbstractArtikel.ERSATZTEIL) })
 public abstract class AbstractArtikel {
 	
-	@NotEmpty
+	@NotEmpty(message = "{artikelverwaltung.artikel.artikelNr.notEmpty}")
 	private int artikelNr;
 	
-	@NotNull
+	@NotNull(message = "{artikelverwaltung.artikel.preis.notNull}")
 	@Column(precision = 8, scale = 2)
 	private BigDecimal preis;
 	
-	@NotNull
-	@Pattern(regexp="[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+")
+	@NotNull(message = "{artikelverwaltung.artikel.typ.notNull}")
+	@Pattern(regexp="[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+", message = "{artikelverwaltung.artikel.typ.pattern}")
 	private String typ;		
 	//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
 	
