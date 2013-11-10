@@ -4,15 +4,22 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.AssertFalse;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 
 @XmlRootElement
 public class Bestellung {
+	@NotEmpty
 	private int bestellnr;
+	@NotNull
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
+	@AssertFalse //TODO AssertTrue?
 	private boolean istAusgeliefert;
 	private List<Position> positionen;
 	private URI kundeUri;
