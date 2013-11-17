@@ -114,7 +114,9 @@ public class KundeResource {
 	}
 
 	@GET
-	public Response findKundenByNachname(@QueryParam("nachname") @DefaultValue("") @Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+", message = "{kundenverwaltung.kunde.nachname.pattern}") String nachname) {
+	public Response findKundenByNachname(@QueryParam("nachname") @DefaultValue("")
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+",
+	message = "{kundenverwaltung.kunde.nachname.pattern}") String nachname) {
 		List<? extends AbstractKunde> kunden = null;
 		if (Strings.isNullOrEmpty(nachname)) {
 			final List<AbstractKunde> kundenList = Mock.findAllKunden();

@@ -8,13 +8,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Fahrrad extends AbstractArtikel {
 	@NotNull(message = "{artikelverwaltung.fahrrad.bezeichnung.notNull}")
-	@Size(min=2, max=150, message = "{artikelverwaltung.fahrrad.bezeichnung.size}")
+	@Size(min = 2, max = 150, message = "{artikelverwaltung.fahrrad.bezeichnung.size}")
 	private String bezeichnung;
 	
 	
 	@NotNull(message = "{artikelverwaltung.fahrrad.rahmen.notNull}")
-	@Size(min=1, max=1, message = "{artikelverwaltung.fahrrad.rahmen.size}")
-	@Pattern(regexp = "[M,W,U]",message = "{artikelverwaltung.fahrrad.rahmen.pattern}")
+	@Size(min= 1 , max= 1 , message = "{artikelverwaltung.fahrrad.rahmen.size}")
+	@Pattern(regexp = "[M,W,U]", message = "{artikelverwaltung.fahrrad.rahmen.pattern}")
 	private String rahmen;
 
 	public Fahrrad() {

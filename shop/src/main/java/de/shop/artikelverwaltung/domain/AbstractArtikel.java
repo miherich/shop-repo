@@ -28,7 +28,8 @@ public abstract class AbstractArtikel {
 	private BigDecimal preis;
 	
 	@NotNull(message = "{artikelverwaltung.artikel.typ.notNull}")
-	@Pattern(regexp="[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+", message = "{artikelverwaltung.artikel.typ.pattern}")
+	@Pattern(regexp = "[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+",
+	message = "{artikelverwaltung.artikel.typ.pattern}")
 	private String typ;		
 	//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
 	
@@ -96,23 +97,26 @@ public abstract class AbstractArtikel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractArtikel other = (AbstractArtikel) obj;
+		final AbstractArtikel other = (AbstractArtikel) obj;
 		if (artikelNr != other.artikelNr)
 			return false;
 		if (artikelUri == null) {
 			if (other.artikelUri != null)
 				return false;
-		} else if (!artikelUri.equals(other.artikelUri))
+		}
+		else if (!artikelUri.equals(other.artikelUri))
 			return false;
 		if (preis == null) {
 			if (other.preis != null)
 				return false;
-		} else if (!preis.equals(other.preis))
+		}
+		else if (!preis.equals(other.preis))
 			return false;
 		if (typ == null) {
 			if (other.typ != null)
 				return false;
-		} else if (!typ.equals(other.typ))
+		} 
+		else if (!typ.equals(other.typ))
 			return false;
 		return true;
 	}

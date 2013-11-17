@@ -11,7 +11,7 @@ public class Geschaeftskunde extends AbstractKunde {
 	private static final long serialVersionUID = 6258156986876418100L;
 	
 	@NotNull (message = "{kundenverwaltung.geschaeftskunde.firmenname.notNull}")
-	@Size(min=2, max=64, message= "{kundenverwaltung.geschaeftskunde.firmenname.length}")
+	@Size(min = 2, max = 64, message = "{kundenverwaltung.geschaeftskunde.firmenname.length}")
 	private String firmenname;
 
 	public Geschaeftskunde() {
@@ -25,7 +25,7 @@ public class Geschaeftskunde extends AbstractKunde {
 //		this.firmenname = firmenname;
 //	}
 	@NotNull
-	@Size(min=2, max=32)
+	@Size(min = 2, max = 32)
 		public String getFirmenname() {
 		return firmenname;
 	}
