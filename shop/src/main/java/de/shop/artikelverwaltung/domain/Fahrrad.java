@@ -13,7 +13,7 @@ public class Fahrrad extends AbstractArtikel {
 	
 	
 	@NotNull(message = "{artikelverwaltung.fahrrad.rahmen.notNull}")
-	@Size(min= 1 , max= 1 , message = "{artikelverwaltung.fahrrad.rahmen.size}")
+	@Size(min = 1 , max = 1 , message = "{artikelverwaltung.fahrrad.rahmen.size}")
 	@Pattern(regexp = "[M,W,U]", message = "{artikelverwaltung.fahrrad.rahmen.pattern}")
 	private String rahmen;
 
