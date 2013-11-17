@@ -11,7 +11,8 @@ public class Adresse {
 	
 	private int id;
 
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+", message = "{kundenverwaltung.adresse.strasse.pattern}")
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+",
+			message = "{kundenverwaltung.adresse.strasse.pattern}")
 	@Size(min = 2, max = 40, message = "{kundenverwaltung.adresse.strasse.length}")
 	private String strasse;
 
@@ -24,7 +25,9 @@ public class Adresse {
 	private String plz;
 	
 	@Size(min = 1, max = 32, message = "{kundenverwaltung.adresse.ort.length}")
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+(-[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+)?", message = "{kundenverwaltung.adresse.ort.pattern}")
+	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+"
+			+ "(-[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+)?",
+			message = "{kundenverwaltung.adresse.ort.pattern}")
 	private String ort;
 	
 	@Valid
@@ -94,33 +97,38 @@ public class Adresse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Adresse other = (Adresse) obj;
+		final Adresse other = (Adresse) obj;
 		if (hausnummer == null) {
 			if (other.hausnummer != null)
 				return false;
-		} else if (!hausnummer.equals(other.hausnummer))
+		}
+		else if (!hausnummer.equals(other.hausnummer))
 			return false;
 		if (id != other.id)
 			return false;
 		if (kunde == null) {
 			if (other.kunde != null)
 				return false;
-		} else if (!kunde.equals(other.kunde))
+		}
+		else if (!kunde.equals(other.kunde))
 			return false;
 		if (ort == null) {
 			if (other.ort != null)
 				return false;
-		} else if (!ort.equals(other.ort))
+		}
+		else if (!ort.equals(other.ort))
 			return false;
 		if (plz == null) {
 			if (other.plz != null)
 				return false;
-		} else if (!plz.equals(other.plz))
+		}
+		else if (!plz.equals(other.plz))
 			return false;
 		if (strasse == null) {
 			if (other.strasse != null)
 				return false;
-		} else if (!strasse.equals(other.strasse))
+		} 
+		else if (!strasse.equals(other.strasse))
 			return false;
 		return true;
 	}
