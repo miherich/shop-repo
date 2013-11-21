@@ -7,12 +7,15 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 
 
+
 //import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
 
 
 
+
+import javax.enterprise.context.RequestScoped;
 //import javax.annotation.PostConstruct;
 //import javax.annotation.PreDestroy;
 import javax.inject.Inject;
@@ -34,6 +37,7 @@ import javax.ws.rs.core.UriInfo;
 
 
 
+
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
@@ -49,6 +53,7 @@ import de.shop.util.Mock;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 // @Log
+@RequestScoped
 public class ArtikelResource {
 	
 	public static final String ARTIKEL_ID_PATH_PARAM = "id";
