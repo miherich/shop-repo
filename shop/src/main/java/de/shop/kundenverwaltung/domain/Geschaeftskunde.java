@@ -2,11 +2,13 @@ package de.shop.kundenverwaltung.domain;
 
 //import java.net.URI;
 
+import javax.enterprise.context.RequestScoped;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@RequestScoped
 public class Geschaeftskunde extends AbstractKunde {
 	private static final long serialVersionUID = 6258156986876418100L;
 	
