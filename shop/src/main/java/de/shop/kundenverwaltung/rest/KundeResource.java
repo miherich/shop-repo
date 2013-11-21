@@ -49,6 +49,10 @@ import de.shop.util.rest.NotFoundException;
 public class KundeResource {
 	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
+	
+	public static final String KUNDE_NOT_FOUND = "kunde.notFound.all";
+	public static final String KUNDE_NOT_FOUND_ID = "kunde.notFound.id";
+	public static final String KUNDE_NOT_FOUND_NACHNAME = "kunde.notFound.nachname";
 
 	@Context
 	private UriInfo uriInfo;
@@ -71,8 +75,7 @@ public class KundeResource {
 	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
 		final AbstractKunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
-			throw new NotFoundException("Kein Kunde mit der Kundennummer " + id
-					+ " gefunden.");
+			throw new NotFoundException(KUNDE_NOT_FOUND_ID, id);
 		}
 
 		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
@@ -118,7 +121,7 @@ public class KundeResource {
 		if (Strings.isNullOrEmpty(nachname)) {
 			final List<AbstractKunde> kundenList = Mock.findAllKunden();
 			if (kundenList.isEmpty())
-				throw new NotFoundException("Es wurden keine Kunden gefunden.");
+				throw new NotFoundException(KUNDE_NOT_FOUND);
 			return Response
 					.ok(new GenericEntity<List<? extends AbstractKunde>>(
 							kundenList) {
@@ -128,8 +131,7 @@ public class KundeResource {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		kunden = Mock.findKundenByNachname(nachname);
 		if (kunden.isEmpty()) {
-			throw new NotFoundException("Kein Kunde mit Nachname " + nachname
-					+ " gefunden.");
+			throw new NotFoundException(KUNDE_NOT_FOUND_NACHNAME, nachname);
 		}
 
 		for (AbstractKunde k : kunden) {
@@ -165,8 +167,7 @@ public class KundeResource {
 		final List<Bestellung> bestellungen = Mock
 				.findBestellungenByKunde(kunde);
 		if (bestellungen.isEmpty()) {
-			throw new NotFoundException("Zur ID " + kundeId
-					+ " wurden keine Bestellungen gefunden");
+			throw new NotFoundException(KUNDE_NOT_FOUND_ID, kundeId);
 		}
 
 		// URIs innerhalb der gefundenen Bestellungen anpassen
