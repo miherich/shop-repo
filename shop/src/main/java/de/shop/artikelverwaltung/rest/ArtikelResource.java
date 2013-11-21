@@ -50,6 +50,9 @@ import de.shop.util.Mock;
 @Consumes
 // @Log
 public class ArtikelResource {
+	
+	public static final String ARTIKEL_ID_PATH_PARAM = "id";
+	
 	@Context
 	private UriInfo uriInfo;
 
@@ -86,7 +89,7 @@ public class ArtikelResource {
 
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findArtikelById(@PathParam("id") int id) {
+	public Response findArtikelById(@PathParam(ARTIKEL_ID_PATH_PARAM) int id) {
 		final AbstractArtikel artikel = Mock.findArtikelById(id);
 		if (artikel == null) {
 			throw new NotFoundException("Kein Artikel mit der Artikelnummer "
