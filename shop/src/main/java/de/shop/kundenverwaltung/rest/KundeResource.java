@@ -50,8 +50,8 @@ import de.shop.util.rest.NotFoundException;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 public class KundeResource {
-	// public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
-	// public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
+	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
+	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
 
 	@Context
 	private UriInfo uriInfo;
@@ -71,7 +71,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findKundeById(@PathParam("id") int id) {
+	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
 		final AbstractKunde kunde = Mock.findKundeById(id);
 		if (kunde == null) {
 			throw new NotFoundException("Kein Kunde mit der Kundennummer " + id
@@ -114,9 +114,9 @@ public class KundeResource {
 	}
 
 	@GET
-	public Response findKundenByNachname(@QueryParam("nachname") @DefaultValue("")
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+",
-	message = "{kundenverwaltung.kunde.nachname.pattern}") String nachname) {
+	public Response findKundenByNachname(@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM)
+										 @Pattern(regexp = AbstractKunde.NACHNAME_PATTERN, message = "{kundenverwaltung.kunde.nachname.pattern}")
+										 String nachname) {
 		List<? extends AbstractKunde> kunden = null;
 		if (Strings.isNullOrEmpty(nachname)) {
 			final List<AbstractKunde> kundenList = Mock.findAllKunden();
@@ -162,7 +162,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{id:[1-9][0-9]*}/bestellungen")
-	public Response findBestellungenByKundeId(@PathParam("id") int kundeId) {
+	public Response findBestellungenByKundeId(@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final AbstractKunde kunde = Mock.findKundeById(kundeId);
 		final List<Bestellung> bestellungen = Mock

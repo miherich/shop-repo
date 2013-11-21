@@ -20,6 +20,7 @@ import java.io.Serializable;
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.hibernate.validator.constraints.Email;
 
 @XmlRootElement
 @XmlSeeAlso({ Geschaeftskunde.class, Privatkunde.class })
@@ -29,19 +30,29 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 public abstract class AbstractKunde implements Serializable {
 	private static final long serialVersionUID = 7401524595142572933L;
 	
+	public static final String PRIVATKUNDE = "P";
+	public static final String GESCHAEFTSKUNDE = "G";
+	
+	public final static String NACHNAME_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+";
+	public final static int NACHNAME_MIN_PATTERN = 2;
+	public final static int NACHNAME_MAX_PATTERN = 32;
+	public static final int EMAIL_LENGTH_MAX = 128;
+	
 	private int kundennr;
 	
 	@NotNull(message = "{kundenverwaltung.kunde.nachname.notNull}")
-	@Size(min = 2, max = 32, message = "{kundenverwaltung.kunde.nachname.length}")
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+", message = "{kunde.nachname.pattern}")
+	@Size(min = NACHNAME_MIN_PATTERN, max = NACHNAME_MAX_PATTERN, message = "{kundenverwaltung.kunde.nachname.length}")
+	@Pattern(regexp = NACHNAME_PATTERN, message = "{kunde.nachname.pattern}")
 	private String nachname;
+	
+	@Email(message = "{kunde.email.pattern}")
+	@NotNull(message = "{kunde.email.notNull}")
+	@Size(max = EMAIL_LENGTH_MAX, message = "{kunde.email.length}")
+	private String email;
 	
 	@NotNull(message = "{kundenverwaltung.kunde.adresse.notNull}")
 	@Valid
 	private Adresse adresse;
-	
-	public static final String PRIVATKUNDE = "P";
-	public static final String GESCHAEFTSKUNDE = "G";
 
 	@XmlTransient
 	private List<Bestellung> bestellungen;
@@ -85,6 +96,14 @@ public abstract class AbstractKunde implements Serializable {
 
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public AbstractKunde() {

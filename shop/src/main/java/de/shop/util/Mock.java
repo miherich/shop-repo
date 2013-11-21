@@ -47,6 +47,7 @@ public final class Mock {
 
 		kunde.setKundennr(id);
 		kunde.setNachname("Mustermann");
+		kunde.setEmail("mustermail@musterserver.de");
 
 		
 		final String plz = "12345";
@@ -116,6 +117,7 @@ public final class Mock {
 	public static void updateKunde(AbstractKunde kunde) {
 		final AbstractKunde kundeAlt = findKundeById(kunde.getKundennr());
 		kundeAlt.setNachname(kunde.getNachname());
+		kundeAlt.setEmail(kunde.getEmail());
 		kundeAlt.setAdresse(kunde.getAdresse());
 		if (kunde.getKundennr() % 2 == 0) {
 			((Privatkunde) kundeAlt).setVorname(((Privatkunde) kunde)
