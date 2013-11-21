@@ -34,6 +34,9 @@ import de.shop.util.Mock;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 public class BestellungResource {
+	
+	public static final String BESTELLUNG_ID_PATH_PARAM = "id";
+	
 	@Context
 	private UriInfo uriInfo;
 
@@ -56,7 +59,7 @@ public class BestellungResource {
 
 	@GET
 	@Path("{id:[1-9][0-9]*}")
-	public Response findBestellungById(@PathParam("id") int id) {
+	public Response findBestellungById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Bestellung bestellung = Mock.findBestellungById(id);
 		if (bestellung == null) {
