@@ -36,6 +36,9 @@ import de.shop.util.Mock;
 public class BestellungResource {
 	
 	public static final String BESTELLUNG_ID_PATH_PARAM = "id";
+
+	public static final String BESTELLUNG_NOT_FOUND = "bestellung.notFound.all";
+	public static final String BESTELLUNG_NOT_FOUND_ID = "bestellung.notFound.id";
 	
 	@Context
 	private UriInfo uriInfo;
@@ -51,8 +54,7 @@ public class BestellungResource {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final List<Bestellung> bestellungList = Mock.findAllBestellungen();
 		if (bestellungList.isEmpty())
-			throw new NotFoundException(
-					"Es wurden keine Bestellungen gefunden.");
+			throw new NotFoundException(BESTELLUNG_NOT_FOUND);
 		return Response.ok(new GenericEntity<List<Bestellung>>(bestellungList) {
 		}).build();
 	}
@@ -63,8 +65,7 @@ public class BestellungResource {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Bestellung bestellung = Mock.findBestellungById(id);
 		if (bestellung == null) {
-			throw new NotFoundException("Keine Bestellung mit der ID " + id
-					+ " gefunden.");
+			throw new NotFoundException(BESTELLUNG_NOT_FOUND_ID, id);
 		}
 
 		setStructuralLinks(bestellung, uriInfo);
