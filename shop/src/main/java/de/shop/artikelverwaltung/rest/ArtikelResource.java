@@ -53,6 +53,9 @@ public class ArtikelResource {
 	
 	public static final String ARTIKEL_ID_PATH_PARAM = "id";
 	
+	public static final String ARTIKEL_NOT_FOUND = "artikel.notFound.all";
+	public static final String ARTIKEL_NOT_FOUND_ID = "artikel.notFound.id";
+	
 	@Context
 	private UriInfo uriInfo;
 
@@ -81,7 +84,7 @@ public class ArtikelResource {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final List<AbstractArtikel> artikelList = Mock.findAllArtikel();
 		if (artikelList.isEmpty())
-			throw new NotFoundException("Es wurden keine Artikel gefunden.");
+			throw new NotFoundException(ARTIKEL_NOT_FOUND);
 		return Response.ok(
 				new GenericEntity<List<? extends AbstractArtikel>>(artikelList) {
 				}).build();
@@ -92,8 +95,7 @@ public class ArtikelResource {
 	public Response findArtikelById(@PathParam(ARTIKEL_ID_PATH_PARAM) int id) {
 		final AbstractArtikel artikel = Mock.findArtikelById(id);
 		if (artikel == null) {
-			throw new NotFoundException("Kein Artikel mit der Artikelnummer "
-					+ id + " gefunden.");
+			throw new NotFoundException(ARTIKEL_NOT_FOUND_ID, id);
 		}
 
 		return Response.ok(artikel)
