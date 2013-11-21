@@ -8,6 +8,7 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 import java.net.URI;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -33,6 +34,7 @@ import de.shop.util.Mock;
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",
 		TEXT_XML + ";qs=0.5" })
 @Consumes
+@RequestScoped
 public class BestellungResource {
 	
 	public static final String BESTELLUNG_ID_PATH_PARAM = "id";
