@@ -22,10 +22,10 @@ import org.jboss.logging.Logger;
 
 import com.google.common.base.Splitter;
 
-/**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
- */
+import de.shop.util.interceptor.Log;
+
 @ApplicationScoped
+@Log
 public class Messages {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
@@ -88,7 +88,7 @@ public class Messages {
 	}
 	
 	public String getMessage(HttpHeaders headers, String key, Object... args) {
-		final List<Locale> acceptableLocales = headers.getAcceptableLanguages();
+		final List<Locale> acceptableLocales = headers == null ? new ArrayList<Locale>(0) : headers.getAcceptableLanguages();
 		final ResourceBundle bundle = getBundle(acceptableLocales);
 		
 		final String pattern = bundle.getString(key);
