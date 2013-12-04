@@ -83,6 +83,27 @@ public final class Mock {
 		}
 		return kunden;
 	}
+	
+	public static AbstractKunde findKundeByEmail(String email) {
+		if (email.startsWith("x")) {
+			return null;
+		}
+		
+		final AbstractKunde kunde = email.length() % 2 == 1 ? new Privatkunde() : new Geschaeftskunde();
+		kunde.setKundennr(email.length());
+		kunde.setNachname("Nachname");
+		kunde.setEmail(email);
+
+		
+		final Adresse adresse = new Adresse();
+		adresse.setId(kunde.getKundennr() + 1);        // andere ID fuer die Adresse
+		adresse.setPlz("12345");
+		adresse.setOrt("Testort");
+		adresse.setKunde(kunde);
+		kunde.setAdresse(adresse);
+		
+		return kunde;
+	}
 
 	public static Privatkunde createPrivatkunde(Privatkunde kunde) {
 		// Neue IDs fuer Kunde und zugehoerige Adresse

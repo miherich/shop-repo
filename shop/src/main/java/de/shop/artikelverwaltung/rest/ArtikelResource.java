@@ -68,6 +68,7 @@ public class ArtikelResource {
 	// .lookup().lookupClass());
 	// private static final String NOT_FOUND_ID = "artikel.notFound.id";
 
+	//TODO Wird dieses Objekt gebraucht?
 	// @Inject
 	// private ArtikelService as;
 

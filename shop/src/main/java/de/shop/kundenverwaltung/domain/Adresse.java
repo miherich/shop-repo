@@ -1,6 +1,8 @@
 package de.shop.kundenverwaltung.domain;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -9,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @RequestScoped
+@Dependent
 public class Adresse {
 	
 	private int id;
@@ -33,6 +36,7 @@ public class Adresse {
 	private String ort;
 	
 	@Valid
+	@Inject
 	private AbstractKunde kunde;
 	public int getId() {
 		return id;

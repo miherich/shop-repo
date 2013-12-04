@@ -35,6 +35,7 @@ import de.shop.util.Mock;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 @RequestScoped
+//@Log
 public class BestellungResource {
 	
 	public static final String BESTELLUNG_ID_PATH_PARAM = "id";

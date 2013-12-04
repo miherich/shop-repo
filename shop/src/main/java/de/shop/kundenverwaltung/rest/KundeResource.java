@@ -48,6 +48,7 @@ import de.shop.util.rest.NotFoundException;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 @RequestScoped
+//@Log
 public class KundeResource {
 	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";

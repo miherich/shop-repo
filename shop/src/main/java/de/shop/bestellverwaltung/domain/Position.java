@@ -1,5 +1,6 @@
 package de.shop.bestellverwaltung.domain;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -10,6 +11,7 @@ import de.shop.artikelverwaltung.domain.AbstractArtikel;
 
 @XmlRootElement
 @RequestScoped
+@Dependent
 public class Position {
 	private int id;
 	private int bestellid;

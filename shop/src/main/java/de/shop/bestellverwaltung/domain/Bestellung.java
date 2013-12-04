@@ -4,7 +4,9 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,12 +16,14 @@ import de.shop.kundenverwaltung.domain.AbstractKunde;
 
 @XmlRootElement
 @RequestScoped
+@Dependent
 public class Bestellung {
 	private int bestellnr;
 	@NotNull(message = "{bestellverwaltung.bestellung.bestelldatum.notNull}")
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
 	@AssertFalse(message = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}") //TODO AssertTrue?
 	private boolean istAusgeliefert;
+	@Inject
 	private List<Position> positionen;
 	private URI kundeUri;
 

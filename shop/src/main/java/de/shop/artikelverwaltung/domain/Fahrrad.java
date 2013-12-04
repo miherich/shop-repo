@@ -1,5 +1,6 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -8,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @RequestScoped
+@Dependent
 public class Fahrrad extends AbstractArtikel {
 	@NotNull(message = "{artikelverwaltung.fahrrad.bezeichnung.notNull}")
 	@Size(min = 2, max = 150, message = "{artikelverwaltung.fahrrad.bezeichnung.size}")

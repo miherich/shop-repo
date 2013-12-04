@@ -4,9 +4,9 @@ import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.Locale;
 
+import javax.enterprise.context.Dependent;
 import javax.decorator.Decorator;
 import javax.decorator.Delegate;
-import javax.enterprise.inject.Any;
 import javax.inject.Inject;
 
 import org.jboss.logging.Logger;
@@ -14,16 +14,14 @@ import org.jboss.logging.Logger;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 
-/**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
- */
 @Decorator
+@Dependent
 public abstract class BestellungServiceMitGeschenkverpackung implements BestellungService {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
 	@Inject
 	@Delegate
-	@Any
+	//@Any
 	private BestellungService bs;
 
 	/**
