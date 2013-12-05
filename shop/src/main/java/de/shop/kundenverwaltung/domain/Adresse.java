@@ -1,7 +1,6 @@
 package de.shop.kundenverwaltung.domain;
 
 import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -10,7 +9,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-@RequestScoped
 @Dependent
 public class Adresse {
 	

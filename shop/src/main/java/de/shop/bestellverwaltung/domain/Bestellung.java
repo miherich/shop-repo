@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotNull;
@@ -15,7 +14,6 @@ import javax.xml.bind.annotation.XmlTransient;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 
 @XmlRootElement
-@RequestScoped
 @Dependent
 public class Bestellung {
 	private int bestellnr;
