@@ -1,6 +1,5 @@
 package de.shop.kundenverwaltung.domain;
 
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -9,7 +8,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-@Dependent
 public class Adresse {
 	
 	private int id;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.net.URI;
 import java.util.List;
 
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -24,7 +23,6 @@ import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.hibernate.validator.constraints.Email;
 
-@Dependent
 @XmlRootElement
 @XmlSeeAlso({ Geschaeftskunde.class, Privatkunde.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
