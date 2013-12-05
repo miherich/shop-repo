@@ -4,4 +4,7 @@
  <decorators>
   <class>de.shop.bestellverwaltung.service.BestellungServiceMitGeschenkverpackung</class>
  </decorators>
+ <interceptors>
+  <class>de.shop.util.interceptor.LogInterceptor</class>
+ </interceptors>
 </beans>
