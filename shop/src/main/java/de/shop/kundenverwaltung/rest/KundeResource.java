@@ -36,12 +36,13 @@ import com.google.common.base.Strings;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
+import de.shop.bestellverwaltung.service.BestellungService;
 import de.shop.kundenverwaltung.domain.Geschaeftskunde;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.domain.Privatkunde;
+import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.util.Mock;
 import de.shop.util.rest.UriHelper;
-import de.shop.util.rest.NotFoundException;
 
 @Path("/kunden")
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",
@@ -57,6 +58,12 @@ public class KundeResource {
 	public static final String KUNDE_NOT_FOUND_ID = "kunde.notFound.id";
 	public static final String KUNDE_NOT_FOUND_NACHNAME = "kunde.notFound.nachname";
 
+	@Inject
+	private KundeService ks;
+	
+	@Inject
+	private BestellungService bs;
+	
 	@Context
 	private UriInfo uriInfo;
 
@@ -76,11 +83,7 @@ public class KundeResource {
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
-		final AbstractKunde kunde = Mock.findKundeById(id);
-		if (kunde == null) {
-			throw new NotFoundException(KUNDE_NOT_FOUND_ID, id);
-		}
-
+		final AbstractKunde kunde = ks.findKundeById(id);
 		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
 				.build();
 	}
@@ -122,9 +125,7 @@ public class KundeResource {
 										 String nachname) {
 		List<? extends AbstractKunde> kunden = null;
 		if (Strings.isNullOrEmpty(nachname)) {
-			final List<AbstractKunde> kundenList = Mock.findAllKunden();
-			if (kundenList.isEmpty())
-				throw new NotFoundException(KUNDE_NOT_FOUND);
+			final List<AbstractKunde> kundenList = ks.findAllKunden();
 			return Response
 					.ok(new GenericEntity<List<? extends AbstractKunde>>(
 							kundenList) {
@@ -132,10 +133,8 @@ public class KundeResource {
 					).build();
 		}
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		kunden = Mock.findKundenByNachname(nachname);
-		if (kunden.isEmpty()) {
-			throw new NotFoundException(KUNDE_NOT_FOUND_NACHNAME, nachname);
-		}
+		kunden = ks.findKundenByNachname(nachname);
+		
 
 		for (AbstractKunde k : kunden) {
 			setStructuralLinks(k, uriInfo);
@@ -167,11 +166,8 @@ public class KundeResource {
 	public Response findBestellungenByKundeId(@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final AbstractKunde kunde = Mock.findKundeById(kundeId);
-		final List<Bestellung> bestellungen = Mock
-				.findBestellungenByKunde(kunde);
-		if (bestellungen.isEmpty()) {
-			throw new NotFoundException(KUNDE_NOT_FOUND_ID, kundeId);
-		}
+		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
+	
 
 		// URIs innerhalb der gefundenen Bestellungen anpassen
 		for (Bestellung bestellung : bestellungen) {
