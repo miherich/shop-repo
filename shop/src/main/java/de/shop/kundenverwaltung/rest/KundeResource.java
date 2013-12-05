@@ -42,6 +42,7 @@ import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.domain.Privatkunde;
 import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.util.Mock;
+import de.shop.util.interceptor.Log;
 import de.shop.util.rest.UriHelper;
 
 @Path("/kunden")
@@ -49,7 +50,7 @@ import de.shop.util.rest.UriHelper;
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 @RequestScoped
-//@Log
+@Log
 public class KundeResource {
 	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";

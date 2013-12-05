@@ -4,11 +4,14 @@ import static de.shop.util.Constants.SELF_LINK;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
+
+
+
 //import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
-//import javax.annotation.PostConstruct;
 //import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -25,21 +28,24 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+
+
+
 //import org.jboss.logging.Logger;
+
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
 import de.shop.artikelverwaltung.service.ArtikelService;
-//import de.shop.artikelverwaltung.service.ArtikelService;
-//import de.shop.util.interceptor.Log;
+import de.shop.util.interceptor.Log;
 import de.shop.util.rest.UriHelper;
 
 @Path("/artikel")
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",
 		TEXT_XML + ";qs=0.5" })
 @Consumes
-// @Log
+@Log
 @RequestScoped
 public class ArtikelResource {
 	
@@ -51,9 +57,8 @@ public class ArtikelResource {
 	@Context
 	private UriInfo uriInfo;
 
-	// private static final Logger LOGGER = Logger.getLogger(MethodHandles
-	// .lookup().lookupClass());
-	// private static final String NOT_FOUND_ID = "artikel.notFound.id";
+//	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
+//	private static final String NOT_FOUND_ID = "artikel.notFound.id";
 
 	
 	 @Inject
@@ -62,11 +67,6 @@ public class ArtikelResource {
 	@Inject
 	private UriHelper uriHelper;
 
-	// @PostConstruct
-	// private void postConstruct() {
-	// LOGGER.debugf("CDI-faehiges Bean %s wurde erzeugt", this);
-	// }
-	//
 	// @PreDestroy
 	// private void preDestroy() {
 	// LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
