@@ -4,17 +4,9 @@ import static de.shop.util.Constants.SELF_LINK;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
-
-
-
-
 //import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
-
-
-
-
 import javax.enterprise.context.RequestScoped;
 //import javax.annotation.PostConstruct;
 //import javax.annotation.PreDestroy;
@@ -34,19 +26,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 //import org.jboss.logging.Logger;
-
-
-
-
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
+import de.shop.artikelverwaltung.service.ArtikelService;
 //import de.shop.artikelverwaltung.service.ArtikelService;
 //import de.shop.util.interceptor.Log;
-import de.shop.util.rest.NotFoundException;
 import de.shop.util.rest.UriHelper;
-import de.shop.util.Mock;
 
 @Path("/artikel")
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",
@@ -68,9 +55,9 @@ public class ArtikelResource {
 	// .lookup().lookupClass());
 	// private static final String NOT_FOUND_ID = "artikel.notFound.id";
 
-	//TODO Wird dieses Objekt gebraucht?
-	// @Inject
-	// private ArtikelService as;
+	
+	 @Inject
+	 private ArtikelService as;
 
 	@Inject
 	private UriHelper uriHelper;
@@ -88,10 +75,8 @@ public class ArtikelResource {
 	@GET
 	public Response findAllArtikel() {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final List<AbstractArtikel> artikelList = Mock.findAllArtikel();
-		if (artikelList.isEmpty())
-			throw new NotFoundException(ARTIKEL_NOT_FOUND);
-		return Response.ok(
+		final List<AbstractArtikel> artikelList = as.findAllArtikel();
+			return Response.ok(
 				new GenericEntity<List<? extends AbstractArtikel>>(artikelList) {
 				}).build();
 	}
@@ -99,12 +84,9 @@ public class ArtikelResource {
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findArtikelById(@PathParam(ARTIKEL_ID_PATH_PARAM) int id) {
-		final AbstractArtikel artikel = Mock.findArtikelById(id);
-		if (artikel == null) {
-			throw new NotFoundException(ARTIKEL_NOT_FOUND_ID, id);
-		}
-
-		return Response.ok(artikel)
+		final AbstractArtikel artikel = as.findArtikelById(id);
+		
+			return Response.ok(artikel)
 				.links(getTransitionalLinks(artikel, uriInfo)).build();
 	}
 
@@ -126,7 +108,7 @@ public class ArtikelResource {
 	@Produces
 	public Response createFahrrad(@Valid Fahrrad fahrrad) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		fahrrad = Mock.createFahrrad(fahrrad);
+		fahrrad = as.createFahrrad(fahrrad);
 		return Response.created(getUriArtikel(fahrrad, uriInfo)).build();
 	}
 
@@ -136,7 +118,7 @@ public class ArtikelResource {
 	@Produces
 	public Response createZubehoer(@Valid Zubehoer zubehoer) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		zubehoer = Mock.createZubehoer(zubehoer);
+		zubehoer = as.createZubehoer(zubehoer);
 		return Response.created(getUriArtikel(zubehoer, uriInfo)).build();
 	}
 
@@ -146,7 +128,7 @@ public class ArtikelResource {
 	@Produces
 	public Response createErsatzteil(@Valid Ersatzteil ersatzteil) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		ersatzteil = Mock.createErsatzteil(ersatzteil);
+		ersatzteil = as.createErsatzteil(ersatzteil);
 		return Response.created(getUriArtikel(ersatzteil, uriInfo)).build();
 	}
 
@@ -154,7 +136,7 @@ public class ArtikelResource {
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
 	public void updateArtikel(@Valid AbstractArtikel artikel) {
-		Mock.updateArtikel(artikel);
+		as.updateArtikel(artikel);
 	}
 
 }
