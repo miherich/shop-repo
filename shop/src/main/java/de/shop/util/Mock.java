@@ -1,13 +1,13 @@
 package de.shop.util;
 
+import java.lang.invoke.MethodHandles;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 //import java.util.HashSet;
 import java.util.List;
+
 //import java.util.Set;
-
-
-
+import org.jboss.logging.Logger;
 
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.artikelverwaltung.domain.Ersatzteil;
@@ -29,6 +29,8 @@ public final class Mock {
 	private static final int MAX_BESTELLUNGEN = 10;
 	private static final int MAX_POSITIONEN = 10;
 	private static final int MAX_ARTIKEL = 10;
+	
+	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
 	public static AbstractKunde findKundeById(int id) {
 		if (id > MAX_KUNDEN) {
@@ -116,7 +118,7 @@ public final class Mock {
 		adresse.setKunde(kunde);
 		kunde.setBestellungen(null);
 
-		System.out.println("Neuer Kunde: " + kunde);
+		LOGGER.infof("Neuer Kunde: %s", kunde);
 		return kunde;
 	}
 
@@ -131,7 +133,7 @@ public final class Mock {
 		adresse.setKunde(kunde);
 		kunde.setBestellungen(null);
 
-		System.out.println("Neuer Kunde: " + kunde);
+		LOGGER.infof("Neuer Kunde: %s", kunde);
 		return kunde;
 	}
 
@@ -148,11 +150,10 @@ public final class Mock {
 			((Geschaeftskunde) kundeAlt)
 					.setFirmenname(((Geschaeftskunde) kunde).getFirmenname());
 		}
+		LOGGER.infof("Aktualisierter Kunde %s", kunde);
 	}
 
-	// public static void deleteKunde(Long kundeId) {
-	// System.out.println("Kunde mit ID=" + kundeId + " geloescht");
-	// }
+	
 
 	public static List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
 		// Beziehungsgeflecht zwischen Kunde und Bestellungen aufbauen
@@ -228,6 +229,9 @@ public final class Mock {
 		final int nummer = bestellung.getBestelldatum().hashCode();
 		bestellung.setBestellnr(nummer);
 		System.out.println("Neue Bestellung: " + bestellung);
+		
+		LOGGER.infof("Neue Bestellung %s erzeugt", bestellung);
+		
 		return bestellung;
 	}
 
@@ -276,7 +280,7 @@ public final class Mock {
 		final String bezeichnung = fahrrad.getBezeichnung();
 		fahrrad.setArtikelNr(bezeichnung.length());
 
-		System.out.println("Neuer Artikel Fahrrad: " + fahrrad);
+		LOGGER.infof("Neuer Artikel Fahrrad %s", fahrrad);
 		return fahrrad;
 	}
 
@@ -285,7 +289,7 @@ public final class Mock {
 		final String typ = zubehoer.getTyp();
 		zubehoer.setArtikelNr(typ.length());
 
-		System.out.println("Neuer Artikel Zubehoer: " + zubehoer);
+		LOGGER.infof("Neuer Artikel Zubehoer %s", zubehoer);
 		return zubehoer;
 	}
 
@@ -295,7 +299,7 @@ public final class Mock {
 		final String typ = ersatzteil.getTyp();
 		ersatzteil.setArtikelNr(typ.length());
 
-		System.out.println("Neuer Artikel Ersatzteil: " + ersatzteil);
+		LOGGER.infof("Neuer Artikel Ersatzteil %s", ersatzteil);
 		return ersatzteil;
 	}
 
@@ -315,6 +319,7 @@ public final class Mock {
 		else if (artikel.getArtikelNr() % constant == 2) {
 			((Ersatzteil) artikelAlt).setFahrrad(((Ersatzteil) artikel)
 					.getFahrrad());
+			LOGGER.infof("Aktualisierter Artikel Fahrrad %s", artikel);
 		}
 	}
 
