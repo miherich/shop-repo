@@ -2,7 +2,6 @@ package de.shop.bestellverwaltung.service;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-import java.util.Locale;
 
 import javax.enterprise.context.Dependent;
 import javax.decorator.Decorator;
@@ -44,9 +43,9 @@ public abstract class BestellungServiceMitGeschenkverpackung implements Bestellu
 	 * {inheritDoc}
 	 */
 	@Override
-	public Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde, Locale locale) {
+	public Bestellung createBestellung(Bestellung bestellung) {
 		LOGGER.warn("Geschenkverpackung noch nicht implementiert");
 		
-		return bs.createBestellung(bestellung, kunde, locale);
+		return bs.createBestellung(bestellung);
 	}
 }

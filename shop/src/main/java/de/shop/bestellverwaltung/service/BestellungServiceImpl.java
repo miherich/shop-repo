@@ -1,8 +1,8 @@
 package de.shop.bestellverwaltung.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Event;
@@ -24,6 +24,8 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	@NeueBestellung
 	private transient Event<Bestellung> event;
 	
+	private static final int MAX_BESTELLUNGEN = 10;
+	
 	/**
 	 * {inheritDoc}
 	 */
@@ -43,12 +45,25 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungenByKunde(kunde);
 	}
+	
+	@Override
+	public List<Bestellung> findAllBestellungen() {
+		final int anzahl = MAX_BESTELLUNGEN;
+		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);
+		for (int i = 1; i <= anzahl; i++) {
+			final Bestellung bestellung = Mock.findBestellungById(i);
+			bestellungList.add(bestellung);
+		}
+		return bestellungList;
+	}
+	
+
 
 	/**
 	 * {inheritDoc}
 	 */
 	@Override
-	public Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde, Locale locale) {
+	public Bestellung createBestellung(Bestellung bestellung) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		bestellung = Mock.createBestellung(bestellung);
 		event.fire(bestellung);

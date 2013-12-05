@@ -25,17 +25,17 @@ import javax.ws.rs.core.UriInfo;
 
 import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.bestellverwaltung.domain.Bestellung;
+import de.shop.bestellverwaltung.service.BestellungService;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
+import de.shop.util.interceptor.Log;
 import de.shop.util.rest.UriHelper;
-import de.shop.util.rest.NotFoundException;
-import de.shop.util.Mock;
 
 @Path("/bestellungen")
 @Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",
 		TEXT_XML + ";qs=0.5" })
 @Consumes
 @RequestScoped
-//@Log
+@Log
 public class BestellungResource {
 	
 	public static final String BESTELLUNG_ID_PATH_PARAM = "id";
@@ -51,13 +51,14 @@ public class BestellungResource {
 
 	@Inject
 	private KundeResource kundeResource;
+	
+	@Inject
+	private BestellungService bs;
 
 	@GET
 	public Response findAllBestellungen() {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final List<Bestellung> bestellungList = Mock.findAllBestellungen();
-		if (bestellungList.isEmpty())
-			throw new NotFoundException(BESTELLUNG_NOT_FOUND);
+		final List<Bestellung> bestellungList = bs.findAllBestellungen();
 		return Response.ok(new GenericEntity<List<Bestellung>>(bestellungList) {
 		}).build();
 	}
@@ -66,10 +67,7 @@ public class BestellungResource {
 	@Path("{id:[1-9][0-9]*}")
 	public Response findBestellungById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final Bestellung bestellung = Mock.findBestellungById(id);
-		if (bestellung == null) {
-			throw new NotFoundException(BESTELLUNG_NOT_FOUND_ID, id);
-		}
+		final Bestellung bestellung = bs.findBestellungById(id);
 
 		setStructuralLinks(bestellung, uriInfo);
 
@@ -106,7 +104,7 @@ public class BestellungResource {
 	@Produces
 	public Response createBestellung(@Valid Bestellung bestellung) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		bestellung = Mock.createBestellung(bestellung);
+		bestellung = bs.createBestellung(bestellung);
 		return Response.created(getUriBestellung(bestellung, uriInfo)).build();
 	}
 }
