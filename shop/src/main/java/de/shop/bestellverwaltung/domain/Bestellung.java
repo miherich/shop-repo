@@ -19,7 +19,6 @@ public class Bestellung {
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
 	@AssertFalse(message = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}") //TODO AssertTrue?
 	private boolean istAusgeliefert;
-	@Inject
 	private List<Position> positionen;
 	private URI kundeUri;
 

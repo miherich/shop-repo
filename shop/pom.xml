@@ -201,7 +201,7 @@
 		<maven-aether-provider.version>3.0.5</maven-aether-provider.version>
 		<!-- Eclipse und das WTP-Plugin koennen noch nicht 1.8 -->
 		<java.version>1.7</java.version>
-		<java.minor.version>1.7.0-45</java.minor.version>
+		<java.minor.version>1.7.0-40</java.minor.version>
 		<windows.min.version>6.1</windows.min.version>
 
 		<wildfly-spec-api.version>8.0.0.Beta2-SNAPSHOT</wildfly-spec-api.version>

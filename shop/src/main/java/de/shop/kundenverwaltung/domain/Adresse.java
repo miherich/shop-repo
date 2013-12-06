@@ -1,6 +1,5 @@
 package de.shop.kundenverwaltung.domain;
 
-import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -32,7 +31,6 @@ public class Adresse {
 	private String ort;
 	
 	@Valid
-	@Inject
 	private AbstractKunde kunde;
 	public int getId() {
 		return id;

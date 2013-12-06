@@ -8,6 +8,7 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import javax.enterprise.context.Dependent;
 import javax.inject.Qualifier;
 
 import de.shop.util.interceptor.Log;
@@ -17,5 +18,6 @@ import de.shop.util.interceptor.Log;
 @Retention(RUNTIME)
 @Documented
 @Log
+@Dependent
 public @interface NeueBestellung {
 }

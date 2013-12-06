@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.net.URI;
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -53,11 +52,9 @@ public abstract class AbstractKunde implements Serializable {
 	
 	@NotNull(message = "{kundenverwaltung.kunde.adresse.notNull}")
 	@Valid
-	@Inject
 	private Adresse adresse;
 
 	@XmlTransient
-	@Inject
 	private List<Bestellung> bestellungen;
 	private URI bestellURI;
 

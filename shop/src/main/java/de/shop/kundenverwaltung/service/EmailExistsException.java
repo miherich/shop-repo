@@ -1,11 +1,13 @@
 package de.shop.kundenverwaltung.service;
 
 import javax.ejb.ApplicationException;
+import javax.enterprise.context.Dependent;
 
 import de.shop.util.interceptor.Log;
 
 @Log
 @ApplicationException(rollback = true)
+@Dependent
 public class EmailExistsException extends AbstractKundeServiceException {
 	private static final long serialVersionUID = 4867667611097919943L;
 	

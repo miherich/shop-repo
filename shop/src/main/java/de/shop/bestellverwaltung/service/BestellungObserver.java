@@ -5,7 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.mail.Message.RecipientType;
@@ -23,8 +23,8 @@ import de.shop.util.interceptor.Log;
 import de.shop.util.mail.AbsenderMail;
 import de.shop.util.mail.AbsenderName;
 
-@ApplicationScoped
 @Log
+@Dependent
 public class BestellungObserver implements Serializable {
 	private static final long serialVersionUID = -1567643645881819340L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());

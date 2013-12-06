@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Ersatzteil extends AbstractArtikel {
-	@Inject
 	@Valid
 	private Fahrrad fahrrad;
 
