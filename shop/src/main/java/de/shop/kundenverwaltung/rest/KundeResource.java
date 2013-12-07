@@ -52,7 +52,7 @@ import de.shop.util.rest.UriHelper;
 @RequestScoped
 @Log
 public class KundeResource {
-	public static final String KUNDEN_ID_PATH_PARAM = "kundeId";
+	public static final String KUNDEN_ID_PATH_PARAM = "id";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
 	
 	public static final String KUNDE_NOT_FOUND = "kunde.notFound.all";
@@ -81,6 +81,14 @@ public class KundeResource {
 		return "1.0";
 	}
 
+//	@GET
+//	@Path("{id:[1-9][0-9]*}")
+//	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
+//		final AbstractKunde kunde = ks.findKundeById(id);
+//		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
+//				.build();
+//	}
+	
 	@GET
 	@Path("{id:[1-9][0-9]*}")
 	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
