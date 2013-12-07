@@ -31,6 +31,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.fest.util.Strings;
 import org.hibernate.validator.constraints.Email;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
@@ -121,13 +122,23 @@ public class KundeResource {
 			@QueryParam(KUNDEN_EMAIL_QUERY_PARAM) @Email(message = "{kunde.email.pattern}") String email) {
 		List<? extends AbstractKunde> kunden = null;
 		AbstractKunde kunde = null;
-		if (nachname != null) {
-			kunden = ks.findKundenByNachname(nachname);
-		} else if (email != null) {
-			kunde = ks.findKundeByEmail(email);
-		} else {
+		if(Strings.isNullOrEmpty(nachname) && Strings.isNullOrEmpty(email)) {
 			kunden = ks.findAllKunden();
 		}
+		else if(Strings.isNullOrEmpty(email)) {
+			kunden = ks.findKundenByNachname(nachname);
+		}
+		else {
+			kunde = ks.findKundeByEmail(email);
+		}
+		
+//		if (nachname != null) {
+//			kunden = ks.findKundenByNachname(nachname);
+//		} else if (email != null) {
+//			kunde = ks.findKundeByEmail(email);
+//		} else {
+//			kunden = ks.findAllKunden();
+//		}
 
 		Object entity = null;
 		Link[] links = null;
