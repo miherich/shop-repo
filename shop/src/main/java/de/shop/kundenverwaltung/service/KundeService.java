@@ -1,11 +1,16 @@
 package de.shop.kundenverwaltung.service;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_XML;
+
 import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.ws.rs.Produces;
 
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.domain.Geschaeftskunde;
@@ -15,16 +20,23 @@ import de.shop.util.interceptor.Log;
 
 @Dependent
 @Log
+@Produces({ APPLICATION_JSON, APPLICATION_XML + ";qs=0.75",
+	TEXT_XML + ";qs=0.5" })
 public class KundeService implements Serializable {
 	private static final long serialVersionUID = 3188789767052580247L;
 
-	@NotNull(message = "{kunde.notFound.id}")
+	public static final String KUNDE_NOT_FOUND = "kunde.notFound.all";
+	public static final String KUNDE_NOT_FOUND_ID = "kunde.notFound.id";
+	public static final String KUNDE_NOT_FOUND_NACHNAME = "kunde.notFound.nachname";
+	public static final String KUNDE_NOT_FOUND_MAIL = "kunde.notFound.email";
+	
+	@NotNull(message = KUNDE_NOT_FOUND_ID)
 	public AbstractKunde findKundeById(int id) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findKundeById(id);
 	}
 	
-	@NotNull(message = "{kunde.notFound.email}")
+	@NotNull(message = KUNDE_NOT_FOUND_MAIL)
 	public AbstractKunde findKundeByEmail(String email) {
 		if (email == null) {
 			return null;
@@ -33,12 +45,13 @@ public class KundeService implements Serializable {
 		return Mock.findKundeByEmail(email);
 	}
 	
+	@NotNull(message = KUNDE_NOT_FOUND)
 	public List<AbstractKunde> findAllKunden() {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findAllKunden();
 	}
 	
-	@Size(min = 1, message = "{kunde.notFound.nachname}")
+	@Size(min = 1, message = KUNDE_NOT_FOUND_NACHNAME)
 	public List<AbstractKunde> findKundenByNachname(String nachname) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findKundenByNachname(nachname);

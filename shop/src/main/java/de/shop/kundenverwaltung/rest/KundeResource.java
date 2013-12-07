@@ -11,7 +11,6 @@ import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 import java.net.URI;
-//import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -41,7 +40,6 @@ import de.shop.kundenverwaltung.domain.Geschaeftskunde;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.domain.Privatkunde;
 import de.shop.kundenverwaltung.service.KundeService;
-import de.shop.util.Mock;
 import de.shop.util.interceptor.Log;
 import de.shop.util.rest.UriHelper;
 
@@ -54,10 +52,6 @@ import de.shop.util.rest.UriHelper;
 public class KundeResource {
 	public static final String KUNDEN_ID_PATH_PARAM = "id";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
-	
-	public static final String KUNDE_NOT_FOUND = "kunde.notFound.all";
-	public static final String KUNDE_NOT_FOUND_ID = "kunde.notFound.id";
-	public static final String KUNDE_NOT_FOUND_NACHNAME = "kunde.notFound.nachname";
 
 	@Inject
 	private KundeService ks;
@@ -145,6 +139,8 @@ public class KundeResource {
 				.ok(new GenericEntity<List<? extends AbstractKunde>>(kunden) {
 				}).links(getTransitionalLinksKunden(kunden, uriInfo)).build();
 	}
+	
+
 
 	private Link[] getTransitionalLinksKunden(
 			List<? extends AbstractKunde> kunden, UriInfo uriInfo) {
@@ -166,7 +162,7 @@ public class KundeResource {
 	@Path("{id:[1-9][0-9]*}/bestellungen")
 	public Response findBestellungenByKundeId(@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final AbstractKunde kunde = Mock.findKundeById(kundeId);
+		final AbstractKunde kunde = ks.findKundeById(kundeId);
 		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
 	
 
@@ -213,7 +209,7 @@ public class KundeResource {
 	@Produces
 	public Response createPrivatkunde(@Valid Privatkunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		kunde = Mock.createPrivatkunde(kunde);
+		kunde = ks.createPrivatkunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
 	}
 
@@ -223,7 +219,7 @@ public class KundeResource {
 	@Produces
 	public Response createGeschaeftskunde(@Valid Geschaeftskunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		kunde = Mock.createGeschaeftskunde(kunde);
+		kunde = ks.createGeschaeftskunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
 	}
 
@@ -232,6 +228,6 @@ public class KundeResource {
 	@Produces
 	public void updateKunde(@Valid AbstractKunde kunde) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		Mock.updateKunde(kunde);
+		ks.updateKunde(kunde);
 	}
 }
