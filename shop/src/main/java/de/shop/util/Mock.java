@@ -88,7 +88,7 @@ public final class Mock {
 	
 	public static AbstractKunde findKundeByEmail(String email) {
 		final int id = email.length()%10;
-		final AbstractKunde kunde = findKundeById(id);
+		AbstractKunde kunde = findKundeById(id);
 		kunde.setEmail(email);
 		
 		return kunde;
