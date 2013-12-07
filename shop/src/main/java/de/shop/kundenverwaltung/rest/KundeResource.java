@@ -31,7 +31,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import com.google.common.base.Strings;
+import org.hibernate.validator.constraints.Email;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
@@ -52,13 +52,14 @@ import de.shop.util.rest.UriHelper;
 public class KundeResource {
 	public static final String KUNDEN_ID_PATH_PARAM = "id";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
+	public static final String KUNDEN_EMAIL_QUERY_PARAM = "email";
 
 	@Inject
 	private KundeService ks;
-	
+
 	@Inject
 	private BestellungService bs;
-	
+
 	@Context
 	private UriInfo uriInfo;
 
@@ -74,9 +75,9 @@ public class KundeResource {
 	public String getVersion() {
 		return "1.0";
 	}
-	
+
 	@GET
-	@Path("{"+KUNDEN_ID_PATH_PARAM+":[1-9][0-9]*}")
+	@Path("{" + KUNDEN_ID_PATH_PARAM + ":[1-9][0-9]*}")
 	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
 		final AbstractKunde kunde = ks.findKundeById(id);
 		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
@@ -106,7 +107,7 @@ public class KundeResource {
 				.fromUri(uriHelper.getUri(KundeResource.class, uriInfo))
 				.rel(UPDATE_LINK).build();
 
-		return new Link[] {self, add, update };
+		return new Link[] { self, add, update };
 	}
 
 	public URI getUriKunde(AbstractKunde kunde, UriInfo uriInfo) {
@@ -115,32 +116,39 @@ public class KundeResource {
 	}
 
 	@GET
-	public Response findKundenByNachname(@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM)
-										 @Pattern(regexp = AbstractKunde.NACHNAME_PATTERN, message = "{kundenverwaltung.kunde.nachname.pattern}")
-										 String nachname) {
+	public Response findKunden(
+			@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM) @Pattern(regexp = AbstractKunde.NACHNAME_PATTERN, message = "{kunde.nachname.pattern}") String nachname,
+			@QueryParam(KUNDEN_EMAIL_QUERY_PARAM) @Email(message = "{kunde.email.pattern}") String email) {
 		List<? extends AbstractKunde> kunden = null;
-		if (Strings.isNullOrEmpty(nachname)) {
-			final List<AbstractKunde> kundenList = ks.findAllKunden();
-			return Response
-					.ok(new GenericEntity<List<? extends AbstractKunde>>(
-							kundenList) {
-					}
-					).build();
-		}
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		kunden = ks.findKundenByNachname(nachname);
-		
-
-		for (AbstractKunde k : kunden) {
-			setStructuralLinks(k, uriInfo);
+		AbstractKunde kunde = null;
+		if (nachname != null) {
+			kunden = ks.findKundenByNachname(nachname);
+		} else if (email != null) {
+			kunde = ks.findKundeByEmail(email);
+		} else {
+			kunden = ks.findAllKunden();
 		}
 
-		return Response
-				.ok(new GenericEntity<List<? extends AbstractKunde>>(kunden) {
-				}).links(getTransitionalLinksKunden(kunden, uriInfo)).build();
+		Object entity = null;
+		Link[] links = null;
+		if (kunden != null) {
+			for (AbstractKunde k : kunden) {
+				setStructuralLinks(k, uriInfo);
+			}
+			// FIXME JDK 8 hat Lambda-Ausdruecke, aber Proxy-Klassen von Weld
+			// funktionieren noch nicht mit Lambda-Ausdruecken
+			// kunden.parallelStream()
+			// .forEach(k -> setStructuralLinks(k, uriInfo));
+			entity = new GenericEntity<List<? extends AbstractKunde>>(kunden) {
+			};
+			links = getTransitionalLinksKunden(kunden, uriInfo);
+		} else if (kunde != null) {
+			entity = kunde;
+			links = getTransitionalLinks(kunde, uriInfo);
+		}
+
+		return Response.ok(entity).links(links).build();
 	}
-	
-
 
 	private Link[] getTransitionalLinksKunden(
 			List<? extends AbstractKunde> kunden, UriInfo uriInfo) {
@@ -155,16 +163,16 @@ public class KundeResource {
 				.fromUri(getUriKunde(kunden.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] {first, last };
+		return new Link[] { first, last };
 	}
 
 	@GET
 	@Path("{id:[1-9][0-9]*}/bestellungen")
-	public Response findBestellungenByKundeId(@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
+	public Response findBestellungenByKundeId(
+			@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final AbstractKunde kunde = ks.findKundeById(kundeId);
 		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
-	
 
 		// URIs innerhalb der gefundenen Bestellungen anpassen
 		for (Bestellung bestellung : bestellungen) {
@@ -200,7 +208,7 @@ public class KundeResource {
 								bestellungen.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] {self, first, last };
+		return new Link[] { self, first, last };
 	}
 
 	@POST
