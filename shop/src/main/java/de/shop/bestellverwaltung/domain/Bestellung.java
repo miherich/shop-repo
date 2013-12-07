@@ -3,8 +3,6 @@ package de.shop.bestellverwaltung.domain;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;

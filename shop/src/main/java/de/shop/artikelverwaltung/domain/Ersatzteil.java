@@ -1,6 +1,5 @@
 package de.shop.artikelverwaltung.domain;
 
-import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
 
