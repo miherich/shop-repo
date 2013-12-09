@@ -31,8 +31,11 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.fest.util.Strings;
+
+
 import org.hibernate.validator.constraints.Email;
+
+import com.google.common.base.Strings;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;

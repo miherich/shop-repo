@@ -25,10 +25,10 @@ import de.shop.util.interceptor.Log;
 public class KundeService implements Serializable {
 	private static final long serialVersionUID = 3188789767052580247L;
 
-	public static final String KUNDE_NOT_FOUND = "kunde.notFound.all";
-	public static final String KUNDE_NOT_FOUND_ID = "kunde.notFound.id";
-	public static final String KUNDE_NOT_FOUND_NACHNAME = "kunde.notFound.nachname";
-	public static final String KUNDE_NOT_FOUND_MAIL = "kunde.notFound.email";
+	public static final String KUNDE_NOT_FOUND = "{kunde.notFound.all}";
+	public static final String KUNDE_NOT_FOUND_ID = "{kunde.notFound.id}";
+	public static final String KUNDE_NOT_FOUND_NACHNAME = "{kunde.notFound.nachname}";
+	public static final String KUNDE_NOT_FOUND_MAIL = "{kunde.notFound.email}";
 	
 	@NotNull(message = KUNDE_NOT_FOUND_ID)
 	public AbstractKunde findKundeById(int id) {
