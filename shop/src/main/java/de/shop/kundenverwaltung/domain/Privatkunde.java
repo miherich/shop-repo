@@ -21,12 +21,6 @@ public class Privatkunde extends AbstractKunde {
 		super();
 		this.vorname = null;
 	}
-	
-//	public Privatkunde(int kundennr, Adresse adresse, URI bestellURI,
-//			String nachname, String vorname) {
-//		super(kundennr, adresse, bestellURI, nachname);
-//		this.vorname = vorname;
-//	}
 
 	public String getVorname() {
 		return vorname;

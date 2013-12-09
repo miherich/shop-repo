@@ -19,11 +19,6 @@ public class Geschaeftskunde extends AbstractKunde {
 		this.firmenname = null;
 	}
 
-//	public Geschaeftskunde(int kundennr, Adresse adresse, URI bestellURI,
-//			String nachname, String firmenname) {
-//		super(kundennr, adresse, bestellURI, nachname);
-//		this.firmenname = firmenname;
-//	}
 	@NotNull
 	@Size(min = 2, max = 32)
 		public String getFirmenname() {

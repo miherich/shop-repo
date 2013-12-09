@@ -115,34 +115,17 @@ public abstract class AbstractKunde implements Serializable {
 		this.bestellURI = null;
 	}
 
-//	public Kunde(int kundennr, Adresse adresse, URI bestellURI, String nachname) {
-//		super();
-//		this.kundennr = kundennr;
-//		this.adresse = adresse;
-//		this.nachname = nachname;
-//		this.bestellungen = new ArrayList<>();
-//		this.bestellURI = bestellURI;
-//	}
-
-
-
 	@Override
 	public String toString() {
 		return "AbstractKunde [kundennr=" + kundennr + ", nachname=" + nachname
-				+ ", email=" + email + ", adresse=" + adresse
-				+ ", bestellungen=" + bestellungen + ", bestellURI="
-				+ bestellURI + "]";
+				+ ", email=" + email + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
-		result = prime * result
-				+ ((bestellURI == null) ? 0 : bestellURI.hashCode());
-		result = prime * result
-				+ ((bestellungen == null) ? 0 : bestellungen.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + kundennr;
 		result = prime * result
 				+ ((nachname == null) ? 0 : nachname.hashCode());
@@ -157,35 +140,21 @@ public abstract class AbstractKunde implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final AbstractKunde other = (AbstractKunde) obj;
-		if (adresse == null) {
-			if (other.adresse != null)
+		AbstractKunde other = (AbstractKunde) obj;
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		}
-		else if (!adresse.equals(other.adresse))
-			return false;
-		if (bestellURI == null) {
-			if (other.bestellURI != null)
-				return false;
-		}
-		else if (!bestellURI.equals(other.bestellURI))
-			return false;
-		if (bestellungen == null) {
-			if (other.bestellungen != null)
-				return false;
-		}
-		else if (!bestellungen.equals(other.bestellungen))
+		} else if (!email.equals(other.email))
 			return false;
 		if (kundennr != other.kundennr)
 			return false;
 		if (nachname == null) {
 			if (other.nachname != null)
 				return false;
-		}
-		else if (!nachname.equals(other.nachname))
+		} else if (!nachname.equals(other.nachname))
 			return false;
 		return true;
 	}
-	
-	
+
+
 }
