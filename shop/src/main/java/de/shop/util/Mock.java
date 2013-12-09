@@ -87,8 +87,8 @@ public final class Mock {
 	}
 	
 	public static AbstractKunde findKundeByEmail(String email) {
-		final int id = email.length()%10;
-		AbstractKunde kunde = findKundeById(id);
+		final int id = email.length() % 10;
+		final AbstractKunde kunde = findKundeById(id);
 		kunde.setEmail(email);
 		
 		return kunde;
@@ -188,7 +188,7 @@ public final class Mock {
 		final Position position = new Position();
 		position.setId(id);
 		position.setArtikel(artikel);
-		position.setAnzahl((id+3)%2);
+		position.setAnzahl((id + 3) % 2);
 		position.setBestellung(bestellung);
 
 		return position;
@@ -204,7 +204,7 @@ public final class Mock {
 		final Position position = new Position();
 		position.setId(id);
 		position.setArtikel(artikel);
-		position.setAnzahl((id+3)%2);
+		position.setAnzahl((id + 3) % 2);
 		position.setBestellung(bestellung);
 
 		return position;
@@ -349,7 +349,7 @@ public final class Mock {
 			((Fahrrad) artikelAlt).setRahmen(((Fahrrad) artikel).getRahmen());
 			LOGGER.infof("Aktualisierter Artikel %s", artikel);
 		}
-		else if(artikel.getArtikelNr() % constant == 1) {
+		else if (artikel.getArtikelNr() % constant == 1) {
 			LOGGER.infof("Aktualisierter Artikel %s", artikel);
 		}
 		else {
