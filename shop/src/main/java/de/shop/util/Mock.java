@@ -251,9 +251,8 @@ public final class Mock {
 	public static Bestellung createBestellung(Bestellung bestellung) {
 		final int nummer = bestellung.getBestelldatum().hashCode();
 		bestellung.setBestellnr(nummer);
-		System.out.println("Neue Bestellung: " + bestellung);
 		
-		LOGGER.infof("Neue Bestellung %s erzeugt", bestellung);
+		LOGGER.infof("Neue %s erzeugt", bestellung);
 		
 		return bestellung;
 	}
