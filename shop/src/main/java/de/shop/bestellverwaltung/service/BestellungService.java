@@ -13,7 +13,7 @@ import de.shop.util.interceptor.Log;
 @Dependent
 public interface BestellungService {
 	Bestellung findBestellungById(int id);
-	Position findPositionById(int id);
+	Position findPositionById(int id, int bid);
 	List<Bestellung> findBestellungenByKunde(AbstractKunde kunde);
 	List<Bestellung> findAllBestellungen();
 	Bestellung createBestellung(Bestellung bestellung);

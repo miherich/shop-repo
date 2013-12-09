@@ -26,8 +26,8 @@ import de.shop.kundenverwaltung.domain.Privatkunde;
 public final class Mock {
 	private static final int MAX_ID = 99;
 	private static final int MAX_KUNDEN = 4;
-	private static final int MAX_BESTELLUNGEN = 4;
-	private static final int MAX_POSITIONEN = 2;
+	private static final int MAX_BESTELLUNGEN = 50;
+	private static final int MAX_POSITIONEN = 50;
 	private static final int MAX_ARTIKEL = 4;
 	
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
@@ -177,13 +177,13 @@ public final class Mock {
 		return bestellung;
 	}
 	
-	public static Position findPositionById(int id) {
+	public static Position findPositionById(int id, int bid) {
 		if (id > MAX_POSITIONEN) {
 			return null;
 		}
 
 		final AbstractArtikel artikel = findArtikelById(id + 1); // andere ID fuer den Artikel
-		final Bestellung bestellung = findBestellungById(id+3);
+		final Bestellung bestellung = null;
 		final Position position = new Position();
 		position.setId(id);
 		position.setArtikel(artikel);
@@ -214,22 +214,22 @@ public final class Mock {
 		return positionList;
 	}
 	
-	public static Position findPositionById(int id, int bid) {
-		if (id > MAX_ID) {
-			return null;
-		}
-		
-		Bestellung bestellung = findBestellungById(bid);
-		
-		final int constant = 3;
-		final Position position = new Position();
-		position.setId(id);
-		position.setAnzahl(id + constant);
-		position.setArtikel(findArtikelById(id));
-		position.setBestellung(bestellung);
-
-		return position;
-	}
+//	public static Position findPositionById(int id, int bid) {
+//		if (id > MAX_ID) {
+//			return null;
+//		}
+//		
+//		Bestellung bestellung = findBestellungById(bid);
+//		
+//		final int constant = 3;
+//		final Position position = new Position();
+//		position.setId(id);
+//		position.setAnzahl(id + constant);
+//		position.setArtikel(findArtikelById(id));
+//		position.setBestellung(bestellung);
+//
+//		return position;
+//	}
 
 	public static Bestellung createBestellung(Bestellung bestellung) {
 		final int nummer = bestellung.getBestelldatum().hashCode();

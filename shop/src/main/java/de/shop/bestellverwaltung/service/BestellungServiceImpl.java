@@ -41,9 +41,9 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 
 	@Override
 	@NotNull(message = BESTELLUNG_NOT_FOUND_ID)
-	public Position findPositionById(int id) {
+	public Position findPositionById(int id, int bid) {
 		// TODO Datenbanzugriffsschicht statt Mock
-		return Mock.findPositionById(id);
+		return Mock.findPositionById(id, bid);
 	}
 
 	/**

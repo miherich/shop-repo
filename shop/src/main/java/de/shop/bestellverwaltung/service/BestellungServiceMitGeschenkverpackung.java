@@ -33,8 +33,8 @@ public abstract class BestellungServiceMitGeschenkverpackung implements Bestellu
 	}
 
 	@Override
-	public Position findPositionById(int id) {
-		return bs.findPositionById(id);
+	public Position findPositionById(int id, int bid) {
+		return bs.findPositionById(id, bid);
 	}
 
 	/**
