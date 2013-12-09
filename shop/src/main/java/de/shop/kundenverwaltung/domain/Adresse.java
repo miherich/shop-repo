@@ -114,12 +114,14 @@ public class Adresse {
 		if (plz == null) {
 			if (other.plz != null)
 				return false;
-		} else if (!plz.equals(other.plz))
+		} 
+		else if (!plz.equals(other.plz))
 			return false;
 		if (strasse == null) {
 			if (other.strasse != null)
 				return false;
-		} else if (!strasse.equals(other.strasse))
+		} 
+		else if (!strasse.equals(other.strasse))
 			return false;
 		return true;
 	}

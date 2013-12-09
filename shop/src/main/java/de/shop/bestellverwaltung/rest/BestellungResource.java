@@ -65,7 +65,7 @@ public class BestellungResource {
 	}
 
 	@GET
-	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
+	@Path("{" + BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
 	public Response findBestellungById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final Bestellung bestellung = bs.findBestellungById(id);
