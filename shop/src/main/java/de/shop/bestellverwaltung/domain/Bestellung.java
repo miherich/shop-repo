@@ -21,7 +21,7 @@ public class Bestellung {
 	private List<Position> positionen;
 	private URI kundeUri;
 
-	@XmlTransient
+//	@XmlTransient
 	private AbstractKunde kunde;
 
 	public int getBestellnr() {
