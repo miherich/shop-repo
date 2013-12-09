@@ -52,7 +52,7 @@ public class ArtikelResource {
 	public static final String ARTIKEL_ID_PATH_PARAM = "id";
 	
 	public static final String ARTIKEL_NOT_FOUND = "artikel.notFound.all";
-	public static final String ARTIKEL_NOT_FOUND_ID = "artikel.notFound.id";
+	public static final String ARTIKEL_NOT_FOUND_ID = "artikelverwaltung.artikel.all";
 	
 	@Context
 	private UriInfo uriInfo;
