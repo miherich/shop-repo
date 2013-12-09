@@ -1,6 +1,5 @@
 package de.shop.bestellverwaltung.service;
 
-import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
@@ -8,7 +7,6 @@ import javax.decorator.Decorator;
 import javax.decorator.Delegate;
 import javax.inject.Inject;
 
-import org.jboss.logging.Logger;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
@@ -18,12 +16,12 @@ import de.shop.util.interceptor.Log;
 @Dependent
 @Log
 public abstract class BestellungServiceMitGeschenkverpackung implements BestellungService {
-	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
 	@Inject
 	@Delegate
 	//@Any
 	private BestellungService bs;
+	
 
 	/**
 	 * {inheritDoc}
@@ -46,8 +44,12 @@ public abstract class BestellungServiceMitGeschenkverpackung implements Bestellu
 	 */
 	@Override
 	public Bestellung createBestellung(Bestellung bestellung) {
-		LOGGER.warn("Geschenkverpackung noch nicht implementiert");
 		
-		return bs.createBestellung(bestellung);
+		Bestellung bestellung1 = bs.createBestellung(bestellung);
+		
+		bestellung1.setMitVerpackung(true);
+		
+		return bestellung1;
+
 	}
 }

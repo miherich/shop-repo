@@ -1,8 +1,8 @@
 package de.shop.bestellverwaltung.domain;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
+
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,15 +17,12 @@ public class Bestellung {
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
 	@AssertFalse(message = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}") //TODO AssertTrue?
 	private boolean istAusgeliefert;
+	private boolean mitVerpackung;
 	private List<Position> positionen;
 	private URI kundeUri;
 
 	@XmlTransient
 	private AbstractKunde kunde;
-
-	public void setPositionen(List<Position> positionen) {
-		this.positionen = positionen;
-	}
 
 	public int getBestellnr() {
 		return bestellnr;
@@ -43,7 +40,7 @@ public class Bestellung {
 		this.bestelldatum = bestelldatum;
 	}
 
-	public boolean isAusgeliefert() {
+	public boolean isIstAusgeliefert() {
 		return istAusgeliefert;
 	}
 
@@ -51,8 +48,20 @@ public class Bestellung {
 		this.istAusgeliefert = istAusgeliefert;
 	}
 
+	public boolean isMitVerpackung() {
+		return mitVerpackung;
+	}
+
+	public void setMitVerpackung(boolean mitVerpackung) {
+		this.mitVerpackung = mitVerpackung;
+	}
+
 	public List<Position> getPositionen() {
 		return positionen;
+	}
+
+	public void setPositionen(List<Position> positionen) {
+		this.positionen = positionen;
 	}
 
 	public URI getKundeUri() {
@@ -75,34 +84,6 @@ public class Bestellung {
 		this.istAusgeliefert = true;
 	}
 
-	public Bestellung() {
-		super();
-		this.bestellnr = 0;
-		this.bestelldatum = null;
-		this.istAusgeliefert = false;
-		this.positionen = new ArrayList<>();
-	}
-
-//	public Bestellung(int bestellnr, Date bestelldatum) {
-//		super();
-//		this.bestellnr = bestellnr;
-//		this.bestelldatum = bestelldatum;
-//		this.istAusgeliefert = false;
-//		this.positionen = new ArrayList<>();
-//	}
-//
-//	public Bestellung(int bestellnr, Date bestelldatum,
-//			boolean istAusgeliefert, List<Position> positionen, URI kundeUri,
-//			Kunde kunde) {
-//		super();
-//		this.bestellnr = bestellnr;
-//		this.bestelldatum = bestelldatum;
-//		this.istAusgeliefert = istAusgeliefert;
-//		this.positionen = positionen;
-//		this.kundeUri = kundeUri;
-//		this.kunde = kunde;
-//	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,8 +92,10 @@ public class Bestellung {
 				+ ((bestelldatum == null) ? 0 : bestelldatum.hashCode());
 		result = prime * result + bestellnr;
 		result = prime * result + (istAusgeliefert ? 1231 : 1237);
+		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
 		result = prime * result
 				+ ((kundeUri == null) ? 0 : kundeUri.hashCode());
+		result = prime * result + (mitVerpackung ? 1231 : 1237);
 		result = prime * result
 				+ ((positionen == null) ? 0 : positionen.hashCode());
 		return result;
@@ -126,28 +109,32 @@ public class Bestellung {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Bestellung other = (Bestellung) obj;
+		Bestellung other = (Bestellung) obj;
 		if (bestelldatum == null) {
 			if (other.bestelldatum != null)
 				return false;
-		} 
-		else if (!bestelldatum.equals(other.bestelldatum))
+		} else if (!bestelldatum.equals(other.bestelldatum))
 			return false;
 		if (bestellnr != other.bestellnr)
 			return false;
 		if (istAusgeliefert != other.istAusgeliefert)
 			return false;
+		if (kunde == null) {
+			if (other.kunde != null)
+				return false;
+		} else if (!kunde.equals(other.kunde))
+			return false;
 		if (kundeUri == null) {
 			if (other.kundeUri != null)
 				return false;
-		} 
-		else if (!kundeUri.equals(other.kundeUri))
+		} else if (!kundeUri.equals(other.kundeUri))
+			return false;
+		if (mitVerpackung != other.mitVerpackung)
 			return false;
 		if (positionen == null) {
 			if (other.positionen != null)
 				return false;
-		} 
-		else if (!positionen.equals(other.positionen))
+		} else if (!positionen.equals(other.positionen))
 			return false;
 		return true;
 	}
@@ -156,6 +143,8 @@ public class Bestellung {
 	public String toString() {
 		return "Bestellung [bestellnr=" + bestellnr + ", bestelldatum="
 				+ bestelldatum + ", istAusgeliefert=" + istAusgeliefert
-				+ ", positionen=" + positionen + ", kundeUri=" + kundeUri + "]";
+				+ ", mitVerpackung=" + mitVerpackung + ", positionen="
+				+ positionen + ", kundeUri=" + kundeUri + ", kunde=" + kunde
+				+ "]";
 	}
 }
