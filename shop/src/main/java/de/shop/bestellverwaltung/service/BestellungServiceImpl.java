@@ -8,8 +8,6 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.Mock;
@@ -44,7 +42,7 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	 * {inheritDoc}
 	 */
 	@Override
-	@Size(min = 1, message = BESTELLUNG_ZU_KUNDE_NOT_FOUND)
+	@NotNull (message = BESTELLUNG_ZU_KUNDE_NOT_FOUND)
 	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungenByKunde(kunde);

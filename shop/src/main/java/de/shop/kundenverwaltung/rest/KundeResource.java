@@ -33,6 +33,7 @@ import javax.ws.rs.core.UriInfo;
 
 
 
+
 import org.hibernate.validator.constraints.Email;
 
 import com.google.common.base.Strings;
@@ -182,8 +183,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{id:[1-9][0-9]*}/bestellungen")
-	
-	public Response findBestellungenByKundeId(
+		public Response findBestellungenByKundeId(
 			@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final AbstractKunde kunde = ks.findKundeById(kundeId);
