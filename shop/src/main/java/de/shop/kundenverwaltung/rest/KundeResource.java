@@ -115,7 +115,7 @@ public class KundeResource {
 				.fromUri(uriHelper.getUri(KundeResource.class, uriInfo))
 				.rel(UPDATE_LINK).build();
 
-		return new Link[] { self, add, update };
+		return new Link[] { self, add, update } ;
 	}
 
 	public URI getUriKunde(AbstractKunde kunde, UriInfo uriInfo) {
@@ -125,14 +125,16 @@ public class KundeResource {
 
 	@GET
 	public Response findKunden(
-			@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM) @Pattern(regexp = AbstractKunde.NACHNAME_PATTERN, message = KUNDEN_NACHNAME_PATTERN) String nachname,
+			@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM) 
+			@Pattern(regexp = AbstractKunde.NACHNAME_PATTERN, message = KUNDEN_NACHNAME_PATTERN) 
+			String nachname,
 			@QueryParam(KUNDEN_EMAIL_QUERY_PARAM) @Email(message = KUNDEN_EMAIL_PATTERN) String email) {
 		List<? extends AbstractKunde> kunden = null;
 		AbstractKunde kunde = null;
-		if(Strings.isNullOrEmpty(nachname) && Strings.isNullOrEmpty(email)) {
+		if (Strings.isNullOrEmpty(nachname) && Strings.isNullOrEmpty(email)) {
 			kunden = ks.findAllKunden();
 		}
-		else if(Strings.isNullOrEmpty(email)) {
+		else if (Strings.isNullOrEmpty(email)) {
 			kunden = ks.findKundenByNachname(nachname);
 		}
 		else {
@@ -160,7 +162,8 @@ public class KundeResource {
 			entity = new GenericEntity<List<? extends AbstractKunde>>(kunden) {
 			};
 			links = getTransitionalLinksKunden(kunden, uriInfo);
-		} else if (kunde != null) {
+		} 
+		else if (kunde != null) {
 			entity = kunde;
 			links = getTransitionalLinks(kunde, uriInfo);
 		}
@@ -181,7 +184,7 @@ public class KundeResource {
 				.fromUri(getUriKunde(kunden.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] { first, last };
+		return new Link[] { first, last } ;
 	}
 
 	@GET
@@ -226,7 +229,7 @@ public class KundeResource {
 								bestellungen.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] { self, first, last };
+		return new Link[] { self, first, last } ;
 	}
 
 	@POST

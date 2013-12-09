@@ -96,18 +96,20 @@ public class Adresse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Adresse other = (Adresse) obj;
+		final Adresse other = (Adresse) obj;
 		if (hausnummer == null) {
 			if (other.hausnummer != null)
 				return false;
-		} else if (!hausnummer.equals(other.hausnummer))
+		} 
+		else if (!hausnummer.equals(other.hausnummer))
 			return false;
 		if (id != other.id)
 			return false;
 		if (ort == null) {
 			if (other.ort != null)
 				return false;
-		} else if (!ort.equals(other.ort))
+		} 
+		else if (!ort.equals(other.ort))
 			return false;
 		if (plz == null) {
 			if (other.plz != null)
