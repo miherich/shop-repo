@@ -95,15 +95,15 @@ public class KundeService implements Serializable {
 			return null;
 		}
 
+//		TODO Kommentare rausnehmen, wenn DB-Zugriffsschicht implementiert
 		// Pruefung, ob die Email-Adresse schon existiert
-		final AbstractKunde vorhandenerKunde = findKundeByEmail(kunde.getEmail());  // Kein Aufruf als Business-Methode
-		if (vorhandenerKunde != null) {
+//		final AbstractKunde vorhandenerKunde = findKundeByEmail(kunde.getEmail());  // Kein Aufruf als Business-Methode
+//		if (vorhandenerKunde != null) {
 			// Gibt es die Email-Adresse bei einem anderen, bereits vorhandenen Kunden?
-//			TODO Kommentare rausnehmen, wenn DB-Zugriffsschicht implementiert
 //			if (vorhandenerKunde.getKundennr() != kunde.getKundennr()) {
 //				throw new EmailExistsException(kunde.getEmail());
 //			}
-		}
+//		}
 		
 
 		// TODO Datenbanzugriffsschicht statt Mock
