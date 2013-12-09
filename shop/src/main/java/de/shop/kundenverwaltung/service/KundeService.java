@@ -30,7 +30,8 @@ public class KundeService implements Serializable {
 	public static final String KUNDE_NOT_FOUND_NACHNAME = "{kunde.notFound.nachname}";
 	public static final String KUNDE_NOT_FOUND_MAIL = "{kunde.notFound.email}";
 	
-	@NotNull(message = KUNDE_NOT_FOUND_ID)
+	//@NotNull(message = KUNDE_NOT_FOUND_ID)
+	@NotNull(message = "{kundenverwaltung.kunde.notFound.id}")
 	public AbstractKunde findKundeById(int id) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findKundeById(id);
