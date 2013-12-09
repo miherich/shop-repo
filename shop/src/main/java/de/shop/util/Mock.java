@@ -25,10 +25,10 @@ import de.shop.kundenverwaltung.domain.Privatkunde;
  */
 public final class Mock {
 	private static final int MAX_ID = 99;
-	private static final int MAX_KUNDEN = 10;
-	private static final int MAX_BESTELLUNGEN = 10;
-	private static final int MAX_POSITIONEN = 10;
-	private static final int MAX_ARTIKEL = 10;
+	private static final int MAX_KUNDEN = 4;
+	private static final int MAX_BESTELLUNGEN = 4;
+	private static final int MAX_POSITIONEN = 2;
+	private static final int MAX_ARTIKEL = 4;
 	
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
