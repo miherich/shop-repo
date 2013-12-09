@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
+import de.shop.bestellverwaltung.domain.Position;
 import de.shop.util.interceptor.Log;
 
 @Decorator
@@ -31,6 +32,11 @@ public abstract class BestellungServiceMitGeschenkverpackung implements Bestellu
 		return bs.findBestellungById(id);
 	}
 
+	@Override
+	public Position findPositionById(int id) {
+		return bs.findPositionById(id);
+	}
+
 	/**
 	 * {inheritDoc}
 	 */
@@ -50,6 +56,11 @@ public abstract class BestellungServiceMitGeschenkverpackung implements Bestellu
 		bestellung1.setMitVerpackung(true);
 		
 		return bestellung1;
-
+	}
+	
+	@Override
+	public Position createPosition(Position position)
+	{
+		return bs.createPosition(position);
 	}
 }

@@ -26,6 +26,7 @@ import javax.ws.rs.core.UriInfo;
 import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.service.BestellungService;
+import de.shop.bestellverwaltung.domain.Position;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.interceptor.Log;
 import de.shop.util.rest.UriHelper;
@@ -39,6 +40,7 @@ import de.shop.util.rest.UriHelper;
 public class BestellungResource {
 	
 	public static final String BESTELLUNG_ID_PATH_PARAM = "id";
+	public static final String POSITION_ID_PATH_PARAM = "pid";
 
 
 	
@@ -76,6 +78,21 @@ public class BestellungResource {
 
 		return response;
 	}
+	
+	@GET
+	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}/{" +POSITION_ID_PATH_PARAM + ":[1-9][0-9]*}")
+	public Response findPositionById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int bid, @PathParam(POSITION_ID_PATH_PARAM) int id) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		final Bestellung bestellung = bs.findBestellungById(bid);
+
+		setStructuralLinks(bestellung, uriInfo);
+
+		// Link-Header setzen
+		final Response response = Response.ok(bestellung)
+				.links(getTransitionalLinks(bestellung, uriInfo)).build();
+
+		return response;
+	}
 
 	public void setStructuralLinks(Bestellung bestellung, UriInfo uriInfo) {
 		// URI fuer Kunde setzen
@@ -98,6 +115,11 @@ public class BestellungResource {
 				bestellung.getBestellnr(), uriInfo);
 	}
 
+	public URI getUriPosition(Position position, UriInfo uriInfo) {
+		return uriHelper.getUri(BestellungResource.class, "findPositionById",
+				position.getId(), uriInfo);
+	}
+
 	@POST
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
@@ -105,5 +127,15 @@ public class BestellungResource {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		bestellung = bs.createBestellung(bestellung);
 		return Response.created(getUriBestellung(bestellung, uriInfo)).build();
+	}
+	
+	@POST
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
+	@Produces
+	public Response createPosition(@PathParam(BESTELLUNG_ID_PATH_PARAM) int id, @Valid Position position) {
+		// TODO Anwendungskern statt Mock, Verwendung von Locale
+		position = bs.createPosition(position);
+		return Response.created(getUriPosition(position, uriInfo)).build();
 	}
 }

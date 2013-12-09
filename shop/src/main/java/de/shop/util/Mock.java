@@ -76,7 +76,7 @@ public final class Mock {
 	}
 
 	public static List<AbstractKunde> findKundenByNachname(String nachname) {
-		final int anzahl = nachname.length();
+		final int anzahl = MAX_KUNDEN;
 		final List<AbstractKunde> kunden = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
 			final AbstractKunde kunde = findKundeById(i);
@@ -176,6 +176,23 @@ public final class Mock {
 
 		return bestellung;
 	}
+	
+	public static Position findPositionById(int id) {
+		if (id > MAX_POSITIONEN) {
+			return null;
+		}
+
+		final AbstractArtikel artikel = findArtikelById(id + 1); // andere ID fuer den Artikel
+		final Bestellung bestellung = findBestellungById(id+3);
+		final Position position = new Position();
+		position.setId(id);
+		position.setArtikel(artikel);
+		position.setAnzahl((id+3)%2);
+		position.setBestellid(bestellung.getBestellnr());
+
+		return position;
+	}
+
 
 	public static List<Bestellung> findAllBestellungen() {
 		final int anzahl = MAX_BESTELLUNGEN;
@@ -220,6 +237,16 @@ public final class Mock {
 		LOGGER.infof("Neue Bestellung %s erzeugt", bestellung);
 		
 		return bestellung;
+	}
+	
+	public static Position createPosition(Position position)
+	{
+		final int nummer = position.getArtikel().hashCode();
+		position.setId(nummer);
+		
+		LOGGER.infof("Neue Position %s erzeugt", position);
+
+		return position;
 	}
 
 	public static AbstractArtikel findArtikelById(int id) {

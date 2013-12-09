@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
+import de.shop.bestellverwaltung.domain.Position;
 import de.shop.util.Mock;
 import de.shop.util.interceptor.Log;
 
@@ -36,6 +37,13 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	public Bestellung findBestellungById(int id) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungById(id);
+	}
+
+	@Override
+	@NotNull(message = BESTELLUNG_NOT_FOUND_ID)
+	public Position findPositionById(int id) {
+		// TODO Datenbanzugriffsschicht statt Mock
+		return Mock.findPositionById(id);
 	}
 
 	/**
@@ -73,4 +81,13 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		
 		return bestellung;
 	}
+	
+	@Override
+	public Position createPosition(Position position)
+	{
+		position = Mock.createPosition(position);
+		
+		return position;
+	}
+
 }
