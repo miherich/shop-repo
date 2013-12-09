@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,7 +26,7 @@ import javax.ws.rs.core.UriInfo;
 import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.service.BestellungService;
-import de.shop.bestellverwaltung.domain.Position;
+//import de.shop.bestellverwaltung.domain.Position;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.interceptor.Log;
 import de.shop.util.rest.UriHelper;
@@ -79,20 +79,20 @@ public class BestellungResource {
 		return response;
 	}
 	
-	@GET
-	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}/{" +POSITION_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	public Response findPositionById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int bid, @PathParam(POSITION_ID_PATH_PARAM) int id) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final Position position = bs.findPositionById(id, bid);
-
-		setStructuralLinksP(position, uriInfo);
-
-		// Link-Header setzen
-		final Response response = Response.ok(position)
-				.links(getTransitionalLinksP(position, uriInfo)).build();
-
-		return response;
-	}
+//	@GET
+//	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}/{" +POSITION_ID_PATH_PARAM + ":[1-9][0-9]*}")
+//	public Response findPositionById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int bid, @PathParam(POSITION_ID_PATH_PARAM) int id) {
+//		// TODO Anwendungskern statt Mock, Verwendung von Locale
+//		final Position position = bs.findPositionById(id, bid);
+//
+//		setStructuralLinksP(position, uriInfo);
+//
+//		// Link-Header setzen
+//		final Response response = Response.ok(position)
+//				.links(getTransitionalLinksP(position, uriInfo)).build();
+//
+//		return response;
+//	}
 
 	public void setStructuralLinks(Bestellung bestellung, UriInfo uriInfo) {
 		// URI fuer Kunde setzen
@@ -104,15 +104,15 @@ public class BestellungResource {
 		}
 	}
 	
-	public void setStructuralLinksP(Position position, UriInfo uriInfo) {
-		// URI fuer Kunde setzen
-		final Bestellung bestellung = position.getBestellung();
-		if (bestellung != null) {
-			final URI bestellURI = getUriBestellung(
-					bestellung, uriInfo);
-			position.setBestellURI(bestellURI);
-		}
-	}
+//	public void setStructuralLinksP(Position position, UriInfo uriInfo) {
+//		// URI fuer Bestellung setzen
+//		final Bestellung bestellung = position.getBestellung();
+//		if (bestellung != null) {
+//			final URI bestellURI = getUriBestellung(
+//					bestellung, uriInfo);
+//			position.setBestellURI(bestellURI);
+//		}
+//	}
 
 	private Link[] getTransitionalLinks(Bestellung bestellung, UriInfo uriInfo) {
 		final Link self = Link.fromUri(getUriBestellung(bestellung, uriInfo))
@@ -120,38 +120,38 @@ public class BestellungResource {
 		return new Link[] {self };
 	}
 	
-	private Link[] getTransitionalLinksP(Position position, UriInfo uriInfo) {
-		final Link self = Link.fromUri(getUriPosition(position, uriInfo))
-				.rel(SELF_LINK).build();
-		return new Link[] {self };
-	}
+//	private Link[] getTransitionalLinksP(Position position, UriInfo uriInfo) {
+//		final Link self = Link.fromUri(getUriPosition(position, uriInfo))
+//				.rel(SELF_LINK).build();
+//		return new Link[] {self };
+//	}
 
 	public URI getUriBestellung(Bestellung bestellung, UriInfo uriInfo) {
 		return uriHelper.getUri(BestellungResource.class, "findBestellungById",
 				bestellung.getBestellnr(), uriInfo);
 	}
 
-	public URI getUriPosition(Position position, UriInfo uriInfo) {
-		return uriHelper.getUri(BestellungResource.class, "findPositionById",
-				position.getId(), uriInfo);
-	}
+//	public URI getUriPosition(Position position, UriInfo uriInfo) {
+//		return uriHelper.getUri(BestellungResource.class, "findPositionByIdU",
+//				position.getId(), uriInfo);
+//	}
 
 	@POST
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createBestellung(@Valid Bestellung bestellung) {
+	public Response createBestellung(Bestellung bestellung) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		bestellung = bs.createBestellung(bestellung);
 		return Response.created(getUriBestellung(bestellung, uriInfo)).build();
 	}
 	
-	@POST
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	@Produces
-	public Response createPosition(@PathParam(BESTELLUNG_ID_PATH_PARAM) int id, @Valid Position position) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		position = bs.createPosition(position);
-		return Response.created(getUriPosition(position, uriInfo)).build();
-	}
+//	@POST
+//	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+//	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
+//	@Produces
+//	public Response createPosition(@PathParam(BESTELLUNG_ID_PATH_PARAM) int id, @Valid Position position) {
+//		// TODO Anwendungskern statt Mock, Verwendung von Locale
+//		position = bs.createPosition(position);
+//		return Response.created(getUriPosition(position, uriInfo)).build();
+//	}
 }

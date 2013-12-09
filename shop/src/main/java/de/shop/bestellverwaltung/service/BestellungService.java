@@ -17,5 +17,5 @@ public interface BestellungService {
 	List<Bestellung> findBestellungenByKunde(AbstractKunde kunde);
 	List<Bestellung> findAllBestellungen();
 	Bestellung createBestellung(Bestellung bestellung);
-	Position createPosition(Position position);
+//	Position createPosition(Position position);
 }

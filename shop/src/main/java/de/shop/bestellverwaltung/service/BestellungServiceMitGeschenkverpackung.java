@@ -58,9 +58,9 @@ public abstract class BestellungServiceMitGeschenkverpackung implements Bestellu
 		return bestellung1;
 	}
 	
-	@Override
-	public Position createPosition(Position position)
-	{
-		return bs.createPosition(position);
-	}
+//	@Override
+//	public Position createPosition(Position position)
+//	{
+//		return bs.createPosition(position);
+//	}
 }

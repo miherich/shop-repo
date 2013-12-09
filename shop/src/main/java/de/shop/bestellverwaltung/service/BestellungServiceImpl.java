@@ -82,12 +82,12 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		return bestellung;
 	}
 	
-	@Override
-	public Position createPosition(Position position)
-	{
-		position = Mock.createPosition(position);
-		
-		return position;
-	}
+//	@Override
+//	public Position createPosition(Position position)
+//	{
+//		position = Mock.createPosition(position);
+//		
+//		return position;
+//	}
 
 }

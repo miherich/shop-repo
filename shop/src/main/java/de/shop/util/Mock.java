@@ -26,8 +26,8 @@ import de.shop.kundenverwaltung.domain.Privatkunde;
 public final class Mock {
 	private static final int MAX_ID = 99;
 	private static final int MAX_KUNDEN = 4;
-	private static final int MAX_BESTELLUNGEN = 50;
-	private static final int MAX_POSITIONEN = 50;
+	private static final int MAX_BESTELLUNGEN = 10;
+	private static final int MAX_POSITIONEN = 2;
 	private static final int MAX_ARTIKEL = 4;
 	
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
@@ -193,6 +193,22 @@ public final class Mock {
 		return position;
 	}
 
+	public static Position findPositionByIdU(int id) {
+		if (id > MAX_POSITIONEN) {
+			return null;
+		}
+
+		final AbstractArtikel artikel = findArtikelById(id + 1); // andere ID fuer den Artikel
+		final Bestellung bestellung = null;
+		final Position position = new Position();
+		position.setId(id);
+		position.setArtikel(artikel);
+		position.setAnzahl((id+3)%2);
+		position.setBestellung(bestellung);
+
+		return position;
+	}
+
 
 	public static List<Bestellung> findAllBestellungen() {
 		final int anzahl = MAX_BESTELLUNGEN;
@@ -241,15 +257,15 @@ public final class Mock {
 		return bestellung;
 	}
 	
-	public static Position createPosition(Position position)
-	{
-		final int nummer = position.getArtikel().hashCode();
-		position.setId(nummer);
-		
-		LOGGER.infof("Neue Position %s erzeugt", position);
-
-		return position;
-	}
+//	public static Position createPosition(Position position)
+//	{
+//		final int nummer = position.getArtikel().hashCode();
+//		position.setId(nummer);
+//		
+//		LOGGER.infof("Neue Position %s erzeugt", position);
+//
+//		return position;
+//	}
 
 	public static AbstractArtikel findArtikelById(int id) {
 		if (id > MAX_ARTIKEL) {
