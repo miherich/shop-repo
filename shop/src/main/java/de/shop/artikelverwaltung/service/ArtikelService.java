@@ -29,29 +29,24 @@ public class ArtikelService implements Serializable {
 		return Mock.findArtikelById(id);
 	}
 
-	@NotNull(message= ARTIKEL_NOT_FOUND)
-	public List<AbstractArtikel> findAllArtikel()
-	{
+	@NotNull(message = ARTIKEL_NOT_FOUND)
+	public List<AbstractArtikel> findAllArtikel() {
 		return Mock.findAllArtikel();
 	}
 	
-	public Fahrrad createFahrrad (Fahrrad fahrrad)
-	{
+	public Fahrrad createFahrrad(Fahrrad fahrrad) {
 		return Mock.createFahrrad(fahrrad);
 	}
 	
-	public Zubehoer createZubehoer (Zubehoer zubehoer)
-	{
+	public Zubehoer createZubehoer(Zubehoer zubehoer) {
 		return Mock.createZubehoer(zubehoer);
 	}
 	
-	public Ersatzteil createErsatzteil(Ersatzteil ersatzteil)
-	{
+	public Ersatzteil createErsatzteil(Ersatzteil ersatzteil) {
 		return Mock.createErsatzteil(ersatzteil);
 	}
 	
-	public void updateArtikel (AbstractArtikel artikel)
-	{
+	public void updateArtikel(AbstractArtikel artikel) {
 		 Mock.updateArtikel(artikel);
 	}
 }
