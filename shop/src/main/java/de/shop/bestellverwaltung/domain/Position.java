@@ -1,5 +1,7 @@
 package de.shop.bestellverwaltung.domain;
 
+import java.net.URI;
+
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -10,11 +12,12 @@ import de.shop.artikelverwaltung.domain.AbstractArtikel;
 @XmlRootElement
 public class Position {
 	private int id;
-	private int bestellid;
+	private Bestellung bestellung;
 	@Valid
 	private AbstractArtikel artikel;
 	@NotEmpty(message = "{bestellverwaltung.position.anzahl.notNull}")
 	private int anzahl;
+	private URI bestellURI;
 	
 	public int getId() {
 		return id;
@@ -22,11 +25,11 @@ public class Position {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getBestellid() {
-		return bestellid;
+	public Bestellung getBestellung() {
+		return bestellung;
 	}
-	public void setBestellid(int bestellid) {
-		this.bestellid = bestellid;
+	public void setBestellung(Bestellung bestellung) {
+		this.bestellung = bestellung;
 	}
 	public AbstractArtikel getArtikel() {
 		return artikel;
@@ -40,22 +43,27 @@ public class Position {
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
-
-	@Override
-	public String toString() {
-		return "Position [id=" + id + ", bestellid=" + bestellid + ", artikel="
-				+ artikel + ", anzahl=" + anzahl + "]";
+	public URI getBestellURI() {
+		return bestellURI;
 	}
+	public void setBestellURI(URI bestellURI) {
+		this.bestellURI = bestellURI;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + anzahl;
 		result = prime * result + ((artikel == null) ? 0 : artikel.hashCode());
-		result = prime * result + bestellid;
+		result = prime * result
+				+ ((bestellURI == null) ? 0 : bestellURI.hashCode());
+		result = prime * result
+				+ ((bestellung == null) ? 0 : bestellung.hashCode());
 		result = prime * result + id;
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -64,19 +72,33 @@ public class Position {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Position other = (Position) obj;
+		Position other = (Position) obj;
 		if (anzahl != other.anzahl)
 			return false;
 		if (artikel == null) {
 			if (other.artikel != null)
 				return false;
-		}
-		else if (!artikel.equals(other.artikel))
+		} else if (!artikel.equals(other.artikel))
 			return false;
-		if (bestellid != other.bestellid)
+		if (bestellURI == null) {
+			if (other.bestellURI != null)
+				return false;
+		} else if (!bestellURI.equals(other.bestellURI))
+			return false;
+		if (bestellung == null) {
+			if (other.bestellung != null)
+				return false;
+		} else if (!bestellung.equals(other.bestellung))
 			return false;
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return "Position [id=" + id + ", bestellung=" + bestellung
+				+ ", artikel=" + artikel + ", anzahl=" + anzahl
+				+ ", bestellURI=" + bestellURI + "]";
 	}
 }

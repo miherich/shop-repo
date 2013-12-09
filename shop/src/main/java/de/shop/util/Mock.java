@@ -188,7 +188,7 @@ public final class Mock {
 		position.setId(id);
 		position.setArtikel(artikel);
 		position.setAnzahl((id+3)%2);
-		position.setBestellid(bestellung.getBestellnr());
+		position.setBestellung(bestellung);
 
 		return position;
 	}
@@ -219,12 +219,14 @@ public final class Mock {
 			return null;
 		}
 		
+		Bestellung bestellung = findBestellungById(bid);
+		
 		final int constant = 3;
 		final Position position = new Position();
 		position.setId(id);
 		position.setAnzahl(id + constant);
 		position.setArtikel(findArtikelById(id));
-		position.setBestellid(bid);
+		position.setBestellung(bestellung);
 
 		return position;
 	}
