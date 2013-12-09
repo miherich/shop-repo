@@ -182,6 +182,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{id:[1-9][0-9]*}/bestellungen")
+	
 	public Response findBestellungenByKundeId(
 			@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale

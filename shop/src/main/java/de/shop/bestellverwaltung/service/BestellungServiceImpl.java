@@ -20,6 +20,10 @@ import de.shop.util.interceptor.Log;
 public class BestellungServiceImpl implements BestellungService, Serializable {
 	private static final long serialVersionUID = -519454062519816252L;
 	
+	public static final String BESTELLUNG_NOT_FOUND = "{bestellverwaltung.bestellung.notFound.all}";
+	public static final String BESTELLUNG_NOT_FOUND_ID = "{bestellverwaltung.bestellung.notFound.id}";
+	public static final String BESTELLUNG_ZU_KUNDE_NOT_FOUND = "{bestellverwaltung.bestellung.notFound.kunde}";
+	
 	@Inject
 	@NeueBestellung
 	private transient Event<Bestellung> event;
@@ -30,7 +34,7 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	 * {inheritDoc}
 	 */
 	@Override
-	@NotNull(message = "{bestellung.notFound.id}")
+	@NotNull(message = BESTELLUNG_NOT_FOUND_ID)
 	public Bestellung findBestellungById(int id) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungById(id);
@@ -40,13 +44,14 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	 * {inheritDoc}
 	 */
 	@Override
-	@Size(min = 1, message = "{bestellung.notFound.kunde}")
+	@Size(min = 1, message = BESTELLUNG_ZU_KUNDE_NOT_FOUND)
 	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungenByKunde(kunde);
 	}
 	
 	@Override
+	@NotNull(message = BESTELLUNG_NOT_FOUND)
 	public List<Bestellung> findAllBestellungen() {
 		final int anzahl = MAX_BESTELLUNGEN;
 		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);

@@ -40,8 +40,7 @@ public class BestellungResource {
 	
 	public static final String BESTELLUNG_ID_PATH_PARAM = "id";
 
-	public static final String BESTELLUNG_NOT_FOUND = "bestellverwaltung.bestellung.notFound.all";
-	public static final String BESTELLUNG_NOT_FOUND_ID = "bestellverwaltung.bestellung.notFound.id";
+
 	
 	@Context
 	private UriInfo uriInfo;
