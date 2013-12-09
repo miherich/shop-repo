@@ -57,7 +57,7 @@ public abstract class BestellungServiceMitGeschenkverpackung implements Bestellu
 	@Override
 	public Bestellung createBestellung(Bestellung bestellung) {
 		
-		Bestellung bestellung1 = bs.createBestellung(bestellung);
+		final Bestellung bestellung1 = bs.createBestellung(bestellung);
 		
 		bestellung1.setMitVerpackung(true);
 		

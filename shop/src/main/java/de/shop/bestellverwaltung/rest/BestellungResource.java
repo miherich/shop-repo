@@ -81,7 +81,8 @@ public class BestellungResource {
 	
 //	@GET
 //	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}/{" +POSITION_ID_PATH_PARAM + ":[1-9][0-9]*}")
-//	public Response findPositionById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int bid, @PathParam(POSITION_ID_PATH_PARAM) int id) {
+//	public Response findPositionById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int bid,
+//	@PathParam(POSITION_ID_PATH_PARAM) int id) {
 //		// TODO Anwendungskern statt Mock, Verwendung von Locale
 //		final Position position = bs.findPositionById(id, bid);
 //

@@ -72,23 +72,26 @@ public class Position {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Position other = (Position) obj;
+		final Position other = (Position) obj;
 		if (anzahl != other.anzahl)
 			return false;
 		if (artikel == null) {
 			if (other.artikel != null)
 				return false;
-		} else if (!artikel.equals(other.artikel))
+		} 
+		else if (!artikel.equals(other.artikel))
 			return false;
 		if (bestellURI == null) {
 			if (other.bestellURI != null)
 				return false;
-		} else if (!bestellURI.equals(other.bestellURI))
+		} 
+		else if (!bestellURI.equals(other.bestellURI))
 			return false;
 		if (bestellung == null) {
 			if (other.bestellung != null)
 				return false;
-		} else if (!bestellung.equals(other.bestellung))
+		}
+		else if (!bestellung.equals(other.bestellung))
 			return false;
 		if (id != other.id)
 			return false;

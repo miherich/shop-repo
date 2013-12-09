@@ -109,11 +109,12 @@ public class Bestellung {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Bestellung other = (Bestellung) obj;
+		final Bestellung other = (Bestellung) obj;
 		if (bestelldatum == null) {
 			if (other.bestelldatum != null)
 				return false;
-		} else if (!bestelldatum.equals(other.bestelldatum))
+		}
+		else if (!bestelldatum.equals(other.bestelldatum))
 			return false;
 		if (bestellnr != other.bestellnr)
 			return false;
@@ -122,19 +123,22 @@ public class Bestellung {
 		if (kunde == null) {
 			if (other.kunde != null)
 				return false;
-		} else if (!kunde.equals(other.kunde))
+		}
+		else if (!kunde.equals(other.kunde))
 			return false;
 		if (kundeUri == null) {
 			if (other.kundeUri != null)
 				return false;
-		} else if (!kundeUri.equals(other.kundeUri))
+		}
+		else if (!kundeUri.equals(other.kundeUri))
 			return false;
 		if (mitVerpackung != other.mitVerpackung)
 			return false;
 		if (positionen == null) {
 			if (other.positionen != null)
 				return false;
-		} else if (!positionen.equals(other.positionen))
+		}
+		else if (!positionen.equals(other.positionen))
 			return false;
 		return true;
 	}
