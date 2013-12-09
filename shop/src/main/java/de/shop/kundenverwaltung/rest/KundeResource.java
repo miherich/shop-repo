@@ -58,6 +58,9 @@ public class KundeResource {
 	public static final String KUNDEN_ID_PATH_PARAM = "id";
 	public static final String KUNDEN_NACHNAME_QUERY_PARAM = "nachname";
 	public static final String KUNDEN_EMAIL_QUERY_PARAM = "email";
+	
+	public static final String KUNDEN_NACHNAME_PATTERN = "{kundenverwaltung.kunde.nachname.pattern}";
+	public static final String KUNDEN_EMAIL_PATTERN = "{kundenverwaltung.kunde.email.pattern}";
 
 	@Inject
 	private KundeService ks;
@@ -122,8 +125,8 @@ public class KundeResource {
 
 	@GET
 	public Response findKunden(
-			@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM) @Pattern(regexp = AbstractKunde.NACHNAME_PATTERN, message = "{kunde.nachname.pattern}") String nachname,
-			@QueryParam(KUNDEN_EMAIL_QUERY_PARAM) @Email(message = "{kunde.email.pattern}") String email) {
+			@QueryParam(KUNDEN_NACHNAME_QUERY_PARAM) @Pattern(regexp = AbstractKunde.NACHNAME_PATTERN, message = KUNDEN_NACHNAME_PATTERN) String nachname,
+			@QueryParam(KUNDEN_EMAIL_QUERY_PARAM) @Email(message = KUNDEN_EMAIL_PATTERN) String email) {
 		List<? extends AbstractKunde> kunden = null;
 		AbstractKunde kunde = null;
 		if(Strings.isNullOrEmpty(nachname) && Strings.isNullOrEmpty(email)) {
