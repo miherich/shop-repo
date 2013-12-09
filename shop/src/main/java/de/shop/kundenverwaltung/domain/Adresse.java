@@ -32,6 +32,8 @@ public class Adresse {
 	
 	@Valid
 	private AbstractKunde kunde;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -69,12 +71,20 @@ public class Adresse {
 		this.kunde = kunde;
 	}
 	
+//	@Override
+//	public String toString() {
+//		return "Adresse [id=" + id + ", strasse=" + strasse + ", hausnummer="
+//				+ hausnummer + ", plz=" + plz + ", ort=" + ort + ", kunde="
+//				+ kunde + "]";
+//	}
+	
 	@Override
 	public String toString() {
 		return "Adresse [id=" + id + ", strasse=" + strasse + ", hausnummer="
-				+ hausnummer + ", plz=" + plz + ", ort=" + ort + ", kunde="
-				+ kunde + "]";
+				+ hausnummer + ", plz=" + plz + ", ort=" + ort + "]";
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,6 +99,7 @@ public class Adresse {
 		return result;
 	}
 	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

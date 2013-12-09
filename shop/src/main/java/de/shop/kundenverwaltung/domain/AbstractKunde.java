@@ -124,11 +124,14 @@ public abstract class AbstractKunde implements Serializable {
 //		this.bestellURI = bestellURI;
 //	}
 
+
+
 	@Override
 	public String toString() {
-		return "Kunde [kundennr=" + kundennr + ", nachname=" + nachname
-				+ ", adresse=" + adresse + ", bestellungen=" + bestellungen
-				+ ", bestellURI=" + bestellURI + "]";
+		return "AbstractKunde [kundennr=" + kundennr + ", nachname=" + nachname
+				+ ", email=" + email + ", adresse=" + adresse
+				+ ", bestellungen=" + bestellungen + ", bestellURI="
+				+ bestellURI + "]";
 	}
 
 	@Override
