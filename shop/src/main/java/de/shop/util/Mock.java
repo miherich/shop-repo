@@ -261,7 +261,7 @@ public final class Mock {
 		if (id % constant == 0) {
 			artikel = new Fahrrad();
 			artikel.setTyp("Mountainbike");
-			((Fahrrad) artikel).setRahmen("Unisex");
+			((Fahrrad) artikel).setRahmen("U");
 			((Fahrrad) artikel).setBezeichnung("Scott Expert Bike");
 
 		}
@@ -331,15 +331,15 @@ public final class Mock {
 			((Fahrrad) artikelAlt).setBezeichnung(((Fahrrad) artikel)
 					.getBezeichnung());
 			((Fahrrad) artikelAlt).setRahmen(((Fahrrad) artikel).getRahmen());
-			LOGGER.infof("Aktualisierter Artikel Fahrrad %s", artikel);
+			LOGGER.infof("Aktualisierter Artikel %s", artikel);
 		}
 		else if(artikel.getArtikelNr() % constant == 1) {
-			LOGGER.infof("Aktualisierter Artikel Zubehoer %s", artikel);
+			LOGGER.infof("Aktualisierter Artikel %s", artikel);
 		}
 		else {
 			((Ersatzteil) artikelAlt).setFahrrad(((Ersatzteil) artikel)
 					.getFahrrad());
-			LOGGER.infof("Aktualisierter Artikel Ersatzteil %s", artikel);
+			LOGGER.infof("Aktualisierter Artikel %s", artikel);
 		}
 	}
 
