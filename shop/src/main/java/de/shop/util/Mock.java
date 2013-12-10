@@ -30,8 +30,8 @@ public final class Mock {
 	private static final int MAX_POSITIONEN = 2;
 	private static final int MAX_ARTIKEL = 4;
 	
-	private static final int constant1 = 10;
-	private static final int constant2 = 3;
+	private static final int CONSTANT1 = 10;
+	private static final int CONSTANT2 = 3;
 	
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -90,7 +90,7 @@ public final class Mock {
 	}
 	
 	public static AbstractKunde findKundeByEmail(String email) {
-		final int id = email.length() % constant1;
+		final int id = email.length() % CONSTANT1;
 		final AbstractKunde kunde = findKundeById(id);
 		kunde.setEmail(email);
 		
@@ -191,7 +191,7 @@ public final class Mock {
 		final Position position = new Position();
 		position.setId(id);
 		position.setArtikel(artikel);
-		position.setAnzahl((id + constant2) % 2);
+		position.setAnzahl((id + CONSTANT2) % 2);
 		position.setBestellung(bestellung);
 
 		return position;
@@ -207,7 +207,7 @@ public final class Mock {
 		final Position position = new Position();
 		position.setId(id);
 		position.setArtikel(artikel);
-		position.setAnzahl((id + constant2) % 2);
+		position.setAnzahl((id + CONSTANT2) % 2);
 		position.setBestellung(bestellung);
 
 		return position;

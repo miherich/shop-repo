@@ -126,10 +126,8 @@ public class LogInterceptor implements Serializable {
 		
 		return result;
 	}
-	
-	/**
-	 * Collection oder Array oder Objekt in einen String konvertieren
-	 */
+
+	//Collection oder Array oder Objekt in einen String konvertieren
 	private static String toString(Object obj) {
 		if (obj instanceof Collection<?>) {
 			// Collection: Elemente bei kleiner Anzahl ausgeben; sonst nur die Anzahl
@@ -152,9 +150,7 @@ public class LogInterceptor implements Serializable {
 		return obj.toString();
 	}
 	
-	/**
-	 * Array in einen String konvertieren
-	 */
+	//Array in einen String konvertieren
 	private static String arrayToString(Object obj) {
 		final Class<?> componentClass = obj.getClass().getComponentType();
 
