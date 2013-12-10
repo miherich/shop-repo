@@ -33,9 +33,9 @@ public abstract class AbstractKunde implements Serializable {
 	public static final String PRIVATKUNDE = "P";
 	public static final String GESCHAEFTSKUNDE = "G";
 	
-	public final static String NACHNAME_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+";
-	public final static int NACHNAME_MIN_PATTERN = 2;
-	public final static int NACHNAME_MAX_PATTERN = 32;
+	public static final String NACHNAME_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+";
+	public static final int NACHNAME_MIN_PATTERN = 2;
+	public static final int NACHNAME_MAX_PATTERN = 32;
 	public static final int EMAIL_LENGTH_MAX = 128;
 	
 	private int kundennr;

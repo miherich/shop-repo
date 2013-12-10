@@ -115,7 +115,7 @@ public class KundeResource {
 				.fromUri(uriHelper.getUri(KundeResource.class, uriInfo))
 				.rel(UPDATE_LINK).build();
 
-		return new Link[] {self, add, update } ;
+		return new Link[] {self, add, update };
 	}
 
 	public URI getUriKunde(AbstractKunde kunde, UriInfo uriInfo) {
@@ -184,7 +184,7 @@ public class KundeResource {
 				.fromUri(getUriKunde(kunden.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] {first, last } ;
+		return new Link[] {first, last };
 	}
 
 	@GET
@@ -229,7 +229,7 @@ public class KundeResource {
 								bestellungen.get(lastPos), uriInfo))
 				.rel(LAST_LINK).build();
 
-		return new Link[] {self, first, last } ;
+		return new Link[] {self, first, last };
 	}
 
 	@POST
