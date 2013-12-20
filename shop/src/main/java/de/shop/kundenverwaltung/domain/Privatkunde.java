@@ -10,11 +10,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Privatkunde extends AbstractKunde {
 	private static final long serialVersionUID = -3177911520687689458L;
+	private static final String PRIVATKUNDE_VORNAME_NOTNULL_BV = "{kundenverwaltung.privatkunde.vorname.notNull}";
+	private static final String PRIVATKUNDE_VORNAME_LENGTH_BV = "{kundenverwaltung.privatkunde.vorname.size}";
+	private static final String PRIVATKUNDE_VORNAME_PATTERN_BV = "{kundenverwaltung.privatkunde.vorname.pattern}";
 	
-	@NotNull(message = "{kundenverwaltung.privatkunde.vorname.notNull}")
-	@Size(min = 2, max = 32, message = "{kundenverwaltung.privatkunde.vorname.size}")
+	@NotNull(message = PRIVATKUNDE_VORNAME_NOTNULL_BV)
+	@Size(min = 2, max = 32, message = PRIVATKUNDE_VORNAME_LENGTH_BV)
 	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+",
-	message = "{kundenverwaltung.privatkunde.vorname.pattern}")
+	message = PRIVATKUNDE_VORNAME_PATTERN_BV)
 	private String vorname;
 
 	public Privatkunde() {
