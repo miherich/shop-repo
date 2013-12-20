@@ -19,9 +19,9 @@ import de.shop.util.interceptor.Log;
 public class BestellungServiceImpl implements BestellungService, Serializable {
 	private static final long serialVersionUID = -519454062519816252L;
 	
-	public static final String BESTELLUNG_NOT_FOUND = "{bestellverwaltung.bestellung.notFound.all}";
-	public static final String BESTELLUNG_NOT_FOUND_ID = "{bestellverwaltung.bestellung.notFound.id}";
-	public static final String BESTELLUNG_ZU_KUNDE_NOT_FOUND = "{bestellverwaltung.bestellung.notFound.kunde}";
+	public static final String BESTELLUNG_NOT_FOUND_BV = "{bestellverwaltung.bestellung.notFound.all}";
+	public static final String BESTELLUNG_NOT_FOUND_ID_BV = "{bestellverwaltung.bestellung.notFound.id}";
+	public static final String BESTELLUNG_ZU_KUNDE_NOT_FOUND_BV = "{bestellverwaltung.bestellung.notFound.kunde}";
 	
 	@Inject
 	@NeueBestellung
@@ -33,14 +33,14 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	 * {inheritDoc}
 	 */
 	@Override
-	@NotNull(message = BESTELLUNG_NOT_FOUND_ID)
+	@NotNull(message = BESTELLUNG_NOT_FOUND_ID_BV)
 	public Bestellung findBestellungById(int id) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungById(id);
 	}
 
 	@Override
-	@NotNull(message = BESTELLUNG_NOT_FOUND_ID)
+	@NotNull(message = BESTELLUNG_NOT_FOUND_ID_BV)
 	public Position findPositionById(int id, int bid) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findPositionById(id, bid);
@@ -50,14 +50,14 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	 * {inheritDoc}
 	 */
 	@Override
-	@NotNull (message = BESTELLUNG_ZU_KUNDE_NOT_FOUND)
+	@NotNull (message = BESTELLUNG_ZU_KUNDE_NOT_FOUND_BV)
 	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findBestellungenByKunde(kunde);
 	}
 	
 	@Override
-	@NotNull(message = BESTELLUNG_NOT_FOUND)
+	@NotNull(message = BESTELLUNG_NOT_FOUND_BV)
 	public List<Bestellung> findAllBestellungen() {
 		final int anzahl = MAX_BESTELLUNGEN;
 		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);

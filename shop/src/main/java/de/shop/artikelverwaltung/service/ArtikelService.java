@@ -18,18 +18,18 @@ import de.shop.util.Mock;
 public class ArtikelService implements Serializable {
 	private static final long serialVersionUID = -5105686816948437276L;
 	
-	public static final String ARTIKEL_NOT_FOUND = "{artikelverwaltung.notFound.all}";
-	public static final String ARTIKEL_NOT_FOUND_ID = "{artikelverwaltung.artikel.notFound.id}";
+	public static final String ARTIKEL_NOT_FOUND_BV = "{artikelverwaltung.notFound.all}";
+	public static final String ARTIKEL_NOT_FOUND_ID_BV = "{artikelverwaltung.artikel.notFound.id}";
 	
 
-	@NotNull(message = ARTIKEL_NOT_FOUND_ID)
+	@NotNull(message = ARTIKEL_NOT_FOUND_ID_BV)
 	public AbstractArtikel findArtikelById(int id) {
 		// TODO id pruefen
 		// TODO Datenbanzugriffsschicht statt Mock
 		return Mock.findArtikelById(id);
 	}
 
-	@NotNull(message = ARTIKEL_NOT_FOUND)
+	@NotNull(message = ARTIKEL_NOT_FOUND_BV)
 	public List<AbstractArtikel> findAllArtikel() {
 		return Mock.findAllArtikel();
 	}
