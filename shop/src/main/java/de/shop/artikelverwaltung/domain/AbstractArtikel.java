@@ -20,14 +20,16 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD),
 		@Type(value = Ersatzteil.class, name = AbstractArtikel.ERSATZTEIL) })
 public abstract class AbstractArtikel {
+	private static final String ID_NOTNULL_BV = "{artikelverwaltung.artikel.preis.notNull";
+	private static final String TYP_NOTNULL_BV = "{artikelverwaltung.artikel.typ.notNull}";
 	
 	private int artikelNr;
 	
-	@NotNull(message = "{artikelverwaltung.artikel.preis.notNull}")
+	@NotNull(message = ID_NOTNULL_BV)
 	@Column(precision = 8, scale = 2)
 	private BigDecimal preis;
 	
-	@NotNull(message = "{artikelverwaltung.artikel.typ.notNull}")
+	@NotNull(message = TYP_NOTNULL_BV)
 	@Pattern(regexp = "[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+",
 	message = "{artikelverwaltung.artikel.typ.pattern}")
 	private String typ;		
