@@ -38,19 +38,27 @@ public abstract class AbstractKunde implements Serializable {
 	public static final int NACHNAME_MAX_PATTERN = 32;
 	public static final int EMAIL_LENGTH_MAX = 128;
 	
+	private static final String NACHNAME_NOTNULL_BV = "{kundenverwaltung.kunde.nachname.notNull}";
+	private static final String NACHNAME_LAENGE_BV = "{kundenverwaltung.kunde.nachname.length}";
+	private static final String NACHNAME_PATTERN_BV = "{kundenverwaltung.kunde.nachname.pattern}";
+	private static final String EMAIL_NOTNULL_BV = "{kundenverwaltung.kunde.email.notNull}";
+	private static final String EMAIL_LAENGE_BV = "{kundenverwaltung.kunde.email.length}";
+	private static final String EMAIL_PATTERN_BV = "{kundenverwaltung.kunde.email.pattern}";
+	private static final String ADRESSE_NOTNULL_BV = "{kundenverwaltung.kunde.adresse.notNull}";
+	
 	private int kundennr;
 	
-	@NotNull(message = "{kundenverwaltung.kunde.nachname.notNull}")
-	@Size(min = NACHNAME_MIN_PATTERN, max = NACHNAME_MAX_PATTERN, message = "{kundenverwaltung.kunde.nachname.length}")
-	@Pattern(regexp = NACHNAME_PATTERN, message = "{kunde.nachname.pattern}")
+	@NotNull(message = NACHNAME_NOTNULL_BV)
+	@Size(min = NACHNAME_MIN_PATTERN, max = NACHNAME_MAX_PATTERN, message = NACHNAME_LAENGE_BV)
+	@Pattern(regexp = NACHNAME_PATTERN, message = NACHNAME_PATTERN_BV)
 	private String nachname;
 	
-	@Email(message = "{kunde.email.pattern}")
-	@NotNull(message = "{kunde.email.notNull}")
-	@Size(max = EMAIL_LENGTH_MAX, message = "{kunde.email.length}")
+	@Email(message = EMAIL_PATTERN_BV)
+	@NotNull(message = EMAIL_NOTNULL_BV)
+	@Size(max = EMAIL_LENGTH_MAX, message = EMAIL_LAENGE_BV)
 	private String email;
 	
-	@NotNull(message = "{kundenverwaltung.kunde.adresse.notNull}")
+	@NotNull(message = ADRESSE_NOTNULL_BV)
 	@Valid
 	private Adresse adresse;
 
