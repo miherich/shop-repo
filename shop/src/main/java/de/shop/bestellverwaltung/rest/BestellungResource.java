@@ -79,22 +79,6 @@ public class BestellungResource {
 		return response;
 	}
 	
-//	@GET
-//	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}/{" +POSITION_ID_PATH_PARAM + ":[1-9][0-9]*}")
-//	public Response findPositionById(@PathParam(BESTELLUNG_ID_PATH_PARAM) int bid,
-//	@PathParam(POSITION_ID_PATH_PARAM) int id) {
-//		// TODO Anwendungskern statt Mock, Verwendung von Locale
-//		final Position position = bs.findPositionById(id, bid);
-//
-//		setStructuralLinksP(position, uriInfo);
-//
-//		// Link-Header setzen
-//		final Response response = Response.ok(position)
-//				.links(getTransitionalLinksP(position, uriInfo)).build();
-//
-//		return response;
-//	}
-
 	public void setStructuralLinks(Bestellung bestellung, UriInfo uriInfo) {
 		// URI fuer Kunde setzen
 		final AbstractKunde kunde = bestellung.getKunde();
@@ -105,37 +89,16 @@ public class BestellungResource {
 		}
 	}
 	
-//	public void setStructuralLinksP(Position position, UriInfo uriInfo) {
-//		// URI fuer Bestellung setzen
-//		final Bestellung bestellung = position.getBestellung();
-//		if (bestellung != null) {
-//			final URI bestellURI = getUriBestellung(
-//					bestellung, uriInfo);
-//			position.setBestellURI(bestellURI);
-//		}
-//	}
-
 	private Link[] getTransitionalLinks(Bestellung bestellung, UriInfo uriInfo) {
 		final Link self = Link.fromUri(getUriBestellung(bestellung, uriInfo))
 				.rel(SELF_LINK).build();
 		return new Link[] {self };
 	}
 	
-//	private Link[] getTransitionalLinksP(Position position, UriInfo uriInfo) {
-//		final Link self = Link.fromUri(getUriPosition(position, uriInfo))
-//				.rel(SELF_LINK).build();
-//		return new Link[] {self };
-//	}
-
 	public URI getUriBestellung(Bestellung bestellung, UriInfo uriInfo) {
 		return uriHelper.getUri(BestellungResource.class, "findBestellungById",
 				bestellung.getBestellnr(), uriInfo);
 	}
-
-//	public URI getUriPosition(Position position, UriInfo uriInfo) {
-//		return uriHelper.getUri(BestellungResource.class, "findPositionByIdU",
-//				position.getId(), uriInfo);
-//	}
 
 	@POST
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
@@ -145,14 +108,4 @@ public class BestellungResource {
 		bestellung = bs.createBestellung(bestellung);
 		return Response.created(getUriBestellung(bestellung, uriInfo)).build();
 	}
-	
-//	@POST
-//	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-//	@Path("{" +BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
-//	@Produces
-//	public Response createPosition(@PathParam(BESTELLUNG_ID_PATH_PARAM) int id, @Valid Position position) {
-//		// TODO Anwendungskern statt Mock, Verwendung von Locale
-//		position = bs.createPosition(position);
-//		return Response.created(getUriPosition(position, uriInfo)).build();
-//	}
 }

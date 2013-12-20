@@ -10,8 +10,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Geschaeftskunde extends AbstractKunde {
 	private static final long serialVersionUID = 6258156986876418100L;
 	
-	@NotNull (message = "{kundenverwaltung.geschaeftskunde.firmenname.notNull}")
-	@Size(min = 2, max = 64, message = "{kundenverwaltung.geschaeftskunde.firmenname.length}")
+	private final String GESCHAEFTSKUNDE_FIRMENNAME_NOTNULL_BV = "{kundenverwaltung.geschaeftskunde.firmenname.notNull}";
+	private final String GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_BV = "{kundenverwaltung.geschaeftskunde.firmenname.length}";
+	
+	@NotNull (message = GESCHAEFTSKUNDE_FIRMENNAME_NOTNULL_BV)
+	@Size(min = 2, max = 64, message = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_BV)
 	private String firmenname;
 
 	public Geschaeftskunde() {
