@@ -7,6 +7,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Fahrrad extends AbstractArtikel {
+	private static final int BEZEICHNUNG_MIN_LAENGE = 2;
+	private static final int BEZEICHNUNG_MAX_LAENGE = 150;
+	private static final int RAHMEN_MIN_LAENGE = 1;
+	private static final int RAHMEN_MAX_LAENGE = 1;
+	private static final String RAHMEN_PATTERN = "[M,W,U]";
 	
 	private static final String BEZEICHNUNG_NOTNULL_BV = "{artikelverwaltung.fahrrad.bezeichnung.notNull}";
 	private static final String BEZEICHNUNG_SIZE_BV = "{artikelverwaltung.fahrrad.bezeichnung.size}";
@@ -16,13 +21,13 @@ public class Fahrrad extends AbstractArtikel {
 	private static final String RAHMEN_PATTERN_BV = "{artikelverwaltung.fahrrad.rahmen.pattern}";
 			
 	@NotNull(message = BEZEICHNUNG_NOTNULL_BV)
-	@Size(min = 2, max = 150, message = BEZEICHNUNG_SIZE_BV)
+	@Size(min = BEZEICHNUNG_MIN_LAENGE, max = BEZEICHNUNG_MAX_LAENGE, message = BEZEICHNUNG_SIZE_BV)
 	private String bezeichnung;
 	
 	
 	@NotNull(message = RAHMEN_NOTNULL_BV)
-	@Size(min = 1 , max = 1 , message = RAHMEN_SIZE_BV)
-	@Pattern(regexp = "[M,W,U]", message = RAHMEN_PATTERN_BV)
+	@Size(min = RAHMEN_MIN_LAENGE , max = RAHMEN_MAX_LAENGE , message = RAHMEN_SIZE_BV)
+	@Pattern(regexp = RAHMEN_PATTERN, message = RAHMEN_PATTERN_BV)
 	private String rahmen;
 
 	public Fahrrad() {

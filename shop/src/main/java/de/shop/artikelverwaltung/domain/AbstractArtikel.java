@@ -20,19 +20,23 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD),
 		@Type(value = Ersatzteil.class, name = AbstractArtikel.ERSATZTEIL) })
 public abstract class AbstractArtikel {
+	private static final String TYP_PATTERN = "[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+";
+	private static final int PREIS_PRECISION = 8;
+	private static final int PREIS_SCALE = 2;
+	
 	private static final String ID_NOTNULL_BV = "{artikelverwaltung.artikel.preis.notNull";
 	private static final String TYP_NOTNULL_BV = "{artikelverwaltung.artikel.typ.notNull}";
-	private static final String TYP_PATTERN = "{artikelverwaltung.artikel.typ.pattern}";
+	private static final String TYP_PATTERN_BV = "{artikelverwaltung.artikel.typ.pattern}";
 	
 	private int artikelNr;
 	
 	@NotNull(message = ID_NOTNULL_BV)
-	@Column(precision = 8, scale = 2)
+	@Column(precision = PREIS_PRECISION, scale = PREIS_SCALE)
 	private BigDecimal preis;
 	
 	@NotNull(message = TYP_NOTNULL_BV)
-	@Pattern(regexp = "[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+",
-	message = TYP_PATTERN )
+	@Pattern(regexp = TYP_PATTERN,
+	message = TYP_PATTERN_BV)
 	private String typ;		
 	//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
 	
