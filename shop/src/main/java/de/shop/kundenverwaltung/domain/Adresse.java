@@ -9,25 +9,45 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Adresse {
 	
+	private static final String STRASSE_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+";
+	private static final int STRASSE_MIN_LAENGE = 2;
+	private static final int STRASSE_MAX_LAENGE = 40;
+	private static final int HAUSNUMMER_MIN_LAENGE = 1;
+	private static final int HAUSNUMMER_MAX_LAENGE = 4;
+	private static final String HAUSNUMMER_PATTERN = "[1-9][0-9]{0,2}[a-z]?";
+	private static final String PLZ_PATTERN = "\\d{5}";
+	private static final int ORT_MIN_LAENGE = 1;
+	private static final int ORT_MAX_LAENGE = 32;
+	private static final String ORT_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+"
+			+ "(-[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+)?";
+	
+	private static final String STRASSE_PATTERN_BV = "{kundenverwaltung.adresse.strasse.pattern}";
+	private static final String STRASSE_LAENGE_BV = "{kundenverwaltung.adresse.strasse.length}"; 
+	private static final String HAUSNUMMER_LAENGE_BV = "{kundenverwaltung.adresse.hausnummer.length}";
+	private static final String HAUSNUMMER_PATTERN_BV = "{kundenverwaltung.adresse.hausnummer.pattern}";
+	private static final String PLZ_NOTNULL_BV = "{kundenverwaltung.adresse.plz.notNull}";
+	private static final String PLZ_PATTERN_BV = "{kundenverwaltung.adresse.plz.pattern}";
+	private static final String ORT_LANEGE_BV = "{kundenverwaltung.adresse.ort.length}";
+	private static final String ORT_PATTERN_BV = "{kundenverwaltung.adresse.ort.pattern}";
+	
 	private int id;
 
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+",
-			message = "{kundenverwaltung.adresse.strasse.pattern}")
-	@Size(min = 2, max = 40, message = "{kundenverwaltung.adresse.strasse.length}")
+	@Pattern(regexp = STRASSE_PATTERN,
+			message = STRASSE_PATTERN_BV)
+	@Size(min = STRASSE_MIN_LAENGE, max = STRASSE_MAX_LAENGE, message = STRASSE_LAENGE_BV)
 	private String strasse;
 
-	@Size(min = 1, max = 4, message = "{kundenverwaltung.adresse.length}")
-	@Pattern(regexp = "[1-9][0-9]{0,2}[a-z]?", message = "{kundenverwaltung.adresse.hausnummer.pattern}")
+	@Size(min = HAUSNUMMER_MIN_LAENGE, max = HAUSNUMMER_MAX_LAENGE, message = HAUSNUMMER_LAENGE_BV)
+	@Pattern(regexp = HAUSNUMMER_PATTERN, message = HAUSNUMMER_PATTERN_BV)
 	private String hausnummer;
 	
-	@NotNull (message = "{kundenverwaltung.adresse.plz.notNull}")
-	@Pattern(regexp = "\\d{5}", message = "{kundenverwaltung.adresse.plz.pattern}")
+	@NotNull (message = PLZ_NOTNULL_BV)
+	@Pattern(regexp = PLZ_PATTERN, message = PLZ_PATTERN_BV)
 	private String plz;
 	
-	@Size(min = 1, max = 32, message = "{kundenverwaltung.adresse.ort.length}")
-	@Pattern(regexp = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+"
-			+ "(-[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+)?",
-			message = "{kundenverwaltung.adresse.ort.pattern}")
+	@Size(min = ORT_MIN_LAENGE, max = ORT_MAX_LAENGE, message = ORT_LANEGE_BV)
+	@Pattern(regexp = ORT_PATTERN,
+			message = ORT_PATTERN_BV)
 	private String ort;
 	
 	@Valid
