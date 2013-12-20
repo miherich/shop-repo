@@ -22,6 +22,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 public abstract class AbstractArtikel {
 	private static final String ID_NOTNULL_BV = "{artikelverwaltung.artikel.preis.notNull";
 	private static final String TYP_NOTNULL_BV = "{artikelverwaltung.artikel.typ.notNull}";
+	private static final String TYP_PATTERN = "{artikelverwaltung.artikel.typ.pattern}";
 	
 	private int artikelNr;
 	
@@ -31,7 +32,7 @@ public abstract class AbstractArtikel {
 	
 	@NotNull(message = TYP_NOTNULL_BV)
 	@Pattern(regexp = "[A-Z\00C4\u00D6\u00DC][a-z\u00F6\u00FC\u00DF]+",
-	message = "{artikelverwaltung.artikel.typ.pattern}")
+	message = TYP_PATTERN )
 	private String typ;		
 	//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
 	
