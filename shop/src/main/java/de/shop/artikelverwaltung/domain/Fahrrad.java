@@ -7,14 +7,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Fahrrad extends AbstractArtikel {
-	@NotNull(message = "{artikelverwaltung.fahrrad.bezeichnung.notNull}")
-	@Size(min = 2, max = 150, message = "{artikelverwaltung.fahrrad.bezeichnung.size}")
+	
+	private static final String BEZEICHNUNG_NOTNULL_BV = "{artikelverwaltung.fahrrad.bezeichnung.notNull}";
+	private static final String BEZEICHNUNG_SIZE_BV = "{artikelverwaltung.fahrrad.bezeichnung.size}";
+	
+	private static final String RAHMEN_NOTNULL_BV = "{artikelverwaltung.fahrrad.rahmen.notNull}";
+	private static final String RAHMEN_SIZE_BV = "{artikelverwaltung.fahrrad.rahmen.size}";
+	private static final String RAHMEN_PATTERN_BV = "{artikelverwaltung.fahrrad.rahmen.pattern}";
+			
+	@NotNull(message = BEZEICHNUNG_NOTNULL_BV)
+	@Size(min = 2, max = 150, message = BEZEICHNUNG_SIZE_BV)
 	private String bezeichnung;
 	
 	
-	@NotNull(message = "{artikelverwaltung.fahrrad.rahmen.notNull}")
-	@Size(min = 1 , max = 1 , message = "{artikelverwaltung.fahrrad.rahmen.size}")
-	@Pattern(regexp = "[M,W,U]", message = "{artikelverwaltung.fahrrad.rahmen.pattern}")
+	@NotNull(message = RAHMEN_NOTNULL_BV)
+	@Size(min = 1 , max = 1 , message = RAHMEN_SIZE_BV)
+	@Pattern(regexp = "[M,W,U]", message = RAHMEN_PATTERN_BV)
 	private String rahmen;
 
 	public Fahrrad() {
