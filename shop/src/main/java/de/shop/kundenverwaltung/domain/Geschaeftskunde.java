@@ -10,11 +10,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Geschaeftskunde extends AbstractKunde {
 	private static final long serialVersionUID = 6258156986876418100L;
 	
-	private final String GESCHAEFTSKUNDE_FIRMENNAME_NOTNULL_BV = "{kundenverwaltung.geschaeftskunde.firmenname.notNull}";
-	private final String GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_BV = "{kundenverwaltung.geschaeftskunde.firmenname.length}";
+	private static final String GESCHAEFTSKUNDE_FIRMENNAME_NOTNULL_BV = "{kundenverwaltung.geschaeftskunde.firmenname.notNull}";
+	private static final String GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_BV = "{kundenverwaltung.geschaeftskunde.firmenname.length}";
+	private static final int GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MIN = 2;
+	private static final int GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MAX = 64;
+
 	
 	@NotNull (message = GESCHAEFTSKUNDE_FIRMENNAME_NOTNULL_BV)
-	@Size(min = 2, max = 64, message = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_BV)
+	@Size(min = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MIN, max = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MAX, message = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_BV)
 	private String firmenname;
 
 	public Geschaeftskunde() {
@@ -22,9 +25,7 @@ public class Geschaeftskunde extends AbstractKunde {
 		this.firmenname = null;
 	}
 
-	@NotNull
-	@Size(min = 2, max = 32)
-		public String getFirmenname() {
+	public String getFirmenname() {
 		return firmenname;
 	}
 

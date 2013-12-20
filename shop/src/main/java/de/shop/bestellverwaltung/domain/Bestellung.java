@@ -12,10 +12,14 @@ import de.shop.kundenverwaltung.domain.AbstractKunde;
 
 @XmlRootElement
 public class Bestellung {
+	
+	private static final String BESTELLUNG_BESTELLDATUM_NOTNULL_BV = "{bestellverwaltung.bestellung.bestelldatum.notNull}";
+	private static final String BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}";
+	
 	private int bestellnr;
-	@NotNull(message = "{bestellverwaltung.bestellung.bestelldatum.notNull}")
+	@NotNull(message = BESTELLUNG_BESTELLDATUM_NOTNULL_BV)
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
-	@AssertFalse(message = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}") //TODO AssertTrue?
+	@AssertFalse(message = BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV) //TODO AssertTrue?
 	private boolean istAusgeliefert;
 	private boolean mitVerpackung;
 	private List<Position> positionen;
