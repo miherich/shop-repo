@@ -11,11 +11,14 @@ import de.shop.artikelverwaltung.domain.AbstractArtikel;
 
 @XmlRootElement
 public class Position {
+	
+	public final String BESTELLUNG_POSITION_NOTNULL_BV = "{bestellverwaltung.position.anzahl.notNull}";
+	
 	private int id;
 	private Bestellung bestellung;
 	@Valid
 	private AbstractArtikel artikel;
-	@NotEmpty(message = "{bestellverwaltung.position.anzahl.notNull}")
+	@NotEmpty(message = BESTELLUNG_POSITION_NOTNULL_BV)
 	private int anzahl;
 	private URI bestellURI;
 	
