@@ -13,7 +13,7 @@ public class KundeDeleteBestellungException extends AbstractKundeServiceExceptio
 	private static final long serialVersionUID = 2237194289969083093L;
 	
 	private static final String MESSAGE_KEY = "kunde.deleteMitBestellung";
-	private final int kundeId;
+	private final Long kundeId;
 	private final int anzahlBestellungen;
 	
 	public KundeDeleteBestellungException(AbstractKunde kunde) {
@@ -23,7 +23,7 @@ public class KundeDeleteBestellungException extends AbstractKundeServiceExceptio
 		this.anzahlBestellungen = kunde.getBestellungen().size();
 	}
 
-	public int getKundeId() {
+	public Long getKundeId() {
 		return kundeId;
 	}
 	public int getAnzahlBestellungen() {

@@ -86,7 +86,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{" + KUNDEN_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) int id) {
+	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) Long id) {
 		final AbstractKunde kunde = ks.findKundeById(id);
 		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
 				.build();
@@ -190,7 +190,7 @@ public class KundeResource {
 	@GET
 	@Path("{id:[1-9][0-9]*}/bestellungen")
 		public Response findBestellungenByKundeId(
-			@PathParam(KUNDEN_ID_PATH_PARAM) int kundeId) {
+			@PathParam(KUNDEN_ID_PATH_PARAM) Long kundeId) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final AbstractKunde kunde = ks.findKundeById(kundeId);
 		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
