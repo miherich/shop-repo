@@ -69,7 +69,7 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 	@Id
 	@GeneratedValue
 	@Basic(optional = false)
-	private int artikelNr;
+	private Long artikelNr;
 	
 	@NotNull(message = ID_NOTNULL_BV)
 	@Column(precision = PREIS_PRECISION, scale = PREIS_SCALE)
@@ -87,11 +87,11 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 	public static final String FAHRRAD = "F";
 	public static final String ERSATZTEIL = "E";
 
-	public int getArtikelNr() {
+	public Long getArtikelNr() {
 		return artikelNr;
 	}
 
-	public void setArtikelNr(int artikelNr) {
+	public void setArtikelNr(Long artikelNr) {
 		this.artikelNr = artikelNr;
 	}
 
@@ -118,18 +118,18 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 	public void setArtikelUri(URI artikelUri) {
 		this.artikelUri = artikelUri;
 	}
-
 	@Override
 	public String toString() {
 		return "AbstractArtikel [artikelNr=" + artikelNr + ", preis=" + preis
-				+ ", typ=" + typ + ", artikelUri=" + artikelUri + "]";
+				+ ", typ=" + typ + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + artikelNr;
+		result = prime * result
+				+ ((artikelNr == null) ? 0 : artikelNr.hashCode());
 		result = prime * result
 				+ ((artikelUri == null) ? 0 : artikelUri.hashCode());
 		result = prime * result + ((preis == null) ? 0 : preis.hashCode());
@@ -145,33 +145,30 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final AbstractArtikel other = (AbstractArtikel) obj;
-		if (artikelNr != other.artikelNr)
+		AbstractArtikel other = (AbstractArtikel) obj;
+		if (artikelNr == null) {
+			if (other.artikelNr != null)
+				return false;
+		} else if (!artikelNr.equals(other.artikelNr))
 			return false;
 		if (artikelUri == null) {
 			if (other.artikelUri != null)
 				return false;
-		}
-		else if (!artikelUri.equals(other.artikelUri))
+		} else if (!artikelUri.equals(other.artikelUri))
 			return false;
 		if (preis == null) {
 			if (other.preis != null)
 				return false;
-		}
-		else if (!preis.equals(other.preis))
+		} else if (!preis.equals(other.preis))
 			return false;
 		if (typ == null) {
 			if (other.typ != null)
 				return false;
-		} 
-		else if (!typ.equals(other.typ))
+		} else if (!typ.equals(other.typ))
 			return false;
 		return true;
 	}
-
-
-
-
+	
 //	public Artikel build() {
 //		// TODO Auto-generated method stub
 //		return null;
