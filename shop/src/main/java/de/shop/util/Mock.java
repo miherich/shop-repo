@@ -104,7 +104,7 @@ public final class Mock {
 		final String nachname = kunde.getNachname();
 		kunde.setKundennr(Long.valueOf(nachname.length()));
 		final Adresse adresse = kunde.getAdresse();
-		adresse.setId((nachname.length()) + 1);
+		adresse.setId(Long.valueOf((nachname.length()) + 1));
 		adresse.setKunde(kunde);
 		kunde.setBestellungen(null);
 
@@ -119,7 +119,7 @@ public final class Mock {
 		final String nachname = kunde.getNachname();
 		kunde.setKundennr(Long.valueOf(nachname.length()));
 		final Adresse adresse = kunde.getAdresse();
-		adresse.setId((nachname.length()) + 1);
+		adresse.setId(Long.valueOf((nachname.length()) + 1));
 		adresse.setKunde(kunde);
 		kunde.setBestellungen(null);
 
