@@ -57,4 +57,38 @@ public abstract class AbstractAuditable implements Serializable {
 	public String toString() {
 		return "AbstractAuditable [erzeugt=" + erzeugt + ", aktualisiert=" + aktualisiert + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((aktualisiert == null) ? 0 : aktualisiert.hashCode());
+		result = prime * result + ((erzeugt == null) ? 0 : erzeugt.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractAuditable other = (AbstractAuditable) obj;
+		if (aktualisiert == null) {
+			if (other.aktualisiert != null)
+				return false;
+		} else if (!aktualisiert.equals(other.aktualisiert))
+			return false;
+		if (erzeugt == null) {
+			if (other.erzeugt != null)
+				return false;
+		} else if (!erzeugt.equals(other.erzeugt))
+			return false;
+		return true;
+	}
+	
+	
 }

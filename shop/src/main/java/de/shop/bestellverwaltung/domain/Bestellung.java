@@ -67,6 +67,7 @@ import de.shop.util.persistence.AbstractAuditable;
 })
 @Cacheable
 public class Bestellung extends AbstractAuditable {
+	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
 	private static final String BESTELLUNG_BESTELLDATUM_NOTNULL_BV = "{bestellverwaltung.bestellung.bestelldatum.notNull}";
@@ -82,7 +83,7 @@ public class Bestellung extends AbstractAuditable {
 	@Id
 	@GeneratedValue
 	@Basic(optional = false)
-	private int bestellnr = KEINE_ID;
+	private Long bestellnr = KEINE_ID;
 	
 	@NotNull(message = BESTELLUNG_BESTELLDATUM_NOTNULL_BV)
 	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
@@ -118,11 +119,11 @@ public class Bestellung extends AbstractAuditable {
 		LOGGER.debugf("Neue Bestellung mit ID=%d", bestellnr);
 	}
 
-	public int getBestellnr() {
+	public Long getBestellnr() {
 		return bestellnr;
 	}
 
-	public void setBestellnr(int bestellnr) {
+	public void setBestellnr(Long bestellnr) {
 		this.bestellnr = bestellnr;
 	}
 
@@ -174,17 +175,23 @@ public class Bestellung extends AbstractAuditable {
 		this.kunde = kunde;
 	}
 
-	public void ausliefern() {
-		this.istAusgeliefert = true;
+	@Override
+	public String toString() {
+		return "Bestellung [bestellnr=" + bestellnr + ", bestelldatum="
+				+ bestelldatum + ", istAusgeliefert=" + istAusgeliefert
+				+ ", mitVerpackung=" + mitVerpackung + ", positionen="
+				+ positionen + ", kundeUri=" + kundeUri + ", kunde=" + kunde
+				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result
 				+ ((bestelldatum == null) ? 0 : bestelldatum.hashCode());
-		result = prime * result + bestellnr;
+		result = prime * result
+				+ ((bestellnr == null) ? 0 : bestellnr.hashCode());
 		result = prime * result + (istAusgeliefert ? 1231 : 1237);
 		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
 		result = prime * result
@@ -199,50 +206,40 @@ public class Bestellung extends AbstractAuditable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Bestellung other = (Bestellung) obj;
+		Bestellung other = (Bestellung) obj;
 		if (bestelldatum == null) {
 			if (other.bestelldatum != null)
 				return false;
-		}
-		else if (!bestelldatum.equals(other.bestelldatum))
+		} else if (!bestelldatum.equals(other.bestelldatum))
 			return false;
-		if (bestellnr != other.bestellnr)
+		if (bestellnr == null) {
+			if (other.bestellnr != null)
+				return false;
+		} else if (!bestellnr.equals(other.bestellnr))
 			return false;
 		if (istAusgeliefert != other.istAusgeliefert)
 			return false;
 		if (kunde == null) {
 			if (other.kunde != null)
 				return false;
-		}
-		else if (!kunde.equals(other.kunde))
+		} else if (!kunde.equals(other.kunde))
 			return false;
 		if (kundeUri == null) {
 			if (other.kundeUri != null)
 				return false;
-		}
-		else if (!kundeUri.equals(other.kundeUri))
+		} else if (!kundeUri.equals(other.kundeUri))
 			return false;
 		if (mitVerpackung != other.mitVerpackung)
 			return false;
 		if (positionen == null) {
 			if (other.positionen != null)
 				return false;
-		}
-		else if (!positionen.equals(other.positionen))
+		} else if (!positionen.equals(other.positionen))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Bestellung [bestellnr=" + bestellnr + ", bestelldatum="
-				+ bestelldatum + ", istAusgeliefert=" + istAusgeliefert
-				+ ", mitVerpackung=" + mitVerpackung + ", positionen="
-				+ positionen + ", kundeUri=" + kundeUri + ", kunde=" + kunde
-				+ "]";
 	}
 }
