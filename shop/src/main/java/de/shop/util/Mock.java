@@ -102,7 +102,7 @@ public final class Mock {
 		// TODO IDs passend zu Privatkunde (%2=0) erstellen lassen
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
-		kunde.setKundennr(nachname.length());
+		kunde.setKundennr(Long.valueOf(nachname.length()));
 		final Adresse adresse = kunde.getAdresse();
 		adresse.setId((nachname.length()) + 1);
 		adresse.setKunde(kunde);
@@ -117,7 +117,7 @@ public final class Mock {
 		// TODO IDs passen zu Geschaeftskunde (&2=1) erstellen lassen
 		// Ein neuer Kunde hat auch keine Bestellungen
 		final String nachname = kunde.getNachname();
-		kunde.setKundennr(nachname.length());
+		kunde.setKundennr(Long.valueOf(nachname.length()));
 		final Adresse adresse = kunde.getAdresse();
 		adresse.setId((nachname.length()) + 1);
 		adresse.setKunde(kunde);
@@ -147,7 +147,7 @@ public final class Mock {
 
 	public static List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
 		// Beziehungsgeflecht zwischen Kunde und Bestellungen aufbauen
-		final int anzahl = kunde.getKundennr() % MAX_BESTELLUNGEN + 1; // 1, 2,
+		final int anzahl = MAX_BESTELLUNGEN - 3; // 1, 2,
 																		// 3
 																		// oder
 																		// 4
@@ -197,7 +197,7 @@ public final class Mock {
 		return position;
 	}
 
-	public static Position findPositionByIdU(int id) {
+	public static Position findPositionByIdU(Long id) {
 		if (id > MAX_POSITIONEN) {
 			return null;
 		}
@@ -207,7 +207,7 @@ public final class Mock {
 		final Position position = new Position();
 		position.setId(id);
 		position.setArtikel(artikel);
-		position.setAnzahl((id + CONSTANT2) % 2);
+		position.setAnzahl(CONSTANT2);
 		position.setBestellung(bestellung);
 
 		return position;
@@ -253,7 +253,7 @@ public final class Mock {
 
 	public static Bestellung createBestellung(Bestellung bestellung) {
 		final int nummer = bestellung.getBestelldatum().hashCode();
-		bestellung.setBestellnr(nummer);
+		bestellung.setBestellnr(Long.valueOf(nummer));
 		
 		LOGGER.infof("Neue %s erzeugt", bestellung);
 		
@@ -303,7 +303,7 @@ public final class Mock {
 		final int anzahl = MAX_ARTIKEL;
 		final List<AbstractArtikel> artikelList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final AbstractArtikel artikel = findArtikelById(Long.ValueOf(i));
+			final AbstractArtikel artikel = findArtikelById(Long.valueOf(i));
 			artikelList.add(artikel);
 		}
 		return artikelList;
@@ -313,7 +313,7 @@ public final class Mock {
 
 		// TODO Artikelnummer anpassen (%3=0)
 		final String bezeichnung = fahrrad.getBezeichnung();
-		fahrrad.setArtikelNr(bezeichnung.length());
+		fahrrad.setArtikelNr(Long.valueOf(bezeichnung.length()));
 
 		LOGGER.infof("Neuer Artikel Fahrrad %s", fahrrad);
 		return fahrrad;
@@ -322,7 +322,7 @@ public final class Mock {
 	public static Zubehoer createZubehoer(Zubehoer zubehoer) {
 		// TODO Artikelnummer anpassen (%3=1)
 		final String typ = zubehoer.getTyp();
-		zubehoer.setArtikelNr(typ.length());
+		zubehoer.setArtikelNr(Long.valueOf(typ.length()));
 
 		LOGGER.infof("Neuer Artikel Zubehoer %s", zubehoer);
 		return zubehoer;
@@ -332,7 +332,7 @@ public final class Mock {
 
 		// TODO Artikelnummer anpassen (%3=2)
 		final String typ = ersatzteil.getTyp();
-		ersatzteil.setArtikelNr(typ.length());
+		ersatzteil.setArtikelNr(Long.valueOf(typ.length()));
 
 		LOGGER.infof("Neuer Artikel Ersatzteil %s", ersatzteil);
 		return ersatzteil;
