@@ -1,8 +1,11 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@Entity
+//@Table(indexes = @Index(columnList = "bezeichnung"))
 @XmlRootElement
 public class Ersatzteil extends AbstractArtikel {
 	@Valid

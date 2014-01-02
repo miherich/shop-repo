@@ -1,11 +1,14 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
+//@Table(indexes = @Index(columnList = "bezeichnung"))
 public class Fahrrad extends AbstractArtikel {
 	private static final int BEZEICHNUNG_MIN_LAENGE = 2;
 	private static final int BEZEICHNUNG_MAX_LAENGE = 150;
