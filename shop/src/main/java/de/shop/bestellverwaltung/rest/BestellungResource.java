@@ -68,10 +68,6 @@ public class BestellungResource {
 	
 	@Inject
 	private ArtikelService as;
-	
-	@Inject
-	private ArtikelResource artikelResource;
-
 
 	@GET
 	public Response findAllBestellungen() {
@@ -85,7 +81,7 @@ public class BestellungResource {
 	@Path("{" + BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
 	public Response findBestellungById(@PathParam(BESTELLUNG_ID_PATH_PARAM) Long id) {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final Bestellung bestellung = bs.findBestellungById(id);
+		final Bestellung bestellung = bs.findBestellungById(id, wieder dieser dumme fetchtype - enum -.-);
 
 		setStructuralLinks(bestellung, uriInfo);
 
