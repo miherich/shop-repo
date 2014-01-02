@@ -35,7 +35,7 @@ public final class Mock {
 	
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
-	public static AbstractKunde findKundeById(int id) {
+	public static AbstractKunde findKundeById(Long id) {
 		if (id > MAX_KUNDEN) {
 			return null;
 		}
@@ -72,7 +72,7 @@ public final class Mock {
 		final int anzahl = MAX_KUNDEN;
 		final List<AbstractKunde> kundeList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final AbstractKunde kunde = findKundeById(i);
+			final AbstractKunde kunde = findKundeById(Long.valueOf(i));
 			kundeList.add(kunde);
 		}
 		return kundeList;
@@ -82,7 +82,7 @@ public final class Mock {
 		final int anzahl = MAX_KUNDEN;
 		final List<AbstractKunde> kunden = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final AbstractKunde kunde = findKundeById(i);
+			final AbstractKunde kunde = findKundeById(Long.valueOf(i));
 			kunde.setNachname(nachname);
 			kunden.add(kunde);
 		}
@@ -91,7 +91,7 @@ public final class Mock {
 	
 	public static AbstractKunde findKundeByEmail(String email) {
 		final int id = email.length() % CONSTANT1;
-		final AbstractKunde kunde = findKundeById(id);
+		final AbstractKunde kunde = findKundeById(Long.valueOf(id));
 		kunde.setEmail(email);
 		
 		return kunde;
@@ -154,7 +154,7 @@ public final class Mock {
 																		// Bestellungen
 		final List<Bestellung> bestellungen = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final Bestellung bestellung = findBestellungById(i);
+			final Bestellung bestellung = findBestellungById(Long.valueOf(i));
 			bestellung.setKunde(kunde);
 			bestellungen.add(bestellung);
 		}
@@ -163,7 +163,7 @@ public final class Mock {
 		return bestellungen;
 	}
 
-	public static Bestellung findBestellungById(int id) {
+	public static Bestellung findBestellungById(Long id) {
 		if (id > MAX_ID) {
 			return null;
 		}
@@ -181,7 +181,7 @@ public final class Mock {
 		return bestellung;
 	}
 	
-	public static Position findPositionById(int id, int bid) {
+	public static Position findPositionById(Long id, Long bid) {
 		if (id > MAX_POSITIONEN) {
 			return null;
 		}
@@ -191,7 +191,7 @@ public final class Mock {
 		final Position position = new Position();
 		position.setId(id);
 		position.setArtikel(artikel);
-		position.setAnzahl((id + CONSTANT2) % 2);
+		position.setAnzahl((CONSTANT2) % 2);
 		position.setBestellung(bestellung);
 
 		return position;
@@ -218,17 +218,17 @@ public final class Mock {
 		final int anzahl = MAX_BESTELLUNGEN;
 		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final Bestellung bestellung = findBestellungById(i);
+			final Bestellung bestellung = findBestellungById(Long.valueOf(i));
 			bestellungList.add(bestellung);
 		}
 		return bestellungList;
 	}
 	
-	public static List<Position> findAllPositionen(int id) {
+	public static List<Position> findAllPositionen(Long id) {
 		final int anzahl = MAX_POSITIONEN;
 		final List<Position> positionList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final Position position = findPositionById(i, id);
+			final Position position = findPositionById(Long.valueOf(i), Long.valueOf(id));
 			positionList.add(position);
 		}
 		return positionList;
@@ -270,7 +270,7 @@ public final class Mock {
 //		return position;
 //	}
 
-	public static AbstractArtikel findArtikelById(int id) {
+	public static AbstractArtikel findArtikelById(Long id) {
 		if (id > MAX_ARTIKEL) {
 			return null;
 		}
@@ -303,7 +303,7 @@ public final class Mock {
 		final int anzahl = MAX_ARTIKEL;
 		final List<AbstractArtikel> artikelList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final AbstractArtikel artikel = findArtikelById(i);
+			final AbstractArtikel artikel = findArtikelById(Long.ValueOf(i));
 			artikelList.add(artikel);
 		}
 		return artikelList;
