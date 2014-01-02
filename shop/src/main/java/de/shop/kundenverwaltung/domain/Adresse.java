@@ -30,7 +30,7 @@ public class Adresse {
 	private static final String ORT_LANEGE_BV = "{kundenverwaltung.adresse.ort.length}";
 	private static final String ORT_PATTERN_BV = "{kundenverwaltung.adresse.ort.pattern}";
 	
-	private int id;
+	private Long id;
 
 	@Pattern(regexp = STRASSE_PATTERN,
 			message = STRASSE_PATTERN_BV)
@@ -54,10 +54,10 @@ public class Adresse {
 	private AbstractKunde kunde;
 	
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getStrasse() {
@@ -102,7 +102,8 @@ public class Adresse {
 		int result = 1;
 		result = prime * result
 				+ ((hausnummer == null) ? 0 : hausnummer.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
 		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
 		result = prime * result + ((plz == null) ? 0 : plz.hashCode());
 		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
@@ -116,32 +117,36 @@ public class Adresse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Adresse other = (Adresse) obj;
+		Adresse other = (Adresse) obj;
 		if (hausnummer == null) {
 			if (other.hausnummer != null)
 				return false;
-		} 
-		else if (!hausnummer.equals(other.hausnummer))
+		} else if (!hausnummer.equals(other.hausnummer))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (kunde == null) {
+			if (other.kunde != null)
+				return false;
+		} else if (!kunde.equals(other.kunde))
 			return false;
 		if (ort == null) {
 			if (other.ort != null)
 				return false;
-		} 
-		else if (!ort.equals(other.ort))
+		} else if (!ort.equals(other.ort))
 			return false;
 		if (plz == null) {
 			if (other.plz != null)
 				return false;
-		} 
-		else if (!plz.equals(other.plz))
+		} else if (!plz.equals(other.plz))
 			return false;
 		if (strasse == null) {
 			if (other.strasse != null)
 				return false;
-		} 
-		else if (!strasse.equals(other.strasse))
+		} else if (!strasse.equals(other.strasse))
 			return false;
 		return true;
 	}
