@@ -27,6 +27,7 @@ import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.bestellverwaltung.domain.Position;
 import de.shop.util.Mock;
 import de.shop.util.interceptor.Log;
+import static de.shop.util.Constants.KEINE_ID;
 
 @Dependent
 @Log
@@ -43,6 +44,9 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	
 	@Inject
 	private transient EntityManager em;
+	
+	@Inject
+	private KundeService ks;
 	
 	private static final int MAX_BESTELLUNGEN = 10;
 	
@@ -154,15 +158,15 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		
 		// Den persistenten Kunden mit der transienten Bestellung verknuepfen
 		if (!em.contains(kunde)) {
-			kunde = ks.findKundeById(kunde.getId(), KundeService.FetchType.MIT_BESTELLUNGEN);
+			kunde = ks.findKundeById(kunde.getKundennr(), KundeService.FetchType.MIT_BESTELLUNGEN);
 		}
 		kunde.addBestellung(bestellung);
 		bestellung.setKunde(kunde);
 		
 		// Vor dem Abspeichern IDs zuruecksetzen:
 		// IDs koennten einen Wert != null haben, wenn sie durch einen Web Service uebertragen wurden
-		bestellung.setId(KEINE_ID);
-		for (Bestellposition bp : bestellung.getBestellpositionen()) {
+		bestellung.setBestellnr(KEINE_ID);
+		for (Position bp : bestellung.getPositionen()) {
 			bp.setId(KEINE_ID);
 		}
 		// FIXME JDK 8 hat Lambda-Ausdruecke
