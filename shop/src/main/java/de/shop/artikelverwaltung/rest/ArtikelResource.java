@@ -81,7 +81,7 @@ public class ArtikelResource {
 
 	@GET
 	@Path("{" + ARTIKEL_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	public Response findArtikelById(@PathParam(ARTIKEL_ID_PATH_PARAM) int id) {
+	public Response findArtikelById(@PathParam(ARTIKEL_ID_PATH_PARAM) Long id) {
 		final AbstractArtikel artikel = as.findArtikelById(id);
 		
 			return Response.ok(artikel)
