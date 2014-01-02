@@ -95,7 +95,7 @@ public class Bestellung extends AbstractAuditable {
 	@JoinColumn(name = "bestellung_fk", nullable = false)
 	@NotEmpty(message = "{bestellung.positionen.notEmpty}")
 	@Valid
-	private List<Position> positionen;
+	private Set<Position> positionen;
 	
 	@Transient
 	private URI kundeUri;
@@ -151,11 +151,11 @@ public class Bestellung extends AbstractAuditable {
 		this.mitVerpackung = mitVerpackung;
 	}
 
-	public List<Position> getPositionen() {
+	public Set<Position> getPositionen() {
 		return positionen;
 	}
 
-	public void setPositionen(List<Position> positionen) {
+	public void setPositionen(Set<Position> positionen) {
 		this.positionen = positionen;
 	}
 
@@ -242,4 +242,5 @@ public class Bestellung extends AbstractAuditable {
 			return false;
 		return true;
 	}
+
 }
