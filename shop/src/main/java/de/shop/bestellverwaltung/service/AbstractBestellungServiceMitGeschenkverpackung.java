@@ -47,7 +47,7 @@ public abstract class AbstractBestellungServiceMitGeschenkverpackung implements 
 	}
 
 	@Override
-	public Position findPositionById(int id, int bid) {
+	public Position findPositionById(Long id, Long bid) {
 		return bs.findPositionById(id, bid);
 	}
 

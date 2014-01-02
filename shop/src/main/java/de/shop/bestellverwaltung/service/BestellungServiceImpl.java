@@ -128,7 +128,7 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		final int anzahl = MAX_BESTELLUNGEN;
 		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);
 		for (int i = 1; i <= anzahl; i++) {
-			final Bestellung bestellung = Mock.findBestellungById(i);
+			final Bestellung bestellung = Mock.findBestellungById(Long.valueOf(i));
 			bestellungList.add(bestellung);
 		}
 		return bestellungList;

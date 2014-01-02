@@ -152,11 +152,22 @@ public class Bestellung extends AbstractAuditable {
 	}
 
 	public Set<Position> getPositionen() {
-		return positionen;
+		if (positionen == null) {
+			return null;
+		}
+		
+		return Collections.unmodifiableSet(positionen);
 	}
 
 	public void setPositionen(Set<Position> positionen) {
-		this.positionen = positionen;
+		if (this.positionen == null) {
+			this.positionen = positionen;
+			return;
+		}
+		// Wiederverwendung der vorhandenen Collection
+		this.positionen.clear();
+		if (positionen != null)
+			this.positionen.addAll(positionen);
 	}
 
 	public URI getKundeUri() {
