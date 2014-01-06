@@ -5,7 +5,6 @@ import static javax.persistence.CascadeType.REMOVE;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -171,7 +170,7 @@ public abstract class AbstractKunde implements Serializable {
 	@OrderColumn (name = "idx", nullable = false)
 	@Transient
 	@XmlTransient
-	private Set<Bestellung> bestellungen;
+	private List<Bestellung> bestellungen;
 	
 	@Transient
 	private URI bestellURI;
@@ -192,11 +191,11 @@ public abstract class AbstractKunde implements Serializable {
 		this.adresse = adresse;
 	}
 
-	public Set<Bestellung> getBestellungen() {
+	public List<Bestellung> getBestellungen() {
 		return bestellungen;
 	}
 
-	public void setBestellungen(Set<Bestellung> bestellungen) {
+	public void setBestellungen(List<Bestellung> bestellungen) {
 		this.bestellungen = bestellungen;
 	}
 
