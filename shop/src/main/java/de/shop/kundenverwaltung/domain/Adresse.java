@@ -1,5 +1,10 @@
 package de.shop.kundenverwaltung.domain;
 
+import java.net.URI;
+
+import javax.persistence.Basic;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -30,6 +35,9 @@ public class Adresse {
 	private static final String ORT_LANEGE_BV = "{kundenverwaltung.adresse.ort.length}";
 	private static final String ORT_PATTERN_BV = "{kundenverwaltung.adresse.ort.pattern}";
 	
+	@Id
+	@GeneratedValue
+	@Basic (optional = false)
 	private Long id;
 
 	@Pattern(regexp = STRASSE_PATTERN,
@@ -52,6 +60,8 @@ public class Adresse {
 	
 	@Valid
 	private AbstractKunde kunde;
+	
+	private URI kundeURI;
 	
 	
 	public Long getId() {
@@ -91,6 +101,13 @@ public class Adresse {
 		this.kunde = kunde;
 	}
 	
+	public URI getKundeURI() {
+		return kundeURI;
+	}
+	public void setKundeURI(URI kundeURI) {
+		this.kundeURI = kundeURI;
+	}
+	
 	@Override
 	public String toString() {
 		return "Adresse [id=" + id + ", strasse=" + strasse + ", hausnummer="
@@ -102,8 +119,8 @@ public class Adresse {
 		int result = 1;
 		result = prime * result
 				+ ((hausnummer == null) ? 0 : hausnummer.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
+		result = prime * result
+				+ ((kundeURI == null) ? 0 : kundeURI.hashCode());
 		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
 		result = prime * result + ((plz == null) ? 0 : plz.hashCode());
 		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
@@ -123,15 +140,10 @@ public class Adresse {
 				return false;
 		} else if (!hausnummer.equals(other.hausnummer))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (kundeURI == null) {
+			if (other.kundeURI != null)
 				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (kunde == null) {
-			if (other.kunde != null)
-				return false;
-		} else if (!kunde.equals(other.kunde))
+		} else if (!kundeURI.equals(other.kundeURI))
 			return false;
 		if (ort == null) {
 			if (other.ort != null)
@@ -150,5 +162,4 @@ public class Adresse {
 			return false;
 		return true;
 	}
-	
 }

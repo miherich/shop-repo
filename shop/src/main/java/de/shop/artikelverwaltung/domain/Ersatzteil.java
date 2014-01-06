@@ -1,5 +1,7 @@
 package de.shop.artikelverwaltung.domain;
 
+import java.net.URI;
+
 import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -8,8 +10,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 //@Table(indexes = @Index(columnList = "bezeichnung"))
 @XmlRootElement
 public class Ersatzteil extends AbstractArtikel {
+	private static final long serialVersionUID = 9217897238630488917L;
+
 	@Valid
 	private Fahrrad fahrrad;
+	
+	private URI fahrradURI;
 
 	public Fahrrad getFahrrad() {
 		return fahrrad;
@@ -19,15 +25,13 @@ public class Ersatzteil extends AbstractArtikel {
 		this.fahrrad = fahrrad;
 	}
 
-	public Ersatzteil() {
-		super();
-		this.fahrrad = null;
+	public URI getFahrradURI() {
+		return fahrradURI;
 	}
 
-	// public Ersatzteil(Fahrrad fahrrad) {
-	// super();
-	// this.fahrrad = fahrrad;
-	// }
+	public void setFahrradURI(URI fahrradURI) {
+		this.fahrradURI = fahrradURI;
+	}
 
 	@Override
 	public String toString() {
@@ -38,8 +42,9 @@ public class Ersatzteil extends AbstractArtikel {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((fahrrad == null) ? 0 : fahrrad.hashCode());
+		int result = super.hashCode();
+		result = prime * result
+				+ ((fahrradURI == null) ? 0 : fahrradURI.hashCode());
 		return result;
 	}
 
@@ -47,18 +52,16 @@ public class Ersatzteil extends AbstractArtikel {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Ersatzteil other = (Ersatzteil) obj;
-		if (fahrrad == null) {
-			if (other.fahrrad != null)
+		Ersatzteil other = (Ersatzteil) obj;
+		if (fahrradURI == null) {
+			if (other.fahrradURI != null)
 				return false;
-		} 
-		else if (!fahrrad.equals(other.fahrrad))
+		} else if (!fahrradURI.equals(other.fahrradURI))
 			return false;
 		return true;
 	}
-
 }

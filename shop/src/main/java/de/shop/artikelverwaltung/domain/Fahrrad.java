@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 //@Table(indexes = @Index(columnList = "bezeichnung"))
 public class Fahrrad extends AbstractArtikel {
+	private static final long serialVersionUID = 9077088903116091916L;
+	
 	private static final int BEZEICHNUNG_MIN_LAENGE = 2;
 	private static final int BEZEICHNUNG_MAX_LAENGE = 150;
 	private static final int RAHMEN_MIN_LAENGE = 1;
@@ -32,20 +34,6 @@ public class Fahrrad extends AbstractArtikel {
 	@Size(min = RAHMEN_MIN_LAENGE , max = RAHMEN_MAX_LAENGE , message = RAHMEN_SIZE_BV)
 	@Pattern(regexp = RAHMEN_PATTERN, message = RAHMEN_PATTERN_BV)
 	private String rahmen;
-
-	public Fahrrad() {
-		super();
-		this.bezeichnung = null;
-		this.rahmen = null;
-	}
-
-	// public Fahrrad(int artikelNr, long preis, String bezeichnung, String
-	// rahmen) {
-	// super(artikelNr, preis);
-	// this.bezeichnung = bezeichnung;
-	// this.rahmen = rahmen;
-	// }
-
 	
 	public String getBezeichnung() {
 		return bezeichnung;
@@ -65,9 +53,15 @@ public class Fahrrad extends AbstractArtikel {
 	}
 
 	@Override
+	public String toString() {
+		return "Fahrrad [bezeichnung=" + bezeichnung + ", rahmen=" + rahmen
+				+ "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result
 				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
 		result = prime * result + ((rahmen == null) ? 0 : rahmen.hashCode());
@@ -78,30 +72,22 @@ public class Fahrrad extends AbstractArtikel {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		final Fahrrad other = (Fahrrad) obj;
+		Fahrrad other = (Fahrrad) obj;
 		if (bezeichnung == null) {
 			if (other.bezeichnung != null)
 				return false;
-		} 
-		else if (!bezeichnung.equals(other.bezeichnung))
+		} else if (!bezeichnung.equals(other.bezeichnung))
 			return false;
 		if (rahmen == null) {
 			if (other.rahmen != null)
 				return false;
-		} 
-		else if (!rahmen.equals(other.rahmen))
+		} else if (!rahmen.equals(other.rahmen))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Fahrrad [bezeichnung=" + bezeichnung + ", rahmen=" + rahmen
-				+ "]";
 	}
 
 }

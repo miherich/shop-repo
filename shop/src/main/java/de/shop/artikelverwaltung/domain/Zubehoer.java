@@ -7,10 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 //@Table(indexes = @Index(columnList = "bezeichnung"))
 public class Zubehoer extends AbstractArtikel {
-
-//	public Zubehoer(int artikelNr, long preis) {
-//		super(artikelNr, preis);
-//	}
+	private static final long serialVersionUID = -4700709451059606244L;
 
 	@Override
 	public String toString() {
@@ -18,5 +15,4 @@ public class Zubehoer extends AbstractArtikel {
 				+ getPreis() + ", getClass()=" + getClass() + ", hashCode()="
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
 }

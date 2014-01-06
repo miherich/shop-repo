@@ -3,11 +3,12 @@ package de.shop.kundenverwaltung.domain;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REMOVE;
 
-import java.util.ArrayList;
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,9 +28,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import de.shop.bestellverwaltung.domain.Bestellung;
-
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
@@ -41,6 +39,8 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.ScriptAssert;
 import org.jboss.arquillian.drone.api.annotation.Default;
+
+import de.shop.bestellverwaltung.domain.Bestellung;
 
 @ScriptAssert(lang = "javascript",
 script = "_this.password != null && !_this.password.equals(\"\")"
@@ -104,7 +104,7 @@ groups = { Default.class, PasswordGroup.class })
 @JsonSubTypes({ @Type(value = Privatkunde.class, name = AbstractKunde.PRIVATKUNDE),
 		@Type(value = Geschaeftskunde.class, name = AbstractKunde.GESCHAEFTSKUNDE) })
 public abstract class AbstractKunde implements Serializable {
-	private static final long serialVersionUID = 7401524595142572933L;
+	private static final long serialVersionUID = 1499437982385399650L;
 	
 	public static final String PRIVATKUNDE = "P";
 	public static final String GESCHAEFTSKUNDE = "G";
@@ -157,7 +157,7 @@ public abstract class AbstractKunde implements Serializable {
 	@Email(message = EMAIL_PATTERN_BV)
 	@NotNull(message = EMAIL_NOTNULL_BV)
 	@Size(max = EMAIL_LENGTH_MAX, message = EMAIL_LAENGE_BV)
-	//@Column(unique = true)
+	@Column(unique = true)
 	private String email;
 	
 	@OneToOne (cascade = { PERSIST, REMOVE }, mappedBy = "kunde")
@@ -169,7 +169,7 @@ public abstract class AbstractKunde implements Serializable {
 	@JoinColumn (name = "kunde_fk", nullable = false)
 	@OrderColumn (name = "idx", nullable = false)
 	@XmlTransient
-	private List<Bestellung> bestellungen;
+	private Set<Bestellung> bestellungen;
 	private URI bestellURI;
 
 	public Long getKundennr() {
@@ -188,11 +188,11 @@ public abstract class AbstractKunde implements Serializable {
 		this.adresse = adresse;
 	}
 
-	public List<Bestellung> getBestellungen() {
+	public Set<Bestellung> getBestellungen() {
 		return bestellungen;
 	}
 
-	public void setBestellungen(List<Bestellung> bestellungen) {
+	public void setBestellungen(Set<Bestellung> bestellungen) {
 		this.bestellungen = bestellungen;
 	}
 
@@ -220,31 +220,17 @@ public abstract class AbstractKunde implements Serializable {
 		this.email = email;
 	}
 
-	public AbstractKunde() {
-		super();
-		this.kundennr = null;
-		this.adresse = null;
-		this.nachname = null;
-		this.bestellungen = new ArrayList<>();
-		this.bestellURI = null;
-	}
-
 	@Override
 	public String toString() {
 		return "AbstractKunde [kundennr=" + kundennr + ", nachname=" + nachname
 				+ ", email=" + email + "]";
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result
-				+ ((kundennr == null) ? 0 : kundennr.hashCode());
-		result = prime * result
-				+ ((nachname == null) ? 0 : nachname.hashCode());
 		return result;
 	}
 
@@ -262,18 +248,6 @@ public abstract class AbstractKunde implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (kundennr == null) {
-			if (other.kundennr != null)
-				return false;
-		} else if (!kundennr.equals(other.kundennr))
-			return false;
-		if (nachname == null) {
-			if (other.nachname != null)
-				return false;
-		} else if (!nachname.equals(other.nachname))
-			return false;
 		return true;
 	}
-
-
 }

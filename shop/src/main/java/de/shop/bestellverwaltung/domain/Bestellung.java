@@ -49,23 +49,23 @@ import de.shop.util.persistence.AbstractAuditable;
 
 @XmlRootElement
 @Entity
-@Table(indexes = {
-		@Index(columnList = "kunde_fk"),
-		@Index(columnList = "erzeugt")
-	})
-@NamedQueries({
-	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN_BY_KUNDE, query = "SELECT b"
-				            + " FROM   Bestellung b"
-							+ " WHERE  b.kunde = :" + Bestellung.PARAM_KUNDE),
-		@NamedQuery(name  = Bestellung.FIND_KUNDE_BY_ID,
-	 			    query = "SELECT b.kunde"
-	                        + " FROM   Bestellung b"
-	  			            + " WHERE  b.id = :" + Bestellung.PARAM_ID)
-	})
-@NamedEntityGraphs({
-	@NamedEntityGraph(name = Bestellung.GRAPH_LIEFERUNGEN, attributeNodes = @NamedAttributeNode("lieferungen"))
-})
-@Cacheable
+//@Table(indexes = {
+//		@Index(columnList = "kunde_fk"),
+//		@Index(columnList = "erzeugt")
+//	})
+//@NamedQueries({
+//	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN_BY_KUNDE, query = "SELECT b"
+//				            + " FROM   Bestellung b"
+//							+ " WHERE  b.kunde = :" + Bestellung.PARAM_KUNDE),
+//		@NamedQuery(name  = Bestellung.FIND_KUNDE_BY_ID,
+//	 			    query = "SELECT b.kunde"
+//	                        + " FROM   Bestellung b"
+//	  			            + " WHERE  b.id = :" + Bestellung.PARAM_ID)
+//	})
+//@NamedEntityGraphs({
+//	@NamedEntityGraph(name = Bestellung.GRAPH_LIEFERUNGEN, attributeNodes = @NamedAttributeNode("lieferungen"))
+//})
+//@Cacheable
 public class Bestellung extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
@@ -202,14 +202,7 @@ public class Bestellung extends AbstractAuditable {
 		result = prime * result
 				+ ((bestelldatum == null) ? 0 : bestelldatum.hashCode());
 		result = prime * result
-				+ ((bestellnr == null) ? 0 : bestellnr.hashCode());
-		result = prime * result + (istAusgeliefert ? 1231 : 1237);
-		result = prime * result + ((kunde == null) ? 0 : kunde.hashCode());
-		result = prime * result
 				+ ((kundeUri == null) ? 0 : kundeUri.hashCode());
-		result = prime * result + (mitVerpackung ? 1231 : 1237);
-		result = prime * result
-				+ ((positionen == null) ? 0 : positionen.hashCode());
 		return result;
 	}
 
@@ -227,31 +220,14 @@ public class Bestellung extends AbstractAuditable {
 				return false;
 		} else if (!bestelldatum.equals(other.bestelldatum))
 			return false;
-		if (bestellnr == null) {
-			if (other.bestellnr != null)
-				return false;
-		} else if (!bestellnr.equals(other.bestellnr))
-			return false;
-		if (istAusgeliefert != other.istAusgeliefert)
-			return false;
-		if (kunde == null) {
-			if (other.kunde != null)
-				return false;
-		} else if (!kunde.equals(other.kunde))
-			return false;
 		if (kundeUri == null) {
 			if (other.kundeUri != null)
 				return false;
 		} else if (!kundeUri.equals(other.kundeUri))
 			return false;
-		if (mitVerpackung != other.mitVerpackung)
-			return false;
-		if (positionen == null) {
-			if (other.positionen != null)
-				return false;
-		} else if (!positionen.equals(other.positionen))
-			return false;
 		return true;
 	}
+
+
 
 }

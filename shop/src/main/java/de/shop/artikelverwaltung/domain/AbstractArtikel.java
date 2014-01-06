@@ -80,8 +80,6 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 	message = TYP_PATTERN_BV)
 	private String typ;		
 	//bei Fahrrad: Mountainbike, Trekkingbike, ...; bei Zubehoer: Gepaecktraeger, ...; bei Ersatzteil: Schlauch, ...
-	
-	private URI artikelUri;
 
 	public static final String ZUBEHOER = "Z";
 	public static final String FAHRRAD = "F";
@@ -111,13 +109,6 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 		this.typ = typ;
 	}
 
-	public URI getArtikelUri() {
-		return artikelUri;
-	}
-
-	public void setArtikelUri(URI artikelUri) {
-		this.artikelUri = artikelUri;
-	}
 	@Override
 	public String toString() {
 		return "AbstractArtikel [artikelNr=" + artikelNr + ", preis=" + preis
@@ -127,11 +118,7 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((artikelNr == null) ? 0 : artikelNr.hashCode());
-		result = prime * result
-				+ ((artikelUri == null) ? 0 : artikelUri.hashCode());
+		int result = super.hashCode();
 		result = prime * result + ((preis == null) ? 0 : preis.hashCode());
 		result = prime * result + ((typ == null) ? 0 : typ.hashCode());
 		return result;
@@ -141,21 +128,11 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		AbstractArtikel other = (AbstractArtikel) obj;
-		if (artikelNr == null) {
-			if (other.artikelNr != null)
-				return false;
-		} else if (!artikelNr.equals(other.artikelNr))
-			return false;
-		if (artikelUri == null) {
-			if (other.artikelUri != null)
-				return false;
-		} else if (!artikelUri.equals(other.artikelUri))
-			return false;
 		if (preis == null) {
 			if (other.preis != null)
 				return false;
@@ -168,7 +145,8 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 			return false;
 		return true;
 	}
-	
+
+
 //	public Artikel build() {
 //		// TODO Auto-generated method stub
 //		return null;

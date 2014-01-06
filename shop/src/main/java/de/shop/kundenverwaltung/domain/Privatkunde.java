@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Privatkunde extends AbstractKunde {
-	private static final long serialVersionUID = -3177911520687689458L;
+	private static final long serialVersionUID = -8296097010058040785L;
 	
 	private static final int VORNAME_MIN_LAENGE = 2;
 	private static final int VORNAME_MAX_LAENGE = 32;

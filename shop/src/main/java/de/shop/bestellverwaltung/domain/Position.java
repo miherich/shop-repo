@@ -69,6 +69,9 @@ public class Position extends AbstractAuditable {
 	@Transient
 	private URI bestellURI;
 	
+	@Transient
+	private URI artikelURI;
+	
 	@PostPersist
 	private void postPersist() {
 		LOGGER.debugf("Neue Bestellposition mit ID=%d", id);
@@ -114,6 +117,14 @@ public class Position extends AbstractAuditable {
 		this.bestellURI = bestellURI;
 	}
 
+	public URI getArtikelURI() {
+		return artikelURI;
+	}
+
+	public void setArtikelURI(URI artikelURI) {
+		this.artikelURI = artikelURI;
+	}
+
 	@Override
 	public String toString() {
 		return "Position [id=" + id + ", bestellung=" + bestellung
@@ -126,12 +137,10 @@ public class Position extends AbstractAuditable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + anzahl;
-		result = prime * result + ((artikel == null) ? 0 : artikel.hashCode());
+		result = prime * result
+				+ ((artikelURI == null) ? 0 : artikelURI.hashCode());
 		result = prime * result
 				+ ((bestellURI == null) ? 0 : bestellURI.hashCode());
-		result = prime * result
-				+ ((bestellung == null) ? 0 : bestellung.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -146,26 +155,18 @@ public class Position extends AbstractAuditable {
 		Position other = (Position) obj;
 		if (anzahl != other.anzahl)
 			return false;
-		if (artikel == null) {
-			if (other.artikel != null)
+		if (artikelURI == null) {
+			if (other.artikelURI != null)
 				return false;
-		} else if (!artikel.equals(other.artikel))
+		} else if (!artikelURI.equals(other.artikelURI))
 			return false;
 		if (bestellURI == null) {
 			if (other.bestellURI != null)
 				return false;
 		} else if (!bestellURI.equals(other.bestellURI))
 			return false;
-		if (bestellung == null) {
-			if (other.bestellung != null)
-				return false;
-		} else if (!bestellung.equals(other.bestellung))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		return true;
 	}
+
+
 }
