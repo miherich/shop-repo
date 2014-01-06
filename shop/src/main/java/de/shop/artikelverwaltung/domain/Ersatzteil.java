@@ -3,6 +3,7 @@ package de.shop.artikelverwaltung.domain;
 import java.net.URI;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,6 +16,7 @@ public class Ersatzteil extends AbstractArtikel {
 	@Valid
 	private Fahrrad fahrrad;
 	
+	@Transient
 	private URI fahrradURI;
 
 	public Fahrrad getFahrrad() {

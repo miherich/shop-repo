@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.persistence.Basic;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -61,6 +62,7 @@ public class Adresse {
 	@Valid
 	private AbstractKunde kunde;
 	
+	@Transient
 	private URI kundeURI;
 	
 	

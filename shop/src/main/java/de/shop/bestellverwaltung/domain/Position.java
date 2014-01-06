@@ -57,6 +57,7 @@ public class Position extends AbstractAuditable {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "artikel_fk", nullable = false)
+	@Transient
 	@XmlTransient
 	@Valid
 	private AbstractArtikel artikel;

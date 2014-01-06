@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -168,8 +169,11 @@ public abstract class AbstractKunde implements Serializable {
 	@OneToMany
 	@JoinColumn (name = "kunde_fk", nullable = false)
 	@OrderColumn (name = "idx", nullable = false)
+	@Transient
 	@XmlTransient
 	private Set<Bestellung> bestellungen;
+	
+	@Transient
 	private URI bestellURI;
 
 	public Long getKundennr() {
