@@ -95,8 +95,7 @@ public class Bestellung extends AbstractAuditable {
 	@JoinColumn(name = "bestellung_fk", nullable = false)
 	@NotEmpty(message = "{bestellung.positionen.notEmpty}")
 	@Valid
-	@Transient
-	private Set<Position> positionen;
+	private List<Position> positionen;
 	
 	@Transient
 	private URI kundeUri;

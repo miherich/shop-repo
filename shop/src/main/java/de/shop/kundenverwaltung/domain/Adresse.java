@@ -5,12 +5,15 @@ import java.net.URI;
 import javax.persistence.Basic;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 public class Adresse {
@@ -59,7 +62,11 @@ public class Adresse {
 			message = ORT_PATTERN_BV)
 	private String ort;
 	
-	@Valid
+	//wegen gerichteter Beziehung?!
+	//@OneToOne
+	//@JoinColumn(name = "kunde_fk", nullable = false, unique = true)
+	@XmlTransient
+	@Transient
 	private AbstractKunde kunde;
 	
 	@Transient

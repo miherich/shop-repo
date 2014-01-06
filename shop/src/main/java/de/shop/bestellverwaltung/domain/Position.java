@@ -53,13 +53,12 @@ public class Position extends AbstractAuditable {
 	@Basic(optional = false)
 	private Long id = KEINE_ID;
 	
-	private Bestellung bestellung;
+	//gerichtete Beziehung
+//	private Bestellung bestellung;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "artikel_fk", nullable = false)
-	@Transient
 	@XmlTransient
-	@Valid
 	private AbstractArtikel artikel;
 	
 	@Min(value = ANZAHL_MIN, message = "{bestellposition.anzahl.min}")
@@ -86,13 +85,13 @@ public class Position extends AbstractAuditable {
 		this.id = id;
 	}
 
-	public Bestellung getBestellung() {
-		return bestellung;
-	}
-
-	public void setBestellung(Bestellung bestellung) {
-		this.bestellung = bestellung;
-	}
+//	public Bestellung getBestellung() {
+//		return bestellung;
+//	}
+//
+//	public void setBestellung(Bestellung bestellung) {
+//		this.bestellung = bestellung;
+//	}
 
 	public AbstractArtikel getArtikel() {
 		return artikel;
@@ -128,9 +127,8 @@ public class Position extends AbstractAuditable {
 
 	@Override
 	public String toString() {
-		return "Position [id=" + id + ", bestellung=" + bestellung
-				+ ", artikel=" + artikel + ", anzahl=" + anzahl
-				+ ", bestellURI=" + bestellURI + "]";
+		return "Position [id=" + id + ", anzahl=" + anzahl + ", bestellURI="
+				+ bestellURI + ", artikelURI=" + artikelURI + "]";
 	}
 
 	@Override
