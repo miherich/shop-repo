@@ -19,7 +19,6 @@ import javax.validation.constraints.Size;
 import com.google.common.base.Strings;
 
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
-import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
 import de.shop.util.interceptor.Log;
@@ -153,10 +152,7 @@ public class ArtikelService implements Serializable {
 //	public Zubehoer createZubehoer(Zubehoer zubehoer) {
 //		return Mock.createZubehoer(zubehoer);
 //	}
-//	
-//	public Ersatzteil createErsatzteil(Ersatzteil ersatzteil) {
-//		return Mock.createErsatzteil(ersatzteil);
-//	}
+//
 //	
 //	public void updateArtikel(AbstractArtikel artikel) {
 //		 Mock.updateArtikel(artikel);

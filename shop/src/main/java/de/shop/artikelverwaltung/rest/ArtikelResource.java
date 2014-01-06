@@ -120,15 +120,6 @@ public class ArtikelResource {
 		return Response.created(getUriArtikel(zubehoer, uriInfo)).build();
 	}
 
-	@POST
-	@Path("/ersatzteil")
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	@Produces
-	public Response createErsatzteil(@Valid Ersatzteil ersatzteil) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		ersatzteil = as.createErsatzteil(ersatzteil);
-		return Response.created(getUriArtikel(ersatzteil, uriInfo)).build();
-	}
 
 	@PUT
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })

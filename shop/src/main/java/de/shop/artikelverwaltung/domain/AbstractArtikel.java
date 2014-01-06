@@ -42,11 +42,10 @@ import de.shop.util.persistence.AbstractAuditable;
 //						+ " WHERE    a.preis < :" + Artikel.PARAM_PREIS
 //			 	        + " ORDER BY a.id ASC")
 //})
-@XmlSeeAlso({ Zubehoer.class, Fahrrad.class, Ersatzteil.class })
+@XmlSeeAlso({ Zubehoer.class, Fahrrad.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({ @Type(value = Zubehoer.class, name = AbstractArtikel.ZUBEHOER),
-		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD),
-		@Type(value = Ersatzteil.class, name = AbstractArtikel.ERSATZTEIL) })
+		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD)})
 public abstract class AbstractArtikel extends AbstractAuditable{
 
 	private static final long serialVersionUID = -6997989703729888088L;
