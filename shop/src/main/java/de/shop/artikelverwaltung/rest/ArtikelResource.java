@@ -34,7 +34,6 @@ import javax.ws.rs.core.UriInfo;
 //import org.jboss.logging.Logger;
 
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
-import de.shop.artikelverwaltung.domain.Ersatzteil;
 import de.shop.artikelverwaltung.domain.Fahrrad;
 import de.shop.artikelverwaltung.domain.Zubehoer;
 import de.shop.artikelverwaltung.service.ArtikelService;
