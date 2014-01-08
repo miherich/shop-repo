@@ -1,7 +1,6 @@
 package de.shop.artikelverwaltung.domain;
 
 import java.math.BigDecimal;
-import java.net.URI;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -50,9 +49,7 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 
 	private static final long serialVersionUID = -6997989703729888088L;
 	private static final String PREFIX = "Artikel.";
-	public static final String FIND_VERFUEGBARE_ARTIKEL = PREFIX + "findVerfuegbareArtikel";
 	public static final String FIND_ARTIKEL_BY_BEZ = PREFIX + "findArtikelByBez";
-	public static final String FIND_ARTIKEL_MAX_PREIS = PREFIX + "findArtikelByMaxPreis";
 
 	public static final String PARAM_BEZEICHNUNG = "bezeichnung";
 	public static final String PARAM_PREIS = "preis";

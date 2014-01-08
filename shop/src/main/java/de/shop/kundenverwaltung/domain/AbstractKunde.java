@@ -124,22 +124,24 @@ public abstract class AbstractKunde implements Serializable {
 	
 	private static final String PREFIX = "AbstractKunde.";
 	public static final String FIND_KUNDEN = PREFIX + "findKunden";
-	public static final String FIND_KUNDEN_ORDER_BY_ID = PREFIX + "findKundenOrderById";
-	public static final String FIND_IDS_BY_PREFIX = PREFIX + "findIdsByPrefix";
+//	public static final String FIND_KUNDEN_ORDER_BY_ID = PREFIX + "findKundenOrderById";
+//	public static final String FIND_IDS_BY_PREFIX = PREFIX + "findIdsByPrefix";
 	public static final String FIND_KUNDEN_BY_NACHNAME = PREFIX + "findKundenByNachname";
-	public static final String FIND_NACHNAMEN_BY_PREFIX = PREFIX + "findNachnamenByPrefix";
+//	public static final String FIND_NACHNAMEN_BY_PREFIX = PREFIX + "findNachnamenByPrefix";
 	public static final String FIND_KUNDE_BY_EMAIL = PREFIX + "findKundeByEmail";
-	public static final String FIND_KUNDEN_BY_PLZ = PREFIX + "findKundenByPlz";
-	public static final String FIND_KUNDEN_BY_DATE = PREFIX + "findKundenByDate";
-	public static final String FIND_PRIVATKUNDEN_FIRMENKUNDEN = PREFIX + "findPrivatkundenFirmenkunden";
+//	public static final String FIND_KUNDEN_BY_PLZ = PREFIX + "findKundenByPlz";
+//	public static final String FIND_KUNDEN_BY_DATE = PREFIX + "findKundenByDate";
+//	public static final String FIND_PRIVATKUNDEN_FIRMENKUNDEN = PREFIX + "findPrivatkundenFirmenkunden";
 	
-	public static final String PARAM_KUNDE_ID = "kundeId";
-	public static final String PARAM_KUNDE_ID_PREFIX = "idPrefix";
-	public static final String PARAM_KUNDE_NACHNAME = "nachname";
-	public static final String PARAM_KUNDE_NACHNAME_PREFIX = "nachnamePrefix";
-	public static final String PARAM_KUNDE_ADRESSE_PLZ = "plz";
-	public static final String PARAM_KUNDE_SEIT = "seit";
-	public static final String PARAM_KUNDE_EMAIL = "email";
+//	public static final String PARAM_KUNDE_ID = "kundeId";
+//	public static final String PARAM_KUNDE_ID_PREFIX = "idPrefix";
+//	public static final String PARAM_KUNDE_NACHNAME = "nachname";
+//	public static final String PARAM_KUNDE_NACHNAME_PREFIX = "nachnamePrefix";
+//	public static final String PARAM_KUNDE_ADRESSE_PLZ = "plz";
+//	public static final String PARAM_KUNDE_SEIT = "seit";
+//	public static final String PARAM_KUNDE_EMAIL = "email";
+
+//	Brauchen wir diese Konstanten überhaupt???? weil wenn ich sie auskommentiere, dann ändert sich nichts und es gibt weder Warnings noch errors !!!!
 	
 	public static final String GRAPH_BESTELLUNGEN = PREFIX + "bestellungen";
 	

@@ -19,7 +19,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.xml.bind.annotation.XmlTransient;
-import javax.validation.Valid;
 
 import org.jboss.logging.Logger;
 import org.hibernate.validator.constraints.NotEmpty;
