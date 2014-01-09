@@ -104,11 +104,11 @@ public class ArtikelResource {
 		return Response.created(getUriArtikel(artikel, uriInfo)).build();
 	}
 
-	@PUT
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	@Produces
-	public void updateArtikel(@Valid AbstractArtikel artikel) {
-		as.updateArtikel(artikel);
-	}
+//	@PUT
+//	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+//	@Produces
+//	public void updateArtikel(@Valid AbstractArtikel artikel) {
+//		as.updateArtikel(artikel);
+//	}
 
 }
