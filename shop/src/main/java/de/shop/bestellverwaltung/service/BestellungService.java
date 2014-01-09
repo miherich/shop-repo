@@ -3,7 +3,6 @@ package de.shop.bestellverwaltung.service;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
-import javax.persistence.FetchType;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.domain.Position;
@@ -13,10 +12,8 @@ import de.shop.util.interceptor.Log;
 @Log
 @Dependent
 public interface BestellungService {
-	Bestellung findBestellungById(Long id, FetchType fetch);
+	Bestellung findBestellungById(Long id);
 	Position findPositionById(Long id, Long bid);
-	List<Bestellung> findBestellungenByKunde(AbstractKunde kunde);
-	List<Bestellung> findBestellungenByIds(List<Long> ids, FetchType fetch);
 	List<Bestellung> findAllBestellungen();
 	Bestellung createBestellung(Bestellung bestellung, Long kundenNr);
 	Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde);

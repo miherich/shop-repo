@@ -32,10 +32,10 @@ import de.shop.util.persistence.AbstractAuditable;
 	@Index(columnList = "artikel_fk")
 })
 @NamedQueries({
- @NamedQuery(name  = Position.FIND_LADENHUETER,
-	            query = "SELECT a"
-	            	    + " FROM   Artikel a"
-	            	    + " WHERE  a NOT IN (SELECT bp.artikel FROM Bestellposition bp)")
+ @NamedQuery(name  = Position.FIND_POSITION_BY_ID,
+	            query = "SELECT p"
+	            	    + " FROM   POSITION p"
+	            	    + " WHERE  p.id = :id and p.bestellung_fk = :bid")
 })
 public class Position extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
@@ -44,7 +44,10 @@ public class Position extends AbstractAuditable {
 	public static final String BESTELLUNG_POSITION_NOTNULL_BV = "{bestellverwaltung.position.anzahl.notNull}";
 	
 	private static final String PREFIX = "Position.";
-	public static final String FIND_LADENHUETER = PREFIX + "findLadenhueter";
+	public static final String FIND_POSITION_BY_ID = PREFIX + "findPositionById";
+	
+	public static final String PARAM_POSITION_ID = "id";
+	public static final String PARAM_BESTELLUNG_ID = "bid";
 	private static final int ANZAHL_MIN = 1;
 	
 	@Id

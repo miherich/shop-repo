@@ -9,11 +9,6 @@ import javax.decorator.Decorator;
 import javax.decorator.Delegate;
 import javax.inject.Inject;
 
-
-
-
-import javax.persistence.FetchType;
-
 import org.jboss.logging.Logger;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
@@ -31,37 +26,22 @@ public abstract class AbstractBestellungServiceMitGeschenkverpackung implements 
 	@Delegate
 	@Any
 	private BestellungService bs;
-	
 
-	/**
-	 * {inheritDoc}
-	 */
 	@Override
-	public Bestellung findBestellungById(Long id, FetchType fetch) {
-		return bs.findBestellungById(id, fetch);
-	}
-	
-	@Override
-	public List<Bestellung> findBestellungenByIds(List<Long> ids, FetchType fetch) {
-		return bs.findBestellungenByIds(ids, fetch);
+	public Bestellung findBestellungById(Long id) {
+		return bs.findBestellungById(id);
 	}
 
 	@Override
 	public Position findPositionById(Long id, Long bid) {
 		return bs.findPositionById(id, bid);
 	}
-
-	/**
-	 * {inheritDoc}
-	 */
+	
 	@Override
-	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
-		return bs.findBestellungenByKunde(kunde);
+	public List<Bestellung> findAllBestellungen(){
+		return bs.findAllBestellungen();
 	}
 
-	/**
-	 * {inheritDoc}
-	 */
 	@Override
 	public Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde) {
 		
@@ -85,11 +65,4 @@ public abstract class AbstractBestellungServiceMitGeschenkverpackung implements 
 		
 		return bestellung1;
 	}
-
-	
-//	@Override
-//	public Position createPosition(Position position)
-//	{
-//		return bs.createPosition(position);
-//	}
 }

@@ -71,7 +71,6 @@ public class BestellungResource {
 
 	@GET
 	public Response findAllBestellungen() {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final List<Bestellung> bestellungList = bs.findAllBestellungen();
 		return Response.ok(new GenericEntity<List<Bestellung>>(bestellungList) {
 		}).build();
@@ -80,8 +79,7 @@ public class BestellungResource {
 	@GET
 	@Path("{" + BESTELLUNG_ID_PATH_PARAM + ":[1-9][0-9]*}")
 	public Response findBestellungById(@PathParam(BESTELLUNG_ID_PATH_PARAM) Long id) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		final Bestellung bestellung = bs.findBestellungById(id, wieder dieser dumme fetchtype - enum -.-);
+		final Bestellung bestellung = bs.findBestellungById(id);
 
 		setStructuralLinks(bestellung, uriInfo);
 
@@ -117,7 +115,6 @@ public class BestellungResource {
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
 	public Response createBestellung(@Valid Bestellung bestellung) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
 //		bestellung = bs.createBestellung(bestellung);
 //		return Response.created(getUriBestellung(bestellung, uriInfo)).build();
 		

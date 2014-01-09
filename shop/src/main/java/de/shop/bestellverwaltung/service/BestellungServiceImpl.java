@@ -21,6 +21,7 @@ import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.service.KundeService;
@@ -47,91 +48,36 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	
 	@Inject
 	private KundeService ks;
-	
-	private static final int MAX_BESTELLUNGEN = 10;
-	
-	/**
-	 * {inheritDoc}
-	 */
+
 	@Override
 	@NotNull(message = BESTELLUNG_NOT_FOUND_ID_BV)
-	public Bestellung findBestellungById(Long id, FetchType fetch) {
+	public Bestellung findBestellungById(Long id) {
 		if (id == null) {
 			return null;
 		}
 		
 		Bestellung bestellung;
-		EntityGraph<?> entityGraph;
-		Map<String, Object> props;
+//		EntityGraph<?> entityGraph;
+//		Map<String, Object> props;
 		bestellung = em.find(Bestellung.class, id);
 		
 		return bestellung;
 	}
 	
 	@Override
-	@Size(min = 1, message = "{bestellung.notFound.ids}")
-	public List<Bestellung> findBestellungenByIds(List<Long> ids, FetchType fetch) {
-		if (ids == null || ids.isEmpty()) {
-			return Collections.emptyList();
-		}
-		
-		// SELECT b
-		// FROM   Bestellung b
-		// WHERE  b.id = <id> OR ...
-
-		final CriteriaBuilder builder = em.getCriteriaBuilder();
-		final CriteriaQuery<Bestellung> criteriaQuery  = builder.createQuery(Bestellung.class);
-		final Root<Bestellung> b = criteriaQuery.from(Bestellung.class);
-		
-		// Die Vergleichen mit "=" als Liste aufbauen
-		final Path<Long> idPath = b.get("id");
-		final List<Predicate> predList = new ArrayList<>();
-		for (Long id : ids) {
-			final Predicate equal = builder.equal(idPath, id);
-			predList.add(equal);
-		}
-		// Die Vergleiche mit "=" durch "or" verknuepfen
-		final Predicate[] predArray = new Predicate[predList.size()];
-		final Predicate pred = builder.or(predList.toArray(predArray));
-		criteriaQuery.where(pred).distinct(true);
-
-		final TypedQuery<Bestellung> query = em.createQuery(criteriaQuery);
-		if (FetchType.MIT_LIEFERUNGEN.equals(fetch)) {
-			final EntityGraph<?> entityGraph = em.getEntityGraph(Bestellung.GRAPH_LIEFERUNGEN);
-			query.setHint(LOADGRAPH, entityGraph);
-		}
-				
-		return query.getResultList();
-	}
-
-
-	@Override
 	@NotNull(message = BESTELLUNG_NOT_FOUND_ID_BV)
 	public Position findPositionById(Long id, Long bid) {
-		// TODO Datenbanzugriffsschicht statt Mock
-		return Mock.findPositionById(id, bid);
-	}
-
-	/**
-	 * {inheritDoc}
-	 */
-	@Override
-	@NotNull (message = BESTELLUNG_ZU_KUNDE_NOT_FOUND_BV)
-	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
-		// TODO Datenbanzugriffsschicht statt Mock
-		return Mock.findBestellungenByKunde(kunde);
+		return em.createNamedQuery(Position.FIND_POSITION_BY_ID, Position.class)
+				.setParameter(Position.PARAM_POSITION_ID, id)
+				.setParameter(Position.PARAM_BESTELLUNG_ID, bid)
+				.getSingleResult();
 	}
 	
 	@Override
 	@NotNull(message = BESTELLUNG_NOT_FOUND_BV)
 	public List<Bestellung> findAllBestellungen() {
-		final int anzahl = MAX_BESTELLUNGEN;
-		final List<Bestellung> bestellungList = new ArrayList<>(anzahl);
-		for (int i = 1; i <= anzahl; i++) {
-			final Bestellung bestellung = Mock.findBestellungById(Long.valueOf(i));
-			bestellungList.add(bestellung);
-		}
-		return bestellungList;
+		return em.createNamedQuery(Bestellung.FIND_BESTELLUNGEN, Bestellung.class)
+				.getResultList();
 	}
 	
 
@@ -169,10 +115,7 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		for (Position bp : bestellung.getPositionen()) {
 			bp.setId(KEINE_ID);
 		}
-		// FIXME JDK 8 hat Lambda-Ausdruecke
-		//bestellung.getBestellpositionen()
-		//          .forEach(bp -> bp.setId(KEINE_ID));
-		
+
 		em.persist(bestellung);
 		event.fire(bestellung);
 

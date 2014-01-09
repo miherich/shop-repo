@@ -49,23 +49,16 @@ import de.shop.util.persistence.AbstractAuditable;
 
 @XmlRootElement
 @Entity
-//@Table(indexes = {
-//		@Index(columnList = "kunde_fk"),
-//		@Index(columnList = "erzeugt")
-//	})
-//@NamedQueries({
-//	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN_BY_KUNDE, query = "SELECT b"
-//				            + " FROM   Bestellung b"
-//							+ " WHERE  b.kunde = :" + Bestellung.PARAM_KUNDE),
-//		@NamedQuery(name  = Bestellung.FIND_KUNDE_BY_ID,
-//	 			    query = "SELECT b.kunde"
-//	                        + " FROM   Bestellung b"
-//	  			            + " WHERE  b.id = :" + Bestellung.PARAM_ID)
-//	})
-//@NamedEntityGraphs({
-//	@NamedEntityGraph(name = Bestellung.GRAPH_LIEFERUNGEN, attributeNodes = @NamedAttributeNode("lieferungen"))
-//})
-//@Cacheable
+@Table(indexes = {
+		@Index(columnList = "kunde_fk"),
+		@Index(columnList = "erzeugt")
+	})
+@NamedQueries({
+	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN,
+					query = "SELECT b"
+				            + " FROM   Bestellung b"),
+})
+@Cacheable
 public class Bestellung extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
@@ -74,11 +67,7 @@ public class Bestellung extends AbstractAuditable {
 	private static final String BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}";
 	
 	private static final String PREFIX = "Bestellung.";
-	public static final String FIND_BESTELLUNGEN_BY_KUNDE = PREFIX + "findBestellungenByKunde";
-	public static final String FIND_KUNDE_BY_ID = PREFIX + "findBestellungKundeById";
-	
-	public static final String PARAM_KUNDE = "kunde";
-	public static final String PARAM_ID = "id";
+	public static final String FIND_BESTELLUNGEN = PREFIX + "findAllBestellungen";
 	
 	@Id
 	@GeneratedValue
@@ -151,23 +140,12 @@ public class Bestellung extends AbstractAuditable {
 		this.mitVerpackung = mitVerpackung;
 	}
 
-	public Set<Position> getPositionen() {
-		if (positionen == null) {
-			return null;
-		}
-		
-		return Collections.unmodifiableSet(positionen);
+	public List<Position> getPositionen() {
+		return positionen;
 	}
 
-	public void setPositionen(Set<Position> positionen) {
-		if (this.positionen == null) {
-			this.positionen = positionen;
-			return;
-		}
-		// Wiederverwendung der vorhandenen Collection
-		this.positionen.clear();
-		if (positionen != null)
-			this.positionen.addAll(positionen);
+	public void setPositionen(List<Position> positionen) {
+		this.positionen = positionen;
 	}
 
 	public URI getKundeUri() {
