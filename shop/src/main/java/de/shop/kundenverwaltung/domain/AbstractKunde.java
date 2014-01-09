@@ -40,16 +40,16 @@ import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.ScriptAssert;
-import org.jboss.arquillian.drone.api.annotation.Default;
+//import org.hibernate.validator.constraints.ScriptAssert;
+//import org.jboss.arquillian.drone.api.annotation.Default;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 
-@ScriptAssert(lang = "javascript",
-script = "_this.password != null && !_this.password.equals(\"\")"
-         + " && _this.password.equals(_this.passwordWdh)",
-message = "{kunde.password.notEqual}",
-groups = { Default.class, PasswordGroup.class })
+//@ScriptAssert(lang = "javascript",
+//script = "_this.password != null && !_this.password.equals(\"\")"
+//         + " && _this.password.equals(_this.passwordWdh)",
+//message = "{kunde.password.notEqual}",
+//groups = { Default.class, PasswordGroup.class })
 
 @Entity
 //Zu email wird unten ein UNIQUE Index definiert
