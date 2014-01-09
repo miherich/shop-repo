@@ -64,11 +64,6 @@ public class ArtikelResource {
 	@Inject
 	private UriHelper uriHelper;
 
-	// @PreDestroy
-	// private void preDestroy() {
-	// LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
-	// }
-
 	@GET
 	public Response findAllArtikel() {
 		// TODO Anwendungskern statt Mock, Verwendung von Locale

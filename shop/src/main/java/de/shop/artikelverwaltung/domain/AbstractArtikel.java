@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Index;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,24 +25,12 @@ import de.shop.util.persistence.AbstractAuditable;
 @XmlRootElement
 @Entity
 //@Table(indexes = @Index(columnList = "bezeichnung"))
-//@NamedQueries({
-//	@NamedQuery(name  = Artikel.FIND_VERFUEGBARE_ARTIKEL,
-//            	query = "SELECT      a"
-//            	        + " FROM     Artikel a"
-//						+ " WHERE    a.ausgesondert = FALSE"
-//                        + " ORDER BY a.id ASC"),
-//	@NamedQuery(name  = Artikel.FIND_ARTIKEL_BY_BEZ,
-//            	query = "SELECT      a"
-//                        + " FROM     Artikel a"
-//						+ " WHERE    a.bezeichnung LIKE :" + Artikel.PARAM_BEZEICHNUNG
-//						+ "          AND a.ausgesondert = FALSE"
-//			 	        + " ORDER BY a.id ASC"),
-//   	@NamedQuery(name  = Artikel.FIND_ARTIKEL_MAX_PREIS,
-//            	query = "SELECT      a"
-//                        + " FROM     Artikel a"
-//						+ " WHERE    a.preis < :" + Artikel.PARAM_PREIS
-//			 	        + " ORDER BY a.id ASC")
-//})
+@NamedQueries({
+	@NamedQuery(name  = AbstractArtikel.FIND_ARTIKEL,
+            	query = "SELECT      a"
+            	        + " FROM     Artikel a"
+				)
+})
 @XmlSeeAlso({ Zubehoer.class, Fahrrad.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({ @Type(value = Zubehoer.class, name = AbstractArtikel.ZUBEHOER),
@@ -48,8 +38,8 @@ import de.shop.util.persistence.AbstractAuditable;
 public abstract class AbstractArtikel extends AbstractAuditable{
 
 	private static final long serialVersionUID = -6997989703729888088L;
-	private static final String PREFIX = "Artikel.";
-	public static final String FIND_ARTIKEL_BY_BEZ = PREFIX + "findArtikelByBez";
+	private static final String PREFIX = "AbstractArtikel.";
+	public static final String FIND_ARTIKEL = PREFIX + "findArtikel";
 
 	public static final String PARAM_BEZEICHNUNG = "bezeichnung";
 	public static final String PARAM_PREIS = "preis";
@@ -142,9 +132,4 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 		return true;
 	}
 
-
-//	public Artikel build() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }
