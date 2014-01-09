@@ -26,7 +26,6 @@ import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.bestellverwaltung.domain.Position;
-import de.shop.util.Mock;
 import de.shop.util.interceptor.Log;
 import static de.shop.util.Constants.KEINE_ID;
 
