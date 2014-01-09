@@ -31,21 +31,14 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-
-
-
-
-
 import org.hibernate.validator.constraints.Email;
 
 import com.google.common.base.Strings;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
-import de.shop.bestellverwaltung.service.BestellungService;
-import de.shop.kundenverwaltung.domain.Geschaeftskunde;
+//import de.shop.bestellverwaltung.service.BestellungService;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
-import de.shop.kundenverwaltung.domain.Privatkunde;
 import de.shop.kundenverwaltung.service.KundeService;
 import de.shop.kundenverwaltung.service.KundeService.FetchType;
 import de.shop.kundenverwaltung.service.KundeService.OrderType;
@@ -69,8 +62,8 @@ public class KundeResource {
 	@Inject
 	private KundeService ks;
 
-	@Inject
-	private BestellungService bs;
+//	@Inject
+//	private BestellungService bs;
 
 	@Context
 	private UriInfo uriInfo;
@@ -185,17 +178,19 @@ public class KundeResource {
 		public Response findBestellungenByKundeId(
 			@PathParam(KUNDEN_ID_PATH_PARAM) Long kundeId) {
 		final AbstractKunde kunde = ks.findKundeById(kundeId, FetchType.MIT_BESTELLUNGEN);
-		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
 
-		// URIs innerhalb der gefundenen Bestellungen anpassen
-		for (Bestellung bestellung : bestellungen) {
-			bestellungResource.setStructuralLinks(bestellung, uriInfo);
-		}
+		//TODO Braucht man das??
+//		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
+//
+//		// URIs innerhalb der gefundenen Bestellungen anpassen
+//		for (Bestellung bestellung : bestellungen) {
+//			bestellungResource.setStructuralLinks(bestellung, uriInfo);
+//		}
 
 		return Response
-				.ok(new GenericEntity<List<Bestellung>>(bestellungen) {
+				.ok(new GenericEntity<List<Bestellung>>(kunde.getBestellungen()) {
 				})
-				.links(getTransitionalLinksBestellungen(bestellungen, kunde,
+				.links(getTransitionalLinksBestellungen(kunde.getBestellungen(), kunde,
 						uriInfo)).build();
 	}
 
@@ -225,20 +220,10 @@ public class KundeResource {
 	}
 
 	@POST
-	@Path("/privat")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createPrivatkunde(@Valid Privatkunde kunde) {
-		kunde = ks.createPrivatkunde(kunde);
-		return Response.created(getUriKunde(kunde, uriInfo)).build();
-	}
-
-	@POST
-	@Path("/geschaeft")
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	@Produces
-	public Response createGeschaeftskunde(@Valid Geschaeftskunde kunde) {
-		kunde = ks.createGeschaeftskunde(kunde);
+	public Response createKunde(@Valid AbstractKunde kunde) {
+		kunde = ks.createKunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
 	}
 

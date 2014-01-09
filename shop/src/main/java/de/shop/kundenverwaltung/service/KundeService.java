@@ -25,7 +25,6 @@ import com.google.common.collect.ImmutableMap;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.domain.Geschaeftskunde;
 import de.shop.kundenverwaltung.domain.Privatkunde;
-import de.shop.util.Mock;
 import de.shop.util.interceptor.Log;
 
 @Dependent
@@ -141,22 +140,18 @@ public class KundeService implements Serializable {
 		return query.getResultList();
 	}
 
-	public Geschaeftskunde createGeschaeftskunde(Geschaeftskunde kunde) {
+	public <T extends AbstractKunde> T createKunde(T kunde) {
 		if (kunde == null) {
 			return kunde;
 		}
-
-		kunde = Mock.createGeschaeftskunde(kunde);
-
-		return kunde;
-	}
-	
-	public Privatkunde createPrivatkunde(Privatkunde kunde) {
-		if (kunde == null) {
-			return kunde;
+		
+		// Pruefung, ob die Email-Adresse schon existiert
+		final AbstractKunde tmp = findKundeByEmail(kunde.getEmail()); 
+		if (tmp != null) {
+			throw new EmailExistsException(kunde.getEmail());
 		}
-
-		kunde = Mock.createPrivatkunde(kunde);
+		
+		em.persist(kunde);
 
 		return kunde;
 	}
