@@ -85,49 +85,42 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	/**
 	 * {inheritDoc}
 	 */
-	@Override
-	public Bestellung createBestellung(Bestellung bestellung, Long kundeId) {
-		if (bestellung == null) {
-			return null;
-		}
-		
-		// Den persistenten Kunden mit der transienten Bestellung verknuepfen
-		final AbstractKunde kunde = ks.findKundeById(kundeId, KundeService.FetchType.MIT_BESTELLUNGEN);
-		return createBestellung(bestellung, kunde);
-	}
-	
-	@Override
-	public Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde) {
-		if (bestellung == null) {
-			return null;
-		}
-		
-		// Den persistenten Kunden mit der transienten Bestellung verknuepfen
-		if (!em.contains(kunde)) {
-			kunde = ks.findKundeById(kunde.getKundennr(), KundeService.FetchType.MIT_BESTELLUNGEN);
-		}
-		kunde.addBestellung(bestellung);
-		bestellung.setKunde(kunde);
-		
-		// Vor dem Abspeichern IDs zuruecksetzen:
-		// IDs koennten einen Wert != null haben, wenn sie durch einen Web Service uebertragen wurden
-		bestellung.setBestellnr(KEINE_ID);
-		for (Position bp : bestellung.getPositionen()) {
-			bp.setId(KEINE_ID);
-		}
-
-		em.persist(bestellung);
-		event.fire(bestellung);
-
-		return bestellung;
-	}
-
 //	@Override
-//	public Position createPosition(Position position)
-//	{
-//		position = Mock.createPosition(position);
+//	public Bestellung createBestellung(Bestellung bestellung, Long kundeId) {
+//		if (bestellung == null) {
+//			return null;
+//		}
 //		
-//		return position;
+//		// Den persistenten Kunden mit der transienten Bestellung verknuepfen
+//		final AbstractKunde kunde = ks.findKundeById(kundeId, KundeService.FetchType.MIT_BESTELLUNGEN);
+//		return createBestellung(bestellung, kunde);
 //	}
+//	
+//	@Override
+//	public Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde) {
+//		if (bestellung == null) {
+//			return null;
+//		}
+//		
+//		// Den persistenten Kunden mit der transienten Bestellung verknuepfen
+//		if (!em.contains(kunde)) {
+//			kunde = ks.findKundeById(kunde.getKundennr(), KundeService.FetchType.MIT_BESTELLUNGEN);
+//		}
+//		kunde.addBestellung(bestellung);
+//		bestellung.setKunde(kunde);
+//		
+//		// Vor dem Abspeichern IDs zuruecksetzen:
+//		// IDs koennten einen Wert != null haben, wenn sie durch einen Web Service uebertragen wurden
+//		bestellung.setBestellnr(KEINE_ID);
+//		for (Position bp : bestellung.getPositionen()) {
+//			bp.setId(KEINE_ID);
+//		}
+//
+//		em.persist(bestellung);
+//		event.fire(bestellung);
+//
+//		return bestellung;
+//	}
+
 
 }
