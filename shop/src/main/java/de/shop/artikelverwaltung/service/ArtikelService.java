@@ -43,15 +43,15 @@ public class ArtikelService implements Serializable {
 	public List<AbstractArtikel> findAllArtikel() {
 		return em.createNamedQuery(AbstractArtikel.FIND_ARTIKEL, AbstractArtikel.class).getResultList();
 	}
-//	
-//	public Fahrrad createFahrrad(Fahrrad fahrrad) {
-//		return Mock.createFahrrad(fahrrad);
-//	}
-//	
-//	public Zubehoer createZubehoer(Zubehoer zubehoer) {
-//		return Mock.createZubehoer(zubehoer);
-//	}
-//
+	
+	public <T extends AbstractArtikel> T createArtikel(T artikel){
+		if(artikel==null)
+			return artikel;
+		
+		em.persist(artikel);
+		return artikel;
+	}
+
 //	
 //	public void updateArtikel(AbstractArtikel artikel) {
 //		 Mock.updateArtikel(artikel);

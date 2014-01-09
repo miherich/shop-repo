@@ -1,16 +1,15 @@
 package de.shop.artikelverwaltung.domain;
 
 import java.math.BigDecimal;
+import static de.shop.util.Constants.KEINE_ID;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Index;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -55,7 +54,7 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 	@Id
 	@GeneratedValue
 	@Basic(optional = false)
-	private Long artikelNr;
+	private Long artikelNr = KEINE_ID;
 	
 	@NotNull(message = ID_NOTNULL_BV)
 	@Column(precision = PREIS_PRECISION, scale = PREIS_SCALE)

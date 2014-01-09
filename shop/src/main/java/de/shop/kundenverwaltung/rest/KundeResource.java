@@ -5,6 +5,7 @@ import static de.shop.util.Constants.FIRST_LINK;
 import static de.shop.util.Constants.LAST_LINK;
 import static de.shop.util.Constants.SELF_LINK;
 import static de.shop.util.Constants.UPDATE_LINK;
+import static de.shop.util.Constants.KEINE_ID;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
@@ -223,6 +224,7 @@ public class KundeResource {
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
 	public Response createKunde(@Valid AbstractKunde kunde) {
+		kunde.setKundennr(KEINE_ID);
 		kunde = ks.createKunde(kunde);
 		return Response.created(getUriKunde(kunde, uriInfo)).build();
 	}

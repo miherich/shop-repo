@@ -5,6 +5,7 @@ import static javax.persistence.CascadeType.REMOVE;
 
 import java.net.URI;
 import java.util.List;
+import static de.shop.util.Constants.KEINE_ID;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -127,7 +128,7 @@ public abstract class AbstractKunde implements Serializable {
 	@Id
 	@GeneratedValue
 	@Basic (optional = false)
-	private Long kundennr;
+	private Long kundennr = KEINE_ID;
 	
 	@NotNull(message = NACHNAME_NOTNULL_BV)
 	@Size(min = NACHNAME_MIN_PATTERN, max = NACHNAME_MAX_PATTERN, message = NACHNAME_LAENGE_BV)

@@ -1,6 +1,7 @@
 package de.shop.artikelverwaltung.rest;
 
 import static de.shop.util.Constants.SELF_LINK;
+import static de.shop.util.Constants.KEINE_ID;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
@@ -95,25 +96,13 @@ public class ArtikelResource {
 	}
 
 	@POST
-	@Path("/fahrrad")
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
-	public Response createFahrrad(@Valid Fahrrad fahrrad) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		fahrrad = as.createFahrrad(fahrrad);
-		return Response.created(getUriArtikel(fahrrad, uriInfo)).build();
+	public Response createArtikel(@Valid AbstractArtikel artikel) {
+		artikel.setArtikelNr(KEINE_ID);
+		artikel = as.createArtikel(artikel);
+		return Response.created(getUriArtikel(artikel, uriInfo)).build();
 	}
-
-	@POST
-	@Path("/zubehoer")
-	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-	@Produces
-	public Response createZubehoer(@Valid Zubehoer zubehoer) {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
-		zubehoer = as.createZubehoer(zubehoer);
-		return Response.created(getUriArtikel(zubehoer, uriInfo)).build();
-	}
-
 
 	@PUT
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
