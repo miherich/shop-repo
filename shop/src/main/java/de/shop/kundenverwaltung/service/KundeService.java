@@ -82,29 +82,16 @@ public class KundeService implements Serializable {
 		return kunde;
 	}
 
-
-//		public AbstractKunde findKundeById(Long id) {
-//		// TODO Datenbanzugriffsschicht statt Mock
-//		return Mock.findKundeById(id); }
-	
-	
-		@NotNull(message = KUNDE_NOT_FOUND_MAIL)
-		public AbstractKunde findKundeByEmail(String email) {
-			try {
-				return em.createNamedQuery(AbstractKunde.FIND_KUNDE_BY_EMAIL, AbstractKunde.class)
-						 .setParameter(AbstractKunde.PARAM_KUNDE_EMAIL, email)
-						 .getSingleResult();
-			}
-			catch (NoResultException e) {
-				return null;
-			}
-		
-//	public AbstractKunde findKundeByEmail(String email) {
-//		if (email == null) {
-//			return null;
-//		}
-		// TODO Datenbanzugriffsschicht statt Mock
-		//return Mock.findKundeByEmail(email); }
+	@NotNull(message = KUNDE_NOT_FOUND_MAIL)
+	public AbstractKunde findKundeByEmail(String email) {
+		try {
+			return em.createNamedQuery(AbstractKunde.FIND_KUNDE_BY_EMAIL, AbstractKunde.class)
+					 .setParameter(AbstractKunde.PARAM_KUNDE_EMAIL, email)
+					 .getSingleResult();
+		}
+		catch (NoResultException e) {
+			return null;
+		}
 	}
 	
 	@NotNull(message = KUNDE_NOT_FOUND)
@@ -131,11 +118,6 @@ public class KundeService implements Serializable {
 		return query.getResultList();
 	}
 	
-//	public List<AbstractKunde> findAllKunden() {
-//		// TODO Datenbanzugriffsschicht statt Mock
-//		return Mock.findAllKunden();
-//	}
-	
 	@Size(min = 1, message = KUNDE_NOT_FOUND_NACHNAME)
 	public List<AbstractKunde> findKundenByNachname(String nachname, FetchType fetch) {
 		final TypedQuery<AbstractKunde> query = em.createNamedQuery(AbstractKunde.FIND_KUNDEN_BY_NACHNAME,
@@ -158,22 +140,11 @@ public class KundeService implements Serializable {
 		
 		return query.getResultList();
 	}
-	
-//	public List<AbstractKunde> findKundenByNachname(String nachname) {
-//		// TODO Datenbanzugriffsschicht statt Mock
-//		return Mock.findKundenByNachname(nachname);
-//	}
 
 	public Geschaeftskunde createGeschaeftskunde(Geschaeftskunde kunde) {
 		if (kunde == null) {
 			return kunde;
 		}
-
-		// Pruefung, ob die Email-Adresse schon existiert
-		// TODO Datenbanzugriffsschicht statt Mock
-//		if (findKundeByEmail(kunde.getEmail()) != null) {
-//			throw new EmailExistsException(kunde.getEmail());
-//		}
 
 		kunde = Mock.createGeschaeftskunde(kunde);
 
@@ -184,12 +155,6 @@ public class KundeService implements Serializable {
 		if (kunde == null) {
 			return kunde;
 		}
-
-		// Pruefung, ob die Email-Adresse schon existiert
-		// TODO Datenbanzugriffsschicht statt Mock
-//		if (findKundeByEmail(kunde.getEmail()) != null) {
-//			throw new EmailExistsException(kunde.getEmail());
-//		}
 
 		kunde = Mock.createPrivatkunde(kunde);
 
@@ -219,25 +184,4 @@ public class KundeService implements Serializable {
 		em.merge(kunde);
 		return kunde;
 	}
-	}
-//		if (kunde == null) {
-//			return null;
-//		}
-//
-////		TODO Kommentare rausnehmen, wenn DB-Zugriffsschicht implementiert
-//		// Pruefung, ob die Email-Adresse schon existiert
-////		final AbstractKunde vorhandenerKunde = findKundeByEmail(kunde.getEmail());  // Kein Aufruf als Business-Methode
-////		if (vorhandenerKunde != null) {
-//			// Gibt es die Email-Adresse bei einem anderen, bereits vorhandenen Kunden?
-////			if (vorhandenerKunde.getKundennr() != kunde.getKundennr()) {
-////				throw new EmailExistsException(kunde.getEmail());
-////			}
-////		}
-//		
-//
-//		// TODO Datenbanzugriffsschicht statt Mock
-//		Mock.updateKunde(kunde);
-//		
-//		return kunde;
-//	}
-
+}

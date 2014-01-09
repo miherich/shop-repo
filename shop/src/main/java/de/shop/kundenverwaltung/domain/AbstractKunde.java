@@ -16,6 +16,8 @@ import javax.persistence.Index;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedEntityGraphs;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -53,50 +55,27 @@ groups = { Default.class, PasswordGroup.class })
 @Table (name = "kunde", indexes = @Index(columnList = "nachname"))
 @Inheritance
 @DiscriminatorColumn (name = "art", length = 1)
-//@NamedQueries({
-//	@NamedQuery(name  = AbstractKunde.FIND_KUNDEN,
-//             query = "SELECT k"
-//			        + " FROM   AbstractKunde k"),
-//	@NamedQuery(name  = AbstractKunde.FIND_KUNDEN_ORDER_BY_ID,
-//		        query = "SELECT   k"
-//				        + " FROM  AbstractKunde k"
-//		                + " ORDER BY k.id"),
-//	@NamedQuery(name  = AbstractKunde.FIND_IDS_BY_PREFIX,
-//		        query = "SELECT   k.id"
-//		                + " FROM  AbstractKunde k"
-//		                + " WHERE CONCAT('', k.id) LIKE :" + AbstractKunde.PARAM_KUNDE_ID_PREFIX
-//		                + " ORDER BY k.id"),
-//	@NamedQuery(name  = AbstractKunde.FIND_KUNDEN_BY_NACHNAME,
-//	            query = "SELECT k"
-//				        + " FROM   AbstractKunde k"
-//	            		+ " WHERE  UPPER(k.nachname) = UPPER(:" + AbstractKunde.PARAM_KUNDE_NACHNAME + ")"),
-//	@NamedQuery(name  = AbstractKunde.FIND_NACHNAMEN_BY_PREFIX,
-// 	            query = "SELECT   DISTINCT k.nachname"
-//				        + " FROM  AbstractKunde k "
-//	            		+ " WHERE UPPER(k.nachname) LIKE UPPER(:"
-//	            		+ AbstractKunde.PARAM_KUNDE_NACHNAME_PREFIX + ")"),
-// 	@NamedQuery(name  = AbstractKunde.FIND_KUNDE_BY_EMAIL,
-// 	            query = "SELECT DISTINCT k"
-// 			            + " FROM   AbstractKunde k"
-// 			            + " WHERE  k.email = :" + AbstractKunde.PARAM_KUNDE_EMAIL),
-//  @NamedQuery(name  = AbstractKunde.FIND_KUNDEN_BY_PLZ,
-//	            query = "SELECT k"
-//				        + " FROM  AbstractKunde k"
-//			            + " WHERE k.adresse.plz = :" + AbstractKunde.PARAM_KUNDE_ADRESSE_PLZ),
-//	@NamedQuery(name = AbstractKunde.FIND_KUNDEN_BY_DATE,
-//			    query = "SELECT k"
-//			            + " FROM  AbstractKunde k"
-//			    		+ " WHERE k.seit = :" + AbstractKunde.PARAM_KUNDE_SEIT),
-//	@NamedQuery(name = AbstractKunde.FIND_PRIVATKUNDEN_FIRMENKUNDEN,
-//			    query = "SELECT k"
-//			            + " FROM  AbstractKunde k"
-//			    		+ " WHERE TYPE(k) IN (Privatkunde, Firmenkunde)")
-//})
-//@NamedEntityGraphs({
-//	@NamedEntityGraph(name = AbstractKunde.GRAPH_BESTELLUNGEN,
-//				  attributeNodes = @NamedAttributeNode("bestellungen")),
-//	
-//})
+@NamedQueries({
+	@NamedQuery(name  = AbstractKunde.FIND_KUNDEN,
+             query = "SELECT k"
+			        + " FROM   AbstractKunde k"),
+	@NamedQuery(name  = AbstractKunde.FIND_KUNDEN_ORDER_BY_ID,
+		        query = "SELECT   k"
+				        + " FROM  AbstractKunde k"
+		                + " ORDER BY k.id"),
+	@NamedQuery(name  = AbstractKunde.FIND_KUNDEN_BY_NACHNAME,
+	            query = "SELECT k"
+				        + " FROM   AbstractKunde k"
+	            		+ " WHERE  UPPER(k.nachname) = UPPER(:" + AbstractKunde.PARAM_KUNDE_NACHNAME + ")"),
+ 	@NamedQuery(name  = AbstractKunde.FIND_KUNDE_BY_EMAIL,
+ 	            query = "SELECT DISTINCT k"
+ 			            + " FROM   AbstractKunde k"
+ 			            + " WHERE  k.email = :" + AbstractKunde.PARAM_KUNDE_EMAIL),
+})
+@NamedEntityGraphs({
+	@NamedEntityGraph(name = AbstractKunde.GRAPH_BESTELLUNGEN,
+	attributeNodes = @NamedAttributeNode("bestellungen")),
+})
 
 @XmlRootElement
 @XmlSeeAlso({ Geschaeftskunde.class, Privatkunde.class })
@@ -124,7 +103,7 @@ public abstract class AbstractKunde implements Serializable {
 	
 	private static final String PREFIX = "AbstractKunde.";
 	public static final String FIND_KUNDEN = PREFIX + "findKunden";
-//	public static final String FIND_KUNDEN_ORDER_BY_ID = PREFIX + "findKundenOrderById";
+	public static final String FIND_KUNDEN_ORDER_BY_ID = PREFIX + "findKundenOrderById";
 //	public static final String FIND_IDS_BY_PREFIX = PREFIX + "findIdsByPrefix";
 	public static final String FIND_KUNDEN_BY_NACHNAME = PREFIX + "findKundenByNachname";
 //	public static final String FIND_NACHNAMEN_BY_PREFIX = PREFIX + "findNachnamenByPrefix";
@@ -135,11 +114,11 @@ public abstract class AbstractKunde implements Serializable {
 	
 //	public static final String PARAM_KUNDE_ID = "kundeId";
 //	public static final String PARAM_KUNDE_ID_PREFIX = "idPrefix";
-//	public static final String PARAM_KUNDE_NACHNAME = "nachname";
+	public static final String PARAM_KUNDE_NACHNAME = "nachname";
 //	public static final String PARAM_KUNDE_NACHNAME_PREFIX = "nachnamePrefix";
 //	public static final String PARAM_KUNDE_ADRESSE_PLZ = "plz";
 //	public static final String PARAM_KUNDE_SEIT = "seit";
-//	public static final String PARAM_KUNDE_EMAIL = "email";
+	public static final String PARAM_KUNDE_EMAIL = "email";
 
 //	Brauchen wir diese Konstanten überhaupt???? weil wenn ich sie auskommentiere, dann ändert sich nichts und es gibt weder Warnings noch errors !!!!
 	
