@@ -33,8 +33,8 @@ import de.shop.util.persistence.AbstractAuditable;
 @XmlSeeAlso({ Zubehoer.class, Fahrrad.class })
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({ @Type(value = Zubehoer.class, name = AbstractArtikel.ZUBEHOER),
-		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD)})
-public abstract class AbstractArtikel extends AbstractAuditable{
+		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD) })
+public abstract class AbstractArtikel extends AbstractAuditable {
 
 	private static final long serialVersionUID = -6997989703729888088L;
 	private static final String PREFIX = "AbstractArtikel.";
@@ -116,16 +116,18 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractArtikel other = (AbstractArtikel) obj;
+		final AbstractArtikel other = (AbstractArtikel) obj;
 		if (preis == null) {
 			if (other.preis != null)
 				return false;
-		} else if (!preis.equals(other.preis))
+		} 
+		else if (!preis.equals(other.preis))
 			return false;
 		if (typ == null) {
 			if (other.typ != null)
 				return false;
-		} else if (!typ.equals(other.typ))
+		} 
+		else if (!typ.equals(other.typ))
 			return false;
 		return true;
 	}
