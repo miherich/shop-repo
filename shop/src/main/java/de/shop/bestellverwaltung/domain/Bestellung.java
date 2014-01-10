@@ -2,7 +2,6 @@ package de.shop.bestellverwaltung.domain;
 
 import static de.shop.util.Constants.KEINE_ID;
 import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.FetchType.EAGER;
 
 import java.lang.invoke.MethodHandles;
