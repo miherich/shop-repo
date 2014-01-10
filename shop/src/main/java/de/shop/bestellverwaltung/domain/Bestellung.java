@@ -187,21 +187,18 @@ public class Bestellung extends AbstractAuditable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bestellung other = (Bestellung) obj;
-		if (bestelldatum == null) 
-		{
+		if (bestelldatum == null) {
 			if (other.bestelldatum != null)
 				return false;
-		} else if (!bestelldatum.equals(other.bestelldatum))
+		}
+		else if (!bestelldatum.equals(other.bestelldatum))
 			return false;
-		if (kundeUri == null) 
-		{
+		if (kundeUri == null) {
 			if (other.kundeUri != null)
 				return false;
-		} else if (!kundeUri.equals(other.kundeUri))
+		}
+		else if (!kundeUri.equals(other.kundeUri))
 			return false;
 		return true;
 	}
-
-
-
 }
