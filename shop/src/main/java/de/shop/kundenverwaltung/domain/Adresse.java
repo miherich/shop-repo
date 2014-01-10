@@ -149,22 +149,26 @@ public class Adresse {
 		if (kundeURI == null) {
 			if (other.kundeURI != null)
 				return false;
-		} else if (!kundeURI.equals(other.kundeURI))
+		} 
+		else if (!kundeURI.equals(other.kundeURI))
 			return false;
 		if (ort == null) {
 			if (other.ort != null)
 				return false;
-		} else if (!ort.equals(other.ort))
+		}
+		else if (!ort.equals(other.ort))
 			return false;
 		if (plz == null) {
 			if (other.plz != null)
 				return false;
-		} else if (!plz.equals(other.plz))
+		}
+		else if (!plz.equals(other.plz))
 			return false;
 		if (strasse == null) {
 			if (other.strasse != null)
 				return false;
-		} else if (!strasse.equals(other.strasse))
+		}
+		else if (!strasse.equals(other.strasse))
 			return false;
 		return true;
 	}
