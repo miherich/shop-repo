@@ -30,11 +30,11 @@ public abstract class AbstractBestellungServiceMitGeschenkverpackung implements 
 	public Bestellung findBestellungById(Long id) {
 		return bs.findBestellungById(id);
 	}
-
-	@Override
-	public Position findPositionById(Long id, Long bid) {
-		return bs.findPositionById(id, bid);
-	}
+//FIXME
+//	@Override
+//	public Position findPositionById(Long id, Long bid) {
+//		return bs.findPositionById(id, bid);
+//	}
 	
 	@Override
 	public List<Bestellung> findAllBestellungen() {

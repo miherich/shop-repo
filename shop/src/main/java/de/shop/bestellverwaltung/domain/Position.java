@@ -27,16 +27,17 @@ import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.util.persistence.AbstractAuditable;
 
 @Entity
-@Table(indexes =  {
-	@Index(columnList = "bestellung_fk"),
-	@Index(columnList = "artikel_fk")
-})
-@NamedQueries({
- @NamedQuery(name  = Position.FIND_POSITION_BY_ID,
-	            query = "SELECT p"
-	            	    + " FROM   POSITION p"
-	            	    + " WHERE  p.id = :id and p.bestellung_fk = :bid")
-})
+//@Table(indexes =  {
+//	@Index(columnList = "bestellung_fk"),
+//	@Index(columnList = "artikel_fk")
+//})
+//FIXME
+//@NamedQueries({
+// @NamedQuery(name  = Position.FIND_POSITION_BY_ID,
+//	            query = "SELECT b.positionen"
+//	            	    + " FROM Bestellung b"
+//	            	    + " WHERE  b.positionen.position.id = :id and b.bestellnr = :bid")
+//})
 public class Position extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());

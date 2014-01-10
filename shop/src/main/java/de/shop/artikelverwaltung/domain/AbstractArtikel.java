@@ -32,8 +32,8 @@ import de.shop.util.persistence.AbstractAuditable;
 @Table(name="artikel")
 @NamedQueries({
 	@NamedQuery(name  = AbstractArtikel.FIND_ARTIKEL,
-            	query = "SELECT      a"
-            	        + " FROM     Artikel a"
+            	query = "SELECT a"
+            	        + " FROM AbstractArtikel a"
 				)
 })
 @XmlSeeAlso({ Zubehoer.class, Fahrrad.class })
@@ -43,8 +43,8 @@ import de.shop.util.persistence.AbstractAuditable;
 public abstract class AbstractArtikel extends AbstractAuditable {
 	
 	private static final long serialVersionUID = -6997989703729888088L;
-	private static final String PREFIX = "AbstractArtikel";
-	public static final String FIND_ARTIKEL = PREFIX + "findArtikel";
+	private static final String PREFIX = "AbstractArtikel.";
+	public static final String FIND_ARTIKEL = PREFIX + "findAllArtikel";
 
 	public static final String PARAM_BEZEICHNUNG = "bezeichnung";
 	public static final String PARAM_PREIS = "preis";

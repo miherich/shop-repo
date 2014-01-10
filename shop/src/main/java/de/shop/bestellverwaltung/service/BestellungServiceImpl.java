@@ -50,14 +50,15 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		return bestellung;
 	}
 	
-	@Override
-	@NotNull(message = BESTELLUNG_NOT_FOUND_ID_BV)
-	public Position findPositionById(Long id, Long bid) {
-		return em.createNamedQuery(Position.FIND_POSITION_BY_ID, Position.class)
-				.setParameter(Position.PARAM_POSITION_ID, id)
-				.setParameter(Position.PARAM_BESTELLUNG_ID, bid)
-				.getSingleResult();
-	}
+//FIXME
+//	@Override
+//	@NotNull(message = BESTELLUNG_NOT_FOUND_ID_BV)
+//	public Position findPositionById(Long id, Long bid) {
+//		return em.createNamedQuery(Position.FIND_POSITION_BY_ID, Position.class)
+//				.setParameter(Position.PARAM_POSITION_ID, id)
+//				.setParameter(Position.PARAM_BESTELLUNG_ID, bid)
+//				.getSingleResult();
+//	}
 	
 	@Override
 	@NotNull(message = BESTELLUNG_NOT_FOUND_BV)
