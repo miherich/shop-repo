@@ -77,6 +77,7 @@ public class Bestellung extends AbstractAuditable {
 	@JoinColumn(name = "bestellung_fk", nullable = false)
 	@NotEmpty(message = "{bestellung.positionen.notEmpty}")
 	@Valid
+	@Transient //TODO muss hier ein @Transient stehen????
 	private List<Position> positionen;
 	
 	@Transient
