@@ -1,6 +1,5 @@
 package de.shop.artikelverwaltung.domain;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,19 +15,15 @@ public class Fahrrad extends AbstractArtikel {
 	private static final int RAHMEN_MAX_LAENGE = 1;
 	private static final String RAHMEN_PATTERN = "[M,W,U]";
 	
-	private static final String BEZEICHNUNG_NOTNULL_BV = "{artikelverwaltung.fahrrad.bezeichnung.notNull}";
 	private static final String BEZEICHNUNG_SIZE_BV = "{artikelverwaltung.fahrrad.bezeichnung.size}";
 	
-	private static final String RAHMEN_NOTNULL_BV = "{artikelverwaltung.fahrrad.rahmen.notNull}";
 	private static final String RAHMEN_SIZE_BV = "{artikelverwaltung.fahrrad.rahmen.size}";
 	private static final String RAHMEN_PATTERN_BV = "{artikelverwaltung.fahrrad.rahmen.pattern}";
 			
-	@NotNull(message = BEZEICHNUNG_NOTNULL_BV)
 	@Size(min = BEZEICHNUNG_MIN_LAENGE, max = BEZEICHNUNG_MAX_LAENGE, message = BEZEICHNUNG_SIZE_BV)
 	private String bezeichnung;
 	
 	
-	@NotNull(message = RAHMEN_NOTNULL_BV)
 	@Size(min = RAHMEN_MIN_LAENGE , max = RAHMEN_MAX_LAENGE , message = RAHMEN_SIZE_BV)
 	@Pattern(regexp = RAHMEN_PATTERN, message = RAHMEN_PATTERN_BV)
 	private String rahmen;
@@ -74,16 +69,18 @@ public class Fahrrad extends AbstractArtikel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fahrrad other = (Fahrrad) obj;
+		final Fahrrad other = (Fahrrad) obj;
 		if (bezeichnung == null) {
 			if (other.bezeichnung != null)
 				return false;
-		} else if (!bezeichnung.equals(other.bezeichnung))
+		}
+		else if (!bezeichnung.equals(other.bezeichnung))
 			return false;
 		if (rahmen == null) {
 			if (other.rahmen != null)
 				return false;
-		} else if (!rahmen.equals(other.rahmen))
+		} 
+		else if (!rahmen.equals(other.rahmen))
 			return false;
 		return true;
 	}
