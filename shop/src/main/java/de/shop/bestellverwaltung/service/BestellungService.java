@@ -15,7 +15,6 @@ public interface BestellungService {
 	Bestellung findBestellungById(Long id);
 	Position findPositionById(Long id, Long bid);
 	List<Bestellung> findAllBestellungen();
-//	Bestellung createBestellung(Bestellung bestellung, Long kundenNr);
-//	Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde);
-//	Position createPosition(Position position);
+	Bestellung createBestellung(Bestellung bestellung, Long kundenNr);
+	Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde);
 }

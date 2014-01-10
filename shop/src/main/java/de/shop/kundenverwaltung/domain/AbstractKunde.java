@@ -204,6 +204,10 @@ public abstract class AbstractKunde implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void addBestellung(Bestellung bestellung) {
+		bestellungen.add(bestellung);
+	}
 
 	@Override
 	public String toString() {
