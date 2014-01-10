@@ -63,9 +63,6 @@ public class KundeResource {
 	@Inject
 	private KundeService ks;
 
-//	@Inject
-//	private BestellungService bs;
-
 	@Context
 	private UriInfo uriInfo;
 

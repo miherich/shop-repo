@@ -68,7 +68,6 @@ public abstract class AbstractArtikel extends AbstractAuditable{
 
 	public static final String ZUBEHOER = "Z";
 	public static final String FAHRRAD = "F";
-	public static final String ERSATZTEIL = "E";
 
 	public Long getArtikelNr() {
 		return artikelNr;

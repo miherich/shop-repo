@@ -1,26 +1,12 @@
 package de.shop.artikelverwaltung.service;
 
 import java.io.Serializable;
-//import java.util.Collections;
 import java.util.List;
-//import java.math.BigDecimal;
-
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-//import javax.persistence.NamedQuery;
-//import javax.persistence.criteria.Path;
-//import javax.persistence.criteria.Predicate;
-//import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
-//import javax.validation.constraints.Size;
-
-//import com.google.common.base.Strings;
-
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
-//import de.shop.artikelverwaltung.domain.Fahrrad;
-//import de.shop.artikelverwaltung.domain.Zubehoer;
-//import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.interceptor.Log;
 
 @Log
@@ -52,8 +38,14 @@ public class ArtikelService implements Serializable {
 		return artikel;
 	}
 
-//	
-//	public void updateArtikel(AbstractArtikel artikel) {
-//		 Mock.updateArtikel(artikel);
-//	}
+	
+	public <T extends AbstractArtikel> T updateArtikel(T artikel) {
+		
+		if (artikel == null) {
+			return null;
+		}
+		
+		em.merge(artikel);
+		return artikel;
+	}
 }

@@ -6,14 +6,10 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
 
-
-
-//import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-//import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -29,14 +25,7 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-
-
-
-//import org.jboss.logging.Logger;
-
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
-import de.shop.artikelverwaltung.domain.Fahrrad;
-import de.shop.artikelverwaltung.domain.Zubehoer;
 import de.shop.artikelverwaltung.service.ArtikelService;
 import de.shop.util.interceptor.Log;
 import de.shop.util.rest.UriHelper;
@@ -67,7 +56,6 @@ public class ArtikelResource {
 
 	@GET
 	public Response findAllArtikel() {
-		// TODO Anwendungskern statt Mock, Verwendung von Locale
 		final List<AbstractArtikel> artikelList = as.findAllArtikel();
 			return Response.ok(
 				new GenericEntity<List<? extends AbstractArtikel>>(artikelList) {
@@ -104,11 +92,11 @@ public class ArtikelResource {
 		return Response.created(getUriArtikel(artikel, uriInfo)).build();
 	}
 
-//	@PUT
-//	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
-//	@Produces
-//	public void updateArtikel(@Valid AbstractArtikel artikel) {
-//		as.updateArtikel(artikel);
-//	}
+	@PUT
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	public void updateArtikel(@Valid AbstractArtikel artikel) {
+		as.updateArtikel(artikel);
+	}
 
 }
