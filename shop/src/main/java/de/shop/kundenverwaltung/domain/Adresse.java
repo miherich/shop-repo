@@ -64,8 +64,8 @@ public class Adresse {
 	private String ort;
 	
 	//wegen gerichteter Beziehung?!
-	@OneToOne
-	@JoinColumn(name = "kunde_fk", nullable = false, unique = true)
+	@OneToOne(mappedBy = "adresse")
+	//@JoinColumn(name = "kunde_fk", nullable = false, unique = true)
 	@XmlTransient
 //	@Transient
 	private AbstractKunde kunde;

@@ -3,20 +3,25 @@ package de.shop.kundenverwaltung.domain;
 //import java.net.URI;
 
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import static de.shop.kundenverwaltung.domain.AbstractKunde.PRIVATKUNDE;
+
 @XmlRootElement
 @Inheritance
-@DiscriminatorValue("P")
+@DiscriminatorValue(PRIVATKUNDE)
+@Entity
 public class Privatkunde extends AbstractKunde {
 	private static final long serialVersionUID = -8296097010058040785L;
 	
 	private static final int VORNAME_MIN_LAENGE = 2;
-	private static final int VORNAME_MAX_LAENGE = 32;
+	private static final int VORNAME_MAX_LAENGE = 30;
 	private static final String VORNAME_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+";
 	
 
@@ -27,6 +32,7 @@ public class Privatkunde extends AbstractKunde {
 	@Size(min = VORNAME_MIN_LAENGE, max = VORNAME_MAX_LAENGE, message = PRIVATKUNDE_VORNAME_LENGTH_BV)
 	@Pattern(regexp = VORNAME_PATTERN,
 	message = PRIVATKUNDE_VORNAME_PATTERN_BV)
+	@Column(length = VORNAME_MAX_LAENGE)
 	private String vorname;
 
 	public Privatkunde() {

@@ -1,21 +1,20 @@
+INSERT INTO adresse (id, plz, ort, strasse, hausnummer) VALUES (200,'76133','Karlsruhe','Moltkestrassüe','30');
+INSERT INTO adresse (id, plz, ort, strasse, hausnummer) VALUES (201,'76133','Karlsruhe','Moltkestrasse','31');
+INSERT INTO adresse (id, plz, ort, strasse, hausnummer) VALUES (202,'76133','Karlsruhe','Moltkestrasse','32');
+INSERT INTO adresse (id, plz, ort, strasse, hausnummer) VALUES (203,'76133','Karlsruhe','Moltkestrasse','33');
+INSERT INTO adresse (id, plz, ort, strasse, hausnummer) VALUES (204,'76133','Karlsruhe','Moltkestrasse','34');
+INSERT INTO adresse (id, plz, ort, strasse, hausnummer) VALUES (205,'76133','Karlsruhe','Moltkestrasse','35');
 
-INSERT INTO kunde (id, nachname, firmenname, email, adresse_fk, art) VALUES (100,'Admin','Adminfirma','admin@hs-karlsruhe.de',200, 'G');
-INSERT INTO kunde (id, nachname, vorname, email, adresse_fk, art) VALUES (101,'Alpha','Adriana','101@hs-karlsruhe.de',201, 'P');
-INSERT INTO kunde (id, nachname, vorname, email, adresse_fk, art) VALUES (102,'Alpha','Alfred','102@hs-karlsruhe.de',202, 'P');
-INSERT INTO kunde (id, nachname, firmenname, email, adresse_fk, art) VALUES (103,'Alpha','AntonGeEmBeHa','103@hs-karlsruhe.de',203, 'G');
-INSERT INTO kunde (id, nachname, vorname, email, adresse_fk, art) VALUES (104,'Delta','Dirk','104@hs-karlsruhe.de',204, 'P');
-INSERT INTO kunde (id, nachname, vorname, email, adresse_fk, art) VALUES (105,'Epsilon','Emil','105@hs-karlsruhe.de',205, 'P');
-
-INSERT INTO adresse (id, plz, ort, strasse, hausnr) VALUES (200,'76133','Karlsruhe','Moltkestrassüe','30');
-INSERT INTO adresse (id, plz, ort, strasse, hausnr) VALUES (201,'76133','Karlsruhe','Moltkestrasse','31');
-INSERT INTO adresse (id, plz, ort, strasse, hausnr) VALUES (202,'76133','Karlsruhe','Moltkestrasse','32');
-INSERT INTO adresse (id, plz, ort, strasse, hausnr) VALUES (203,'76133','Karlsruhe','Moltkestrasse','33');
-INSERT INTO adresse (id, plz, ort, strasse, hausnr) VALUES (204,'76133','Karlsruhe','Moltkestrasse','34');
-INSERT INTO adresse (id, plz, ort, strasse, hausnr) VALUES (205,'76133','Karlsruhe','Moltkestrasse','35');
+INSERT INTO kunde (kundennr, nachname, firmenname, email, adresse_fk, art) VALUES (100,'Admin','Adminfirma','admin@hs-karlsruhe.de', 200, 'G');
+INSERT INTO kunde (kundennr, nachname, vorname, email, adresse_fk, art) VALUES (101,'Alpha','Adriana','101@hs-karlsruhe.de',201, 'P');
+INSERT INTO kunde (kundennr, nachname, vorname, email, adresse_fk, art) VALUES (102,'Alpha','Alfred','102@hs-karlsruhe.de',202, 'P');
+INSERT INTO kunde (kundennr, nachname, firmenname, email, adresse_fk, art) VALUES (103,'Alpha','AntonGeEmBeHa','103@hs-karlsruhe.de',203, 'G');
+INSERT INTO kunde (kundennr, nachname, vorname, email, adresse_fk, art) VALUES (104,'Delta','Dirk','104@hs-karlsruhe.de',204, 'P');
+INSERT INTO kunde (kundennr, nachname, vorname, email, adresse_fk, art) VALUES (105,'Epsilon','Emil','105@hs-karlsruhe.de',205, 'P');
 
 INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (300,'Karls Kruecke',99,'Trekkingbike','w', 'F');
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (301,20,'Sattel', 'Z');
-INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (302,9,'Klingel', 'Z');
+INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (302,9,'Klingele', 'Z');
 INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (303,'Powerwurst',300,'Mountainbike','m', 'F');
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (304,15,'Puftlumpe', 'Z');
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (305,5,'Schlauch', 'Z');

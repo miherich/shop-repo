@@ -126,7 +126,8 @@ public abstract class AbstractKunde implements Serializable {
 	@Column(unique = true)
 	private String email;
 	
-	@OneToOne (cascade = { PERSIST }, mappedBy = "kunde")
+	@JoinColumn (name = "adresse_fk", nullable = false)
+	@OneToOne (cascade = { PERSIST })
 	@NotNull(message = ADRESSE_NOTNULL_BV)
 	@Valid
 	private Adresse adresse;
