@@ -19,12 +19,8 @@ import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.Produces;
-
 import com.google.common.collect.ImmutableMap;
-
 import de.shop.kundenverwaltung.domain.AbstractKunde;
-import de.shop.kundenverwaltung.domain.Geschaeftskunde;
-import de.shop.kundenverwaltung.domain.Privatkunde;
 import de.shop.util.interceptor.Log;
 
 @Dependent
