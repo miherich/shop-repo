@@ -71,11 +71,11 @@ import de.shop.bestellverwaltung.domain.Bestellung;
  	@NamedQuery(name  = AbstractKunde.FIND_KUNDE_BY_EMAIL,
  	            query = "SELECT DISTINCT k"
  			            + " FROM   AbstractKunde k"
- 			            + " WHERE  k.email = :" + AbstractKunde.PARAM_KUNDE_EMAIL),
+ 			            + " WHERE  k.email = :" + AbstractKunde.PARAM_KUNDE_EMAIL)
 })
 @NamedEntityGraphs({
 	@NamedEntityGraph(name = AbstractKunde.GRAPH_BESTELLUNGEN,
-	attributeNodes = @NamedAttributeNode("bestellungen")),
+	attributeNodes = @NamedAttributeNode("bestellungen"))
 })
 
 @XmlRootElement
@@ -105,24 +105,10 @@ public abstract class AbstractKunde implements Serializable {
 	private static final String PREFIX = "AbstractKunde.";
 	public static final String FIND_KUNDEN = PREFIX + "findKunden";
 	public static final String FIND_KUNDEN_ORDER_BY_ID = PREFIX + "findKundenOrderById";
-//	public static final String FIND_IDS_BY_PREFIX = PREFIX + "findIdsByPrefix";
 	public static final String FIND_KUNDEN_BY_NACHNAME = PREFIX + "findKundenByNachname";
-//	public static final String FIND_NACHNAMEN_BY_PREFIX = PREFIX + "findNachnamenByPrefix";
 	public static final String FIND_KUNDE_BY_EMAIL = PREFIX + "findKundeByEmail";
-//	public static final String FIND_KUNDEN_BY_PLZ = PREFIX + "findKundenByPlz";
-//	public static final String FIND_KUNDEN_BY_DATE = PREFIX + "findKundenByDate";
-//	public static final String FIND_PRIVATKUNDEN_FIRMENKUNDEN = PREFIX + "findPrivatkundenFirmenkunden";
-	
-//	public static final String PARAM_KUNDE_ID = "kundeId";
-//	public static final String PARAM_KUNDE_ID_PREFIX = "idPrefix";
 	public static final String PARAM_KUNDE_NACHNAME = "nachname";
-//	public static final String PARAM_KUNDE_NACHNAME_PREFIX = "nachnamePrefix";
-//	public static final String PARAM_KUNDE_ADRESSE_PLZ = "plz";
-//	public static final String PARAM_KUNDE_SEIT = "seit";
 	public static final String PARAM_KUNDE_EMAIL = "email";
-
-//	Brauchen wir diese Konstanten überhaupt???? weil wenn ich sie auskommentiere, dann ändert sich nichts und es gibt weder Warnings noch errors !!!!
-	
 	public static final String GRAPH_BESTELLUNGEN = PREFIX + "bestellungen";
 	
 	@Id
@@ -131,7 +117,8 @@ public abstract class AbstractKunde implements Serializable {
 	private Long kundennr = KEINE_ID;
 	
 	@NotNull(message = NACHNAME_NOTNULL_BV)
-	@Size(min = NACHNAME_MIN_PATTERN, max = NACHNAME_MAX_PATTERN, message = NACHNAME_LAENGE_BV)
+	@Size(min = NACHNAME_MIN_PATTERN, max = NACHNAME_MAX_PATTERN,
+									message = NACHNAME_LAENGE_BV)
 	@Pattern(regexp = NACHNAME_PATTERN, message = NACHNAME_PATTERN_BV)
 	private String nachname;
 	
@@ -231,11 +218,12 @@ public abstract class AbstractKunde implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractKunde other = (AbstractKunde) obj;
+		 AbstractKunde other = (AbstractKunde) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} 
+		else if (!email.equals(other.email))
 			return false;
 		return true;
 	}
