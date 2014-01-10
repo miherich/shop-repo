@@ -9,7 +9,7 @@ CREATE TABLE Artikel   (artikelnr number primary key,
 						
 CREATE TABLE Adresse   (id number primary key,
 						strasse VARCHAR2(30) not null,
-						hausnr number not null,
+						hausnr VARCHAR2(4) not null,
 						plz VARCHAR2(5) not null,
 						ort VARCHAR2(30) not null);
 						
