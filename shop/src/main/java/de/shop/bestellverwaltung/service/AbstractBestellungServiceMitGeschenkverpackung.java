@@ -38,7 +38,7 @@ public abstract class AbstractBestellungServiceMitGeschenkverpackung implements 
 	}
 	
 	@Override
-	public List<Bestellung> findAllBestellungen(){
+	public List<Bestellung> findAllBestellungen() {
 		return bs.findAllBestellungen();
 	}
 

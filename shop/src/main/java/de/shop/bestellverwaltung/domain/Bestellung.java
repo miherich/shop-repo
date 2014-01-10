@@ -47,15 +47,17 @@ import de.shop.util.persistence.AbstractAuditable;
 @NamedQueries({
 	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN,
 					query = "SELECT b"
-				            + " FROM   Bestellung b"),
+				            + " FROM   Bestellung b")
 })
 @Cacheable
 public class Bestellung extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
-	private static final String BESTELLUNG_BESTELLDATUM_NOTNULL_BV = "{bestellverwaltung.bestellung.bestelldatum.notNull}";
-	private static final String BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV = "{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}";
+	private static final String BESTELLUNG_BESTELLDATUM_NOTNULL_BV = 
+			"{bestellverwaltung.bestellung.bestelldatum.notNull}";
+	private static final String BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV = 
+			"{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}";
 	
 	private static final String PREFIX = "Bestellung.";
 	public static final String FIND_BESTELLUNGEN = PREFIX + "findAllBestellungen";
@@ -184,12 +186,14 @@ public class Bestellung extends AbstractAuditable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bestellung other = (Bestellung) obj;
-		if (bestelldatum == null) {
+		if (bestelldatum == null) 
+		{
 			if (other.bestelldatum != null)
 				return false;
 		} else if (!bestelldatum.equals(other.bestelldatum))
 			return false;
-		if (kundeUri == null) {
+		if (kundeUri == null) 
+		{
 			if (other.kundeUri != null)
 				return false;
 		} else if (!kundeUri.equals(other.kundeUri))

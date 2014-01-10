@@ -145,7 +145,7 @@ public class BestellungResource {
 				continue;
 			}
 			AbstractArtikel artikel = as.findArtikelById(artikelId);
-			if(artikel==null)
+			if (artikel == null)
 				continue;
 			bp.setArtikel(artikel);
 			gefundenePositionen.add(bp);
