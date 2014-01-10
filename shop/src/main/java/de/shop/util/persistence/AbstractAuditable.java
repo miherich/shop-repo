@@ -76,16 +76,18 @@ public abstract class AbstractAuditable implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractAuditable other = (AbstractAuditable) obj;
+		final AbstractAuditable other = (AbstractAuditable) obj;
 		if (aktualisiert == null) {
 			if (other.aktualisiert != null)
 				return false;
-		} else if (!aktualisiert.equals(other.aktualisiert))
+		} 
+		else if (!aktualisiert.equals(other.aktualisiert))
 			return false;
 		if (erzeugt == null) {
 			if (other.erzeugt != null)
 				return false;
-		} else if (!erzeugt.equals(other.erzeugt))
+		} 
+		else if (!erzeugt.equals(other.erzeugt))
 			return false;
 		return true;
 	}

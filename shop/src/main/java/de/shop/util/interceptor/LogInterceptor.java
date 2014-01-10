@@ -151,7 +151,8 @@ public class LogInterceptor implements Serializable {
 	}
 	
 	//Array in einen String konvertieren
-	private static String arrayToString(Object obj) {
+	private static String
+	arrayToString(Object obj) {
 		final Class<?> componentClass = obj.getClass().getComponentType();
 
 		if (!componentClass.isPrimitive()) {
