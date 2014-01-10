@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import org.jboss.logging.Logger;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.bestellverwaltung.domain.Position;
 import de.shop.util.interceptor.Log;
 
@@ -41,28 +40,16 @@ public abstract class AbstractBestellungServiceMitGeschenkverpackung implements 
 	public List<Bestellung> findAllBestellungen() {
 		return bs.findAllBestellungen();
 	}
-
-//	@Override
-//	public Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde) {
-//		
-//		final Bestellung bestellung1 = bs.createBestellung(bestellung, kunde);
-//		
-//		bestellung1.setMitVerpackung(true);
-//		
-//		LOGGER.infof("Jetzt ist ne Geschenkverpackung um die Bestellung %s rum", bestellung);
-//		
-//		return bestellung1;
-//	}
-//	
-//	@Override
-//	public Bestellung createBestellung(Bestellung bestellung, Long kundenNr) {
-//		
-//		final Bestellung bestellung1 = bs.createBestellung(bestellung, kundenNr);
-//		
-//		bestellung1.setMitVerpackung(true);
-//		
-//		LOGGER.infof("Jetzt ist ne Geschenkverpackung um die Bestellung %s rum", bestellung);
-//		
-//		return bestellung1;
-//	}
+	
+	@Override
+	public Bestellung createBestellung(Bestellung bestellung, Long kundenNr) {
+		
+		final Bestellung bestellung1 = bs.createBestellung(bestellung, kundenNr);
+		
+		bestellung1.setMitVerpackung(true);
+		
+		LOGGER.infof("Jetzt ist ne Geschenkverpackung um die Bestellung %s rum", bestellung);
+		
+		return bestellung1;
+	}
 }
