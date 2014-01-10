@@ -178,14 +178,7 @@ public class BestellungResource {
 //					break;					
 //				}
 //			}
-			// FIXME JDK 8 hat Lambda-Ausdruecke
-			//final Artikel artikel = gefundeneArtikel.stream()
-			//                                        .filter(a -> a.getId() == artikelId)
-			//                                        .findAny();
-			//if (artikel != null) {
-			//	bp.setArtikel(artikel);
-			//	neueBestellpositionen.add(bp);				
-			//}
+
 //		}
 		bestellung.setPositionen(gefundenePositionen);
 		
