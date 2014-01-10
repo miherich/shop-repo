@@ -3,11 +3,15 @@ package de.shop.kundenverwaltung.domain;
 //import java.net.URI;
 
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Inheritance;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Inheritance
+@DiscriminatorValue("P")
 public class Privatkunde extends AbstractKunde {
 	private static final long serialVersionUID = -8296097010058040785L;
 	

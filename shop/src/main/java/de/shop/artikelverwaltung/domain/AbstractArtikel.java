@@ -1,15 +1,19 @@
 package de.shop.artikelverwaltung.domain;
 
 import java.math.BigDecimal;
+
 import static de.shop.util.Constants.KEINE_ID;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -23,7 +27,9 @@ import de.shop.util.persistence.AbstractAuditable;
 
 @XmlRootElement
 @Entity
-//@Table(indexes = @Index(columnList = "bezeichnung"))
+@Inheritance
+@DiscriminatorColumn(name = "art", length = 1)
+@Table(name="kunde")
 @NamedQueries({
 	@NamedQuery(name  = AbstractArtikel.FIND_ARTIKEL,
             	query = "SELECT      a"
@@ -35,9 +41,9 @@ import de.shop.util.persistence.AbstractAuditable;
 @JsonSubTypes({ @Type(value = Zubehoer.class, name = AbstractArtikel.ZUBEHOER),
 		@Type(value = Fahrrad.class, name = AbstractArtikel.FAHRRAD) })
 public abstract class AbstractArtikel extends AbstractAuditable {
-
+	
 	private static final long serialVersionUID = -6997989703729888088L;
-	private static final String PREFIX = "AbstractArtikel.";
+	private static final String PREFIX = "AbstractArtikel";
 	public static final String FIND_ARTIKEL = PREFIX + "findArtikel";
 
 	public static final String PARAM_BEZEICHNUNG = "bezeichnung";
