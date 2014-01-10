@@ -30,8 +30,8 @@ public class ArtikelService implements Serializable {
 		return em.createNamedQuery(AbstractArtikel.FIND_ARTIKEL, AbstractArtikel.class).getResultList();
 	}
 	
-	public <T extends AbstractArtikel> T createArtikel(T artikel){
-		if(artikel==null)
+	public <T extends AbstractArtikel> T createArtikel(T artikel) {
+		if (artikel == null)
 			return artikel;
 		
 		em.persist(artikel);
