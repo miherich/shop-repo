@@ -73,7 +73,7 @@ public class Bestellung extends AbstractAuditable {
 	private boolean istAusgeliefert;
 	private boolean mitVerpackung;
 	
-	@OneToMany(fetch = EAGER, cascade = { PERSIST, REMOVE })
+	@OneToMany(fetch = EAGER, cascade = { PERSIST })
 	@JoinColumn(name = "bestellung_fk", nullable = false)
 	@NotEmpty(message = "{bestellung.positionen.notEmpty}")
 	@Valid
