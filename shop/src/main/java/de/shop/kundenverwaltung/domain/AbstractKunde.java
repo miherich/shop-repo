@@ -50,7 +50,6 @@ import de.shop.bestellverwaltung.domain.Bestellung;
 //groups = { Default.class, PasswordGroup.class })
 
 @Entity
-//Zu email wird unten ein UNIQUE Index definiert
 @Table (name = "kunde")
 @Inheritance
 @DiscriminatorColumn (name = "art", length = 1)

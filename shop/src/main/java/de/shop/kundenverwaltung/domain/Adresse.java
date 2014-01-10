@@ -3,8 +3,11 @@ package de.shop.kundenverwaltung.domain;
 import java.net.URI;
 
 import javax.persistence.Basic;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -13,6 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
+@Entity
 public class Adresse {
 	
 	private static final String STRASSE_PATTERN = "[A-Z\u00C4\u00D6\u00DC][a-z\u00E4\u00F6\u00FC\u00DF]+";
@@ -60,10 +64,10 @@ public class Adresse {
 	private String ort;
 	
 	//wegen gerichteter Beziehung?!
-	//@OneToOne
-	//@JoinColumn(name = "kunde_fk", nullable = false, unique = true)
+	@OneToOne
+	@JoinColumn(name = "kunde_fk", nullable = false, unique = true)
 	@XmlTransient
-	@Transient
+//	@Transient
 	private AbstractKunde kunde;
 	
 	@Transient
