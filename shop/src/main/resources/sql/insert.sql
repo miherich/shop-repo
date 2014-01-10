@@ -12,15 +12,15 @@ INSERT INTO kunde (kundennr, nachname, firmenname, email, adresse_fk, art) VALUE
 INSERT INTO kunde (kundennr, nachname, vorname, email, adresse_fk, art) VALUES (104,'Delta','Dirk','104@hs-karlsruhe.de',204, 'P');
 INSERT INTO kunde (kundennr, nachname, vorname, email, adresse_fk, art) VALUES (105,'Epsilon','Emil','105@hs-karlsruhe.de',205, 'P');
 
-INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (300,'Karls Kruecke',99,'Trekkingbike','w', 'F');
+INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (300,'Karls Kruecke',99,'Trekkingbike','W', 'F');
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (301,20,'Sattel', 'Z');
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (302,9,'Klingele', 'Z');
-INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (303,'Powerwurst',300,'Mountainbike','m', 'F');
+INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (303,'Powerwurst',300,'Mountainbike','M', 'F');
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (304,15,'Puftlumpe', 'Z');
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (305,5,'Schlauch', 'Z');
-INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (306,'Berni Bizeps',150,'Dreirad', 'u', 'F');
+INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (306,'Berni Bizeps',150,'Dreirad', 'U', 'F');
 
-INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (400,100,'01.08.2013', false, true);
+INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istAusgeliefert, mitVerpackung) VALUES (400,100,'01.08.2013', false, true);
 INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (401,101,'02.08.2013', false, false);
 INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (402,102,'03.08.2013', false, true);
 INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (403,102,'04.08.2013', false, false);

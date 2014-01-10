@@ -1,6 +1,8 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -9,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Inheritance
 @DiscriminatorValue("F")
+@Entity
 public class Fahrrad extends AbstractArtikel {
 	private static final long serialVersionUID = 9077088903116091916L;
 	
@@ -24,11 +27,13 @@ public class Fahrrad extends AbstractArtikel {
 	private static final String RAHMEN_PATTERN_BV = "{artikelverwaltung.fahrrad.rahmen.pattern}";
 			
 	@Size(min = BEZEICHNUNG_MIN_LAENGE, max = BEZEICHNUNG_MAX_LAENGE, message = BEZEICHNUNG_SIZE_BV)
+	@Column(length=BEZEICHNUNG_MAX_LAENGE)
 	private String bezeichnung;
 	
 	
 	@Size(min = RAHMEN_MIN_LAENGE , max = RAHMEN_MAX_LAENGE , message = RAHMEN_SIZE_BV)
 	@Pattern(regexp = RAHMEN_PATTERN, message = RAHMEN_PATTERN_BV)
+	@Column(length=RAHMEN_MAX_LAENGE)
 	private String rahmen;
 	
 	public String getBezeichnung() {
