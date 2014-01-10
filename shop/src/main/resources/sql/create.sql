@@ -5,7 +5,8 @@ CREATE TABLE Artikel   (artikelnr number primary key,
 						typ varchar2(30) not null,
 						preis number(8,2) not null,
 						rahmen varchar2(30),
-						bezeichnung varchar2(30));
+						bezeichnung varchar2(30),
+						art varchar2(1) not null);
 						
 CREATE TABLE Adresse   (id number primary key,
 						strasse VARCHAR2(30) not null,
@@ -18,7 +19,8 @@ CREATE TABLE Kunde	    (kundennr number primary key,
 						 email VARCHAR2(30) not null,
 						 adresse_fk number REFERENCES adresse(id),
 						 firmenname VARCHAR2(30),
-						 vorname VARCHAR2(30));
+						 vorname VARCHAR2(30),
+						 art VARCHAR2(1) not null);
 						
 CREATE TABLE Bestellung (bestellnr number primary key,
 						 bestelldatum DATE not null,
