@@ -1,11 +1,14 @@
 package de.shop.artikelverwaltung.domain;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Inheritance;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-//@Table(indexes = @Index(columnList = "bezeichnung"))
+@Inheritance
+@DiscriminatorValue("F")
 public class Fahrrad extends AbstractArtikel {
 	private static final long serialVersionUID = 9077088903116091916L;
 	

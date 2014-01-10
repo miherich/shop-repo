@@ -13,7 +13,6 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedEntityGraphs;
@@ -53,7 +52,7 @@ import de.shop.bestellverwaltung.domain.Bestellung;
 
 @Entity
 //Zu email wird unten ein UNIQUE Index definiert
-@Table (name = "kunde", indexes = @Index(columnList = "nachname"))
+@Table (name = "kunde")
 @Inheritance
 @DiscriminatorColumn (name = "art", length = 1)
 @NamedQueries({

@@ -1,11 +1,12 @@
 package de.shop.artikelverwaltung.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Inheritance;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-@Entity
-//@Table(indexes = @Index(columnList = "bezeichnung"))
+@Inheritance
+@DiscriminatorValue("Z")
 public class Zubehoer extends AbstractArtikel {
 	private static final long serialVersionUID = -4700709451059606244L;
 
