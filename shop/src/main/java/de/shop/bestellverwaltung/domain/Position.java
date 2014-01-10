@@ -156,17 +156,17 @@ public class Position extends AbstractAuditable {
 		Position other = (Position) obj;
 		if (anzahl != other.anzahl)
 			return false;
-		if (artikelURI == null) 
-		{
+		if (artikelURI == null) {
 			if (other.artikelURI != null)
 				return false;
-		} else if (!artikelURI.equals(other.artikelURI))
+		} 
+		else if (!artikelURI.equals(other.artikelURI))
 			return false;
-		if (bestellURI == null) 
-		{
+		if (bestellURI == null) {
 			if (other.bestellURI != null)
 				return false;
-		} else if (!bestellURI.equals(other.bestellURI))
+		} 
+		else if (!bestellURI.equals(other.bestellURI))
 			return false;
 		return true;
 	}
