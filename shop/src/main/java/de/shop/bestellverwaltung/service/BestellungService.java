@@ -5,7 +5,6 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.bestellverwaltung.domain.Position;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.interceptor.Log;
 
@@ -13,8 +12,6 @@ import de.shop.util.interceptor.Log;
 @Dependent
 public interface BestellungService {
 	Bestellung findBestellungById(Long id);
-	//FIXME
-	//Position findPositionById(Long id, Long bid);
 	List<Bestellung> findAllBestellungen();
 	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde);
 	Bestellung createBestellung(Bestellung bestellung, Long kundenNr);

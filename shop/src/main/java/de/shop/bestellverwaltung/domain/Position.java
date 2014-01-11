@@ -1,43 +1,23 @@
 package de.shop.bestellverwaltung.domain;
 
 import static de.shop.util.Constants.KEINE_ID;
-
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
-
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.PostPersist;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.xml.bind.annotation.XmlTransient;
-
 import org.jboss.logging.Logger;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
 import de.shop.util.persistence.AbstractAuditable;
 
 @Entity
-//@Table(indexes =  {
-//	@Index(columnList = "bestellung_fk"),
-//	@Index(columnList = "artikel_fk")
-//})
-//FIXME
-//@NamedQueries({
-// @NamedQuery(name  = Position.FIND_POSITION_BY_ID,
-//	            query = "SELECT b.positionen"
-//	            	    + " FROM Bestellung b"
-//	            	    + " WHERE  b.positionen.position.id = :id and b.bestellnr = :bid")
-//})
 public class Position extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
@@ -56,9 +36,6 @@ public class Position extends AbstractAuditable {
 	@Basic(optional = false)
 	private Long id = KEINE_ID;
 	
-	//gerichtete Beziehung
-//	private Bestellung bestellung;
-	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "artikel_fk", nullable = false)
 	@XmlTransient
@@ -66,7 +43,6 @@ public class Position extends AbstractAuditable {
 	
 	@Min(value = ANZAHL_MIN, message = "{bestellposition.anzahl.min}")
 	@Basic(optional = false)
-	//@NotEmpty(message = BESTELLUNG_POSITION_NOTNULL_BV)
 	private short anzahl;
 	
 	@Transient
@@ -87,14 +63,6 @@ public class Position extends AbstractAuditable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-//	public Bestellung getBestellung() {
-//		return bestellung;
-//	}
-//
-//	public void setBestellung(Bestellung bestellung) {
-//		this.bestellung = bestellung;
-//	}
 
 	public AbstractArtikel getArtikel() {
 		return artikel;
@@ -171,6 +139,4 @@ public class Position extends AbstractAuditable {
 			return false;
 		return true;
 	}
-
-
 }

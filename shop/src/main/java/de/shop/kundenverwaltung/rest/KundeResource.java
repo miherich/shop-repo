@@ -61,6 +61,7 @@ public class KundeResource {
 	
 	public static final String KUNDEN_NACHNAME_PATTERN = "{kundenverwaltung.kunde.nachname.pattern}";
 	public static final String KUNDEN_EMAIL_PATTERN = "{kundenverwaltung.kunde.email.pattern}";
+	public static final String KUNDEN_ID_NOT_FOUND = "{kundenverwaltung.kunde.notFound.id}";
 
 	@Inject
 	private KundeService ks;
@@ -86,7 +87,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{" + KUNDEN_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) Long id) {
+	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) Long id, message = KUNDEN_ID_NOT_FOUND) {
 		final AbstractKunde kunde = ks.findKundeById(id, FetchType.NUR_KUNDE);
 		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
 				.build();

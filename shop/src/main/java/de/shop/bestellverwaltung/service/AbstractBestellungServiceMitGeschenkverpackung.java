@@ -2,17 +2,13 @@ package de.shop.bestellverwaltung.service;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Any;
 import javax.decorator.Decorator;
 import javax.decorator.Delegate;
 import javax.inject.Inject;
-
 import org.jboss.logging.Logger;
-
 import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.bestellverwaltung.domain.Position;
 import de.shop.util.interceptor.Log;
 
 @Decorator
@@ -30,11 +26,6 @@ public abstract class AbstractBestellungServiceMitGeschenkverpackung implements 
 	public Bestellung findBestellungById(Long id) {
 		return bs.findBestellungById(id);
 	}
-//FIXME
-//	@Override
-//	public Position findPositionById(Long id, Long bid) {
-//		return bs.findPositionById(id, bid);
-//	}
 	
 	@Override
 	public List<Bestellung> findAllBestellungen() {

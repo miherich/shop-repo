@@ -1,11 +1,10 @@
 package de.shop.kundenverwaltung.domain;
 
+import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
-
 import java.net.URI;
 import java.util.List;
 import static de.shop.util.Constants.KEINE_ID;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -21,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
@@ -31,23 +29,13 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlSeeAlso;
-
 import java.io.Serializable;
-
 import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.hibernate.validator.constraints.Email;
-//import org.hibernate.validator.constraints.ScriptAssert;
-//import org.jboss.arquillian.drone.api.annotation.Default;
-
 import de.shop.bestellverwaltung.domain.Bestellung;
 
-//@ScriptAssert(lang = "javascript",
-//script = "_this.password != null && !_this.password.equals(\"\")"
-//         + " && _this.password.equals(_this.passwordWdh)",
-//message = "{kunde.password.notEqual}",
-//groups = { Default.class, PasswordGroup.class })
 
 @Entity
 @Table (name = "kunde")
@@ -127,15 +115,13 @@ public abstract class AbstractKunde implements Serializable {
 	private String email;
 	
 	@JoinColumn (name = "adresse_fk", nullable = false)
-	@OneToOne (cascade = { PERSIST })
+	@OneToOne (cascade = { PERSIST, MERGE })
 	@NotNull(message = ADRESSE_NOTNULL_BV)
 	@Valid
 	private Adresse adresse;
 
 	@OneToMany
 	@JoinColumn (name = "kunde_fk", nullable = false)
-	//@OrderColumn (name = "idx", nullable = false)
-	//@Transient
 	@XmlTransient
 	private List<Bestellung> bestellungen;
 	

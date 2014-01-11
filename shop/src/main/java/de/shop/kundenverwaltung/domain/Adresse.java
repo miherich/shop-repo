@@ -6,7 +6,6 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -63,11 +62,8 @@ public class Adresse {
 			message = ORT_PATTERN_BV)
 	private String ort;
 	
-	//wegen gerichteter Beziehung?!
 	@OneToOne(mappedBy = "adresse")
-	//@JoinColumn(name = "kunde_fk", nullable = false, unique = true)
 	@XmlTransient
-//	@Transient
 	private AbstractKunde kunde;
 	
 	@Transient

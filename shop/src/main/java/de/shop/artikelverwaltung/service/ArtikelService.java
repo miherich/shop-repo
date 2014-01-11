@@ -29,7 +29,7 @@ public class ArtikelService implements Serializable {
 	@Inject
 	private transient EntityManager em;
 	
-	@NotNull(message = "{artikel.notFound.id}")
+	@NotNull(message = ARTIKEL_NOT_FOUND_ID_BV)
 	public AbstractArtikel findArtikelById(Long id) {
 		return em.find(AbstractArtikel.class, id);
 	}

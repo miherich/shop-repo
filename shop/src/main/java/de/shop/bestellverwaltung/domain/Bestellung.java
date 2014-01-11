@@ -3,47 +3,35 @@ package de.shop.bestellverwaltung.domain;
 import static de.shop.util.Constants.KEINE_ID;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.EAGER;
-
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PostPersist;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertFalse;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.jboss.logging.Logger;
-
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.persistence.AbstractAuditable;
 
 
 @XmlRootElement
 @Entity
-//@Table(indexes = {
-//		@Index(columnList = "kunde_fk"),
-//		@Index(columnList = "erzeugt")
-//	})
 @NamedQueries({
 	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN,
 					query = "SELECT b"
@@ -58,8 +46,6 @@ public class Bestellung extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
-	private static final String BESTELLUNG_BESTELLDATUM_NOTNULL_BV = 
-			"{bestellverwaltung.bestellung.bestelldatum.notNull}";
 	private static final String BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV = 
 			"{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}";
 	
@@ -72,9 +58,6 @@ public class Bestellung extends AbstractAuditable {
 	@GeneratedValue
 	@Basic(optional = false)
 	private Long bestellnr = KEINE_ID;
-	
-//	@NotNull(message = BESTELLUNG_BESTELLDATUM_NOTNULL_BV)
-//	private Date bestelldatum;
 	
 	@AssertFalse(message = BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV) //TODO AssertTrue?
 	private boolean istAusgeliefert;
@@ -116,14 +99,6 @@ public class Bestellung extends AbstractAuditable {
 	public void setBestellnr(Long bestellnr) {
 		this.bestellnr = bestellnr;
 	}
-
-//	public Date getBestelldatum() {
-//		return bestelldatum;
-//	}
-
-//	public void setBestelldatum(Date bestelldatum) {
-//		this.bestelldatum = bestelldatum;
-//	}
 
 	public boolean isIstAusgeliefert() {
 		return istAusgeliefert;
