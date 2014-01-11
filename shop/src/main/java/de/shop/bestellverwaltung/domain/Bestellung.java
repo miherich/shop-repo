@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.PostPersist;
 import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertFalse;
@@ -85,11 +84,6 @@ public class Bestellung extends AbstractAuditable {
 	
 	public void setDatum(Date datum) {
 		setErzeugt(datum);
-	}
-	
-	@PostPersist
-	private void postPersist() {
-		LOGGER.debugf("Neue Bestellung mit ID=%d", bestellnr);
 	}
 
 	public Long getBestellnr() {

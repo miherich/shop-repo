@@ -30,7 +30,7 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	@Inject
 	@NeueBestellung
 	private transient Event<Bestellung> event;
-	
+
 	@Inject
 	private transient EntityManager em;
 	

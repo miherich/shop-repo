@@ -3,8 +3,6 @@ package de.shop.bestellverwaltung.service;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
-
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -14,9 +12,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import org.jboss.logging.Logger;
-
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.interceptor.Log;
@@ -40,15 +36,6 @@ public class BestellungObserver implements Serializable {
 	@AbsenderName
 	private String absenderName;
 
-	@PostConstruct
-	private void postConstruct() {
-		if (absenderMail == null) {
-			LOGGER.warn("Der Absender fuer Bestellung-Emails ist nicht gesetzt.");
-			return;
-		}
-	LOGGER.infof("Absender fuer Bestellung-Emails: %s <%s>", absenderName, absenderMail);
-	}
-	
 	public void onCreateBestellung(@Observes @NeueBestellung Bestellung bestellung) {
 		final AbstractKunde kunde = bestellung.getKunde();
 		final String empfaengerMail = kunde.getEmail();
