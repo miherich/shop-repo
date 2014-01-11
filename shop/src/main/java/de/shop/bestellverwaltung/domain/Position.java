@@ -66,8 +66,8 @@ public class Position extends AbstractAuditable {
 	
 	@Min(value = ANZAHL_MIN, message = "{bestellposition.anzahl.min}")
 	@Basic(optional = false)
-	@NotEmpty(message = BESTELLUNG_POSITION_NOTNULL_BV)
-	private int anzahl;
+	//@NotEmpty(message = BESTELLUNG_POSITION_NOTNULL_BV)
+	private short anzahl;
 	
 	@Transient
 	private URI bestellURI;
@@ -104,11 +104,11 @@ public class Position extends AbstractAuditable {
 		this.artikel = artikel;
 	}
 
-	public int getAnzahl() {
+	public short getAnzahl() {
 		return anzahl;
 	}
 
-	public void setAnzahl(int anzahl) {
+	public void setAnzahl(short anzahl) {
 		this.anzahl = anzahl;
 	}
 

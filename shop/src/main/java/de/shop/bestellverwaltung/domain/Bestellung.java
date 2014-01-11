@@ -67,8 +67,8 @@ public class Bestellung extends AbstractAuditable {
 	@Basic(optional = false)
 	private Long bestellnr = KEINE_ID;
 	
-	@NotNull(message = BESTELLUNG_BESTELLDATUM_NOTNULL_BV)
-	private Date bestelldatum;		//TODO vernünftiges Datumsformat finden
+//	@NotNull(message = BESTELLUNG_BESTELLDATUM_NOTNULL_BV)
+//	private Date bestelldatum;
 	
 	@AssertFalse(message = BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV) //TODO AssertTrue?
 	private boolean istAusgeliefert;
@@ -111,13 +111,13 @@ public class Bestellung extends AbstractAuditable {
 		this.bestellnr = bestellnr;
 	}
 
-	public Date getBestelldatum() {
-		return bestelldatum;
-	}
+//	public Date getBestelldatum() {
+//		return bestelldatum;
+//	}
 
-	public void setBestelldatum(Date bestelldatum) {
-		this.bestelldatum = bestelldatum;
-	}
+//	public void setBestelldatum(Date bestelldatum) {
+//		this.bestelldatum = bestelldatum;
+//	}
 
 	public boolean isIstAusgeliefert() {
 		return istAusgeliefert;
@@ -162,7 +162,7 @@ public class Bestellung extends AbstractAuditable {
 	@Override
 	public String toString() {
 		return "Bestellung [bestellnr=" + bestellnr + ", bestelldatum="
-				+ bestelldatum + ", istAusgeliefert=" + istAusgeliefert
+				+ ", istAusgeliefert=" + istAusgeliefert
 				+ ", mitVerpackung=" + mitVerpackung + ", positionen="
 				+ positionen + ", kundeUri=" + kundeUri + ", kunde=" + kunde
 				+ "]";
@@ -172,8 +172,6 @@ public class Bestellung extends AbstractAuditable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result
-				+ ((bestelldatum == null) ? 0 : bestelldatum.hashCode());
 		result = prime * result
 				+ ((kundeUri == null) ? 0 : kundeUri.hashCode());
 		return result;
@@ -188,12 +186,6 @@ public class Bestellung extends AbstractAuditable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bestellung other = (Bestellung) obj;
-		if (bestelldatum == null) {
-			if (other.bestelldatum != null)
-				return false;
-		}
-		else if (!bestelldatum.equals(other.bestelldatum))
-			return false;
 		if (kundeUri == null) {
 			if (other.kundeUri != null)
 				return false;

@@ -20,11 +20,11 @@ INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (304,15,'Puftlumpe', 'Z'
 INSERT INTO artikel (artikelnr, preis, typ, art) VALUES (305,5,'Schlauch', 'Z');
 INSERT INTO artikel (artikelnr, bezeichnung, preis, typ, rahmen, art) VALUES (306,'Berni Bizeps',150,'Dreirad', 'U', 'F');
 
-INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istAusgeliefert, mitVerpackung) VALUES (400,100,'01.08.2013 00:00:00', 0, 1);
-INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (401,101,'02.08.2013', 0, 0);
-INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (402,102,'03.08.2013', 1, 1);
-INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (403,102,'04.08.2013', 0, 0);
-INSERT INTO bestellung (bestellnr, kunde_fk, bestelldatum, istausgeliefert, mitverpackung) VALUES (404,104,'05.08.2013', 0, 1);
+INSERT INTO bestellung (bestellnr, kunde_fk, istAusgeliefert, mitVerpackung) VALUES (400,100, 0, 1);
+INSERT INTO bestellung (bestellnr, kunde_fk, istausgeliefert, mitverpackung) VALUES (401,101, 0, 0);
+INSERT INTO bestellung (bestellnr, kunde_fk, istausgeliefert, mitverpackung) VALUES (402,102, 1, 1);
+INSERT INTO bestellung (bestellnr, kunde_fk, istausgeliefert, mitverpackung) VALUES (403,102, 0, 0);
+INSERT INTO bestellung (bestellnr, kunde_fk, istausgeliefert, mitverpackung) VALUES (404,104, 0, 1);
 
 INSERT INTO position (id, bestellung_fk, artikel_fk, anzahl) VALUES (500,400,300,1);
 INSERT INTO position (id, bestellung_fk, artikel_fk, anzahl) VALUES (501,400,301,4);

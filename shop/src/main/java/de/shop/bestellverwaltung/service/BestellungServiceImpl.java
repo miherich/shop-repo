@@ -69,9 +69,6 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 	
 
 
-	/**
-	 * {inheritDoc}
-	 */
 	@Override
 	public Bestellung createBestellung(Bestellung bestellung, Long kundeId) {
 		if (bestellung == null) {
@@ -79,7 +76,7 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		}
 		
 		// Den persistenten Kunden mit der transienten Bestellung verknuepfen
-		final AbstractKunde kunde = ks.findKundeById(kundeId, KundeService.FetchType.NUR_KUNDE);
+		final AbstractKunde kunde = ks.findKundeById(kundeId, KundeService.FetchType.MIT_BESTELLUNGEN);
 		return createBestellung(bestellung, kunde);
 	}
 	
@@ -102,9 +99,11 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 		for (Position bp : bestellung.getPositionen()) {
 			bp.setId(KEINE_ID);
 		}
-
+		// FIXME JDK 8 hat Lambda-Ausdruecke
+		//bestellung.getBestellpositionen()
+		//          .forEach(bp -> bp.setId(KEINE_ID));
+		
 		em.persist(bestellung);
-		//Email versenden
 		event.fire(bestellung);
 
 		return bestellung;

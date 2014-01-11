@@ -126,9 +126,7 @@ public class BestellungResource {
 	@Produces
 	@Transactional
 	public Response createBestellung(@Valid Bestellung bestellung) {
-//		bestellung = bs.createBestellung(bestellung);
-//		return Response.created(getUriBestellung(bestellung, uriInfo)).build();
-		
+//		// TODO eingeloggter Kunde wird durch die URI im Attribut "kundeUri" emuliert
 		final String kundeUriStr = bestellung.getKundeUri().toString();
 		int startPos = kundeUriStr.lastIndexOf('/') + 1;
 		final String kundeIdStr = kundeUriStr.substring(startPos);
@@ -141,10 +139,9 @@ public class BestellungResource {
 		}
 		
 		// IDs der (persistenten) Artikel ermitteln
-		final Collection<Position> bestellpositionen = bestellung.getPositionen();
-//		final List<Long> artikelIds = new ArrayList<>(bestellpositionen.size());
-		final List<Position> gefundenePositionen = new ArrayList<>();
-		for (Position bp : bestellpositionen) {
+		final List<Position> positionen = bestellung.getPositionen();
+		final List<Long> artikelIds = new ArrayList<>(positionen.size());
+		for (Position bp : positionen) {
 			final URI artikelUri = bp.getArtikelURI();
 			if (artikelUri == null) {
 				continue;
@@ -160,43 +157,46 @@ public class BestellungResource {
 				// Ungueltige Artikel-ID: wird nicht beruecksichtigt
 				continue;
 			}
-			AbstractArtikel artikel = as.findArtikelById(artikelId);
-			if (artikel == null)
-				continue;
-			bp.setArtikel(artikel);
-			gefundenePositionen.add(bp);
+			artikelIds.add(artikelId);
 		}
 		
-		if (gefundenePositionen.isEmpty()) {
+		if (artikelIds.isEmpty()) {
 			// keine einzige Artikel-ID als gueltige Zahl
 			artikelIdsInvalid();
 		}
 
-//		final Collection<AbstractArtikel> gefundeneArtikel = as.findArtikelByIds(artikelIds);
+		final List<AbstractArtikel> gefundeneArtikel = as.findArtikelByIds(artikelIds);
 		
 		// Bestellpositionen haben URLs fuer persistente Artikel.
 		// Diese persistenten Artikel wurden in einem DB-Zugriff ermittelt (s.o.)
 		// Fuer jede Bestellposition wird der Artikel passend zur Artikel-URL bzw. Artikel-ID gesetzt.
 		// Bestellpositionen mit nicht-gefundene Artikel werden eliminiert.
-//		int i = 0;
-//		final List<Position> neuePositionen = new ArrayList<>();
-//		for (Position bp : bestellpositionen) {
-//			// Artikel-ID der aktuellen Bestellposition (s.o.):
-//			// artikelIds haben gleiche Reihenfolge wie bestellpositionen
-//			final long artikelId = artikelIds.get(i++);
-//			
-//			// Wurde der Artikel beim DB-Zugriff gefunden?
-//			for (AbstractArtikel artikel : gefundeneArtikel) {
-//				if (artikel.getArtikelNr().longValue() == artikelId) {
-//					// Der Artikel wurde gefunden
-//					bp.setArtikel(artikel);
-//					neuePositionen.add(bp);
-//					break;					
-//				}
-//			}
-
-//		}
-		bestellung.setPositionen(gefundenePositionen);
+		int i = 0;
+		final List<Position> neuePositionen = new ArrayList<>();
+		for (Position bp : positionen) {
+			// Artikel-ID der aktuellen Bestellposition (s.o.):
+			// artikelIds haben gleiche Reihenfolge wie bestellpositionen
+			final long artikelId = artikelIds.get(i++);
+			
+			// Wurde der Artikel beim DB-Zugriff gefunden?
+			for (AbstractArtikel artikel : gefundeneArtikel) {
+				if (artikel.getArtikelNr().longValue() == artikelId) {
+					// Der Artikel wurde gefunden
+					bp.setArtikel(artikel);
+					neuePositionen.add(bp);
+					break;					
+				}
+			}
+			// FIXME JDK 8 hat Lambda-Ausdruecke
+			//final Artikel artikel = gefundeneArtikel.stream()
+			//                                        .filter(a -> a.getId() == artikelId)
+			//                                        .findAny();
+			//if (artikel != null) {
+			//	bp.setArtikel(artikel);
+			//	neueBestellpositionen.add(bp);				
+			//}
+		}
+		bestellung.setPositionen(neuePositionen);
 		
 		bestellung = bs.createBestellung(bestellung, kundeId);
 
