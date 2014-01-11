@@ -7,7 +7,6 @@ import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
