@@ -134,8 +134,8 @@ public abstract class AbstractKunde implements Serializable {
 
 	@OneToMany
 	@JoinColumn (name = "kunde_fk", nullable = false)
-	@OrderColumn (name = "idx", nullable = false)
-	@Transient
+	//@OrderColumn (name = "idx", nullable = false)
+	//@Transient
 	@XmlTransient
 	private List<Bestellung> bestellungen;
 	

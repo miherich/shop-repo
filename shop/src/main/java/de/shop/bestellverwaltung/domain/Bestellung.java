@@ -39,10 +39,10 @@ import de.shop.util.persistence.AbstractAuditable;
 
 @XmlRootElement
 @Entity
-@Table(indexes = {
-		@Index(columnList = "kunde_fk"),
-		@Index(columnList = "erzeugt")
-	})
+//@Table(indexes = {
+//		@Index(columnList = "kunde_fk"),
+//		@Index(columnList = "erzeugt")
+//	})
 @NamedQueries({
 	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN,
 					query = "SELECT b"
@@ -67,9 +67,11 @@ public class Bestellung extends AbstractAuditable {
 	private Long bestellnr = KEINE_ID;
 	
 	@NotNull(message = BESTELLUNG_BESTELLDATUM_NOTNULL_BV)
-	private String bestelldatum;		//TODO vernünftiges Datumsformat finden
+	private Date bestelldatum;		//TODO vernünftiges Datumsformat finden
+	
 	@AssertFalse(message = BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV) //TODO AssertTrue?
 	private boolean istAusgeliefert;
+	
 	private boolean mitVerpackung;
 	
 	@OneToMany(fetch = EAGER, cascade = { PERSIST })
@@ -108,11 +110,11 @@ public class Bestellung extends AbstractAuditable {
 		this.bestellnr = bestellnr;
 	}
 
-	public String getBestelldatum() {
+	public Date getBestelldatum() {
 		return bestelldatum;
 	}
 
-	public void setBestelldatum(String bestelldatum) {
+	public void setBestelldatum(Date bestelldatum) {
 		this.bestelldatum = bestelldatum;
 	}
 
