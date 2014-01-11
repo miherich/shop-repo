@@ -194,7 +194,7 @@ final AbstractKunde kunde = ks.findKundeById(kundeId, FetchType.MIT_BESTELLUNGEN
 			//            .forEach(b -> bestellungResource.setStructuralLinks(b, uriInfo));
 		}
 		
-		final Response response = Response.ok(new GenericEntity<List<Bestellung>>(bestellungen) {})
+		final Response response = Response.ok(new GenericEntity<List<Bestellung>>(bestellungen) { })
                                           .links(getTransitionalLinksBestellungen(bestellungen, kunde, uriInfo))
                                           .build();
 		return response;

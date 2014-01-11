@@ -29,7 +29,7 @@ public class Geschaeftskunde extends AbstractKunde {
 	@Size(min = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MIN, 
 		max = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MAX,
 		message = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_BV)
-	@Column(length=GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MAX)
+	@Column(length = GESCHAEFTSKUNDE_FIRMENNAME_LENGTH_MAX)
 	private String firmenname;
 	
 	public String getFirmenname() {
