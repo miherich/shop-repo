@@ -1,6 +1,7 @@
 package de.shop.bestellverwaltung.service;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
@@ -8,6 +9,7 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
@@ -67,7 +69,16 @@ public class BestellungServiceImpl implements BestellungService, Serializable {
 				.getResultList();
 	}
 	
-
+	@Override
+	@Size(min = 1, message = "{bestellung.notFound.kunde}")
+	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde) {
+		if (kunde == null) {
+			return Collections.emptyList();
+		}
+		return em.createNamedQuery(Bestellung.FIND_BESTELLUNGEN_BY_KUNDE, Bestellung.class)
+                 .setParameter(Bestellung.PARAM_KUNDE, kunde)
+				 .getResultList();
+	}
 
 	@Override
 	public Bestellung createBestellung(Bestellung bestellung, Long kundeId) {

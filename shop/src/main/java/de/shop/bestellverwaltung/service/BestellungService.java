@@ -16,6 +16,7 @@ public interface BestellungService {
 	//FIXME
 	//Position findPositionById(Long id, Long bid);
 	List<Bestellung> findAllBestellungen();
+	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde);
 	Bestellung createBestellung(Bestellung bestellung, Long kundenNr);
 	Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde);
 }

@@ -47,7 +47,11 @@ import de.shop.util.persistence.AbstractAuditable;
 @NamedQueries({
 	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN,
 					query = "SELECT b"
-				            + " FROM   Bestellung b")
+				            + " FROM   Bestellung b"),
+	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN_BY_KUNDE,
+	                query = "SELECT b"
+				            + " FROM   Bestellung b"
+							+ " WHERE  b.kunde = :" + Bestellung.PARAM_KUNDE)
 })
 @Cacheable
 public class Bestellung extends AbstractAuditable {
@@ -61,6 +65,8 @@ public class Bestellung extends AbstractAuditable {
 	
 	private static final String PREFIX = "Bestellung.";
 	public static final String FIND_BESTELLUNGEN = PREFIX + "findAllBestellungen";
+	public static final String FIND_BESTELLUNGEN_BY_KUNDE = PREFIX + "findBestellungenByKunde";
+	public static final String PARAM_KUNDE = "kunde";
 	
 	@Id
 	@GeneratedValue

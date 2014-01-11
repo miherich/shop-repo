@@ -39,6 +39,7 @@ import com.google.common.base.Strings;
 
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.rest.BestellungResource;
+import de.shop.bestellverwaltung.service.BestellungServiceImpl;
 //import de.shop.bestellverwaltung.service.BestellungService;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.kundenverwaltung.service.KundeService;
@@ -70,6 +71,9 @@ public class KundeResource {
 	@Inject
 	private BestellungResource bestellungResource;
 
+	@Inject
+	private BestellungServiceImpl bs;
+	
 	@Inject
 	private UriHelper uriHelper;
 
@@ -176,21 +180,23 @@ public class KundeResource {
 	@Path("{id:[1-9][0-9]*}/bestellungen")
 		public Response findBestellungenByKundeId(
 			@PathParam(KUNDEN_ID_PATH_PARAM) Long kundeId) {
-		final AbstractKunde kunde = ks.findKundeById(kundeId, FetchType.MIT_BESTELLUNGEN);
-
-		//TODO Braucht man das??
-//		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
-//
-//		// URIs innerhalb der gefundenen Bestellungen anpassen
-//		for (Bestellung bestellung : bestellungen) {
-//			bestellungResource.setStructuralLinks(bestellung, uriInfo);
-//		}
-
-		return Response
-				.ok(new GenericEntity<List<Bestellung>>(kunde.getBestellungen()) {
-				})
-				.links(getTransitionalLinksBestellungen(kunde.getBestellungen(), kunde,
-						uriInfo)).build();
+final AbstractKunde kunde = ks.findKundeById(kundeId, FetchType.MIT_BESTELLUNGEN);
+		
+		final List<Bestellung> bestellungen = bs.findBestellungenByKunde(kunde);
+		// URIs innerhalb der gefundenen Bestellungen anpassen
+		if (bestellungen != null) {
+			for (Bestellung bestellung : bestellungen) {
+				bestellungResource.setStructuralLinks(bestellung, uriInfo);
+			}
+			// FIXME JDK 8 hat Lambda-Ausdruecke
+			//bestellungen.parallelStream()
+			//            .forEach(b -> bestellungResource.setStructuralLinks(b, uriInfo));
+		}
+		
+		final Response response = Response.ok(new GenericEntity<List<Bestellung>>(bestellungen) {})
+                                          .links(getTransitionalLinksBestellungen(bestellungen, kunde, uriInfo))
+                                          .build();
+		return response;
 	}
 
 	private Link[] getTransitionalLinksBestellungen(
