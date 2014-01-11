@@ -87,7 +87,7 @@ public class KundeResource {
 
 	@GET
 	@Path("{" + KUNDEN_ID_PATH_PARAM + ":[1-9][0-9]*}")
-	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) Long id, message = KUNDEN_ID_NOT_FOUND) {
+	public Response findKundeById(@PathParam(KUNDEN_ID_PATH_PARAM) Long id) {
 		final AbstractKunde kunde = ks.findKundeById(id, FetchType.NUR_KUNDE);
 		return Response.ok(kunde).links(getTransitionalLinks(kunde, uriInfo))
 				.build();
