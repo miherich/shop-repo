@@ -29,6 +29,7 @@ import javax.ws.rs.core.UriInfo;
 
 import de.shop.kundenverwaltung.rest.KundeResource;
 import de.shop.artikelverwaltung.domain.AbstractArtikel;
+import de.shop.artikelverwaltung.rest.ArtikelResource;
 import de.shop.artikelverwaltung.service.ArtikelService;
 import de.shop.bestellverwaltung.domain.Bestellung;
 import de.shop.bestellverwaltung.domain.Position;
@@ -64,6 +65,9 @@ public class BestellungResource {
 	
 	@Inject
 	private ArtikelService as;
+	
+	@Inject
+	private ArtikelResource artikelResource;
 
 	@GET
 	public Response findAllBestellungen() {
@@ -93,6 +97,16 @@ public class BestellungResource {
 			final URI kundeUri = kundeResource.getUriKunde(
 					bestellung.getKunde(), uriInfo);
 			bestellung.setKundeUri(kundeUri);
+		}
+		
+		//URIs für Artikel setzen
+		List<Position> positionen = bestellung.getPositionen();
+		for(Position p:positionen) {
+			final AbstractArtikel artikel = p.getArtikel();
+			if(artikel!=null) {
+				final URI artikelUri = artikelResource.getUriArtikel(p.getArtikel(), uriInfo);
+				p.setArtikelURI(artikelUri);
+			}
 		}
 	}
 	
