@@ -61,7 +61,7 @@ public class ArtikelService implements Serializable {
 	@Size(min = 1, message = "{artikel.notFound.ids}")
 	public List<AbstractArtikel> findArtikelByIds(List<Long> ids) {
 		if (ids == null || ids.isEmpty()) {
-			List<AbstractArtikel> leereListe = new ArrayList<>();
+			final List<AbstractArtikel> leereListe = new ArrayList<>();
 			return leereListe;
 		}
 		
