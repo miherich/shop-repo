@@ -29,7 +29,7 @@ import de.shop.util.persistence.AbstractAuditable;
 @Entity
 @Inheritance
 @DiscriminatorColumn(name = "art", length = 1)
-@Table(name="artikel")
+@Table(name = "artikel")
 @NamedQueries({
 	@NamedQuery(name  = AbstractArtikel.FIND_ARTIKEL,
             	query = "SELECT a"
