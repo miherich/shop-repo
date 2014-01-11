@@ -122,7 +122,7 @@ public class Position extends AbstractAuditable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Position other = (Position) obj;
+		final Position other = (Position) obj;
 		if (anzahl != other.anzahl)
 			return false;
 		if (artikelURI == null) {
