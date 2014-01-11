@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -86,6 +87,7 @@ public class ArtikelResource {
 	@POST
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
+	@Transactional
 	public Response createArtikel(@Valid AbstractArtikel artikel) {
 		artikel.setArtikelNr(KEINE_ID);
 		artikel = as.createArtikel(artikel);
@@ -95,6 +97,7 @@ public class ArtikelResource {
 	@PUT
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
+	@Transactional
 	public void updateArtikel(@Valid AbstractArtikel artikel) {
 		as.updateArtikel(artikel);
 	}

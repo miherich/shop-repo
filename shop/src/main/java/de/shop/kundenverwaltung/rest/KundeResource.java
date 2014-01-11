@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
@@ -220,6 +221,7 @@ public class KundeResource {
 	@POST
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
+    @Transactional
 	public Response createKunde(@Valid AbstractKunde kunde) {
 		kunde.setKundennr(KEINE_ID);
 		kunde = ks.createKunde(kunde);
@@ -229,6 +231,7 @@ public class KundeResource {
 	@PUT
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
+    @Transactional
 	public void updateKunde(@Valid AbstractKunde kunde) {
 		ks.updateKunde(kunde);
 	}

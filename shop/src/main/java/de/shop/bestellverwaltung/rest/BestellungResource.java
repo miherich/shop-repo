@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
@@ -109,6 +110,7 @@ public class BestellungResource {
 	@POST
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
+	@Transactional
 	public Response createBestellung(@Valid Bestellung bestellung) {
 //		bestellung = bs.createBestellung(bestellung);
 //		return Response.created(getUriBestellung(bestellung, uriInfo)).build();
