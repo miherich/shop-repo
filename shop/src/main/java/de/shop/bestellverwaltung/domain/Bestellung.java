@@ -166,7 +166,7 @@ public class Bestellung extends AbstractAuditable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Bestellung other = (Bestellung) obj;
+		final Bestellung other = (Bestellung) obj;
 		if (kundeUri == null) {
 			if (other.kundeUri != null)
 				return false;

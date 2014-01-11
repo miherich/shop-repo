@@ -99,10 +99,10 @@ public class BestellungResource {
 		}
 		
 		//URIs für Artikel setzen
-		List<Position> positionen = bestellung.getPositionen();
-		for(Position p:positionen) {
+		final List<Position> positionen = bestellung.getPositionen();
+		for (Position p:positionen) {
 			final AbstractArtikel artikel = p.getArtikel();
-			if(artikel!=null) {
+			if (artikel != null) {
 				final URI artikelUri = artikelResource.getUriArtikel(p.getArtikel(), uriInfo);
 				p.setArtikelURI(artikelUri);
 			}

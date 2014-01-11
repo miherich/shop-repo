@@ -13,7 +13,7 @@ import de.shop.util.interceptor.Log;
 public interface BestellungService {
 	Bestellung findBestellungById(Long id);
 	List<Bestellung> findAllBestellungen();
-	public List<Bestellung> findBestellungenByKunde(AbstractKunde kunde);
+	List<Bestellung> findBestellungenByKunde(AbstractKunde kunde);
 	Bestellung createBestellung(Bestellung bestellung, Long kundenNr);
 	Bestellung createBestellung(Bestellung bestellung, AbstractKunde kunde);
 }
