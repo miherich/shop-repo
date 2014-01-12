@@ -3,7 +3,6 @@ package de.shop.bestellverwaltung.domain;
 import static de.shop.util.Constants.KEINE_ID;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.FetchType.EAGER;
-import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +23,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.jboss.logging.Logger;
 import de.shop.kundenverwaltung.domain.AbstractKunde;
 import de.shop.util.persistence.AbstractAuditable;
 
@@ -43,7 +41,6 @@ import de.shop.util.persistence.AbstractAuditable;
 @Cacheable
 public class Bestellung extends AbstractAuditable {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	
 	private static final String BESTELLUNG_ISTAUSGELIEFERT_ASSERTFALSE_BV = 
 			"{bestellverwaltung.bestellung.istAusgeliefert.assertFalse}";
